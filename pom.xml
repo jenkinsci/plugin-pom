@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~ The MIT License
+ ~
+ ~ Copyright (c) 2016, CloudBees, Inc.
+ ~
+ ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+ ~ of this software and associated documentation files (the "Software"), to deal
+ ~ in the Software without restriction, including without limitation the rights
+ ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ ~ copies of the Software, and to permit persons to whom the Software is
+ ~ furnished to do so, subject to the following conditions:
+ ~
+ ~ The above copyright notice and this permission notice shall be included in
+ ~ all copies or substantial portions of the Software.
+ ~
+ ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ ~ THE SOFTWARE.
+ -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -22,8 +46,6 @@
     <system>JIRA</system>
     <url>http://issues.jenkins-ci.org/</url>
   </issueManagement>
-
-  <!-- TODO see if should include license. -->
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -84,7 +106,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version>
+        <version>4.12</version>
       </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>
@@ -215,10 +237,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.5.5</version>
-        </plugin>
-        <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>2.6</version>
         </plugin>
@@ -285,7 +303,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.0.3</version>
           <executions>
             <execution>
               <id>findbugs</id>
@@ -321,11 +339,6 @@
           <groupId>org.codehaus.gmaven</groupId>
           <artifactId>gmaven-plugin</artifactId>
           <version>1.5-jenkins-3</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>apt-maven-plugin</artifactId>
-          <version>1.0-alpha-5</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -377,24 +390,9 @@
           <version>1.23</version>
         </plugin>
         <plugin>
-          <groupId>org.jvnet.maven-antrun-extended-plugin</groupId>
-          <artifactId>maven-antrun-extended-plugin</artifactId>
-          <version>1.43</version>
-        </plugin>
-        <plugin>
-          <groupId>org.jvnet.sorcerer</groupId>
-          <artifactId>maven-sorcerer-plugin</artifactId>
-          <version>0.8</version>
-        </plugin>
-        <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
           <version>1.7</version>
-        </plugin>
-        <plugin>
-          <groupId>org.mortbay.jetty</groupId>
-          <artifactId>maven-jetty-plugin</artifactId>
-          <version>6.1.26</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
@@ -512,7 +510,7 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.0-beta-3</version>
+            <version>1.0-beta-4</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -568,10 +566,10 @@
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
-          <preparationGoals>clean install</preparationGoals>
+          <preparationGoals>clean install javadoc:javadoc</preparationGoals>
           <!-- TODO check the -D works with the forked path. -->
           <goals>-DskipTests deploy</goals>
-          <arguments>-Dconcurrency=1 ${arguments}</arguments>
+          <arguments>${arguments}</arguments>
         </configuration>
       </plugin>
       <plugin>
@@ -760,7 +758,6 @@
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>findbugs-maven-plugin</artifactId>
-              <version>3.0.1</version>
               <executions>
                 <execution>
                   <id>findbugs</id>
