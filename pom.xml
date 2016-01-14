@@ -51,6 +51,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <jenkins.version>1.625.2</jenkins.version>
     <jenkins-test-harness.version>${jenkins.version}</jenkins-test-harness.version>
@@ -567,9 +568,9 @@
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <preparationGoals>clean install javadoc:javadoc</preparationGoals>
-          <!-- TODO check the -D works with the forked path. -->
-          <goals>-DskipTests deploy</goals>
+          <goals>deploy</goals>
           <arguments>${arguments}</arguments>
+          <releaseProfiles>jenkins-release,${releaseProfiles}</releaseProfiles>
         </configuration>
       </plugin>
       <plugin>
@@ -739,6 +740,12 @@
   </distributionManagement>
 
   <profiles>
+    <profile>
+      <id>jenkins-release</id>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
+    </profile>
     <profile>
       <id>always-check-remote-repositories</id>
       <properties>
