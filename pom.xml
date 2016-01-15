@@ -58,8 +58,13 @@
     <hpi-plugin.version>1.115</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>7</java.level>
-    <java.level.test>7</java.level.test>
+    <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
+    <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
+    <java.level.test>${java.level}</java.level.test>
     <concurrency>1C</concurrency> <!-- may use e.g. 2C for 2 × (number of cores) -->
+    <!-- Whether the build should fail if findbugs finds any error. -->
+    <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
+    <findbugs.failOnError>true</findbugs.failOnError>
 
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
@@ -518,6 +523,9 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
+        <configuration>
+          <failOnError>${findbugs.failOnError}</failOnError>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -724,10 +732,6 @@
   </pluginRepositories>
 
   <distributionManagement>
-    <site>
-      <id>github-pages</id>
-      <url>gitsite:git@github.com/jenkinsci/maven-site.git:plugin-parent</url>
-    </site>
     <repository>
       <uniqueVersion>false</uniqueVersion>
       <id>maven.jenkins-ci.org</id>
