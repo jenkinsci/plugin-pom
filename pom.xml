@@ -54,7 +54,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <jenkins.version>1.625.2</jenkins.version>
-    <jenkins-test-harness.version>${jenkins.version}</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2.0</jenkins-test-harness.version>
     <hpi-plugin.version>1.115</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>7</java.level>
@@ -65,7 +65,8 @@
     <!-- Whether the build should fail if findbugs finds any error. -->
     <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
     <findbugs.failOnError>true</findbugs.failOnError>
-
+    <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
+    <release.skipTests>true</release.skipTests>
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
     <slf4jVersion>1.7.7</slf4jVersion>
@@ -108,6 +109,11 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-test-harness</artifactId>
         <version>${jenkins-test-harness.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci</groupId>
+        <artifactId>test-annotations</artifactId>
+        <version>1.2</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -200,6 +206,11 @@
           <artifactId>junit-dep</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>test-annotations</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -471,6 +482,9 @@
                 <requirePluginVersions/>
                 <enforceBytecodeVersion>
                   <maxJdkVersion>1.${java.level}</maxJdkVersion>
+                  <ignoredScopes>
+                    <ignoredScope>test</ignoredScope>
+                  </ignoredScopes>
                   <excludes>
                     <!-- Makes no sense to check core itself: -->
                     <exclude>org.jenkins-ci.main:jenkins-core</exclude>
@@ -747,7 +761,7 @@
     <profile>
       <id>jenkins-release</id>
       <properties>
-        <skipTests>true</skipTests>
+        <skipTests>${release.skipTests}</skipTests>
       </properties>
     </profile>
     <profile>
