@@ -11,7 +11,7 @@ The main changes are:
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
   * `jenkins.version`: The Jenkins version required by the plugin. Current default is `1.625.3`
   * `jenkins-test-harness.version`: The JTH version used to test plugin. The default is `2.0`.
-  Uses split test-harness (see [[JENKINS-32478]](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
+  Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin. Current default is `1.115`
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin. Current default is `1.17`
   * `java.level`: The Java version to use to build the plugin. Current default is `7`
