@@ -28,8 +28,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jenkins-ci.plugins</groupId>
-  <artifactId>plugin-pom</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <artifactId>plugin</artifactId>
+  <version>2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -37,15 +37,10 @@
   <inceptionYear>2016</inceptionYear>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/andresrc/plugin-pom.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/andresrc/plugin-pom.git</developerConnection>
+    <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-
-  <issueManagement>
-    <system>JIRA</system>
-    <url>http://issues.jenkins-ci.org/</url>
-  </issueManagement>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -53,7 +48,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <jenkins.version>1.625.2</jenkins.version>
+    <jenkins.version>1.625.3</jenkins.version>
     <jenkins-test-harness.version>2.0</jenkins-test-harness.version>
     <hpi-plugin.version>1.115</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
@@ -86,8 +81,6 @@
         <groupId>com.google.code.findbugs</groupId>
         <artifactId>annotations</artifactId>
         <version>3.0.0</version>
-        <scope>provided</scope>
-        <optional>true</optional>
       </dependency>
       <dependency>
         <groupId>net.jcip</groupId>
@@ -103,7 +96,7 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins.version}</version>
-        <type>war</type>
+        <classifier>war-for-test</classifier>
       </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
@@ -166,6 +159,12 @@
   <dependencies>
     <!-- static analysis -->
     <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>annotations</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
       <groupId>net.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
       <scope>provided</scope>
@@ -193,7 +192,7 @@
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
-      <type>war</type>
+      <classifier>war-for-test</classifier>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -299,11 +298,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <mavenExecutorId>forked-path</mavenExecutorId>
-            <useReleaseProfile>false</useReleaseProfile>
-          </configuration>
+          <version>2.5.3</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
@@ -321,21 +316,6 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>3.0.3</version>
-          <executions>
-            <execution>
-              <id>findbugs</id>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <phase>verify</phase>
-              <configuration>
-                <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
-                <!--  Instead we configure this in a profile -->
-                <xmlOutput>true</xmlOutput>
-                <findbugsXmlOutput>false</findbugsXmlOutput>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <artifactId>maven-eclipse-plugin</artifactId>
@@ -540,6 +520,21 @@
         <configuration>
           <failOnError>${findbugs.failOnError}</failOnError>
         </configuration>
+        <executions>
+          <execution>
+            <id>findbugs</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
+              <!--  Instead we configure this in a profile -->
+              <xmlOutput>true</xmlOutput>
+              <findbugsXmlOutput>false</findbugsXmlOutput>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -589,7 +584,9 @@
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
-          <preparationGoals>clean install javadoc:javadoc</preparationGoals>
+          <mavenExecutorId>forked-path</mavenExecutorId>
+          <useReleaseProfile>false</useReleaseProfile>
+          <preparationGoals>clean install</preparationGoals>
           <goals>deploy</goals>
           <arguments>${arguments}</arguments>
           <releaseProfiles>jenkins-release,${releaseProfiles}</releaseProfiles>
@@ -723,12 +720,6 @@
     <repository>
       <id>repo.jenkins-ci.org</id>
       <url>http://repo.jenkins-ci.org/public/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
     </repository>
   </repositories>
 
@@ -736,12 +727,6 @@
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
       <url>http://repo.jenkins-ci.org/public/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 
@@ -771,6 +756,28 @@
       </properties>
     </profile>
     <profile>
+      <id>rerunFailingTests</id>
+      <activation>
+        <property>
+          <name>!test</name>
+        </property>
+      </activation>
+      <properties>
+        <surefire.rerunFailingTestsCount>4</surefire.rerunFailingTestsCount>
+      </properties>
+    </profile>
+    <profile>
+      <id>skip-findbugs-with-tests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+        </property>
+      </activation>
+      <properties>
+        <findbugs.skip>true</findbugs.skip>
+      </properties>
+    </profile>
+    <profile>
       <id>findbugs-exclusion-file</id>
       <activation>
         <file>
@@ -778,22 +785,44 @@
         </file>
       </activation>
       <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>findbugs-maven-plugin</artifactId>
-              <executions>
-                <execution>
-                  <id>findbugs</id>
-                  <configuration>
-                    <excludeFilterFile>${project.basedir}/src/findbugs/excludesFilter.xml</excludeFilterFile>
-                  </configuration>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>findbugs</id>
+                <configuration>
+                  <excludeFilterFile>${project.basedir}/src/findbugs/excludesFilter.xml</excludeFilterFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>javadoc-when-tests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
       </build>
     </profile>
     <profile>
