@@ -66,7 +66,7 @@
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
-
+    <npm.loglevel/> <!-- may use e.g. -\-silent (without backslash) -->
   </properties>
 
   <prerequisites>
@@ -1002,7 +1002,7 @@
                 </goals>
                 <configuration>
                   <!-- Note that this may not be omitted lest maven-release-plugin be confused (frontend-maven-plugin #109): -->
-                  <arguments>install</arguments>
+                  <arguments>install ${npm.loglevel}</arguments>
                 </configuration>
               </execution>
 
