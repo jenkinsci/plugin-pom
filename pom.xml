@@ -203,6 +203,12 @@
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <type>war</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-test-harness</artifactId>
       <scope>test</scope>
       <exclusions>
@@ -613,8 +619,20 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Will skip execution when tests are skipped. -->
+      <!-- See skip-javadoc-with-tests profile below. -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+            <!-- As soon as possible but after required generate-sources phase -->
+            <phase>process-sources</phase>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.kohsuke</groupId>
@@ -809,28 +827,16 @@
       </build>
     </profile>
     <profile>
-      <id>javadoc-when-tests</id>
+      <id>skip-javadoc-with-tests</id>
       <activation>
         <property>
           <name>skipTests</name>
-          <value>!true</value>
+          <value>true</value>
         </property>
       </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>javadoc</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+      </properties>
     </profile>
     <profile>
       <id>all-tests</id>
