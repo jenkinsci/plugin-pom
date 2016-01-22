@@ -99,6 +99,13 @@
       </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-war</artifactId>
+        <version>${jenkins.version}</version>
+        <type>war</type>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-test-harness</artifactId>
         <version>${jenkins-test-harness.version}</version>
       </dependency>
