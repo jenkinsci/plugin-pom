@@ -27,7 +27,7 @@ In order to use the new POM:
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.0</version>
+    <version>2.2</version>
   </parent>
 ```
 * Override the needed properties, e.g.:
