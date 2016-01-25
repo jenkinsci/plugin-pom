@@ -48,7 +48,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <jenkins.version>1.625.3</jenkins.version>
-    <jenkins-test-harness.version>2.0</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2.1</jenkins-test-harness.version>
     <hpi-plugin.version>1.115</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>7</java.level>
@@ -1100,6 +1100,62 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <!-- Profiles preconfiguring different Jenkins versions. -->
+    <!-- LTS lines are used. -->
+    <profile>
+      <id>jenkins-642</id>
+      <properties>
+        <jenkins.version>1.642.1</jenkins.version>
+        <hpi-plugin.version>1.115</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-625</id>
+      <properties>
+        <jenkins.version>1.625.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-609</id>
+      <properties>
+        <jenkins.version>1.609.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-596</id>
+      <properties>
+        <jenkins.version>1.596.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-580</id>
+      <properties>
+        <jenkins.version>1.580.4</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+      </properties>
+    </profile>
+    <profile>
+      <id>jenkins-565</id>
+      <properties>
+        <jenkins.version>1.565.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+      </properties>
     </profile>
   </profiles>
 </project>
