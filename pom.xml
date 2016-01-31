@@ -1142,7 +1142,7 @@
     <profile>
       <id>jenkins-580</id>
       <properties>
-        <jenkins.version>1.580.4</jenkins.version>
+        <jenkins.version>1.580.3</jenkins.version>
         <hpi-plugin.version>1.106</hpi-plugin.version>
         <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>6</java.level>
