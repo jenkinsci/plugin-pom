@@ -51,6 +51,7 @@
     <jenkins-test-harness.version>2.1</jenkins-test-harness.version>
     <hpi-plugin.version>1.115</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
+    <jacoco-plugin.version>0.7.2.201409121644</jacoco-plugin.version>
     <java.level>7</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
@@ -371,7 +372,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.2.201409121644</version>
+          <version>${jacoco-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke.gmaven</groupId>
