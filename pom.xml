@@ -119,10 +119,10 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
-      <dependency>
+      <dependency> <!-- from org.eclipse.jetty:jetty-server:9.2.15.v20160210 -->
         <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.4</version>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
@@ -186,7 +186,7 @@
     <!-- dependencies provided by virtue of running in Jenkins -->
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
+      <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -484,6 +484,8 @@
                     <exclude>org.jenkins-ci.main:jenkins-test-harness</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
+                    <!-- From the container, not our code: -->
+                    <exclude>javax.servlet:javax.servlet-api</exclude>
                   </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
@@ -570,8 +572,8 @@
         </executions>
         <configuration>
           <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java1${java.level}</artifactId>
+              <groupId>org.codehaus.mojo.signature</groupId>
+              <artifactId>java1${java.level}</artifactId>
           </signature>
         </configuration>
       </plugin>
