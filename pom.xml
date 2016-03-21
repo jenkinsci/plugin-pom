@@ -119,6 +119,11 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
+      <dependency> <!-- from org.eclipse.jetty:jetty-server:9.2.15.v20160210 -->
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+      </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>servlet-api</artifactId>
@@ -184,6 +189,11 @@
       <optional>true</optional><!-- no need to have this at runtime -->
     </dependency>
     <!-- dependencies provided by virtue of running in Jenkins -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
