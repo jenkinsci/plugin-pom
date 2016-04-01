@@ -826,7 +826,7 @@
         </property>
       </activation>
       <properties>
-        <skip.node.tests>--skipTests</skip.node.tests>
+        <skip.node.tests>--skipTests --skipLint</skip.node.tests>
       </properties>
     </profile>
     <profile>
