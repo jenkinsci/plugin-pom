@@ -66,6 +66,8 @@
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
+    <skip.node.tests></skip.node.tests> <!-- changed by -DskipTests, if specified - see profile -->
+    <skip.node.lint></skip.node.lint> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
   </properties>
 
@@ -816,6 +818,30 @@
       </properties>
     </profile>
     <profile>
+      <id>skip-node-tests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <skip.node.tests>--skipTests --skipLint</skip.node.tests>
+      </properties>
+    </profile>
+    <profile>
+      <id>skip-node-lint</id>
+      <activation>
+        <property>
+          <name>skipLint</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <skip.node.lint>--skipLint</skip.node.lint>
+      </properties>
+    </profile>
+    <profile>
       <id>findbugs-exclusion-file</id>
       <activation>
         <file>
@@ -1067,7 +1093,7 @@
               </execution>
 
               <execution>
-                <phase>generate-sources</phase>
+                <phase>compile</phase>
                 <id>gulp bundle</id>
                 <goals>
                   <goal>gulp</goal>
@@ -1083,6 +1109,9 @@
                 <goals>
                   <goal>gulp</goal>
                 </goals>
+                <configuration>
+                  <arguments>test lint ${skip.node.tests} ${skip.node.lint} --skipBundle</arguments>
+                </configuration>
               </execution>
 
             </executions>
