@@ -687,6 +687,7 @@
           </systemProperties>
           <reuseForks>true</reuseForks>
           <forkCount>${concurrency}</forkCount>
+          <argLine>-Djava.awt.headless=true ${argLine}</argLine>
         </configuration>
       </plugin>
       <plugin>
