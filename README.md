@@ -38,3 +38,92 @@ In order to use the new POM:
     <hpi-plugin.version>1.106</hpi-plugin.version>
   </properties>
 ```
+
+It is handy to be able to select different Jenkins baselines with a Maven profile.
+To set this up, you must edit your `~/.m2/settings.xml` to include some new entries in the `<profiles>` section.
+For example:
+
+```xml
+<profile>
+    <id>jenkins-2</id>
+    <properties>
+        <jenkins.version>2.0</jenkins.version>
+        <hpi-plugin.version>1.115</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-651</id>
+    <properties>
+        <jenkins.version>1.651.1</jenkins.version>
+        <hpi-plugin.version>1.115</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-642</id>
+    <properties>
+        <jenkins.version>1.642.3</jenkins.version>
+        <hpi-plugin.version>1.115</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-625</id>
+    <properties>
+        <jenkins.version>1.625.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-609</id>
+    <properties>
+        <jenkins.version>1.609.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-596</id>
+    <properties>
+        <jenkins.version>1.596.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-580</id>
+    <properties>
+        <jenkins.version>1.580.3</jenkins.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-565</id>
+    <properties>
+        <jenkins.version>1.565.3</jenkins.version>
+        <jenkins-test-harness.version>1.565.3</jenkins-test-harness.version>
+        <hpi-plugin.version>1.106</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>6</java.level>
+    </properties>
+</profile>
+```
+
+Now for example if your plugin normally builds against 1.625.x, but you wish to test compatibility with 1.651.x,
+there is no need to edit your POM. Just run:
+
+    mvn -Pjenkins-651 clean test
+
+or
+
+    mvn -Pjenkins-651 hpi:run
