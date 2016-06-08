@@ -67,6 +67,7 @@
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
+    <frontend-version>1.0</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
@@ -962,25 +963,11 @@
       <activation>
         <os>
           <family>windows</family>
-          <arch>x64</arch>
         </os>
       </activation>
       <properties>
         <node.download.file>win-x64/node.exe</node.download.file>
-        <node.download.classifier>/x64</node.download.classifier>
-      </properties>
-    </profile>
-    <profile>
-      <id>node-classifier-windows-amd64</id>
-      <activation>
-        <os>
-          <family>windows</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>win-x64/node.exe</node.download.file>
-        <node.download.classifier>/x64</node.download.classifier>
+        <node.download.classifier>/win-x64</node.download.classifier>
       </properties>
     </profile>
     <profile>
@@ -1073,7 +1060,7 @@
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <version>0.0.23</version>
+            <version>${frontend-version}</version>
 
             <executions>
 
