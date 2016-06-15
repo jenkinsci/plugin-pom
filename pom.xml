@@ -1095,7 +1095,7 @@
               </execution>
 
               <execution>
-                <phase>compile</phase>
+                <phase>generate-sources</phase>
                 <id>gulp bundle</id>
                 <goals>
                   <goal>gulp</goal>
