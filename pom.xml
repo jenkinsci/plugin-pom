@@ -947,6 +947,19 @@
       </properties>
     </profile>
     <profile>
+      <id>node-classifier-linux-x86</id>
+      <activation>
+        <os>
+          <family>Linux</family>
+          <arch>i386</arch>
+        </os>
+      </activation>
+      <properties>
+        <node.download.file>node-v${node.version}-linux-x86.tar.gz</node.download.file>
+        <node.download.classifier />
+      </properties>
+    </profile>
+    <profile>
       <id>node-classifier-mac</id>
       <activation>
         <os>
