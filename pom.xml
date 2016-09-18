@@ -432,50 +432,6 @@
           <artifactId>maven-license-plugin</artifactId>
           <version>1.7</version>
         </plugin>
-        <!--
-            This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.
-            the plugins mention here are the ones we do not have direct control over, but are used for a jenkins plugin - all other
-            will be changed to in there source to support eclipse soon (hpi, license, localizer, access-modifier).
-            see also: http://wiki.eclipse.org/M2E_compatible_maven_plugins
-        -->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>display-info</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.gmaven</groupId>
-                    <artifactId>gmaven-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>testCompile</goal>
-                      <goal>generateTestStubs</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -803,6 +759,64 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+        <id>only-eclipse</id>
+        <activation>
+          <property>
+            <name>m2e.version</name>
+          </property>
+        </activation>
+        <build>
+            <pluginManagement>
+                <plugins>
+                <!--
+                    This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.
+                    the plugins mention here are the ones we do not have direct control over, but are used for a jenkins plugin - all other
+                    will be changed to in there source to support eclipse soon (hpi, license, localizer, access-modifier).
+                    see also: http://wiki.eclipse.org/M2E_compatible_maven_plugins
+                -->
+                <plugin>
+                  <groupId>org.eclipse.m2e</groupId>
+                  <artifactId>lifecycle-mapping</artifactId>
+                  <version>1.0.0</version>
+                  <configuration>
+                    <lifecycleMappingMetadata>
+                      <pluginExecutions>
+                        <pluginExecution>
+                          <pluginExecutionFilter>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-enforcer-plugin</artifactId>
+                            <versionRange>[1.0,)</versionRange>
+                            <goals>
+                              <goal>display-info</goal>
+                            </goals>
+                          </pluginExecutionFilter>
+                          <action>
+                            <ignore />
+                          </action>
+                        </pluginExecution>
+                        <pluginExecution>
+                          <pluginExecutionFilter>
+                            <groupId>org.codehaus.gmaven</groupId>
+                            <artifactId>gmaven-plugin</artifactId>
+                            <versionRange>[1.0,)</versionRange>
+                            <goals>
+                              <goal>testCompile</goal>
+                              <goal>generateTestStubs</goal>
+                            </goals>
+                          </pluginExecutionFilter>
+                          <action>
+                            <ignore />
+                          </action>
+                        </pluginExecution>
+                      </pluginExecutions>
+                    </lifecycleMappingMetadata>
+                  </configuration>
+                </plugin>
+                </plugins>
+            </pluginManagement>
+        </build>
     </profile>
     <profile>
       <id>always-check-remote-repositories</id>
