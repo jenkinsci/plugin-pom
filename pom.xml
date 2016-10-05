@@ -611,7 +611,11 @@
         <executions>
           <execution>
             <goals>
-              <goal>javadoc</goal>
+              <!--
+                Goal needs to be the "-no-fork" variant, otherwise it causes other plugins running
+                in e.g. the "initialise" phase to execute twice (e.g. the enforcer plugin + frontend node/npm install).
+              -->
+              <goal>javadoc-no-fork</goal>
             </goals>
             <!-- As soon as possible but after required generate-sources phase -->
             <phase>process-sources</phase>
