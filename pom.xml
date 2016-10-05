@@ -1061,10 +1061,10 @@
       </build>
     </profile>
     <profile>
-      <id>gulp-execution</id>
+      <id>node-execution</id>
       <activation>
         <file>
-          <exists>gulpfile.js</exists>
+          <exists>.mvn_exec_node</exists>
         </file>
       </activation>
       <build>
@@ -1123,23 +1123,25 @@
 
               <execution>
                 <phase>generate-sources</phase>
-                <id>gulp bundle</id>
+                <id>npm build</id>
                 <goals>
-                  <goal>gulp</goal>
+                  <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <arguments>bundle</arguments>
+                  <!-- The package.json must define a "build" script -->
+                  <arguments>run build</arguments>
                 </configuration>
               </execution>
 
               <execution>
                 <phase>test</phase>
-                <id>gulp test</id>
+                <id>npm test</id>
                 <goals>
-                  <goal>gulp</goal>
+                  <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <arguments>test lint ${skip.node.tests} ${skip.node.lint} --skipBundle</arguments>
+                  <!-- The package.json must define a "test" script -->
+                  <arguments>run test</arguments>
                 </configuration>
               </execution>
 
