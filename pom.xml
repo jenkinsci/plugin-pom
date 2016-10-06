@@ -65,6 +65,13 @@
     <release.skipTests>true</release.skipTests>
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
+    <!--
+      Change to "javadoc-no-fork" locally if the plugin build is running some plugins twice. This has
+      been seen with some plugins configured to execute in the the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
+      Note however that "javadoc-no-fork" has been known to have memory leak issues, so beware.
+    -->
+    <javadoc.exec.goal>javadoc</javadoc.exec.goal>
+
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
@@ -611,11 +618,7 @@
         <executions>
           <execution>
             <goals>
-              <!--
-                Goal needs to be the "-no-fork" variant, otherwise it causes other plugins running
-                in e.g. the "initialise" phase to execute twice (e.g. the enforcer plugin + frontend node/npm install).
-              -->
-              <goal>javadoc-no-fork</goal>
+              <goal>${javadoc.exec.goal}</goal>
             </goals>
             <!-- As soon as possible but after required generate-sources phase -->
             <phase>process-sources</phase>
