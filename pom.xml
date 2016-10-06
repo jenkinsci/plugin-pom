@@ -65,6 +65,13 @@
     <release.skipTests>true</release.skipTests>
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
+    <!--
+      Change to "javadoc-no-fork" locally if the plugin build is running some plugins twice. This has
+      been seen with some plugins configured to execute in the the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
+      Note however that "javadoc-no-fork" has been known to have memory leak issues, so beware.
+    -->
+    <javadoc.exec.goal>javadoc</javadoc.exec.goal>
+
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
@@ -611,7 +618,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>javadoc</goal>
+              <goal>${javadoc.exec.goal}</goal>
             </goals>
             <!-- As soon as possible but after required generate-sources phase -->
             <phase>process-sources</phase>
@@ -1061,10 +1068,10 @@
       </build>
     </profile>
     <profile>
-      <id>gulp-execution</id>
+      <id>node-execution</id>
       <activation>
         <file>
-          <exists>gulpfile.js</exists>
+          <exists>.mvn_exec_node</exists>
         </file>
       </activation>
       <build>
@@ -1123,23 +1130,25 @@
 
               <execution>
                 <phase>generate-sources</phase>
-                <id>gulp bundle</id>
+                <id>npm mvnbuild</id>
                 <goals>
-                  <goal>gulp</goal>
+                  <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <arguments>bundle</arguments>
+                  <!-- The package.json must define an "mvnbuild" script -->
+                  <arguments>run mvnbuild</arguments>
                 </configuration>
               </execution>
 
               <execution>
                 <phase>test</phase>
-                <id>gulp test</id>
+                <id>npm mvntest</id>
                 <goals>
-                  <goal>gulp</goal>
+                  <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <arguments>test lint ${skip.node.tests} ${skip.node.lint} --skipBundle</arguments>
+                  <!-- The package.json must define an "mvntest" script -->
+                  <arguments>run mvntest</arguments>
                 </configuration>
               </execution>
 
