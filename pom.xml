@@ -1127,25 +1127,25 @@
 
               <execution>
                 <phase>generate-sources</phase>
-                <id>npm build</id>
+                <id>npm mvnbuild</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <!-- The package.json must define a "build" script -->
-                  <arguments>run build</arguments>
+                  <!-- The package.json must define an "mvnbuild" script -->
+                  <arguments>run mvnbuild</arguments>
                 </configuration>
               </execution>
 
               <execution>
                 <phase>test</phase>
-                <id>npm test</id>
+                <id>npm mvntest</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
                 <configuration>
-                  <!-- The package.json must define a "test" script -->
-                  <arguments>run test</arguments>
+                  <!-- The package.json must define an "mvntest" script -->
+                  <arguments>run mvntest</arguments>
                 </configuration>
               </execution>
 
