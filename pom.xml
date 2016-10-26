@@ -313,7 +313,11 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>2.6</version>
           <configuration>
-            <excludes>the.hpl,InjectedTest.class,test-dependencies/</excludes>
+            <excludes>
+              <exclude>the.hpl</exclude>
+              <exclude>InjectedTest.class</exclude>
+              <exclude>test-dependencies/</exclude>
+            </excludes>
             <skip>${no-test-jar}</skip>
           </configuration>
         </plugin>
@@ -357,7 +361,9 @@
           <artifactId>maven-source-plugin</artifactId>
           <version>2.4</version>
           <configuration>
-            <excludes>InjectedTest.java</excludes>
+            <excludes>
+              <exclude>InjectedTest.java</exclude>
+            </excludes>
           </configuration>
         </plugin>
         <plugin>
