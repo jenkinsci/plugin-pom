@@ -63,6 +63,8 @@
     <findbugs.failOnError>true</findbugs.failOnError>
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
+    <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
+    <no-test-jar>true</no-test-jar>
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
     <!--
@@ -312,6 +314,7 @@
           <version>2.6</version>
           <configuration>
             <excludes>the.hpl,InjectedTest.class,test-dependencies/</excludes>
+            <skip>${no-test-jar}</skip>
           </configuration>
         </plugin>
         <plugin>
@@ -448,6 +451,17 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
@@ -755,8 +769,16 @@
                 <id>attach-sources</id>
                 <goals>
                   <goal>jar</goal>
-                  <goal>test-jar</goal> <!-- TODO ideally would be skipped unless we have a test-jar execution of maven-jar-plugin -->
                 </goals>
+              </execution>
+              <execution>
+                <id>attach-test-sources</id>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+                <configuration>
+                  <skipSource>${no-test-jar}</skipSource>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -1256,8 +1278,16 @@
                 <id>attach-sources</id>
                 <goals>
                   <goal>jar</goal>
-                  <goal>test-jar</goal> <!-- TODO as above -->
                 </goals>
+              </execution>
+              <execution>
+                <id>attach-test-sources</id>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+                <configuration>
+                  <skipSource>${no-test-jar}</skipSource>
+                </configuration>
               </execution>
             </executions>
           </plugin>
