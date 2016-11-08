@@ -39,15 +39,30 @@ In order to use the new POM:
   </properties>
 ```
 
+If you had a `jar:test-jar` execution, delete it and add to `properties`:
+
+```xml
+<no-test-jar>false</no-test-jar>
+```
+
 It is handy to be able to select different Jenkins baselines with a Maven profile.
 To set this up, you must edit your `~/.m2/settings.xml` to include some new entries in the `<profiles>` section.
 For example:
 
 ```xml
 <profile>
-    <id>jenkins-2</id>
+    <id>jenkins-219</id>
     <properties>
-        <jenkins.version>2.0</jenkins.version>
+        <jenkins.version>2.19.2</jenkins.version>
+        <hpi-plugin.version>1.120</hpi-plugin.version>
+        <stapler-plugin.version>1.17</stapler-plugin.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-27</id>
+    <properties>
+        <jenkins.version>2.7.3</jenkins.version>
         <hpi-plugin.version>1.115</hpi-plugin.version>
         <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
@@ -56,7 +71,7 @@ For example:
 <profile>
     <id>jenkins-651</id>
     <properties>
-        <jenkins.version>1.651.1</jenkins.version>
+        <jenkins.version>1.651.3</jenkins.version>
         <hpi-plugin.version>1.115</hpi-plugin.version>
         <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
@@ -65,7 +80,7 @@ For example:
 <profile>
     <id>jenkins-642</id>
     <properties>
-        <jenkins.version>1.642.3</jenkins.version>
+        <jenkins.version>1.642.4</jenkins.version>
         <hpi-plugin.version>1.115</hpi-plugin.version>
         <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
