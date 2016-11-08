@@ -318,7 +318,7 @@
               <exclude>InjectedTest.class</exclude>
               <exclude>test-dependencies/</exclude>
             </excludes>
-            <skip>${no-test-jar}</skip>
+            <skip>${no-test-jar}</skip> <!-- see below -->
           </configuration>
         </plugin>
         <plugin>
@@ -462,7 +462,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>jar</goal>
+              <goal>jar</goal> <!-- note that if jar:jar gets a skip parameter in the future then this would need to be moved to a separate execution -->
               <goal>test-jar</goal>
             </goals>
           </execution>
