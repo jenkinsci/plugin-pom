@@ -63,6 +63,8 @@
     <findbugs.failOnError>true</findbugs.failOnError>
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
+    <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
+    <no-test-jar>true</no-test-jar>
     <!-- same version as in org.jenkins-ci.main:pom -->
     <!-- TODO see if we can remove this properties -->
     <!--
@@ -310,6 +312,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>2.6</version>
+          <configuration>
+            <excludes>
+              <exclude>the.hpl</exclude>
+              <exclude>InjectedTest.class</exclude>
+              <exclude>test-dependencies/</exclude>
+            </excludes>
+            <skip>${no-test-jar}</skip> <!-- see below -->
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -350,6 +360,11 @@
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
           <version>2.4</version>
+          <configuration>
+            <excludes>
+              <exclude>InjectedTest.java</exclude>
+            </excludes>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
@@ -442,6 +457,17 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal> <!-- note that if jar:jar gets a skip parameter in the future then this would need to be moved to a separate execution -->
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
@@ -750,6 +776,15 @@
                 <goals>
                   <goal>jar</goal>
                 </goals>
+              </execution>
+              <execution>
+                <id>attach-test-sources</id>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+                <configuration>
+                  <skipSource>${no-test-jar}</skipSource>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -1233,6 +1268,7 @@
       </build>
     </profile>
     <profile>
+      <id>jitpack</id>
       <activation>
         <property>
           <name>env.JITPACK</name>
@@ -1249,6 +1285,15 @@
                 <goals>
                   <goal>jar</goal>
                 </goals>
+              </execution>
+              <execution>
+                <id>attach-test-sources</id>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+                <configuration>
+                  <skipSource>${no-test-jar}</skipSource>
+                </configuration>
               </execution>
             </executions>
           </plugin>
