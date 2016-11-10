@@ -24,6 +24,22 @@ thought to be overridden are no longer based on properties. The main remaining o
 Being able to specify the `jenkins.version` simplifies testing the plugin with different core versions, which is
 important, among others, for the Plugin Compatibility Testing.
 
+## Changelog
+
+### 2.19 (2016 Nov 10)
+
+* Fixed a critical regression in 2.18.
+
+### 2.18 (2016 Nov 08)
+
+**Broken, use 2.19 instead.**
+
+* Introduced `no-test-jar` property. **Incompatible** for plugins declaring a `jar:test-jar` execution; you must use the new property instead.
+
+### 2.17 and earlier
+
+Changes not recorded.
+
 ## Usage
 
 In order to use the new POM:
