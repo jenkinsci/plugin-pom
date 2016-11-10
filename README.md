@@ -1,6 +1,8 @@
 # plugin-pom
 Parent POM for Jenkins Plugins
 
+## Introduction
+
 This new parent POM is decoupled from the core Jenkins project, both from the Maven and repository perspectives.
 
 The main changes are:
@@ -21,6 +23,8 @@ thought to be overridden are no longer based on properties. The main remaining o
 
 Being able to specify the `jenkins.version` simplifies testing the plugin with different core versions, which is
 important, among others, for the Plugin Compatibility Testing.
+
+## Usage
 
 In order to use the new POM:
 * Change the parent POM of your plugin:
@@ -44,6 +48,8 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 ```xml
 <no-test-jar>false</no-test-jar>
 ```
+
+## Baselines
 
 It is handy to be able to select different Jenkins baselines with a Maven profile.
 To set this up, you must edit your `~/.m2/settings.xml` to include some new entries in the `<profiles>` section.
@@ -142,3 +148,7 @@ there is no need to edit your POM. Just run:
 or
 
     mvn -Pjenkins-651 hpi:run
+
+## For maintainers
+
+Before releasing changes, try the [integration test instructions for the `maven-hpi-plugin`](https://github.com/jenkinsci/maven-hpi-plugin/blob/master/README.md).

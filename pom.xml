@@ -312,14 +312,6 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>2.6</version>
-          <configuration>
-            <excludes>
-              <exclude>the.hpl</exclude>
-              <exclude>InjectedTest.class</exclude>
-              <exclude>test-dependencies/</exclude>
-            </excludes>
-            <skip>${no-test-jar}</skip> <!-- see below -->
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -461,10 +453,18 @@
         <artifactId>maven-jar-plugin</artifactId>
         <executions>
           <execution>
+            <id>maybe-test-jar</id>
             <goals>
-              <goal>jar</goal> <!-- note that if jar:jar gets a skip parameter in the future then this would need to be moved to a separate execution -->
               <goal>test-jar</goal>
             </goals>
+            <configuration>
+              <excludes>
+                <exclude>the.hpl</exclude>
+                <exclude>InjectedTest.class</exclude>
+                <exclude>test-dependencies/</exclude>
+              </excludes>
+              <skip>${no-test-jar}</skip>
+            </configuration>
           </execution>
         </executions>
       </plugin>
