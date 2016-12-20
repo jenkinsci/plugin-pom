@@ -19,6 +19,8 @@ thought to be overridden are no longer based on properties. The main remaining o
   * In order to make their versions the same as the used core version, `slf4jVersion`, `node.version` and `npm.version`
   properties are provided.
 * Tests are skipped during the `perform` phase of a release (can be overridden by setting `release.skipTests` to false).
+* Javadoc has been set to _quiet_ by default in 2.20+, which means it will only log errors and warnings. 
+  If you really want it verbose, set `quiet` property to `false` for the plugin.
 * General clean up.
 
 Being able to specify the `jenkins.version` simplifies testing the plugin with different core versions, which is
