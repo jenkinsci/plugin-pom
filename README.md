@@ -28,6 +28,13 @@ important, among others, for the Plugin Compatibility Testing.
 
 ## Changelog
 
+### 2.20
+
+Release date: 2017 Jan 14
+
+* Default to non-verbose javadoc generation logs.
+([PR #41](https://github.com/jenkinsci/plugin-pom/pull/41))
+
 ### 2.19 (2016 Nov 10)
 
 * Fixed a critical regression in 2.18.
