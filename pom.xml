@@ -472,6 +472,23 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <doCheck>false</doCheck>
+          <doUpdate>false</doUpdate>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
@@ -606,6 +623,12 @@
           <showDeprecation>true</showDeprecation>
           <contextPath>/jenkins</contextPath>
           <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+          <archive>
+            <manifestEntries combine.children="append">
+              <CommitId>${buildNumber}</CommitId>
+              <Branch>${scmBranch}</Branch>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
       <plugin>
