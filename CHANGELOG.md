@@ -1,6 +1,35 @@
 Changelog
 ====
 
+### 2.23
+
+Upcoming.
+
+* Using [version 2.18](https://github.com/jenkinsci/jenkins-test-harness#218-2016-dec-20) of the test harness.
+
+### 2.22
+
+Release date: 2017, Feb 13
+
+* Updated `maven-hpi-plugin` for better snapshot behavior.
+
+### 2.21
+
+Release date: 2017, Jan 19
+
+* Default to `concurrency=1`. To run faster tests locally, use for example
+```xml
+<profile>
+    <id>faster</id>
+    <activation>
+        <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+        <concurrency>1C</concurrency>
+    </properties>
+</profile>
+```
+
 ### 2.20
 
 Release date: 2017, Jan 14
