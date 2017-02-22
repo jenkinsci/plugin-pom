@@ -3,7 +3,7 @@ Changelog
 
 ### 2.23
 
-Upcoming.
+Release date: 2017, Feb 22
 
 * Using [version 2.18](https://github.com/jenkinsci/jenkins-test-harness#218-2016-dec-20) of the test harness.
 
