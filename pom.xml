@@ -966,7 +966,9 @@
     <profile>
       <id>enable-jacoco</id>
       <activation>
-        <activeByDefault>true</activeByDefault>
+        <property>
+          <name>!disable-jacoco</name>
+        </property>
       </activation>
       <build>
         <plugins>
