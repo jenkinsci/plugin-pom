@@ -965,9 +965,6 @@
     </profile>
     <profile>
       <id>enable-jacoco</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <build>
         <plugins>
           <plugin>
