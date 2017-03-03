@@ -153,6 +153,8 @@ or
 
 ## For maintainers
 
-Before releasing changes, try the [integration test instructions for the `maven-hpi-plugin`](https://github.com/jenkinsci/maven-hpi-plugin/blob/master/README.md).
+You can run
 
-And remember to update the [changelog](CHANGELOG.md).
+    mvn -Prun-plugin-pom-its clean verify
+
+Remember to update the [changelog](CHANGELOG.md).
