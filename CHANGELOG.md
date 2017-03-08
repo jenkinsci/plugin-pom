@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 2.24
+
+Release date: 2017, Mar 08
+
+* Updated `frontend-maven-plugin` and `download-maven-plugin` for the benefit of plugins using npm.
+* Removed broken attempt to activate `enable-jacoco` profile by default. Now disabled unless selected.
+
 ### 2.23
 
 Release date: 2017, Feb 22
