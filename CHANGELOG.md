@@ -1,6 +1,17 @@
 Changelog
 ====
 
+### 2.25
+
+Release date: 2017, Mar 22
+
+* [JENKINS-42800](https://issues.jenkins-ci.org/browse/JENKINS-42800) - 
+Bump JaCoCo version from `0.7.2.201409121644` to `0.7.9` to be compatible with [Jenkins JaCoCo plugin](https://plugins.jenkins.io/jacoco) data format.
+
+Compatibility notes:
+* The change introduces the new reporting format in JaCoCo. 
+It may cause regressions in build flows which have the `enable-jacoco` profile enabled.
+
 ### 2.24
 
 Release date: 2017, Mar 08
