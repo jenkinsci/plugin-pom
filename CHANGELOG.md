@@ -1,6 +1,11 @@
 Changelog
 ====
 
+### 2.26-beta-1
+
+* Update `frontend-maven-plugin` from `1.3` to `1.4` ([PR#53](https://github.com/jenkinsci/plugin-pom/pull/53))
+* Update all maven plugins to latest ([PR#54](https://github.com/jenkinsci/plugin-pom/pull/54))
+
 ### 2.25
 
 Release date: 2017, Mar 22
