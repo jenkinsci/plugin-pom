@@ -77,6 +77,7 @@
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
+    <yarn.version>0.23.0</yarn.version>
     <frontend-version>1.4</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
@@ -1069,6 +1070,91 @@
                 <id>npm mvntest</id>
                 <goals>
                   <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <!-- The package.json must define an "mvntest" script -->
+                  <arguments>run mvntest</arguments>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>yarn-execution</id>
+      <activation>
+        <file>
+          <exists>.mvn_exec_yarn</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-versions</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>3.1.0</version>
+                    </requireMavenVersion>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontend-version}</version>
+
+            <executions>
+
+              <execution>
+                <phase>initialize</phase>
+                <id>install node and yarn</id>
+                <goals>
+                  <goal>install-node-and-yarn</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v${node.version}</nodeVersion>
+                  <yarnVersion>v${yarn.version}</yarnVersion>
+                </configuration>
+              </execution>
+
+              <execution>
+                <phase>initialize</phase>
+                <id>yarn install</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+              </execution>
+
+              <execution>
+                <phase>generate-sources</phase>
+                <id>yarn mvnbuild</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <!-- The package.json must define an "mvnbuild" script -->
+                  <arguments>run mvnbuild</arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <phase>test</phase>
+                <id>yarn mvntest</id>
+                <goals>
+                  <goal>yarn</goal>
                 </goals>
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
