@@ -69,7 +69,7 @@
     <!-- TODO see if we can remove this properties -->
     <!--
       Change to "javadoc-no-fork" locally if the plugin build is running some plugins twice. This has
-      been seen with some plugins configured to execute in the the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
+      been seen with some plugins configured to execute in the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
       Note however that "javadoc-no-fork" has been known to have memory leak issues, so beware.
     -->
     <javadoc.exec.goal>javadoc</javadoc.exec.goal>
