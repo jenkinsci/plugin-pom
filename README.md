@@ -9,7 +9,7 @@ The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
   * `jenkins.version`: The Jenkins version required by the plugin.
-  * `jenkins-test-harness.version`: The JTH version used to test plugin.
+  * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin.
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
   If the required Jenkins version is 1.580.1 or higher, JTH 2.1+ is recommended.
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
