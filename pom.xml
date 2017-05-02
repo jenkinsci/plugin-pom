@@ -80,6 +80,7 @@
     <slf4jVersion>1.7.7</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
+    <yarn.version>0.23.0</yarn.version>
     <frontend-version>1.4</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
@@ -997,115 +998,6 @@
       </build>
     </profile>
     <profile>
-      <id>node-classifier-linux</id>
-      <activation>
-        <os>
-          <family>Linux</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>node-v${node.version}-linux-x64.tar.gz</node.download.file>
-        <node.download.classifier />
-      </properties>
-    </profile>
-    <profile>
-      <id>node-classifier-linux-x86</id>
-      <activation>
-        <os>
-          <family>Linux</family>
-          <arch>i386</arch>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>node-v${node.version}-linux-x86.tar.gz</node.download.file>
-        <node.download.classifier />
-      </properties>
-    </profile>
-    <profile>
-      <id>node-classifier-mac</id>
-      <activation>
-        <os>
-          <family>mac</family>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>node-v${node.version}-darwin-x64.tar.gz</node.download.file>
-        <node.download.classifier />
-      </properties>
-    </profile>
-    <profile>
-      <id>node-classifier-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>win-x64/node.exe</node.download.file>
-        <node.download.classifier>/win-x64</node.download.classifier>
-      </properties>
-    </profile>
-    <profile>
-      <id>node-classifier-windows-x86</id>
-      <activation>
-        <os>
-          <family>windows</family>
-          <arch>x86</arch>
-        </os>
-      </activation>
-      <properties>
-        <node.download.file>win-x86/node.exe</node.download.file>
-        <node.download.classifier />
-      </properties>
-    </profile>
-    <profile>
-      <id>node-download</id>
-      <activation>
-        <file>
-          <exists>package.json</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.googlecode.maven-download-plugin</groupId>
-            <artifactId>download-maven-plugin</artifactId>
-            <version>1.3.0</version>
-            <executions>
-              <execution>
-                <id>get-node</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>wget</goal>
-                </goals>
-                <configuration>
-                  <url>https://nodejs.org/dist/v${node.version}/${node.download.file}</url>
-                  <unpack>false</unpack>
-                  <outputDirectory>
-                    ${project.build.directory}/frontend/v${node.version}${node.download.classifier}
-                  </outputDirectory>
-                </configuration>
-              </execution>
-              <execution>
-                <id>get-npm</id>
-                <phase>initialize</phase>
-                <goals>
-                  <goal>wget</goal>
-                </goals>
-                <configuration>
-                  <url>http://registry.npmjs.org/npm/-/npm-${npm.version}.tgz</url>
-                  <unpack>false</unpack>
-                  <outputDirectory>${project.build.directory}/frontend/</outputDirectory>
-                  <outputFileName>npm-${npm.version}.tgz</outputFileName>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>node-execution</id>
       <activation>
         <file>
@@ -1149,8 +1041,6 @@
                 <configuration>
                   <nodeVersion>v${node.version}</nodeVersion>
                   <npmVersion>${npm.version}</npmVersion>
-                  <!-- Use the pre-download node and npm packages. See download-maven-plugin config above. -->
-                  <downloadRoot>${project.baseUri}target/frontend/</downloadRoot>
                 </configuration>
               </execution>
 
@@ -1183,6 +1073,96 @@
                 <id>npm mvntest</id>
                 <goals>
                   <goal>npm</goal>
+                </goals>
+                <configuration>
+                  <!-- The package.json must define an "mvntest" script -->
+                  <arguments>run mvntest</arguments>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>yarn-execution</id>
+      <activation>
+        <file>
+          <exists>.mvn_exec_yarn</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-versions</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>3.1.0</version>
+                    </requireMavenVersion>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>${frontend-version}</version>
+
+            <executions>
+
+              <execution>
+                <phase>initialize</phase>
+                <id>install node and yarn</id>
+                <goals>
+                  <goal>install-node-and-yarn</goal>
+                </goals>
+                <configuration>
+                  <nodeVersion>v${node.version}</nodeVersion>
+                  <yarnVersion>v${yarn.version}</yarnVersion>
+                </configuration>
+              </execution>
+
+              <execution>
+                <phase>initialize</phase>
+                <id>yarn install</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <!-- ensure only one concurrent 'yarn install' -->
+                  <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
+                  <arguments>--mutex network</arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <phase>generate-sources</phase>
+                <id>yarn mvnbuild</id>
+                <goals>
+                  <goal>yarn</goal>
+                </goals>
+                <configuration>
+                  <!-- The package.json must define an "mvnbuild" script -->
+                  <arguments>run mvnbuild</arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <phase>test</phase>
+                <id>yarn mvntest</id>
+                <goals>
+                  <goal>yarn</goal>
                 </goals>
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
