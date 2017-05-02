@@ -1,6 +1,14 @@
 Changelog
 ====
 
+### 2.27
+
+Release date: 2017, May 02
+
+* Updated `maven-hpi-plugin`, `jenkins-test-harness`, and more.
+* Support for building JavaScript libraries with yarn.
+* Ability to specify `jenkins-core.version` and `jenkins-war.version` separately so as to depend on timestamped snapshots of Jenkins core.
+
 ### 2.26
 
 * Update `frontend-maven-plugin` from `1.3` to `1.4` ([PR#53](https://github.com/jenkinsci/plugin-pom/pull/53))
