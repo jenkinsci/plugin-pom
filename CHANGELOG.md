@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.28
+
+Release date: 2017, May 04
+
+* Updated `access-modifier-checker` to fix a critical bug (lack of enforcement of any method calls).
+
 ### 2.27
 
 Release date: 2017, May 02
