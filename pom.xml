@@ -446,7 +446,7 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>1.7</version>
+          <version>1.8</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
@@ -491,7 +491,9 @@
                   <version>[3.0.4,)</version>
                   <message>Maven 3.0 through 3.0.3 inclusive do not pass correct settings.xml to Maven Release Plugin.</message>
                 </requireMavenVersion>
-                <requirePluginVersions />
+                <requirePluginVersions>
+                  <banSnapshots>false</banSnapshots>
+                </requirePluginVersions>
                 <enforceBytecodeVersion>
                   <maxJdkVersion>1.${java.level}</maxJdkVersion>
                   <ignoredScopes>
