@@ -446,7 +446,7 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>1.8-20170503.192058-2</version> <!-- TODO https://github.com/kohsuke/access-modifier/pull/3 -->
+          <version>1.8</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
