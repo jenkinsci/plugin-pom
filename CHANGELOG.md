@@ -1,6 +1,5 @@
-Changelog
-====
-
+Changelog =
+=f3059e9e73433a649672706542061ba5c0e28137==
 ### 2.28
 
 Release date: 2017, May 04
