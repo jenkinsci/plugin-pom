@@ -1028,6 +1028,54 @@
             </executions>
           </plugin>
           <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>3.0.0</version>
+              <executions>
+                  <!-- TODO how to avoid downloading them all? -->
+                  <execution>
+                      <id>download node for Linux</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:tar.gz:linux-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download node for Darwin</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:tar.gz:darwin-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download node for Windows</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:exe:windows-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download npm</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:npm:${npm.version}:tar.gz</artifact>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+          <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
             <version>${frontend-version}</version>
@@ -1115,6 +1163,54 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>3.0.0</version>
+              <executions>
+                  <!-- TODO as above -->
+                  <execution>
+                      <id>download node for Linux</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:tar.gz:linux-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download node for Darwin</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:tar.gz:darwin-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download node for Windows</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:node:${node.version}:exe:windows-x64</artifact>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>download yarn</id>
+                      <phase>initialize</phase>
+                      <goals>
+                          <goal>get</goal>
+                      </goals>
+                      <configuration>
+                          <artifact>com.github.eirslett:yarn:${yarn.version}:tar.gz</artifact>
+                      </configuration>
+                  </execution>
+              </executions>
           </plugin>
           <plugin>
             <groupId>com.github.eirslett</groupId>
