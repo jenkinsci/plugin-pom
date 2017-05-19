@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.29
+
+Release date: 2017, May 19
+
+* For plugins which use npm, load node and npm binaries from the Jenkins Artifactory rather than a third-party server; yarn-based plugins load just the node binary from Artifactory.
+
 ### 2.28
 
 Release date: 2017, May 04
