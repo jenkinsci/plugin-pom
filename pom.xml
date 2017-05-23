@@ -1339,5 +1339,26 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>disableWizard</id>
+      <activation>
+        <property>
+          <name>!enableWizard</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jenkins-ci.tools</groupId>
+            <artifactId>maven-hpi-plugin</artifactId>
+            <configuration>
+              <systemProperties>
+                <jenkins.install.state>TEST</jenkins.install.state>
+              </systemProperties>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>

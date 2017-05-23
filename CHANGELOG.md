@@ -1,6 +1,10 @@
 Changelog
 ====
 
+### Unreleased
+
+* Setup Wizard disabled by default when using `hpi:run`. To enable it use `-DenableWizard`.
+
 ### 2.29
 
 Release date: 2017, May 19
