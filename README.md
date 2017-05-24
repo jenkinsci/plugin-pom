@@ -155,7 +155,7 @@ or
 
 By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. If you want the wizard to be enabled just run:
 
-    mvn -DenableWizard hpi:run
+    mvn -Dhudson.Main.development=false hpi:run
 
 
 ## For maintainers
