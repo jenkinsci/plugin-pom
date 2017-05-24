@@ -1353,7 +1353,8 @@
             <artifactId>maven-hpi-plugin</artifactId>
             <configuration>
               <systemProperties>
-                <jenkins.install.state>TEST</jenkins.install.state>
+                <name>hudson.Main.development</name>
+                <value>true</value>
               </systemProperties>
             </configuration>
           </plugin>
