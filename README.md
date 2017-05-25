@@ -151,6 +151,13 @@ or
 
     mvn -Pjenkins-651 hpi:run
 
+## Setup Wizard
+
+By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. If you want the wizard to be enabled just run:
+
+    mvn -Dhudson.Main.development=false hpi:run
+
+
 ## For maintainers
 
 You can run
