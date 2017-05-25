@@ -88,6 +88,8 @@
     <!-- For jgit-scm-provider profile -->
     <git.provider>git</git.provider>
     <maven-scm.version>1.9.5</maven-scm.version>
+    <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
+    <hudson.Main.development>true</hudson.Main.development>
   </properties>
 
   <prerequisites>
@@ -600,6 +602,9 @@
           <showDeprecation>true</showDeprecation>
           <contextPath>/jenkins</contextPath>
           <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+          <systemProperties>
+            <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
+          </systemProperties>
         </configuration>
       </plugin>
       <plugin>
