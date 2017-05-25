@@ -615,7 +615,7 @@
           <contextPath>/jenkins</contextPath>
           <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
           <systemProperties>
-            <hudson.Main.development>true</hudson.Main.development>
+            <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
         </configuration>
       </plugin>
