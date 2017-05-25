@@ -53,7 +53,7 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.22</jenkins-test-harness.version>
-    <hpi-plugin.version>1.122</hpi-plugin.version>
+    <hpi-plugin.version>2.0</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>7</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
@@ -118,13 +118,7 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins-war.version}</version>
-        <classifier>war-for-test</classifier>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-war</artifactId>
-        <version>${jenkins-war.version}</version>
-        <type>war</type>
+        <type>executable-war</type>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -237,13 +231,7 @@
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
-      <classifier>war-for-test</classifier>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-war</artifactId>
-      <type>war</type>
+      <type>executable-war</type>
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -13,6 +13,7 @@ thought to be overridden are no longer based on properties. The main remaining o
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
   If the required Jenkins version is 1.580.1 or higher, JTH 2.1+ is recommended.
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
+  (Generally you should not set this to a version _lower_ than that specified in the parent POM.)
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
   * `java.level`: The Java version to use to build the plugin.
   * `java.level.test`: The Java version to use to build the plugin tests.
@@ -34,14 +35,14 @@ In order to use the new POM:
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.3</version> <!-- or later -->
+    <version>2.29</version> <!-- or whatever the newest version available is -->
+    <relativePath />
   </parent>
 ```
 * Override the needed properties, e.g.:
 ```xml
   <properties>
     <jenkins.version>1.609.1</jenkins.version>
-    <hpi-plugin.version>1.106</hpi-plugin.version>
   </properties>
 ```
 
@@ -62,8 +63,6 @@ For example:
     <id>jenkins-219</id>
     <properties>
         <jenkins.version>2.19.2</jenkins.version>
-        <hpi-plugin.version>1.120</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
     </properties>
 </profile>
@@ -71,8 +70,6 @@ For example:
     <id>jenkins-27</id>
     <properties>
         <jenkins.version>2.7.3</jenkins.version>
-        <hpi-plugin.version>1.115</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
     </properties>
 </profile>
@@ -80,8 +77,6 @@ For example:
     <id>jenkins-651</id>
     <properties>
         <jenkins.version>1.651.3</jenkins.version>
-        <hpi-plugin.version>1.115</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
     </properties>
 </profile>
@@ -89,8 +84,6 @@ For example:
     <id>jenkins-642</id>
     <properties>
         <jenkins.version>1.642.4</jenkins.version>
-        <hpi-plugin.version>1.115</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
     </properties>
 </profile>
@@ -98,8 +91,6 @@ For example:
     <id>jenkins-625</id>
     <properties>
         <jenkins.version>1.625.3</jenkins.version>
-        <hpi-plugin.version>1.106</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>7</java.level>
     </properties>
 </profile>
@@ -107,8 +98,6 @@ For example:
     <id>jenkins-609</id>
     <properties>
         <jenkins.version>1.609.3</jenkins.version>
-        <hpi-plugin.version>1.106</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>6</java.level>
     </properties>
 </profile>
@@ -116,8 +105,6 @@ For example:
     <id>jenkins-596</id>
     <properties>
         <jenkins.version>1.596.3</jenkins.version>
-        <hpi-plugin.version>1.106</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>6</java.level>
     </properties>
 </profile>
@@ -125,8 +112,6 @@ For example:
     <id>jenkins-580</id>
     <properties>
         <jenkins.version>1.580.3</jenkins.version>
-        <hpi-plugin.version>1.106</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>6</java.level>
     </properties>
 </profile>
@@ -135,8 +120,6 @@ For example:
     <properties>
         <jenkins.version>1.565.3</jenkins.version>
         <jenkins-test-harness.version>1.565.3</jenkins-test-harness.version>
-        <hpi-plugin.version>1.106</hpi-plugin.version>
-        <stapler-plugin.version>1.17</stapler-plugin.version>
         <java.level>6</java.level>
     </properties>
 </profile>
