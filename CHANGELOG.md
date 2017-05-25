@@ -1,8 +1,13 @@
 Changelog
 ====
 
-### Unreleased
+### 2.30
 
+Release date: 2017, May 25
+
+* Integrated `maven-hpi-plugin` 2.0:
+** The `war-for-test` artifact is no longer needed for functional tests, saving download bandwidth.
+** Bundled Jetty was updated, so JDK 8 is required at build time.
 * Setup Wizard disabled by default when using `hpi:run`. To enable it use `-Dhudson.Main.development=false`.
 
 ### 2.29
