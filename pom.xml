@@ -92,10 +92,6 @@
     <hudson.Main.development>true</hudson.Main.development>
   </properties>
 
-  <prerequisites>
-    <maven>3.1.0</maven>
-  </prerequisites>
-
   <dependencyManagement>
     <dependencies>
       <!-- static analysis -->
@@ -478,8 +474,8 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[3.0.4,)</version>
-                  <message>Maven 3.0 through 3.0.3 inclusive do not pass correct settings.xml to Maven Release Plugin.</message>
+                  <version>[3.1.0,)</version>
+                  <message>3.1.0 required by frontend-maven-plugin at least.</message>
                 </requireMavenVersion>
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
