@@ -531,6 +531,7 @@
                     <exclude>com.google.guava:guava</exclude> <!-- TODO Stapler requests 14 while Jenkins requests 11; should backdate the Stapler version -->
                     <exclude>commons-logging:commons-logging</exclude> <!-- TODO jenkins-test-harness-htmlunit requests 1.2, newer than 1.1.x in core -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- Stapler requests 2.x while core requests 1.x; anyway not used at runtime -->
+                    <exclude>org.kohsuke:access-modifier-annotation</exclude> <!-- needed between Jenkins 2.36—2.60 -->
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>
