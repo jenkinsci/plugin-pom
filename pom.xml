@@ -321,7 +321,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.4.2-20170612.231258-1</version> <!-- TODO https://github.com/apache/maven-enforcer/pull/23 -->
+          <version>1.4.2.jenkins-1</version> <!-- TODO update to official 1.4.2 or 3.0.0 when available -->
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
