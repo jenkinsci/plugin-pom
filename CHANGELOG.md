@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.31
+
+Release date: 2017, Jun 26
+
+* JENKINS-41631: use `requireUpperBoundDeps` to prevent various common versioning problems, such as accidentally using incompatible plugin dependencies.
+
 ### 2.30
 
 Release date: 2017, May 25
