@@ -6,6 +6,7 @@ Changelog
 Release date: 2017, Jun 26
 
 * JENKINS-41631: use `requireUpperBoundDeps` to prevent various common versioning problems, such as accidentally using incompatible plugin dependencies.
+* JENKINS-44453: JenkinsRule should ensure that Jenkins reaches the COMPLETED milestone.
 
 ### 2.30
 
