@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.32
+
+Release date: 2017, Jun 29
+
+* JENKINS-41631 amendment to support 1.585- core versions.
+
 ### 2.31
 
 Release date: 2017, Jun 26
