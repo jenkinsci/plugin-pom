@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.33
+
+Release date: 2017, Aug 07
+
+* JENKINS-41631 amendment to work better on new cores.
+
 ### 2.32
 
 Release date: 2017, Jun 29
