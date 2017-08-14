@@ -60,9 +60,30 @@ For example:
 
 ```xml
 <profile>
+    <id>jenkins-260</id>
+    <properties>
+        <jenkins.version>2.60.2</jenkins.version>
+        <java.level>8</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-246</id>
+    <properties>
+        <jenkins.version>2.46.3</jenkins.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-232</id>
+    <properties>
+        <jenkins.version>2.32.3</jenkins.version>
+        <java.level>7</java.level>
+    </properties>
+</profile>
+<profile>
     <id>jenkins-219</id>
     <properties>
-        <jenkins.version>2.19.2</jenkins.version>
+        <jenkins.version>2.19.4</jenkins.version>
         <java.level>7</java.level>
     </properties>
 </profile>
