@@ -1011,6 +1011,10 @@
             <artifactId>frontend-maven-plugin</artifactId>
             <version>${frontend-version}</version>
 
+            <configuration>
+              <failOnError>true</failOnError>
+            </configuration>
+
             <executions>
 
               <execution>
