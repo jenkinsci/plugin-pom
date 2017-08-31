@@ -47,7 +47,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <argLine>-Djava.awt.headless=true</argLine>
+    <argLine>-Xmx756M -Djava.awt.headless=true</argLine>
     <jenkins.version>1.625.3</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots: -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
