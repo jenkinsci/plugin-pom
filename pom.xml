@@ -639,6 +639,7 @@
             <configuration>
               <fileMask>Messages.properties</fileMask>
               <outputDirectory>target/generated-sources/localizer</outputDirectory>
+              <accessModifierAnnotations>true</accessModifierAnnotations>
             </configuration>
           </execution>
         </executions>
