@@ -114,8 +114,7 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins-war.version}</version>
-        <type>executable-war</type>
-        <scope>test</scope>
+        <classifier>war-for-test</classifier>
       </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
@@ -227,7 +226,7 @@
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
+      <classifier>war-for-test</classifier>
       <scope>test</scope>
     </dependency>
     <dependency>
