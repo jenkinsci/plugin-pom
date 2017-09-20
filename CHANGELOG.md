@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 2.35
+
+Release date: 2017, Sep 20
+
+* JENKINS-45245: allow IntelliJ IDEA to run `JenkinsRule`-based tests, broken since 2.30 due to a mismatch with Maven’s idea of the test classpath.
+
 ### 2.34
 
 Release date: 2017, Sep 18
