@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 2.36
+
+Release date: 2017, Sep 27
+
+* `jenkins-test-harness` updated to [2.28](https://github.com/jenkinsci/jenkins-test-harness/#228-2017-sep-26)
+* `maven-hpi-plugin` updated to [2.1](https://github.com/jenkinsci/maven-hpi-plugin#21-2017-sep-26)
+
 ### 2.35
 
 Release date: 2017, Sep 20
