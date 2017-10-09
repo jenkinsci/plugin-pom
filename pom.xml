@@ -532,6 +532,7 @@
                     <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
                     <exclude>org.kohsuke:access-modifier-annotation</exclude> <!-- needed between Jenkins 2.36—2.60 -->
+                    <exclude>org.jenkins-ci.plugins.icon-shim:icon-set</exclude> <!-- jenkins uses 1.0.3, icon-shim plugin uses later version -->
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
