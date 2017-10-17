@@ -59,7 +59,8 @@
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
-    <concurrency>1</concurrency> <!-- may use e.g. 2C for 2 × (number of cores) -->
+    <concurrency>1</concurrency> <!-- DEPRECATED use forkCount -->
+    <forkCount>${concurrency}</forkCount> <!-- may use e.g. 2C for 2 × (number of cores) -->
     <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
     <!-- Whether the build should fail if findbugs finds any error. -->
     <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
@@ -689,11 +690,9 @@
           <systemProperties>
             <property>
               <name>hudson.udp</name>
-              <value>33849</value>
+              <value>-1</value>
             </property>
           </systemProperties>
-          <reuseForks>true</reuseForks>
-          <forkCount>${concurrency}</forkCount>
         </configuration>
       </plugin>
       <plugin>
