@@ -7,7 +7,7 @@ Release date: 2017, Oct 23
 
 * `jenkins-test-harness` updates to [2.31](https://github.com/jenkinsci/jenkins-test-harness/#231-2017-oct-17), important for testing against core 2.86+
 * `concurrency` property deprecated; use `forkCount` instead
-* FindBugs Maven plugin update
+* FindBugs Maven plugin update to 3.0.5
 
 ### 2.36
 
