@@ -41,6 +41,13 @@
     <tag>HEAD</tag>
   </scm>
 
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://jenkins.io/license</url>
+    </license>
+  </licenses>
+
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
