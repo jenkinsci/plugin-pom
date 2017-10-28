@@ -536,6 +536,7 @@
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
+                <RequireLicense />
               </rules>
             </configuration>
           </execution>
@@ -544,7 +545,7 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.0-beta-4</version>
+            <version>1.0-beta-7-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
