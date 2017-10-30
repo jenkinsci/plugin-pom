@@ -879,17 +879,6 @@
       </properties>
     </profile>
     <profile>
-      <id>rerunFailingTests</id>
-      <activation>
-        <property>
-          <name>!test</name>
-        </property>
-      </activation>
-      <properties>
-        <surefire.rerunFailingTestsCount>4</surefire.rerunFailingTestsCount>
-      </properties>
-    </profile>
-    <profile>
       <id>skip-findbugs-with-tests</id>
       <activation>
         <property>
