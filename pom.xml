@@ -657,6 +657,11 @@
             </goals>
             <!-- As soon as possible but after required generate-sources phase -->
             <phase>process-sources</phase>
+            <configuration>
+              <links>
+                <link>http://javadoc.jenkins.io/</link>
+              </links>
+            </configuration>
           </execution>
         </executions>
       </plugin>
