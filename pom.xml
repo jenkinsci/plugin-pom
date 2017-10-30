@@ -48,7 +48,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
-    <jenkins.version>1.625.3</jenkins.version>
+    <jenkins.version>2.7</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots: -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
@@ -212,11 +212,6 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -534,6 +529,8 @@
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
                     <exclude>org.kohsuke:access-modifier-annotation</exclude> <!-- needed between Jenkins 2.36—2.60 -->
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
+                    <!-- artifactId changed and to prevent duplicate classes Jenkins 2.82+ force version 0 -->
+                    <exclude>javax.servlet:servlet-api</exclude> <!-- TODO remove when in jenkins plugin-pom  -->
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>
