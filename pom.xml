@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>2.38-SNAPSHOT</version>
+  <version>3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -48,14 +48,14 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
-    <jenkins.version>1.625.3</jenkins.version>
+    <jenkins.version>2.60.1</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots: -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.31</jenkins-test-harness.version>
     <hpi-plugin.version>2.1</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
-    <java.level>7</java.level>
+    <java.level>8</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -133,15 +133,10 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
-      <dependency> <!-- from org.eclipse.jetty:jetty-server:9.2.15.v20160210 -->
+      <dependency> <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.4</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
@@ -212,11 +207,6 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -516,6 +506,7 @@
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
+                    <exclude>javax.servlet:servlet-api</exclude>
                     <exclude>org.sonatype.sisu:sisu-guice</exclude>
                     <exclude>log4j:log4j:*:jar:compile</exclude>
                     <exclude>log4j:log4j:*:jar:runtime</exclude>
