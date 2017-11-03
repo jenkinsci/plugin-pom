@@ -1,6 +1,11 @@
 Changelog
 ====
 
+### 3.0
+
+* [PR#83](https://github.com/jenkinsci/plugin-pom/pull/83) **DROP SUPPORT FOR JENKINS 1.x**
+* [PR#87](https://github.com/jenkinsci/plugin-pom/pull/87) Configure the _maven-javadoc-plugin_ to link back to the Jenkins Javadoc
+
 ### 2.37
 
 Release date: 2017, Oct 23
