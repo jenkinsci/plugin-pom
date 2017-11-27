@@ -55,7 +55,7 @@
     <jenkins-test-harness.version>2.31</jenkins-test-harness.version>
     <hpi-plugin.version>2.1</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
-    <java.level>8</java.level>
+    <java.level>you-must-override-the-java.level-property</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -765,6 +765,17 @@
 
   <profiles>
     <profile>
+      <id>uninherited-java.level</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists> <!-- just something that is only here -->
+        </file>
+      </activation>
+      <properties>
+        <java.level>8</java.level>
+      </properties>
+    </profile>
+    <profile>
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
@@ -1281,7 +1292,6 @@
                 <configuration>
                   <streamLogs>false</streamLogs>
                   <showErrors>true</showErrors>
-                  <debug>true</debug>
                   <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
                   <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
                   <settingsFile>src/it/settings.xml</settingsFile>
