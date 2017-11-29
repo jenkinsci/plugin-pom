@@ -468,6 +468,9 @@
                   <version>[3.1.0,)</version>
                   <message>3.1.0 required by frontend-maven-plugin at least.</message>
                 </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>[1.8.0,)</version>
+                </requireJavaVersion>
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
