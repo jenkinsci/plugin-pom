@@ -8,14 +8,14 @@ This new parent POM is decoupled from the core Jenkins project, both from the Ma
 The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
-  * `jenkins.version`: The Jenkins version required by the plugin.
+  * `jenkins.version`: The Jenkins version required by the plugin. **Mandatory.**
+  * `java.level`: The Java version to use to build the plugin. **Mandatory.** Should match the minimum Java version for the selected Jenkins version.
   * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin.
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
   If the required Jenkins version is 1.580.1 or higher, JTH 2.1+ is recommended.
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
   (Generally you should not set this to a version _lower_ than that specified in the parent POM.)
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
-  * `java.level`: The Java version to use to build the plugin.
   * `java.level.test`: The Java version to use to build the plugin tests.
   * In order to make their versions the same as the used core version, `slf4jVersion`, `node.version` and `npm.version`
   properties are provided.
@@ -43,6 +43,7 @@ In order to use the new POM:
 ```xml
   <properties>
     <jenkins.version>1.609.1</jenkins.version>
+    <java.level>7</java.level>
   </properties>
 ```
 
@@ -60,9 +61,23 @@ For example:
 
 ```xml
 <profile>
+    <id>jenkins-289</id>
+    <properties>
+        <jenkins.version>2.89</jenkins.version>
+        <java.level>8</java.level>
+    </properties>
+</profile>
+<profile>
+    <id>jenkins-273</id>
+    <properties>
+        <jenkins.version>2.73.3</jenkins.version>
+        <java.level>8</java.level>
+    </properties>
+</profile>
+<profile>
     <id>jenkins-260</id>
     <properties>
-        <jenkins.version>2.60.2</jenkins.version>
+        <jenkins.version>2.60.3</jenkins.version>
         <java.level>8</java.level>
     </properties>
 </profile>
