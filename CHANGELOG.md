@@ -1,6 +1,11 @@
 Changelog
 ====
 
+### 3.2
+
+* Ignore Java 8 bytecode coming from Remoting and Stapler, permitting plugins with `java.level=7` to still build (for example from `Jenkinsfile`) with, for example, `jenkins.version=2.89`.
+* Run tests in alphabetical order.
+
 ### 3.1
 
 * Force `java.level` to be specified in each POM. 3.0 had changed the default value to `8`, causing plugins which had only overridden `jenkins.version` (to something older to 2.60.x) to not be runnable on older Jenkins installations using Java 7.
