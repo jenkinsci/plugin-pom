@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>2.38-SNAPSHOT</version>
+  <version>3.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -48,14 +48,14 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
-    <jenkins.version>1.625.3</jenkins.version>
+    <jenkins.version>2.60.1</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots: -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
-    <jenkins-test-harness.version>2.31</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2.32</jenkins-test-harness.version>
     <hpi-plugin.version>2.1</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
-    <java.level>7</java.level>
+    <java.level>you-must-override-the-java.level-property</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -137,15 +137,10 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
-      <dependency> <!-- from org.eclipse.jetty:jetty-server:9.2.15.v20160210 -->
+      <dependency> <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.4</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
@@ -216,11 +211,6 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -482,6 +472,9 @@
                   <version>[3.1.0,)</version>
                   <message>3.1.0 required by frontend-maven-plugin at least.</message>
                 </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>[1.8.0,)</version>
+                </requireJavaVersion>
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
@@ -495,6 +488,11 @@
                     <exclude>org.jenkins-ci.main:jenkins-core</exclude>
                     <exclude>org.jenkins-ci.main:cli</exclude>
                     <exclude>org.jenkins-ci.main:jenkins-test-harness</exclude>
+                    <exclude>org.jenkins-ci.main:remoting</exclude>
+                    <exclude>org.kohsuke.stapler:stapler</exclude>
+                    <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
+                    <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
+                    <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
                   </excludes>
@@ -520,6 +518,7 @@
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
+                    <exclude>javax.servlet:servlet-api</exclude>
                     <exclude>org.sonatype.sisu:sisu-guice</exclude>
                     <exclude>log4j:log4j:*:jar:compile</exclude>
                     <exclude>log4j:log4j:*:jar:runtime</exclude>
@@ -663,6 +662,11 @@
             </goals>
             <!-- As soon as possible but after required generate-sources phase -->
             <phase>process-sources</phase>
+            <configuration>
+              <links>
+                <link>http://javadoc.jenkins.io/</link>
+              </links>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -699,6 +703,7 @@
               <value>-1</value>
             </property>
           </systemProperties>
+          <runOrder>alphabetical</runOrder>
         </configuration>
       </plugin>
       <plugin>
@@ -774,6 +779,17 @@
   </distributionManagement>
 
   <profiles>
+    <profile>
+      <id>uninherited-java.level</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists> <!-- just something that is only here -->
+        </file>
+      </activation>
+      <properties>
+        <java.level>8</java.level>
+      </properties>
+    </profile>
     <profile>
       <id>jenkins-release</id>
       <properties>
@@ -1291,7 +1307,6 @@
                 <configuration>
                   <streamLogs>false</streamLogs>
                   <showErrors>true</showErrors>
-                  <debug>true</debug>
                   <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
                   <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
                   <settingsFile>src/it/settings.xml</settingsFile>

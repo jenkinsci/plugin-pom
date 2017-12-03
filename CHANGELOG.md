@@ -1,6 +1,22 @@
 Changelog
 ====
 
+### 3.2
+
+* Ignore Java 8 bytecode coming from Remoting and Stapler, permitting plugins with `java.level=7` to still build (for example from `Jenkinsfile`) with, for example, `jenkins.version=2.89`.
+* Run tests in alphabetical order.
+
+### 3.1
+
+* Force `java.level` to be specified in each POM. 3.0 had changed the default value to `8`, causing plugins which had only overridden `jenkins.version` (to something older to 2.60.x) to not be runnable on older Jenkins installations using Java 7.
+* Fail early if using JDK 7 or earlier to build. (`java.level=7` is fine.)
+* `jenkins-test-harness` updated to [2.32](https://github.com/jenkinsci/jenkins-test-harness/#232-2017-oct-28).
+
+### 3.0
+
+* [PR#83](https://github.com/jenkinsci/plugin-pom/pull/83) **DROP SUPPORT FOR JENKINS 1.x**
+* [PR#87](https://github.com/jenkinsci/plugin-pom/pull/87) Configure the _maven-javadoc-plugin_ to link back to the Jenkins Javadoc
+
 ### 2.37
 
 Release date: 2017, Oct 23
