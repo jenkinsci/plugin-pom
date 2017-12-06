@@ -91,6 +91,12 @@
     <maven-scm.version>1.9.5</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
+    <!--
+      Starting with 2.33, jenkins-test-harness puts a space character in the path of the temporary workdir of agents
+      created from JenkinsRule.  It can help catching shell quoting bugs.  If your plugin's tests break because of this
+      and it can't be fixed, then you can disable this behavior by setting "jenkins.test.noSpaceInTmpDirs" to "true".
+    -->
+    <jenkins.test.noSpaceInTmpDirs>false</jenkins.test.noSpaceInTmpDirs>
   </properties>
 
   <dependencyManagement>
@@ -695,6 +701,10 @@
             <property>
               <name>hudson.udp</name>
               <value>-1</value>
+            </property>
+            <property>
+              <name>jenkins.test.noSpaceInTmpDirs</name>
+              <value>${jenkins.test.noSpaceInTmpDirs}</value>
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
