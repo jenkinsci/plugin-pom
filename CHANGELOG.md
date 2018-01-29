@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 3.3
+
+* [PR #84](https://github.com/jenkinsci/plugin-pom/pull/84) -
+Make FindBugs effort and threshold options configurable.
+* [PR #91](https://github.com/jenkinsci/plugin-pom/pull/91) -
+Do not enforce bytecode versions for Remoting and Stapler.
+
 ### 3.2
 
 * Ignore Java 8 bytecode coming from Remoting and Stapler, permitting plugins with `java.level=7` to still build (for example from `Jenkinsfile`) with, for example, `jenkins.version=2.89`.
