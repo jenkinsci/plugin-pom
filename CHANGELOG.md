@@ -1,6 +1,10 @@
 Changelog
 ====
 
+### 3.4
+
+* [PR #94](https://github.com/jenkinsci/plugin-pom/pull/94) - update `jenkins-test-harness` and `maven-hpi-plugin`.
+
 ### 3.3
 
 * [PR #84](https://github.com/jenkinsci/plugin-pom/pull/84) -
