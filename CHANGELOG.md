@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.5
+
+Release date: 2018 Feb 19
+
+* [PR #95](https://github.com/jenkinsci/plugin-pom/pull/95) - extend bytecode rule fix made in 3.2 to `task-reactor`, needed for testing against Jenkins 2.105 and later.
+
 ### 3.4
 
 * [PR #94](https://github.com/jenkinsci/plugin-pom/pull/94) - update `jenkins-test-harness` and `maven-hpi-plugin`.
