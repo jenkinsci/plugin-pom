@@ -496,6 +496,7 @@
                     <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
                     <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
                     <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
+                    <exclude>org.jenkins-ci:task-reactor</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
                   </excludes>
