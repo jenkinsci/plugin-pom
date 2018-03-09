@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 3.6
+
+Release date: 2018 Mar 09
+
+* Access modifier checker plugin updated, making checks more strict in some cases, such as `@Restricted(NoExternalUse.class)` on a type. You may pass `-Daccess-modifier-checker.failOnError=false` as a temporary workaround.
+* Animal Sniffer plugin updated, fixing errors in certain cases, such as use of Java 9-enabled libraries.
+
 ### 3.5
 
 Release date: 2018 Feb 19
