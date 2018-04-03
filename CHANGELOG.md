@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.7
+
+Release date: 2018 Apr 03
+
+* Access modifier checker plugin updated to 1.14 and synchronized with the annotation library; introduces `@Restricted(Beta.class)` which may be consumed in a downstream plugin by setting the POM property `useBeta` to `true`.
+
 ### 3.6
 
 Release date: 2018 Mar 09
