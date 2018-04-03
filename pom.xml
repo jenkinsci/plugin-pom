@@ -98,6 +98,12 @@
     <maven-scm.version>1.9.5</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
+    <access-modifier.version>1.14</access-modifier.version>
+    <!-- May be used to select timestamped snapshots: -->
+    <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
+    <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
+    <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
+    <useBeta>false</useBeta>
   </properties>
 
   <dependencyManagement>
@@ -276,6 +282,12 @@
       <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-annotation</artifactId>
+      <version>${access-modifier-annotation.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <!--
@@ -430,7 +442,7 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>1.13</version>
+          <version>${access-modifier-checker.version}</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
@@ -539,7 +551,6 @@
                     <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
                     <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
-                    <exclude>org.kohsuke:access-modifier-annotation</exclude> <!-- needed between Jenkins 2.36—2.60 -->
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
@@ -677,6 +688,14 @@
       <plugin>
         <groupId>org.kohsuke</groupId>
         <artifactId>access-modifier-checker</artifactId>
+        <configuration>
+          <properties>
+            <property>
+              <name>useBeta</name>
+              <value>${useBeta}</value>
+            </property>
+          </properties>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
