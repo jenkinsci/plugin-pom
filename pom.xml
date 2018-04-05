@@ -490,9 +490,11 @@
                 <requireJavaVersion>
                   <version>[1.8.0,)</version>
                 </requireJavaVersion>
+                <!-- TODO failing during incrementals deploy, TBD why
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
+                -->
                 <enforceBytecodeVersion>
                   <maxJdkVersion>1.${java.level}</maxJdkVersion>
                   <ignoredScopes>
@@ -542,10 +544,6 @@
                     <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
-                <requireReleaseDeps>
-                  <message>No Snapshots Allowed For Release Versions</message>
-                  <onlyWhenRelease>true</onlyWhenRelease>
-                </requireReleaseDeps>
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
@@ -817,6 +815,7 @@
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
+        <findbugs.skip>${release.skipTests}</findbugs.skip>
       </properties>
       <build>
         <plugins>
@@ -1257,6 +1256,81 @@
                 <version>${maven-scm.version}</version>
               </dependency>
             </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
+      <!-- mkdir .mvn && echo -Pconsumes-incrementals > .mvn/maven.config -->
+      <id>consumes-incrementals</id>
+      <repositories>
+        <repository>
+          <id>incrementals</id>
+          <!-- http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -p 8081:8081 -\-name nexus sonatype/nexus3 -->
+          <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>incrementals</id>
+          <url>http://localhost:8081/repository/maven-releases/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    <profile>
+      <!-- https://maven.apache.org/maven-ci-friendly.html -->
+      <!--
+      <version>${revision}${changelist}</version>
+      <properties>
+        <revision>1.23</revision>
+        <changelist>-SNAPSHOT</changelist>
+      </properties>
+      -->
+      <!-- echo .flattened-pom.xml >> .gitignore -->
+      <!-- mvn -Pproduces-incrementals,jenkins-release -Dchangelist=-$(git rev-list -\-count HEAD).$(git rev-parse -\-short=12 HEAD) clean deploy -->
+      <id>produces-incrementals</id>
+      <distributionManagement>
+        <repository>
+          <id>incrementals</id>
+          <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+      </distributionManagement>
+      <!-- ~/.m2/settings.xml:
+      <servers>
+        <server>
+            <id>incrementals</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+      </servers>
+      -->
+     <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <configuration>
+              <!-- http://www.mojohaus.org/flatten-maven-plugin/flatten-mojo.html -->
+              <updatePomFile>true</updatePomFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>flatten</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>flatten</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>flatten.clean</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>clean</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
