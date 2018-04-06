@@ -490,7 +490,7 @@
                 <requireJavaVersion>
                   <version>[1.8.0,)</version>
                 </requireJavaVersion>
-                <!-- TODO failing during incrementals deploy, TBD why
+                <!-- TODO failing during incrementals deploy: MENFORCER-281
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
@@ -1262,19 +1262,25 @@
     </profile>
     <profile>
       <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
-      <!-- mkdir .mvn && echo -Pconsumes-incrementals > .mvn/maven.config -->
+      <!-- mkdir -p .mvn && echo -Pconsumes-incrementals > .mvn/maven.config -->
       <id>consumes-incrementals</id>
       <repositories>
         <repository>
           <id>incrementals</id>
-          <!-- http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -p 8081:8081 -\-name nexus sonatype/nexus3 -->
+          <!-- http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
           <url>http://localhost:8081/repository/maven-releases/</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
         </repository>
       </repositories>
       <pluginRepositories>
         <pluginRepository>
           <id>incrementals</id>
           <url>http://localhost:8081/repository/maven-releases/</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
         </pluginRepository>
       </pluginRepositories>
     </profile>
