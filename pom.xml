@@ -1274,7 +1274,8 @@
       <!-- echo .flattened-pom.xml >> .gitignore -->
       <!-- Note hudson.util.VersionNumber sort order: 1.1, 1.2-SNAPSHOT, 1.2-rc13.8ab, 1.2-rc14.de3, 1.2-rc15.6a6, 1.2 -->
       <!-- org.apache.maven.artifact.versioning.ComparableVersion differs on SNAPSHOT handling: 1.1, 1.2-rc13.8ab, 1.2-rc14.de3, 1.2-rc15.6a6, 1.2-SNAPSHOT, 1.2 -->
-      <!-- mvn -Pjenkins-release -Dchangelist=-rc$(git rev-list -\-count HEAD).$(git rev-parse -\-short=12 HEAD) clean deploy # -Drelease.skipTests=false -->
+      <!-- mvn -Pjenkins-release -Dchangelist=-rc$(git rev-list -\-first-parent -\-count HEAD).$(git rev-parse -\-short=12 HEAD) clean deploy # -Drelease.skipTests=false -->
+      <!-- or consider using: -rc$(git rev-list -\-first-parent -\-count $(git merge-base master HEAD)).$(git rev-list -\-first-parent -\-count ^master HEAD).$(git rev-parse -\-short=12 HEAD) -->
       <!-- ~/.m2/settings.xml:
       <servers>
         <server>
