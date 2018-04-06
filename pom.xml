@@ -1262,13 +1262,31 @@
     </profile>
     <profile>
       <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
-      <!-- mkdir -p .mvn && echo -Pconsumes-incrementals > .mvn/maven.config -->
-      <!-- or use -Pconsumes-incrementals,produces-incrementals if this is a multimodule repository -->
-      <id>consumes-incrementals</id>
+      <!-- mkdir -p .mvn && echo -Pincrementals >> .mvn/maven.config -->
+      <!-- https://maven.apache.org/maven-ci-friendly.html -->
+      <!--
+      <version>${revision}${changelist}</version>
+      <properties>
+        <revision>1.23</revision>
+        <changelist>-SNAPSHOT</changelist>
+      </properties>
+      -->
+      <!-- echo .flattened-pom.xml >> .gitignore -->
+      <!-- mvn -Pjenkins-release -Dchangelist=-$(git rev-list -\-count HEAD).$(git rev-parse -\-short=12 HEAD) clean deploy # -DskipTests -->
+      <!-- ~/.m2/settings.xml:
+      <servers>
+        <server>
+            <id>incrementals</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+      </servers>
+      -->
+      <id>incrementals</id>
       <repositories>
         <repository>
           <id>incrementals</id>
-          <!-- http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
+          <!-- TODO http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
           <url>http://localhost:8081/repository/maven-releases/</url>
           <snapshots>
             <enabled>false</enabled>
@@ -1284,35 +1302,13 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
-    </profile>
-    <profile>
-      <!-- https://maven.apache.org/maven-ci-friendly.html -->
-      <!--
-      <version>${revision}${changelist}</version>
-      <properties>
-        <revision>1.23</revision>
-        <changelist>-SNAPSHOT</changelist>
-      </properties>
-      -->
-      <!-- echo .flattened-pom.xml >> .gitignore -->
-      <!-- mvn -Pproduces-incrementals,jenkins-release -Dchangelist=-$(git rev-list -\-count HEAD).$(git rev-parse -\-short=12 HEAD) clean deploy -->
-      <id>produces-incrementals</id>
       <distributionManagement>
         <repository>
           <id>incrementals</id>
           <url>http://localhost:8081/repository/maven-releases/</url>
         </repository>
       </distributionManagement>
-      <!-- ~/.m2/settings.xml:
-      <servers>
-        <server>
-            <id>incrementals</id>
-            <username>admin</username>
-            <password>admin123</password>
-        </server>
-      </servers>
-      -->
-     <build>
+      <build>
         <plugins>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -1329,6 +1325,9 @@
                 <goals>
                   <goal>flatten</goal>
                 </goals>
+                <configuration>
+                    <flattenMode>oss</flattenMode>
+                </configuration>
               </execution>
               <execution>
                 <id>flatten.clean</id>
