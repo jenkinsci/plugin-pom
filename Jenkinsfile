@@ -12,7 +12,6 @@ pipeline {
     stages {
         stage('main') {
             steps {
-                sh 'echo -rc$(git rev-list --first-parent --count HEAD).$(git rev-parse --short=12 HEAD); echo -rc$(git rev-list --first-parent --count $(git merge-base master HEAD)).$(git rev-list --first-parent --count ^master HEAD).$(git rev-parse --short=12 HEAD)' // TODO just checking
                 sh 'mvn -B -Prun-plugin-pom-its clean verify'
             }
             post {
