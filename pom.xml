@@ -1263,6 +1263,7 @@
     <profile>
       <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
       <!-- mkdir -p .mvn && echo -Pconsumes-incrementals > .mvn/maven.config -->
+      <!-- or use -Pconsumes-incrementals,produces-incrementals if this is a multimodule repository -->
       <id>consumes-incrementals</id>
       <repositories>
         <repository>
