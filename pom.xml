@@ -1287,7 +1287,7 @@
       <!-- Does the equivalent of: -Dchangelist=-rc$(git rev-list -\-first-parent -\-count HEAD).$(git rev-parse -\-short=12 HEAD) -->
       <!-- Nicer but does not work after checkout scm (since there is no master ref): -rc$(git rev-list -\-first-parent -\-count $(git merge-base master HEAD)).$(git rev-list -\-first-parent -\-count ^master HEAD).$(git rev-parse -\-short=12 HEAD) -->
       <!-- Do *not* want to use -\-no-merges. Note that checkout scm for PRs may merge base branch into head commit, incrementing the count by one and producing an unpredictable commit hash. -->
-      <!-- Now just run: mvn -Pjenkins-release clean deploy # -Drelease.skipTests=false -->
+      <!-- Now just run: mvn -Pjenkins-release -Dset.changelist clean deploy # -Drelease.skipTests=false -->
       <!-- ~/.m2/settings.xml:
       <servers>
         <server>
@@ -1301,7 +1301,7 @@
       <repositories>
         <repository>
           <id>incrementals</id>
-          <!-- TODO http://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
+          <!-- TODO https://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
           <url>http://localhost:8081/repository/maven-releases/</url>
           <snapshots>
             <enabled>false</enabled>
