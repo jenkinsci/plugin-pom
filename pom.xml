@@ -1263,7 +1263,6 @@
     <profile>
       <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
       <!-- mkdir -p .mvn && echo -Pincrementals >> .mvn/maven.config -->
-      <!-- https://maven.apache.org/maven-ci-friendly.html -->
       <!--
       <version>${revision}${changelist}</version>
       <properties>
@@ -1284,9 +1283,6 @@
         </extension>
       </extensions>
       -->
-      <!-- Does the equivalent of: -Dchangelist=-rc$(git rev-list -\-first-parent -\-count HEAD).$(git rev-parse -\-short=12 HEAD) -->
-      <!-- Nicer but does not work after checkout scm (since there is no master ref): -rc$(git rev-list -\-first-parent -\-count $(git merge-base master HEAD)).$(git rev-list -\-first-parent -\-count ^master HEAD).$(git rev-parse -\-short=12 HEAD) -->
-      <!-- Do *not* want to use -\-no-merges. Note that checkout scm for PRs may merge base branch into head commit, incrementing the count by one and producing an unpredictable commit hash. -->
       <!-- Now just run: mvn -Pjenkins-release -Dset.changelist clean deploy # -Drelease.skipTests=false -->
       <!-- ~/.m2/settings.xml:
       <servers>
@@ -1298,11 +1294,14 @@
       </servers>
       -->
       <id>incrementals</id>
+      <properties>
+        <!-- Override with -Dincrementals.url=http://localhost:8081/repository/maven-releases/ for testing after: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
+        <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
+      </properties>
       <repositories>
         <repository>
           <id>incrementals</id>
-          <!-- TODO https://repo.jenkins-ci.org/incrementals/ replaced for testing with: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
-          <url>http://localhost:8081/repository/maven-releases/</url>
+          <url>${incrementals.url}</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
@@ -1311,7 +1310,7 @@
       <pluginRepositories>
         <pluginRepository>
           <id>incrementals</id>
-          <url>http://localhost:8081/repository/maven-releases/</url>
+          <url>${incrementals.url}</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
@@ -1320,7 +1319,7 @@
       <distributionManagement>
         <repository>
           <id>incrementals</id>
-          <url>http://localhost:8081/repository/maven-releases/</url>
+          <url>${incrementals.url}</url>
         </repository>
       </distributionManagement>
       <build>
