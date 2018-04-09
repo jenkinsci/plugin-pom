@@ -1271,8 +1271,6 @@
       </properties>
       -->
       <!-- echo .flattened-pom.xml >> .gitignore -->
-      <!-- Note hudson.util.VersionNumber sort order: 1.1, 1.2-SNAPSHOT, 1.2-rc13.8ab, 1.2-rc14.de3, 1.2-rc15.6a6, 1.2 -->
-      <!-- org.apache.maven.artifact.versioning.ComparableVersion differs on SNAPSHOT handling: 1.1, 1.2-rc13.8ab, 1.2-rc14.de3, 1.2-rc15.6a6, 1.2-SNAPSHOT, 1.2 -->
       <!-- Configure https://github.com/jglick/git-changelist-maven-extension in .mvn/extensions.xml: -->
       <!--
       <extensions xmlns="http://maven.apache.org/EXTENSIONS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/EXTENSIONS/1.0.0 http://maven.apache.org/xsd/core-extensions-1.0.0.xsd">
