@@ -104,6 +104,7 @@
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
+    <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
   </properties>
 
   <dependencyManagement>
@@ -1261,41 +1262,8 @@
       </build>
     </profile>
     <profile>
-      <!-- https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options -->
-      <!-- mkdir -p .mvn && echo -Pincrementals >> .mvn/maven.config -->
-      <!--
-      <version>${revision}${changelist}</version>
-      <properties>
-        <revision>1.23</revision>
-        <changelist>-SNAPSHOT</changelist>
-      </properties>
-      -->
-      <!-- echo .flattened-pom.xml >> .gitignore -->
-      <!-- Configure https://github.com/jglick/git-changelist-maven-extension in .mvn/extensions.xml: -->
-      <!--
-      <extensions xmlns="http://maven.apache.org/EXTENSIONS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/EXTENSIONS/1.0.0 http://maven.apache.org/xsd/core-extensions-1.0.0.xsd">
-        <extension>
-          <groupId>io.jenkins.tools</groupId>
-          <artifactId>git-changelist-maven-extension</artifactId>
-          <version>1.0-SNAPSHOT</version>
-        </extension>
-      </extensions>
-      -->
-      <!-- Now just run: mvn -Pjenkins-release -Dset.changelist clean deploy # -Drelease.skipTests=false -->
-      <!-- ~/.m2/settings.xml:
-      <servers>
-        <server>
-            <id>incrementals</id>
-            <username>admin</username>
-            <password>admin123</password>
-        </server>
-      </servers>
-      -->
-      <id>incrementals</id>
-      <properties>
-        <!-- Override with -Dincrementals.url=http://localhost:8081/repository/maven-releases/ for testing after: docker run -\-rm -\-name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3 -->
-        <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
-      </properties>
+      <!-- see incrementals.md -->
+      <id>consume-incrementals</id>
       <repositories>
         <repository>
           <id>incrementals</id>
@@ -1314,6 +1282,15 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
+    </profile>
+    <profile>
+      <id>produce-incrementals</id>
+      <activation>
+        <property>
+          <name>set.changelist</name>
+          <value>true</value>
+        </property>
+      </activation>
       <distributionManagement>
         <repository>
           <id>incrementals</id>
@@ -1346,6 +1323,38 @@
                 <phase>clean</phase>
                 <goals>
                   <goal>clean</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        <!-- Copied from jenkins-release: -->
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>attach-test-sources</id>
+                <goals>
+                  <goal>test-jar</goal>
+                </goals>
+                <configuration>
+                  <skipSource>${no-test-jar}</skipSource>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
                 </goals>
               </execution>
             </executions>
