@@ -91,4 +91,5 @@ To produce equivalent artifacts in your local repository while working offline:
 mvn -Dset.changelist -DskipTests clean install
 ```
 
-If you do not select the `-Pproduce-incrementals -Dset.changelist` options, you will create a regular `*-SNAPSHOT` artifact.
+If you do not select the `-Dset.changelist` option, you will create a regular `*-SNAPSHOT` artifact.
+(And that is what you _must_ do if you have any local modifications or untracked files.)
