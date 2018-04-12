@@ -1281,6 +1281,9 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
+    </profile>
+    <profile>
+      <id>might-produce-incrementals</id>
       <build>
         <plugins>
           <plugin>

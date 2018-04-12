@@ -7,35 +7,14 @@ See [JENKINS-50686](https://issues.jenkins-ci.org/browse/JENKINS-50686) for stat
 If your plugin has (or may have) dependencies on incremental versions, run:
 
 ```bash
-mkdir -p .mvn && echo -Pconsume-incrementals >> .mvn/maven.config && git add .mvn
+mkdir -p .mvn
+echo -Pconsume-incrementals >> .mvn/maven.config
+git add .mvn
 ```
 
 (See [this guide](https://maven.apache.org/docs/3.3.1/release-notes.html#JVM_and_Command_Line_Options) for details on the `.mvn` directory.)
 
 This profile merely activates access to the [Incrementals repository](https://repo.jenkins-ci.org/incrementals/).
-If you wish to test usage offline, run
-
-```bash
-docker run --rm --name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3
-```
-
-add to your `~/.m2/settings.xml`:
-
-```xml
-<servers>
-  <server>
-    <id>incrementals</id>
-    <username>admin</username>
-    <password>admin123</password>
-  </server>
-</servers>
-```
-
-and then add to command lines:
-
-```
--Dincrementals.url=http://localhost:8081/repository/maven-releases/
-```
 
 ## Enabling production of incrementals
 
@@ -62,7 +41,10 @@ and then in the `<properties>` section add
 Now run
 
 ```bash
+mkdir -p .mvn
+echo -Pmight-produce-incrementals >> .mvn/maven.config
 echo .flattened-pom.xml >> .gitignore
+git add .mvn .gitignore
 ```
 
 Finally, configure [git-changelist-maven-extension](https://github.com/jglick/git-changelist-maven-extension) in `.mvn/extensions.xml`:
@@ -72,7 +54,7 @@ Finally, configure [git-changelist-maven-extension](https://github.com/jglick/gi
   <extension>
     <groupId>io.jenkins.tools</groupId>
     <artifactId>git-changelist-maven-extension</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-alpha-1-SNAPSHOT</version>
   </extension>
 </extensions>
 ```
@@ -83,8 +65,6 @@ Now if you are authorized to deploy to the Incrementals repository you could run
 mvn -Dset.changelist clean deploy
 ```
 
-(See above for local testing; the same `incrementals.url` property may be used to override the deployment destination.)
-
 To produce equivalent artifacts in your local repository while working offline:
 
 ```bash
@@ -93,3 +73,31 @@ mvn -Dset.changelist -DskipTests clean install
 
 If you do not select the `-Dset.changelist` option, you will create a regular `*-SNAPSHOT` artifact.
 (And that is what you _must_ do if you have any local modifications or untracked files.)
+
+## Offline testing
+
+If you wish to test usage offline, run
+
+```bash
+docker run --rm --name nexus -p 8081:8081 -v nexus-data:/nexus-data sonatype/nexus3
+```
+
+add to your `~/.m2/settings.xml`:
+
+```xml
+<servers>
+  <server>
+    <id>incrementals</id>
+    <username>admin</username>
+    <password>admin123</password>
+  </server>
+</servers>
+```
+
+and then add to command lines consuming or producing incremental versions:
+
+```
+-Dincrementals.url=http://localhost:8081/repository/maven-releases/
+```
+
+or define an equivalent profile in local settings.
