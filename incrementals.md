@@ -54,7 +54,7 @@ Finally, configure [git-changelist-maven-extension](https://github.com/jglick/gi
   <extension>
     <groupId>io.jenkins.tools</groupId>
     <artifactId>git-changelist-maven-extension</artifactId>
-    <version>1.0-alpha-1-SNAPSHOT</version>
+    <version>1.0-alpha-1</version>
   </extension>
 </extensions>
 ```
