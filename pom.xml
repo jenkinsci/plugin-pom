@@ -485,8 +485,8 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[3.1.0,)</version>
-                  <message>3.1.0 required by frontend-maven-plugin at least.</message>
+                  <version>[3.3.1,)</version>
+                  <message>3.3.1 required to at least look at .mvn/ if it exists.</message>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>[1.8.0,)</version>
@@ -1309,6 +1309,22 @@
                 <goals>
                   <goal>clean</goal>
                 </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>display-info</id>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>[3.5.0,)</version>
+                      <message>3.5.0+ required to use Incrementals.</message>
+                    </requireMavenVersion>
+                  </rules>
+                </configuration>
               </execution>
             </executions>
           </plugin>
