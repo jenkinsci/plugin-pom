@@ -664,8 +664,6 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Will skip execution when tests are skipped. -->
-      <!-- See skip-javadoc-with-tests profile below. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -988,6 +986,7 @@
         </plugins>
       </build>
     </profile>
+    <!-- TODO clashes with produce-incrementals; maybe define a new -Pquick to skip tests, FindBugs, Javadoc, node tests & lint, …
     <profile>
       <id>skip-javadoc-with-tests</id>
       <activation>
@@ -1000,6 +999,7 @@
         <maven.javadoc.skip>true</maven.javadoc.skip>
       </properties>
     </profile>
+    -->
     <profile>
       <id>all-tests</id>
       <activation>
