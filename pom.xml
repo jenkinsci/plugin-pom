@@ -817,6 +817,7 @@
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
+        <findbugs.skip>${release.skipTests}</findbugs.skip>
       </properties>
       <build>
         <plugins>
