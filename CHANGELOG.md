@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 3.8
+
+Release date: 2018 Apr 10
+
+* Update Jenkins Test Harness from 2.34 to 2.38
+([Changelog](https://github.com/jenkinsci/jenkins-test-harness/#changelog))
+
 ### 3.7
 
 Release date: 2018 Apr 03
