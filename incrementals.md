@@ -38,6 +38,25 @@ and then in the `<properties>` section add
 <changelist>-SNAPSHOT</changelist>
 ```
 
+Also change
+
+```xml
+<scm>
+  <!-- … -->
+  <tag>HEAD</tag>
+</scm>
+```
+
+to
+
+
+```xml
+<scm>
+  <!-- … -->
+  <tag>${scmTag}</tag>
+</scm>
+```
+
 Now run
 
 ```bash
