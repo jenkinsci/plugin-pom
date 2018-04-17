@@ -105,6 +105,7 @@
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
+    <scmTag>HEAD</scmTag>
   </properties>
 
   <dependencyManagement>
