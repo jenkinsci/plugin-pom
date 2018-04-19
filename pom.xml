@@ -53,7 +53,7 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.38</jenkins-test-harness.version>
-    <hpi-plugin.version>2.3-20180417.221120-1</hpi-plugin.version> <!-- TODO https://github.com/jenkinsci/maven-hpi-plugin/pull/79 -->
+    <hpi-plugin.version>2.3</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
