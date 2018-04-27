@@ -53,6 +53,11 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 <no-test-jar>false</no-test-jar>
 ```
 
+## Incrementals
+
+You can configure your plugin to treat every commit as a release candidate.
+See [Incrementals](https://github.com/jenkinsci/pom/blob/master/incrementals.md) for details.
+
 ## Baselines
 
 It is handy to be able to select different Jenkins baselines with a Maven profile.
