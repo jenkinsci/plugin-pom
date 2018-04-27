@@ -56,8 +56,7 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 ## Incrementals
 
 You can configure your plugin to treat every commit as a release candidate.
-See [Incrementals](https://github.com/jglick/pom-1/blob/incrementals/incrementals.md) for details.
-<!--- TODO update to jenkinsci/pom/master when merged --->
+See [Incrementals](https://github.com/jenkinsci/pom/blob/master/incrementals.md) for details.
 
 ## Baselines
 
