@@ -1304,14 +1304,9 @@
                 </goals>
                 <configuration>
                     <flattenMode>oss</flattenMode>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <flattenedPomFilename>${project.build.finalName}.pom</flattenedPomFilename>
                 </configuration>
-              </execution>
-              <execution>
-                <id>flatten.clean</id>
-                <phase>clean</phase>
-                <goals>
-                  <goal>clean</goal>
-                </goals>
               </execution>
             </executions>
           </plugin>
