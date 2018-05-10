@@ -1305,7 +1305,7 @@
                 <configuration>
                     <flattenMode>oss</flattenMode>
                     <outputDirectory>${project.build.directory}</outputDirectory>
-                    <flattenedPomFilename>${project.build.finalName}.pom</flattenedPomFilename>
+                    <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
                 </configuration>
               </execution>
             </executions>
