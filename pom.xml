@@ -451,6 +451,19 @@
           <artifactId>maven-license-plugin</artifactId>
           <version>1.7</version>
         </plugin>
+        <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
+          <groupId>io.jenkins.tools.incrementals</groupId>
+          <artifactId>incrementals-maven-plugin</artifactId>
+          <version>1.0-beta-3</version>
+          <configuration>
+            <includes>
+              <include>org.jenkins-ci.*</include>
+              <include>io.jenkins.*</include>
+            </includes>
+            <generateBackupPoms>false</generateBackupPoms>
+            <updateNonincremental>false</updateNonincremental>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -1283,25 +1296,6 @@
           </snapshots>
         </pluginRepository>
       </pluginRepositories>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>io.jenkins.tools.incrementals</groupId>
-              <artifactId>incrementals-maven-plugin</artifactId>
-              <version>1.0-alpha-3</version>
-              <configuration>
-                <includes>
-                  <include>org.jenkins-ci.*</include>
-                  <include>io.jenkins.*</include>
-                </includes>
-                <generateBackupPoms>false</generateBackupPoms>
-                <updateNonincremental>false</updateNonincremental>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
     </profile>
     <profile>
       <id>might-produce-incrementals</id>
