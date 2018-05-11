@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 3.10
+
+Release date: 2018 May 11
+
+* Preconfigure the `incrementals` Maven plugin, so you can run `incrementals:incrementalify` and more.
+* For Incrementals mode, configure `flatten-maven-plugin` to keep the generated POM in the `target` directory.
+
 ### 3.9
 
 Release date: 2018 Apr 27
