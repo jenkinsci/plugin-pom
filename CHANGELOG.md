@@ -12,7 +12,7 @@ Release date: 2018 May 11
 
 Release date: 2018 Apr 27
 
-* Support for JEP-305 “Incrementals”. [Guide](https://github.com/jenkinsci/pom/blob/master/incrementals.md#usage-in-plugin-poms)
+* Support for JEP-305 “Incrementals”. [Guide](https://github.com/jenkinsci/incrementals-tools/blob/master/README.md)
 * Skip FindBugs checks during `release:perform` to save time.
 * Minimum supported Maven version updated to 3.3.1 (higher if using Incrementals).
 
