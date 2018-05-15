@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.11
+
+Release date: 2018 May 15
+
+* Use `source:jar-no-fork` goal instead of `source:jar` to avoid a Maven bug.
+
 ### 3.10
 
 Release date: 2018 May 11
