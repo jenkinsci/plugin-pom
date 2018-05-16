@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.12
+
+Release date: 2018 May 16
+
+* Analogously to the change in 3.11, use `test-jar-no-fork` rather than `test-jar`.
+
 ### 3.11
 
 Release date: 2018 May 15
