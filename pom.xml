@@ -76,14 +76,6 @@
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
-    <!-- same version as in org.jenkins-ci.main:pom -->
-    <!-- TODO see if we can remove this properties -->
-    <!--
-      Change to "javadoc-no-fork" locally if the plugin build is running some plugins twice. This has
-      been seen with some plugins configured to execute in the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
-      Note however that "javadoc-no-fork" has been known to have memory leak issues, so beware.
-    -->
-    <javadoc.exec.goal>javadoc</javadoc.exec.goal>
 
     <slf4jVersion>1.7.25</slf4jVersion>
     <node.version>4.0.0</node.version>
@@ -343,7 +335,9 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.10.4</version>
           <configuration>
-            <quiet>true</quiet>
+            <links>
+              <link>http://javadoc.jenkins.io/</link>
+            </links>
           </configuration>
         </plugin>
         <plugin>
@@ -679,24 +673,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>${javadoc.exec.goal}</goal>
-            </goals>
-            <!-- As soon as possible but after required generate-sources phase -->
-            <phase>process-sources</phase>
-            <configuration>
-              <links>
-                <link>http://javadoc.jenkins.io/</link>
-              </links>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.kohsuke</groupId>
         <artifactId>access-modifier-checker</artifactId>
         <configuration>
@@ -1001,20 +977,6 @@
         </plugins>
       </build>
     </profile>
-    <!-- TODO clashes with produce-incrementals; maybe define a new -Pquick to skip tests, FindBugs, Javadoc, node tests & lint, …
-    <profile>
-      <id>skip-javadoc-with-tests</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-      </properties>
-    </profile>
-    -->
     <profile>
       <id>all-tests</id>
       <activation>
