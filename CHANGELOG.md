@@ -1,6 +1,13 @@
 Changelog
 ====
 
+### 3.13
+
+Release date: 2018 Jun 01
+
+* Update HPI plugin [from 2.3 to 2.6](https://github.com/jenkinsci/maven-hpi-plugin/blob/master/README.md#26-2018-jun-01).
+* Simplify usage of the Javadoc plugin, running it only when in release mode.
+
 ### 3.12
 
 Release date: 2018 May 16
