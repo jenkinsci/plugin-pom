@@ -1334,7 +1334,7 @@
               <execution>
                 <id>attach-test-sources</id>
                 <goals>
-                  <goal>test-jar</goal>
+                  <goal>test-jar-no-fork</goal>
                 </goals>
                 <configuration>
                   <skipSource>${no-test-jar}</skipSource>
