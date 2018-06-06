@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.14
+
+Release date: 2018 Jun 06
+
+* Another forked execution problem affecting plugins which both create a test JAR and use node/yarn to process JavaScript.
+
 ### 3.13
 
 Release date: 2018 Jun 01
