@@ -1,6 +1,12 @@
 Changelog
 ====
 
+### 3.15
+
+Release date: 2018 Jun 12
+
+* Pick up a fix to the access modifier checker to ignore synthetic code, relevant particularly in some generics constructs.
+
 ### 3.14
 
 Release date: 2018 Jun 06
