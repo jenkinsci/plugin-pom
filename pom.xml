@@ -90,7 +90,7 @@
     <maven-scm.version>1.9.5</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
-    <access-modifier.version>1.14</access-modifier.version>
+    <access-modifier.version>1.15</access-modifier.version>
     <!-- May be used to select timestamped snapshots: -->
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
