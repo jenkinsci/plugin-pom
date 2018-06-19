@@ -506,7 +506,7 @@
                 </requirePluginVersions>
                 -->
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.${java.level}</maxJdkVersion>
+                  <maxJdkVersion>${java.level}</maxJdkVersion>
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
@@ -601,10 +601,10 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.${java.level}</source>
-          <target>1.${java.level}</target>
-          <testSource>1.${java.level.test}</testSource>
-          <testTarget>1.${java.level.test}</testTarget>
+          <source>${java.level}</source>
+          <target>${java.level}</target>
+          <testSource>${java.level.test}</testSource>
+          <testTarget>${java.level.test}</testTarget>
         </configuration>
       </plugin>
       <plugin>
