@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.16-SNAPSHOT</version>
+  <version>3.16-java10-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -521,7 +521,7 @@
                     <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
                     <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
                     <exclude>org.jenkins-ci:task-reactor</exclude>
-                    <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
+                    <!--  findbugs dep managed to provided and optional so is not shipped and missing 3ations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
                   </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
@@ -621,7 +621,8 @@
         <configuration>
           <signature>
             <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java1${java.level}</artifactId>
+            <!-- Hardcoded unfortunately -->
+            <artifactId>java18</artifactId>
           </signature>
         </configuration>
       </plugin>
@@ -798,7 +799,7 @@
         </file>
       </activation>
       <properties>
-        <java.level>8</java.level>
+        <java.level>1.8</java.level>
       </properties>
     </profile>
     <profile>
