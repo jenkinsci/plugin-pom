@@ -1,5 +1,15 @@
 Changelog
-====
+=========
+
+### 3.16
+
+Release date: 2018 Jun 22
+
+* [PR #114](https://github.com/jenkinsci/plugin-pom/pull/114) -
+Update Animal Sniffer Plugin from 1.15 to 1.16
+* [PR #114](https://github.com/jenkinsci/plugin-pom/pull/114) -
+Make Animal Sniffer Version configurable via the
+`animal.sniffer.version` property
 
 ### 3.15
 
