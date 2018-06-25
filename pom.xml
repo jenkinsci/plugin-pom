@@ -94,7 +94,7 @@
     <!-- May be used to select timestamped snapshots: -->
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
-    <animal.sniffer.version>1.16</animal.sniffer.version>
+    <animal.sniffer.version>1.17</animal.sniffer.version>
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
