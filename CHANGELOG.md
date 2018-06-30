@@ -1,6 +1,15 @@
 Changelog
 =========
 
+### 3.17
+
+Release date: 2018 Jun 30
+
+* [PR #115](https://github.com/jenkinsci/plugin-pom/pull/115) -
+Update Animal Sniffer Plugin from 1.16 to 1.17 to support 
+signature scanning with JDK 10
+([JENKINS-52155](https://issues.jenkins-ci.org/browse/JENKINS-52155))
+
 ### 3.16
 
 Release date: 2018 Jun 22
