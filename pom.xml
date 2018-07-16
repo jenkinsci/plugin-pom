@@ -1305,6 +1305,9 @@
           </plugin>
         </plugins>
       </build>
+      <properties>
+        <completionGoals>incrementals:reincrementalify</completionGoals>
+      </properties>
     </profile>
     <profile>
       <id>produce-incrementals</id>
