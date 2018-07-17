@@ -1303,11 +1303,14 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <completionGoals>incrementals:reincrementalify</completionGoals>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
-      <properties>
-        <completionGoals>incrementals:reincrementalify</completionGoals>
-      </properties>
     </profile>
     <profile>
       <id>produce-incrementals</id>
