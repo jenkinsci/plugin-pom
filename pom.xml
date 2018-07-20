@@ -450,7 +450,7 @@
         <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.0-beta-3</version>
+          <version>1.0-beta-4</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
@@ -1298,10 +1298,20 @@
                       <version>[3.5.0,)</version>
                       <message>3.5.0+ required to use Incrementals.</message>
                     </requireMavenVersion>
+                    <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
+                      <version>[1.0-beta-4,)</version>
+                    </rule>
                   </rules>
                 </configuration>
               </execution>
             </executions>
+            <dependencies>
+              <dependency>
+                <groupId>io.jenkins.tools.incrementals</groupId>
+                <artifactId>incrementals-enforcer-rules</artifactId>
+                <version>1.0-beta-4</version>
+              </dependency>
+            </dependencies>
           </plugin>
           <plugin>
             <artifactId>maven-release-plugin</artifactId>
