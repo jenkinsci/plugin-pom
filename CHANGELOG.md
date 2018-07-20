@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 3.19
+
+Release date: 2018 Jul 20
+
+* [JENKINS-51869](https://issues.jenkins-ci.org/browse/JENKINS-51869): revision numbers for Incrementals now reflect the drop of a `--first-parent` argument, so typical numbers will be a few times larger.
+* Tweaking `completionGoals` configuration from 3.18.
+
 ### 3.18
 
 Release date: 2018 Jul 16
