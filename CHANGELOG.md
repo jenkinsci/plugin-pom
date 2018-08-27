@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 3.20
+
+Release date: 2018 Aug 27
+
+* [PR #120](https://github.com/jenkinsci/plugin-pom/pull/120) -
+Fix Maven site generation which was broken due to the dependency conflict (`mvn site`)
+
 ### 3.19
 
 Release date: 2018 Jul 20
