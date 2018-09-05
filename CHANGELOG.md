@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.21
+
+Release date: 2018 Sep 05
+
+* `mvn incrementals:update` mishandled property expressions.
+
 ### 3.20
 
 Release date: 2018 Aug 27
