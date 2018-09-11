@@ -718,6 +718,10 @@
               <name>hudson.udp</name>
               <value>-1</value>
             </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${project.build.directory}/tmp</value>
+            </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
         </configuration>
