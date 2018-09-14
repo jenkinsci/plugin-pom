@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.22
+
+Release date: 2018 Sep 14
+
+* The temporary directory for Surefire tests (used for, among many other things, `$JENKINS_HOME` under test) now defaults to a location inside the `target` directory rather than a system default as before. The Maven property `surefireTempDir` can be used to override this location in case of trouble.
+
 ### 3.21
 
 Release date: 2018 Sep 05
