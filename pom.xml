@@ -99,6 +99,8 @@
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
     <scmTag>HEAD</scmTag>
+    <!-- Where to put temporary files during test runs. -->
+    <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
   </properties>
 
   <dependencyManagement>
@@ -717,6 +719,10 @@
             <property>
               <name>hudson.udp</name>
               <value>-1</value>
+            </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${surefireTempDir}</value>
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
