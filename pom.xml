@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.17-java10-SNAPSHOT</version>
+  <version>3.23-java11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -94,11 +94,13 @@
     <!-- May be used to select timestamped snapshots: -->
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
-    <animal.sniffer.version>1.16</animal.sniffer.version>
+    <animal.sniffer.version>1.17</animal.sniffer.version>
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
     <scmTag>HEAD</scmTag>
+    <!-- Where to put temporary files during test runs. -->
+    <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
   </properties>
 
   <dependencyManagement>
@@ -348,7 +350,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.6</version>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
@@ -450,7 +456,7 @@
         <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.0-beta-3</version>
+          <version>1.0-beta-7</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
@@ -714,6 +720,10 @@
             <property>
               <name>hudson.udp</name>
               <value>-1</value>
+            </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${surefireTempDir}</value>
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
@@ -1299,10 +1309,26 @@
                       <version>[3.5.0,)</version>
                       <message>3.5.0+ required to use Incrementals.</message>
                     </requireMavenVersion>
+                    <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
+                      <version>[1.0-beta-4,)</version>
+                    </rule>
                   </rules>
                 </configuration>
               </execution>
             </executions>
+            <dependencies>
+              <dependency>
+                <groupId>io.jenkins.tools.incrementals</groupId>
+                <artifactId>incrementals-enforcer-rules</artifactId>
+                <version>1.0-beta-4</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <completionGoals>incrementals:reincrementalify</completionGoals>
+            </configuration>
           </plugin>
         </plugins>
       </build>

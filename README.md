@@ -56,7 +56,7 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 ## Incrementals
 
 You can configure your plugin to treat every commit as a release candidate.
-See [Incrementals](https://github.com/jenkinsci/pom/blob/master/incrementals.md) for details.
+See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
 
 ## Baselines
 

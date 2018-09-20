@@ -1,6 +1,51 @@
 Changelog
 =========
 
+### 3.22
+
+Release date: 2018 Sep 14
+
+* The temporary directory for Surefire tests (used for, among many other things, `$JENKINS_HOME` under test) now defaults to a location inside the `target` directory rather than a system default as before. The Maven property `surefireTempDir` can be used to override this location in case of trouble.
+
+### 3.21
+
+Release date: 2018 Sep 05
+
+* `mvn incrementals:update` mishandled property expressions.
+
+### 3.20
+
+Release date: 2018 Aug 27
+
+* [PR #120](https://github.com/jenkinsci/plugin-pom/pull/120) -
+Fix Maven site generation which was broken due to the dependency conflict (`mvn site`)
+
+### 3.19
+
+Release date: 2018 Jul 20
+
+* [JENKINS-51869](https://issues.jenkins-ci.org/browse/JENKINS-51869): revision numbers for Incrementals now reflect the drop of a `--first-parent` argument, so typical numbers will be a few times larger.
+* Tweaking `completionGoals` configuration from 3.18.
+
+### 3.18
+
+Release date: 2018 Jul 16
+
+* [PR #117](https://github.com/jenkinsci/plugin-pom/pull/117) -
+`incrementals:reincrementalify` is now invoked automatically
+in release completion goals
+* [PR #116](https://github.com/jenkinsci/plugin-pom/pull/116) -
+Repository now references up-to-date Incrementals documentation
+
+### 3.17
+
+Release date: 2018 Jun 30
+
+* [PR #115](https://github.com/jenkinsci/plugin-pom/pull/115) -
+Update Animal Sniffer Plugin from 1.16 to 1.17 to support 
+signature scanning with JDK 10
+([JENKINS-52155](https://issues.jenkins-ci.org/browse/JENKINS-52155))
+
 ### 3.16
 
 Release date: 2018 Jun 22
