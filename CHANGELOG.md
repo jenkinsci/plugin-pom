@@ -3,7 +3,7 @@ Changelog
 
 ### 3.23
 
-Release date: 2018 Seo 21
+Release date: 2018 Sep 21
 
 * Updated `jenkins-test-harness`.
 
