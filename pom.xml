@@ -712,6 +712,23 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin> <!-- https://stackoverflow.com/a/4086207/12916 -->
+          <artifactId>maven-antrun-plugin</artifactId>
+          <executions>
+              <execution>
+                  <id>createTempDir</id>
+                  <phase>generate-test-resources</phase>
+                  <configuration>
+                      <tasks>
+                          <mkdir dir="${surefireTempDir}"/>
+                      </tasks>
+                  </configuration>
+                  <goals>
+                      <goal>run</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
