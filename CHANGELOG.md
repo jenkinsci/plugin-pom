@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 3.24
+
+Release date: 2018 Oct 02
+
+* Making sure the temporary directory introduced in 3.22 exists.
+* Updated `jenkins-test-harness`.
+
 ### 3.23
 
 Release date: 2018 Sep 21
