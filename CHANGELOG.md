@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.25
+
+Release date: 2018 Oct 05
+
+* Updated `jenkins-test-harness` with further fixes to the usage of temporary directories introduced in 3.22.
+
 ### 3.24
 
 Release date: 2018 Oct 02
