@@ -23,7 +23,7 @@
  ~ THE SOFTWARE.
  -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jenkins-ci.plugins</groupId>
@@ -40,6 +40,17 @@
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -143,7 +154,7 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
-      <dependency> <!-- used in JTH and jenkins core > 2.x -->
+      <dependency><!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
@@ -182,13 +193,15 @@
         <groupId>commons-logging</groupId>
         <artifactId>commons-logging</artifactId>
         <version>1.2</version>
-        <scope>provided</scope><!-- by jcl-over-slf4j -->
+        <!-- by jcl-over-slf4j -->
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
-        <scope>provided</scope><!-- by log4j-over-slf4j -->
+        <!-- by log4j-over-slf4j -->
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -211,7 +224,8 @@
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>animal-sniffer-annotations</artifactId>
       <scope>provided</scope>
-      <optional>true</optional><!-- no need to have this at runtime -->
+      <!-- no need to have this at runtime -->
+      <optional>true</optional>
     </dependency>
     <!-- dependencies provided by virtue of running in Jenkins -->
     <dependency>
@@ -286,8 +300,21 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <build>
-    <!--
+
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build><!--
       Since new versions need to overwrite old versions, it's better
       not to have version number in the .hpi file name.
     -->
@@ -328,7 +355,8 @@
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0-M1</version> <!-- TODO 3.0.0 when released -->
+          <!-- TODO 3.0.0 when released -->
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -453,7 +481,7 @@
           <artifactId>maven-license-plugin</artifactId>
           <version>1.7</version>
         </plugin>
-        <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
+        <plugin><!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
           <version>1.0-beta-7</version>
@@ -717,7 +745,7 @@
           </dependency>
         </dependencies>
       </plugin>
-      <plugin> <!-- https://stackoverflow.com/a/4086207/12916 -->
+      <plugin><!-- https://stackoverflow.com/a/4086207/12916 -->
           <artifactId>maven-antrun-plugin</artifactId>
           <executions>
               <execution>
@@ -806,32 +834,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <profiles>
     <profile>
@@ -1076,9 +1078,7 @@
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
             <version>${frontend-version}</version>
-
             <executions>
-
               <execution>
                 <phase>initialize</phase>
                 <id>install node and npm</id>
@@ -1092,7 +1092,6 @@
                   <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
                 </configuration>
               </execution>
-
               <execution>
                 <phase>initialize</phase>
                 <id>npm install</id>
@@ -1104,7 +1103,6 @@
                   <arguments>install ${npm.loglevel}</arguments>
                 </configuration>
               </execution>
-
               <execution>
                 <phase>generate-sources</phase>
                 <id>npm mvnbuild</id>
@@ -1116,7 +1114,6 @@
                   <arguments>run mvnbuild</arguments>
                 </configuration>
               </execution>
-
               <execution>
                 <phase>test</phase>
                 <id>npm mvntest</id>
@@ -1128,7 +1125,6 @@
                   <arguments>run mvntest</arguments>
                 </configuration>
               </execution>
-
             </executions>
           </plugin>
         </plugins>
@@ -1148,9 +1144,7 @@
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
             <version>${frontend-version}</version>
-
             <executions>
-
               <execution>
                 <phase>initialize</phase>
                 <id>install node and yarn</id>
@@ -1164,7 +1158,6 @@
                   <!-- tried to create a mirror for yarnDownloadRoot but it did not work -->
                 </configuration>
               </execution>
-
               <execution>
                 <phase>initialize</phase>
                 <id>yarn install</id>
@@ -1177,7 +1170,6 @@
                   <arguments>--mutex network</arguments>
                 </configuration>
               </execution>
-
               <execution>
                 <phase>generate-sources</phase>
                 <id>yarn mvnbuild</id>
@@ -1189,7 +1181,6 @@
                   <arguments>run mvnbuild</arguments>
                 </configuration>
               </execution>
-
               <execution>
                 <phase>test</phase>
                 <id>yarn mvntest</id>
@@ -1201,7 +1192,6 @@
                   <arguments>run mvntest</arguments>
                 </configuration>
               </execution>
-
             </executions>
           </plugin>
         </plugins>
