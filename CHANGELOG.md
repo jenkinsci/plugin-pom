@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.26
+
+Release date: 2018-10-30
+
+* Update `maven-hpi-plugin` with a couple of bug fixes.
+
 ### 3.25
 
 Release date: 2018 Oct 05
