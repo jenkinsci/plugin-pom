@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.27
+
+Release date: 2018-11-07
+
+* Surefire update to enable tests to be run on some Java versions, such as the current updates for Debian/Ubuntu.
+
 ### 3.26
 
 Release date: 2018-10-30
