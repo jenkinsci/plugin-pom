@@ -47,7 +47,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
+    <!-- disableClassPathURLCheck is SUREFIRE-1588 workaround; too late for systemProperties: -->
+    <argLine>-Xmx768M -Djava.awt.headless=true -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
     <jenkins.version>2.60.1</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
@@ -742,8 +743,6 @@
               <value>${surefireTempDir}</value>
             </property>
           </systemProperties>
-          <!-- SUREFIRE-1588 workaround; too late for systemProperties: -->
-          <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
           <runOrder>alphabetical</runOrder>
         </configuration>
       </plugin>
