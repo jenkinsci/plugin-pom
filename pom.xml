@@ -316,7 +316,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>2.20</version>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
@@ -742,6 +742,8 @@
               <value>${surefireTempDir}</value>
             </property>
           </systemProperties>
+          <!-- SUREFIRE-1588 workaround; too late for systemProperties: -->
+          <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
           <runOrder>alphabetical</runOrder>
         </configuration>
       </plugin>
