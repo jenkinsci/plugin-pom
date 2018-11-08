@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.28
+
+Release date: 2018-11-07
+
+* Backed out Surefire update in 3.27 due to some regressions, but adding an alternate workaround for the same bug.
+
 ### 3.27
 
 Release date: 2018-11-07
