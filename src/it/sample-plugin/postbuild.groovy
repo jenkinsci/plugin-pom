@@ -13,6 +13,8 @@ try {
     j.close()
 }
 
+assert !new File(basedir, 'target/surefire-reports/test.SampleRootActionTest-output.txt').text.contains('http://www.slf4j.org/codes.html#release')
+
 // TODO check no-test-jar=false (cf. maven-hpi-plugin/src/it/parent-2x)
 // TODO check npm usage
 
