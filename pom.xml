@@ -88,7 +88,7 @@
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
     <!-- For jgit-scm-provider profile -->
     <git.provider>git</git.provider>
-    <maven-scm.version>1.9.5</maven-scm.version>
+    <maven-scm.version>1.11.1</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
     <access-modifier.version>1.15</access-modifier.version>
