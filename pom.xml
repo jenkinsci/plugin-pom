@@ -322,11 +322,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
