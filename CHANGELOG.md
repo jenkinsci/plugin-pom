@@ -1,6 +1,20 @@
 Changelog
 =========
 
+### 3.29
+
+Release date: 2018-12-05
+
+* [JENKINS-20679](https://issues.jenkins-ci.org/browse/JENKINS-20679) -
+Plugin POM now produces `Minimum-Java-Version` entry in the plugin manifest
+* [JENKINS-20679](https://issues.jenkins-ci.org/browse/JENKINS-20679) -
+Update to Maven HPI Plugin 3.0 
+([changelog](https://github.com/jenkinsci/maven-hpi-plugin#30-2018-12-05))
+* [PR #136](https://github.com/jenkinsci/plugin-pom/pull/136) -
+Update to extra-enforcer-rules to `1.1` to support JDK 11 bytecode checks
+* [PR #132](https://github.com/jenkinsci/plugin-pom/pull/132) -
+Prevent warning about [missing SLF4J providers](http://www.slf4j.org/codes.html#release) during the build
+
 ### 3.28
 
 Release date: 2018-11-07

@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.29-SNAPSHOT</version>
+  <version>3.30-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -54,7 +54,7 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.44</jenkins-test-harness.version>
-    <hpi-plugin.version>2.8-20181123.072741-1</hpi-plugin.version>
+    <hpi-plugin.version>3.0</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
     <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
@@ -593,7 +593,7 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.0-beta-4</version>
+            <version>1.1</version>
           </dependency>
         </dependencies>
       </plugin>
