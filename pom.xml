@@ -54,9 +54,10 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.44</jenkins-test-harness.version>
-    <hpi-plugin.version>2.7</hpi-plugin.version>
+    <hpi-plugin.version>3.0</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
+    <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -648,7 +649,7 @@
         <configuration>
           <showDeprecation>true</showDeprecation>
           <contextPath>/jenkins</contextPath>
-          <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+          <minimumJavaVersion>${plugin.minimumJavaVersion}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
