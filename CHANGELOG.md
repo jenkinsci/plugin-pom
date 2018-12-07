@@ -10,7 +10,7 @@ Plugin POM now produces `Minimum-Java-Version` entry in the plugin manifest
   * `java.level` property value is used by default
   * `plugin.minimumJavaVersion` property can be used to override the default value, e.g. for Java 11 experimental releases
    ([JEP-211](https://github.com/jenkinsci/jep/tree/master/jep/211))
-  * **WARNING:** The override should not be used to define higher versions that the Jenkins core requirement
+  * **WARNING:** The override should not be used to define higher versions than the Jenkins core requirement
    until [JENKINS-55048](https://issues.jenkins-ci.org/browse/JENKINS-55048) is released and widely adopted
 * [JENKINS-20679](https://issues.jenkins-ci.org/browse/JENKINS-20679) -
 Update to Maven HPI Plugin 3.0 
