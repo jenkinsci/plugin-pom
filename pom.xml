@@ -89,7 +89,7 @@
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
     <!-- For jgit-scm-provider profile -->
     <git.provider>git</git.provider>
-    <maven-scm.version>1.9.5</maven-scm.version>
+    <maven-scm.version>1.11.1</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
     <access-modifier.version>1.15</access-modifier.version>
@@ -303,23 +303,23 @@
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.8.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -331,19 +331,19 @@
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>2.8.2</version> <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0-M1</version> <!-- TODO 3.0.0 when released -->
+          <version>3.0.0-M2</version> <!-- TODO 3.0.0 when released -->
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.4</version>
+          <version>3.0.1</version>
           <configuration>
             <quiet>true</quiet>
             <links>
@@ -374,7 +374,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -423,7 +423,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.9</version>
+          <version>0.8.1</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke.gmaven</groupId>
@@ -1447,7 +1447,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>mrm-maven-plugin</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
             <executions>
               <execution>
                 <goals>
@@ -1465,7 +1465,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>2.0.0</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>integration-test</id>
