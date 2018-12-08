@@ -1515,12 +1515,6 @@
              Tracked as https://issues.jenkins-ci.org/browse/JENKINS-54842
          -->
         <animal.sniffer.signature.version>java18</animal.sniffer.signature.version>
-
-        <!--
-          TODO: remove once Maven Enforcer rules are updated.
-          https://github.com/mojohaus/extra-enforcer-rules/pull/63 and https://issues.jenkins-ci.org/browse/JENKINS-54843
-        -->
-        <enforcer.skip>true</enforcer.skip>
       </properties>
     </profile>
     <profile>
