@@ -1,6 +1,18 @@
 Changelog
 =========
 
+### 3.30
+
+Release date: 2018-12-13
+
+* [PR #137](https://github.com/jenkinsci/plugin-pom/pull/137), 
+  [PR #138](https://github.com/jenkinsci/plugin-pom/pull/138),
+  [PR #140](https://github.com/jenkinsci/plugin-pom/pull/140) -
+  Bulk update of Maven plugins
+* [JENKINS-55098](https://issues.jenkins-ci.org/browse/JENKINS-55098) -
+  Include Mockito and PowerMock to dependency management
+  so that plugins can easily pick up versions with Java 11 support
+
 ### 3.29
 
 Release date: 2018-12-05
