@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.31
+
+Release date: 2018-12-14
+
+* [PR #142](https://github.com/jenkinsci/plugin-pom/pull/142) - `mvn hpi:run` was broken as of 3.29.
+
 ### 3.30
 
 Release date: 2018-12-13
