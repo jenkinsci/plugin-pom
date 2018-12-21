@@ -193,7 +193,10 @@
         <scope>provided</scope><!-- by log4j-over-slf4j -->
       </dependency>
 
-      <!-- Recommended versions of Mockito and PoweMock for build with Java 11 (JENKINS-55098) -->
+      <!--
+      Recommended versions of Mockito and PowerMock for build with Java 11 (JENKINS-55098)
+      The versions require Java 8 as a minimum baseline, but they can be downgraded in plugins if needed.
+      -->
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
@@ -212,7 +215,7 @@
       <dependency>
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
-        <version>2.6</version>
+        <version>3.0.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
