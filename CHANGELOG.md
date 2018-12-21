@@ -1,6 +1,16 @@
 Changelog
 =========
 
+### 3.32
+
+Release date: 2018-12-21
+
+* [JENKINS-54631](https://issues.jenkins-ci.org/browse/JENKINS-54631) -
+  Update the JaCoCo Maven Plugin to `0.8.2` to support running with `-Penable-jacoco` on JDK11
+* [JENKINS-55098](https://issues.jenkins-ci.org/browse/JENKINS-55098) -
+  Fix the [objenesis](http://objenesis.org/) version suggested in dependency management,
+  now it is `3.0.1` as required by PowerMock
+
 ### 3.31
 
 Release date: 2018-12-14
