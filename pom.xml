@@ -1433,39 +1433,6 @@
       </build>
     </profile>
     <profile>
-      <id>jitpack</id>
-      <activation>
-        <property>
-          <name>env.JITPACK</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>attach-test-sources</id>
-                <goals>
-                  <goal>test-jar</goal>
-                </goals>
-                <configuration>
-                  <skipSource>${no-test-jar}</skipSource>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>run-plugin-pom-its</id>
       <build>
         <plugins>
