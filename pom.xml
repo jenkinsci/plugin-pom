@@ -673,7 +673,9 @@
         <extensions>true</extensions>
         <configuration>
           <showDeprecation>true</showDeprecation>
-          <contextPath>/jenkins</contextPath>
+          <webApp>
+              <contextPath>/jenkins</contextPath>
+          </webApp>
           <minimumJavaVersion>${plugin.minimumJavaVersion}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
