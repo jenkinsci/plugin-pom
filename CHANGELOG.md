@@ -1,5 +1,225 @@
 Changelog
-====
+=========
+
+### 3.32
+
+Release date: 2018-12-21
+
+* [JENKINS-54631](https://issues.jenkins-ci.org/browse/JENKINS-54631) -
+  Update the JaCoCo Maven Plugin to `0.8.2` to support running with `-Penable-jacoco` on JDK11
+* [JENKINS-55098](https://issues.jenkins-ci.org/browse/JENKINS-55098) -
+  Fix the [objenesis](http://objenesis.org/) version suggested in dependency management,
+  now it is `3.0.1` as required by PowerMock
+
+### 3.31
+
+Release date: 2018-12-14
+
+* [PR #142](https://github.com/jenkinsci/plugin-pom/pull/142) - `mvn hpi:run` was broken as of 3.29.
+
+### 3.30
+
+Release date: 2018-12-13
+
+* [PR #137](https://github.com/jenkinsci/plugin-pom/pull/137), 
+  [PR #138](https://github.com/jenkinsci/plugin-pom/pull/138),
+  [PR #140](https://github.com/jenkinsci/plugin-pom/pull/140) -
+  Bulk update of Maven plugins
+* [JENKINS-55098](https://issues.jenkins-ci.org/browse/JENKINS-55098) -
+  Include Mockito and PowerMock to dependency management
+  so that plugins can easily pick up versions with Java 11 support
+
+### 3.29
+
+Release date: 2018-12-05
+
+* [JENKINS-20679](https://issues.jenkins-ci.org/browse/JENKINS-20679) -
+Plugin POM now produces `Minimum-Java-Version` entry in the plugin manifest
+  * `java.level` property value is used by default
+  * `plugin.minimumJavaVersion` property can be used to override the default value, e.g. for Java 11 experimental releases
+   ([JEP-211](https://github.com/jenkinsci/jep/tree/master/jep/211))
+  * **WARNING:** The override should not be used to define higher versions than the Jenkins core requirement
+   until [JENKINS-55048](https://issues.jenkins-ci.org/browse/JENKINS-55048) is released and widely adopted
+* [JENKINS-20679](https://issues.jenkins-ci.org/browse/JENKINS-20679) -
+Update to Maven HPI Plugin 3.0 
+([changelog](https://github.com/jenkinsci/maven-hpi-plugin#30-2018-12-05))
+* [PR #136](https://github.com/jenkinsci/plugin-pom/pull/136) -
+Update to extra-enforcer-rules to `1.1` to support JDK 11 bytecode checks
+* [PR #132](https://github.com/jenkinsci/plugin-pom/pull/132) -
+Prevent warning about [missing SLF4J providers](http://www.slf4j.org/codes.html#release) during the build
+
+### 3.28
+
+Release date: 2018-11-07
+
+* Backed out Surefire update in 3.27 due to some regressions, but adding an alternate workaround for the same bug.
+
+### 3.27
+
+Release date: 2018-11-07
+
+* Surefire update to enable tests to be run on some Java versions, such as the current updates for Debian/Ubuntu.
+
+### 3.26
+
+Release date: 2018-10-30
+
+* Update `maven-hpi-plugin` with a couple of bug fixes.
+
+### 3.25
+
+Release date: 2018 Oct 05
+
+* Updated `jenkins-test-harness` with further fixes to the usage of temporary directories introduced in 3.22.
+
+### 3.24
+
+Release date: 2018 Oct 02
+
+* Making sure the temporary directory introduced in 3.22 exists.
+* Updated `jenkins-test-harness`.
+
+### 3.23
+
+Release date: 2018 Sep 21
+
+* Updated `jenkins-test-harness`.
+
+### 3.22
+
+Release date: 2018 Sep 14
+
+* The temporary directory for Surefire tests (used for, among many other things, `$JENKINS_HOME` under test) now defaults to a location inside the `target` directory rather than a system default as before. The Maven property `surefireTempDir` can be used to override this location in case of trouble.
+
+### 3.21
+
+Release date: 2018 Sep 05
+
+* `mvn incrementals:update` mishandled property expressions.
+
+### 3.20
+
+Release date: 2018 Aug 27
+
+* [PR #120](https://github.com/jenkinsci/plugin-pom/pull/120) -
+Fix Maven site generation which was broken due to the dependency conflict (`mvn site`)
+
+### 3.19
+
+Release date: 2018 Jul 20
+
+* [JENKINS-51869](https://issues.jenkins-ci.org/browse/JENKINS-51869): revision numbers for Incrementals now reflect the drop of a `--first-parent` argument, so typical numbers will be a few times larger.
+* Tweaking `completionGoals` configuration from 3.18.
+
+### 3.18
+
+Release date: 2018 Jul 16
+
+* [PR #117](https://github.com/jenkinsci/plugin-pom/pull/117) -
+`incrementals:reincrementalify` is now invoked automatically
+in release completion goals
+* [PR #116](https://github.com/jenkinsci/plugin-pom/pull/116) -
+Repository now references up-to-date Incrementals documentation
+
+### 3.17
+
+Release date: 2018 Jun 30
+
+* [PR #115](https://github.com/jenkinsci/plugin-pom/pull/115) -
+Update Animal Sniffer Plugin from 1.16 to 1.17 to support 
+signature scanning with JDK 10
+([JENKINS-52155](https://issues.jenkins-ci.org/browse/JENKINS-52155))
+
+### 3.16
+
+Release date: 2018 Jun 22
+
+* [PR #114](https://github.com/jenkinsci/plugin-pom/pull/114) -
+Update Animal Sniffer Plugin from 1.15 to 1.16
+* [PR #114](https://github.com/jenkinsci/plugin-pom/pull/114) -
+Make Animal Sniffer Version configurable via the
+`animal.sniffer.version` property
+
+### 3.15
+
+Release date: 2018 Jun 12
+
+* Pick up a fix to the access modifier checker to ignore synthetic code, relevant particularly in some generics constructs.
+
+### 3.14
+
+Release date: 2018 Jun 06
+
+* Another forked execution problem affecting plugins which both create a test JAR and use node/yarn to process JavaScript.
+
+### 3.13
+
+Release date: 2018 Jun 01
+
+* Update HPI plugin [from 2.3 to 2.6](https://github.com/jenkinsci/maven-hpi-plugin/blob/master/README.md#26-2018-jun-01).
+* Simplify usage of the Javadoc plugin, running it only when in release mode.
+
+### 3.12
+
+Release date: 2018 May 16
+
+* Analogously to the change in 3.11, use `test-jar-no-fork` rather than `test-jar`.
+
+### 3.11
+
+Release date: 2018 May 15
+
+* Use `source:jar-no-fork` goal instead of `source:jar` to avoid a Maven bug.
+
+### 3.10
+
+Release date: 2018 May 11
+
+* Preconfigure the `incrementals` Maven plugin, so you can run `incrementals:incrementalify` and more.
+* For Incrementals mode, configure `flatten-maven-plugin` to keep the generated POM in the `target` directory.
+
+### 3.9
+
+Release date: 2018 Apr 27
+
+* Support for JEP-305 “Incrementals”. [Guide](https://github.com/jenkinsci/incrementals-tools/blob/master/README.md)
+* Skip FindBugs checks during `release:perform` to save time.
+* Minimum supported Maven version updated to 3.3.1 (higher if using Incrementals).
+
+### 3.8
+
+Release date: 2018 Apr 10
+
+* Update Jenkins Test Harness from 2.34 to 2.38
+([Changelog](https://github.com/jenkinsci/jenkins-test-harness/#changelog))
+
+### 3.7
+
+Release date: 2018 Apr 03
+
+* Access modifier checker plugin updated to 1.14 and synchronized with the annotation library; introduces `@Restricted(Beta.class)` which may be consumed in a downstream plugin by setting the POM property `useBeta` to `true`.
+
+### 3.6
+
+Release date: 2018 Mar 09
+
+* Access modifier checker plugin updated, making checks more strict in some cases, such as `@Restricted(NoExternalUse.class)` on a type. You may pass `-Daccess-modifier-checker.failOnError=false` as a temporary workaround.
+* Animal Sniffer plugin updated, fixing errors in certain cases, such as use of Java 9-enabled libraries.
+
+### 3.5
+
+Release date: 2018 Feb 19
+
+* [PR #95](https://github.com/jenkinsci/plugin-pom/pull/95) - extend bytecode rule fix made in 3.2 to `task-reactor`, needed for testing against Jenkins 2.105 and later.
+
+### 3.4
+
+* [PR #94](https://github.com/jenkinsci/plugin-pom/pull/94) - update `jenkins-test-harness` and `maven-hpi-plugin`.
+
+### 3.3
+
+* [PR #84](https://github.com/jenkinsci/plugin-pom/pull/84) -
+Make FindBugs effort and threshold options configurable.
 
 ### 3.2
 

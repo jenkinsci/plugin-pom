@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.3-SNAPSHOT</version>
+  <version>3.33-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -47,15 +47,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
+    <!-- disableClassPathURLCheck is SUREFIRE-1588 workaround; too late for systemProperties: -->
+    <argLine>-Xmx768M -Djava.awt.headless=true -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
     <jenkins.version>2.60.1</jenkins.version>
-    <!-- Should only need to override these if using timestamped snapshots: -->
+    <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
-    <jenkins-test-harness.version>2.32</jenkins-test-harness.version>
-    <hpi-plugin.version>2.1</hpi-plugin.version>
+    <jenkins-test-harness.version>2.44</jenkins-test-harness.version>
+    <hpi-plugin.version>3.1</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
+    <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -65,34 +67,44 @@
     <!-- Whether the build should fail if findbugs finds any error. -->
     <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
     <findbugs.failOnError>true</findbugs.failOnError>
+    <!-- Defines a FindBugs threshold. Use "Low" to discover low-priority bugs.
+         Hint: FindBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
+      -->
+    <findbugs.threshold>Medium</findbugs.threshold>
+    <!-- Defines a FindBugs effort. Use "Max" to maximize the scan depth -->
+    <findbugs.effort>default</findbugs.effort>
+    
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
-    <!-- same version as in org.jenkins-ci.main:pom -->
-    <!-- TODO see if we can remove this properties -->
-    <!--
-      Change to "javadoc-no-fork" locally if the plugin build is running some plugins twice. This has
-      been seen with some plugins configured to execute in the "initialise" phase (e.g. the enforcer plugin + frontend node/npm install).
-      Note however that "javadoc-no-fork" has been known to have memory leak issues, so beware.
-    -->
-    <javadoc.exec.goal>javadoc</javadoc.exec.goal>
 
     <slf4jVersion>1.7.25</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
-    <frontend-version>1.4</frontend-version>
+    <frontend-version>1.6</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
     <!-- For jgit-scm-provider profile -->
     <git.provider>git</git.provider>
-    <maven-scm.version>1.9.5</maven-scm.version>
+    <maven-scm.version>1.11.1</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
+    <access-modifier.version>1.15</access-modifier.version>
+    <!-- May be used to select timestamped snapshots: -->
+    <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
+    <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
+    <animal.sniffer.version>1.17</animal.sniffer.version>
+    <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
+    <useBeta>false</useBeta>
+    <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
+    <scmTag>HEAD</scmTag>
+    <!-- Where to put temporary files during test runs. -->
+    <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
     <!--
-      Starting with 2.33, jenkins-test-harness puts a space character in the path of the temporary workdir of agents
+      Starting with 2.45, jenkins-test-harness puts a space character in the path of the temporary workdir of agents
       created from JenkinsRule.  It can help catching shell quoting bugs.  If your plugin's tests break because of this
       and it can't be fixed, then you can disable this behavior by setting "jenkins.test.noSpaceInTmpDirs" to "true".
     -->
@@ -147,7 +159,7 @@
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-annotations</artifactId>
-        <version>1.14</version>
+        <version>${animal.sniffer.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo.signature</groupId>
@@ -185,6 +197,31 @@
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
         <scope>provided</scope><!-- by log4j-over-slf4j -->
+      </dependency>
+
+      <!--
+      Recommended versions of Mockito and PowerMock for build with Java 11 (JENKINS-55098)
+      The versions require Java 8 as a minimum baseline, but they can be downgraded in plugins if needed.
+      -->
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>2.23.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>2.0.0-RC.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-mockito2</artifactId>
+        <version>2.0.0-RC.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.objenesis</groupId>
+        <artifactId>objenesis</artifactId>
+        <version>3.0.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -275,6 +312,17 @@
       <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-annotation</artifactId>
+      <version>${access-modifier-annotation.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <!--
@@ -286,23 +334,23 @@
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.8.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -314,21 +362,24 @@
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>2.8.2</version> <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.0.0-M1</version> <!-- TODO 3.0.0 when released -->
+          <version>3.0.0-M2</version> <!-- TODO 3.0.0 when released -->
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.4</version>
+          <version>3.0.1</version>
           <configuration>
             <quiet>true</quiet>
+            <links>
+              <link>http://javadoc.jenkins.io/</link>
+            </links>
           </configuration>
         </plugin>
         <plugin>
@@ -337,7 +388,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.6</version>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
@@ -350,7 +405,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -399,7 +454,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.9</version>
+          <version>0.8.2</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke.gmaven</groupId>
@@ -419,7 +474,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>1.15</version>
+          <version>${animal.sniffer.version}</version>
         </plugin>
         <plugin>
           <groupId>org.jvnet.localizer</groupId>
@@ -429,12 +484,25 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>1.8</version>
+          <version>${access-modifier-checker.version}</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
           <artifactId>maven-license-plugin</artifactId>
           <version>1.7</version>
+        </plugin>
+        <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
+          <groupId>io.jenkins.tools.incrementals</groupId>
+          <artifactId>incrementals-maven-plugin</artifactId>
+          <version>1.0-beta-7</version>
+          <configuration>
+            <includes>
+              <include>org.jenkins-ci.*</include>
+              <include>io.jenkins.*</include>
+            </includes>
+            <generateBackupPoms>false</generateBackupPoms>
+            <updateNonincremental>false</updateNonincremental>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -471,15 +539,17 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[3.1.0,)</version>
-                  <message>3.1.0 required by frontend-maven-plugin at least.</message>
+                  <version>[3.3.1,)</version>
+                  <message>3.3.1 required to at least look at .mvn/ if it exists.</message>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>[1.8.0,)</version>
                 </requireJavaVersion>
+                <!-- TODO failing during incrementals deploy: MENFORCER-281
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
+                -->
                 <enforceBytecodeVersion>
                   <maxJdkVersion>1.${java.level}</maxJdkVersion>
                   <ignoredScopes>
@@ -495,6 +565,7 @@
                     <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
                     <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
                     <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
+                    <exclude>org.jenkins-ci:task-reactor</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
                   </excludes>
@@ -528,16 +599,11 @@
                     <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
-                <requireReleaseDeps>
-                  <message>No Snapshots Allowed For Release Versions</message>
-                  <onlyWhenRelease>true</onlyWhenRelease>
-                </requireReleaseDeps>
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
                     <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
-                    <exclude>org.kohsuke:access-modifier-annotation</exclude> <!-- needed between Jenkins 2.36—2.60 -->
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
@@ -549,7 +615,7 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.0-beta-4</version>
+            <version>1.1</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -571,6 +637,8 @@
               <!--  Instead we configure this in a profile -->
               <xmlOutput>true</xmlOutput>
               <findbugsXmlOutput>false</findbugsXmlOutput>
+              <effort>${findbugs.effort}</effort>
+              <threshold>${findbugs.threshold}</threshold>
             </configuration>
           </execution>
         </executions>
@@ -611,8 +679,10 @@
         <extensions>true</extensions>
         <configuration>
           <showDeprecation>true</showDeprecation>
-          <contextPath>/jenkins</contextPath>
-          <!-- TODO specify ${java.level} when JENKINS-20679 implemented -->
+          <webApp>
+              <contextPath>/jenkins</contextPath>
+          </webApp>
+          <minimumJavaVersion>${plugin.minimumJavaVersion}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
@@ -650,29 +720,17 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Will skip execution when tests are skipped. -->
-      <!-- See skip-javadoc-with-tests profile below. -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>${javadoc.exec.goal}</goal>
-            </goals>
-            <!-- As soon as possible but after required generate-sources phase -->
-            <phase>process-sources</phase>
-            <configuration>
-              <links>
-                <link>http://javadoc.jenkins.io/</link>
-              </links>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.kohsuke</groupId>
         <artifactId>access-modifier-checker</artifactId>
+        <configuration>
+          <properties>
+            <property>
+              <name>useBeta</name>
+              <value>${useBeta}</value>
+            </property>
+          </properties>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
@@ -694,6 +752,23 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin> <!-- https://stackoverflow.com/a/4086207/12916 -->
+          <artifactId>maven-antrun-plugin</artifactId>
+          <executions>
+              <execution>
+                  <id>createTempDir</id>
+                  <phase>generate-test-resources</phase>
+                  <configuration>
+                      <tasks>
+                          <mkdir dir="${surefireTempDir}" />
+                      </tasks>
+                  </configuration>
+                  <goals>
+                      <goal>run</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -701,6 +776,10 @@
             <property>
               <name>hudson.udp</name>
               <value>-1</value>
+            </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${surefireTempDir}</value>
             </property>
             <property>
               <name>jenkins.test.noSpaceInTmpDirs</name>
@@ -798,6 +877,7 @@
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
+        <findbugs.skip>${release.skipTests}</findbugs.skip>
       </properties>
       <build>
         <plugins>
@@ -807,13 +887,13 @@
               <execution>
                 <id>attach-sources</id>
                 <goals>
-                  <goal>jar</goal>
+                  <goal>jar-no-fork</goal>
                 </goals>
               </execution>
               <execution>
                 <id>attach-test-sources</id>
                 <goals>
-                  <goal>test-jar</goal>
+                  <goal>test-jar-no-fork</goal>
                 </goals>
                 <configuration>
                   <skipSource>${no-test-jar}</skipSource>
@@ -969,18 +1049,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>skip-javadoc-with-tests</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-      </properties>
     </profile>
     <profile>
       <id>all-tests</id>
@@ -1243,32 +1311,133 @@
       </build>
     </profile>
     <profile>
-      <id>jitpack</id>
+      <!-- JEP-305 -->
+      <id>consume-incrementals</id>
+      <repositories>
+        <repository>
+          <id>incrementals</id>
+          <url>${incrementals.url}</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>incrementals</id>
+          <url>${incrementals.url}</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+    <profile>
+      <id>might-produce-incrementals</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.0.1</version>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>flatten</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>flatten</goal>
+                </goals>
+                <configuration>
+                    <flattenMode>oss</flattenMode>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>display-info</id>
+                <configuration>
+                  <rules>
+                    <requireMavenVersion>
+                      <version>[3.5.0,)</version>
+                      <message>3.5.0+ required to use Incrementals.</message>
+                    </requireMavenVersion>
+                    <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
+                      <version>[1.0-beta-4,)</version>
+                    </rule>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+            <dependencies>
+              <dependency>
+                <groupId>io.jenkins.tools.incrementals</groupId>
+                <artifactId>incrementals-enforcer-rules</artifactId>
+                <version>1.0-beta-4</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <completionGoals>incrementals:reincrementalify</completionGoals>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>produce-incrementals</id>
       <activation>
         <property>
-          <name>env.JITPACK</name>
+          <name>set.changelist</name>
           <value>true</value>
         </property>
       </activation>
+      <distributionManagement>
+        <repository>
+          <id>incrementals</id>
+          <url>${incrementals.url}</url>
+        </repository>
+      </distributionManagement>
       <build>
         <plugins>
+        <!-- Copied from jenkins-release: -->
           <plugin>
             <artifactId>maven-source-plugin</artifactId>
             <executions>
               <execution>
                 <id>attach-sources</id>
                 <goals>
-                  <goal>jar</goal>
+                  <goal>jar-no-fork</goal>
                 </goals>
               </execution>
               <execution>
                 <id>attach-test-sources</id>
                 <goals>
-                  <goal>test-jar</goal>
+                  <goal>test-jar-no-fork</goal>
                 </goals>
                 <configuration>
                   <skipSource>${no-test-jar}</skipSource>
                 </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
@@ -1282,7 +1451,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>mrm-maven-plugin</artifactId>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
             <executions>
               <execution>
                 <goals>
@@ -1300,7 +1469,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>2.0.0</version>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>integration-test</id>

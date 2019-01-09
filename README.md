@@ -53,6 +53,11 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 <no-test-jar>false</no-test-jar>
 ```
 
+## Incrementals
+
+You can configure your plugin to treat every commit as a release candidate.
+See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
+
 ## Baselines
 
 It is handy to be able to select different Jenkins baselines with a Maven profile.
@@ -63,92 +68,79 @@ For example:
 <profile>
     <id>jenkins-289</id>
     <properties>
-        <jenkins.version>2.89</jenkins.version>
-        <java.level>8</java.level>
+        <jenkins.version>2.89.2</jenkins.version>
     </properties>
 </profile>
 <profile>
     <id>jenkins-273</id>
     <properties>
         <jenkins.version>2.73.3</jenkins.version>
-        <java.level>8</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-260</id>
     <properties>
         <jenkins.version>2.60.3</jenkins.version>
-        <java.level>8</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-246</id>
     <properties>
         <jenkins.version>2.46.3</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-232</id>
     <properties>
         <jenkins.version>2.32.3</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-219</id>
     <properties>
         <jenkins.version>2.19.4</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-27</id>
     <properties>
         <jenkins.version>2.7.3</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-651</id>
     <properties>
         <jenkins.version>1.651.3</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-642</id>
     <properties>
         <jenkins.version>1.642.4</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-625</id>
     <properties>
         <jenkins.version>1.625.3</jenkins.version>
-        <java.level>7</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-609</id>
     <properties>
         <jenkins.version>1.609.3</jenkins.version>
-        <java.level>6</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-596</id>
     <properties>
         <jenkins.version>1.596.3</jenkins.version>
-        <java.level>6</java.level>
     </properties>
 </profile>
 <profile>
     <id>jenkins-580</id>
     <properties>
         <jenkins.version>1.580.3</jenkins.version>
-        <java.level>6</java.level>
     </properties>
 </profile>
 <profile>
@@ -156,7 +148,6 @@ For example:
     <properties>
         <jenkins.version>1.565.3</jenkins.version>
         <jenkins-test-harness.version>1.565.3</jenkins-test-harness.version>
-        <java.level>6</java.level>
     </properties>
 </profile>
 ```
