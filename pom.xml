@@ -108,9 +108,9 @@
     <dependencies>
       <!-- static analysis -->
       <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>annotations</artifactId>
-        <version>3.0.0</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>3.1.11</version>
       </dependency>
       <dependency>
         <groupId>net.jcip</groupId>
@@ -221,8 +221,8 @@
   <dependencies>
     <!-- static analysis -->
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -561,6 +561,7 @@
                     <exclude>org.jenkins-ci:task-reactor</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
+                    <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
                   </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
@@ -613,14 +614,15 @@
         </dependencies>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.10</version>
         <configuration>
           <failOnError>${findbugs.failOnError}</failOnError>
         </configuration>
         <executions>
           <execution>
-            <id>findbugs</id>
+            <id>spotbugs</id>
             <goals>
               <goal>check</goal>
             </goals>
@@ -629,7 +631,7 @@
               <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
               <!--  Instead we configure this in a profile -->
               <xmlOutput>true</xmlOutput>
-              <findbugsXmlOutput>false</findbugsXmlOutput>
+              <spotbugsXmlOutput>false</spotbugsXmlOutput>
               <effort>${findbugs.effort}</effort>
               <threshold>${findbugs.threshold}</threshold>
             </configuration>
