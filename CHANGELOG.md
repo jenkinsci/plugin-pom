@@ -5,11 +5,11 @@ Changelog
 
 Release date: 2019-01-16
 
-* [JENKINS-55562](https://issues.jenkins-ci.org/browse/JENKINS-55562),
+* [JENKINS-55562](https://issues.jenkins-ci.org/browse/JENKINS-55562) -
 Maven HPI Plugin 3.2: Introduce a new `hpi.compatibleSinceVersion` property to support 
 [marking plugins as incompatible](https://wiki.jenkins.io/display/JENKINS/Marking+a+new+plugin+version+as+incompatible+with+older+versions) without the plugin configuration override
 * [JENKINS-54949](https://issues.jenkins-ci.org/browse/JENKINS-54949) -
-Add support of adding the current pom.xml to the custom WAR in the `hpi:custom-war` mojo
+Maven HPI Plugin 3.2: Add support of adding the current pom.xml to the custom WAR in the `hpi:custom-war` mojo
 * [PR #149](https://github.com/jenkinsci/plugin-pom/pull/149) -
 Upgrade Maven Surefire and Failsafe plugins from 3.0.0-M1 to 3.0.0-M3
 ([SUREFIRE-1541](https://issues.apache.org/jira/browse/SUREFIRE-1541),
