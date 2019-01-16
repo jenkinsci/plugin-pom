@@ -1,6 +1,28 @@
 Changelog
 =========
 
+### 3.33
+
+Release date: 2019-01-16
+
+* [JENKINS-55562](https://issues.jenkins-ci.org/browse/JENKINS-55562),
+Maven HPI Plugin 3.2: Introduce a new `hpi.compatibleSinceVersion` property to support 
+[marking plugins as incompatible](https://wiki.jenkins.io/display/JENKINS/Marking+a+new+plugin+version+as+incompatible+with+older+versions) without the plugin configuration override
+* [JENKINS-54949](https://issues.jenkins-ci.org/browse/JENKINS-54949) -
+Add support of adding the current pom.xml to the custom WAR in the `hpi:custom-war` mojo
+* [PR #149](https://github.com/jenkinsci/plugin-pom/pull/149) -
+Upgrade Maven Surefire and Failsafe plugins from 3.0.0-M1 to 3.0.0-M3
+([SUREFIRE-1541](https://issues.apache.org/jira/browse/SUREFIRE-1541),
+ [SUREFIRE-1588](https://issues.apache.org/jira/browse/SUREFIRE-1588),
+ [SUREFIRE-1608](https://issues.apache.org/jira/browse/SUREFIRE-1608)
+)
+* [PR #147](https://github.com/jenkinsci/plugin-pom/pull/147) -
+Fix warning about deprecated `contextPath` parameter when using hpi:run
+* [PR #146](https://github.com/jenkinsci/plugin-pom/pull/146) -
+Remove the JitPack support,
+it is replaced by Incrementals
+([JEP-305](https://github.com/jenkinsci/jep/blob/master/jep/305/README.adoc))
+
 ### 3.32
 
 Release date: 2018-12-21
