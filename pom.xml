@@ -310,6 +310,12 @@
       <artifactId>access-modifier-annotation</artifactId>
       <version>${access-modifier-annotation.version}</version>
       <scope>provided</scope>
+      <exclusions> <!-- provided by Jenkins core -->
+        <exclusion>
+          <groupId>org.jenkins-ci</groupId>
+          <artifactId>annotation-indexer</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
       <groupId>commons-logging</groupId>
