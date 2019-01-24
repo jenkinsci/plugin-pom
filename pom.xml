@@ -868,6 +868,7 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <findbugs.skip>${release.skipTests}</findbugs.skip>
+        <spotbugs.skip>${release.skipTests}</spotbugs.skip>
       </properties>
       <build>
         <plugins>
@@ -981,7 +982,7 @@
       </properties>
     </profile>
     <profile>
-      <id>skip-findbugs-with-tests</id>
+      <id>skip-spotbugs-with-tests</id>
       <activation>
         <property>
           <name>skipTests</name>
@@ -989,7 +990,7 @@
         </property>
       </activation>
       <properties>
-        <findbugs.skip>true</findbugs.skip>
+        <spotbugs.skip>true</spotbugs.skip>
       </properties>
     </profile>
     <profile>
@@ -1017,22 +1018,22 @@
       </properties>
     </profile>
     <profile>
-      <id>findbugs-exclusion-file</id>
+      <id>stopbugs-exclusion-file</id>
       <activation>
         <file>
-          <exists>${basedir}/src/findbugs/excludesFilter.xml</exists>
+          <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
         </file>
       </activation>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>findbugs-maven-plugin</artifactId>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>findbugs</id>
+                <id>spotbugs</id>
                 <configuration>
-                  <excludeFilterFile>${project.basedir}/src/findbugs/excludesFilter.xml</excludeFilterFile>
+                  <excludeFilterFile>${project.basedir}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
                 </configuration>
               </execution>
             </executions>
