@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.34
+
+Release date: TBD
+
+* Switched to SpotBugs from FindBugs, it may cause issues with configuration overrides on FindBugs
+
 ### 3.33
 
 Release date: 2019-01-16

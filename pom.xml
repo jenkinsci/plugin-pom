@@ -63,15 +63,19 @@
     <concurrency>1</concurrency> <!-- DEPRECATED use forkCount -->
     <forkCount>${concurrency}</forkCount> <!-- may use e.g. 2C for 2 × (number of cores) -->
     <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
-    <!-- Whether the build should fail if findbugs finds any error. -->
-    <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
+    <!-- Deprecated findbugs. -->
     <findbugs.failOnError>true</findbugs.failOnError>
-    <!-- Defines a FindBugs threshold. Use "Low" to discover low-priority bugs.
-         Hint: FindBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
-      -->
     <findbugs.threshold>Medium</findbugs.threshold>
-    <!-- Defines a FindBugs effort. Use "Max" to maximize the scan depth -->
     <findbugs.effort>default</findbugs.effort>
+    <!-- Whether the build should fail if SpotBugs finds any error. -->
+    <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
+    <spotbugs.failOnError>${findbugs.failOnError}</spotbugs.failOnError>
+    <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
+         Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
+      -->
+    <spotbugs.threshold>${findbugs.threshold}</spotbugs.threshold>
+    <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
+    <spotbugs.effort>${findbugs.effort}</spotbugs.effort>
     
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
@@ -108,9 +112,9 @@
     <dependencies>
       <!-- static analysis -->
       <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>annotations</artifactId>
-        <version>3.0.0</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>3.1.11</version>
       </dependency>
       <dependency>
         <groupId>net.jcip</groupId>
@@ -221,8 +225,8 @@
   <dependencies>
     <!-- static analysis -->
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -407,11 +411,6 @@
           <version>3.2.2</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>3.0.5</version>
-        </plugin>
-        <plugin>
           <artifactId>maven-eclipse-plugin</artifactId>
           <version>2.10</version>
           <!--
@@ -567,6 +566,7 @@
                     <exclude>org.jenkins-ci:task-reactor</exclude>
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
+                    <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
                   </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
@@ -619,14 +619,15 @@
         </dependencies>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.10</version>
         <configuration>
-          <failOnError>${findbugs.failOnError}</failOnError>
+          <failOnError>${spotbugs.failOnError}</failOnError>
         </configuration>
         <executions>
           <execution>
-            <id>findbugs</id>
+            <id>spotbugs</id>
             <goals>
               <goal>check</goal>
             </goals>
@@ -635,9 +636,9 @@
               <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
               <!--  Instead we configure this in a profile -->
               <xmlOutput>true</xmlOutput>
-              <findbugsXmlOutput>false</findbugsXmlOutput>
-              <effort>${findbugs.effort}</effort>
-              <threshold>${findbugs.threshold}</threshold>
+              <spotbugsXmlOutput>false</spotbugsXmlOutput>
+              <effort>${spotbugs.effort}</effort>
+              <threshold>${spotbugs.threshold}</threshold>
             </configuration>
           </execution>
         </executions>
@@ -873,6 +874,7 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <findbugs.skip>${release.skipTests}</findbugs.skip>
+        <spotbugs.skip>${release.skipTests}</spotbugs.skip>
       </properties>
       <build>
         <plugins>
@@ -986,7 +988,7 @@
       </properties>
     </profile>
     <profile>
-      <id>skip-findbugs-with-tests</id>
+      <id>skip-spotbugs-with-tests</id>
       <activation>
         <property>
           <name>skipTests</name>
@@ -994,7 +996,7 @@
         </property>
       </activation>
       <properties>
-        <findbugs.skip>true</findbugs.skip>
+        <spotbugs.skip>true</spotbugs.skip>
       </properties>
     </profile>
     <profile>
@@ -1022,22 +1024,22 @@
       </properties>
     </profile>
     <profile>
-      <id>findbugs-exclusion-file</id>
+      <id>stopbugs-exclusion-file</id>
       <activation>
         <file>
-          <exists>${basedir}/src/findbugs/excludesFilter.xml</exists>
+          <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
         </file>
       </activation>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>findbugs-maven-plugin</artifactId>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>findbugs</id>
+                <id>spotbugs</id>
                 <configuration>
-                  <excludeFilterFile>${project.basedir}/src/findbugs/excludesFilter.xml</excludeFilterFile>
+                  <excludeFilterFile>${project.basedir}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
                 </configuration>
               </execution>
             </executions>
