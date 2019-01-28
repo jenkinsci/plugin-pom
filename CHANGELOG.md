@@ -1,11 +1,18 @@
 Changelog
 =========
 
+### 3.35
+
+Release date: 2019-01-28
+
+* [PR-148](https://github.com/jenkinsci/plugin-pom/pull/148): Update Powermock dependencies from `2.0.0-RC.4` to `2.0.0`.
+
 ### 3.34
 
-Release date: TBD
+Release date: 2019-01-28
 
-* Switched to SpotBugs from FindBugs, it may cause issues with configuration overrides on FindBugs
+* [PR-152](https://github.com/jenkinsci/plugin-pom/pull/152): Update access-modifier from 1.15 to 1.16
+* [PR-153](https://github.com/jenkinsci/plugin-pom/pull/153): Update jenkins-test-harness from `2.44` to `2.46`.
 
 ### 3.33
 
