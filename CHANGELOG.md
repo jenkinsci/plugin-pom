@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 3.36
+
+Release date: 2019-01-28
+
+* [PR-128](https://github.com/jenkinsci/plugin-pom/pull/128): Switch from FindBugs to SpotBugs
+
 ### 3.35
 
 Release date: 2019-01-28
