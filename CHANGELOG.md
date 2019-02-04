@@ -1,6 +1,17 @@
 Changelog
 =========
 
+### 3.37
+
+Release date: 2019-02-04
+
+* [JENKINS-55885](https://issues.jenkins-ci.org/browse/JENKINS-55885) -
+Add support of executing `hpi:run` when running with JDK 11
+  * **WARNING**: This patch does not setup environment for the JAXB dependency removed from Java 11.
+  If your plugin has a transitive dependency on JAXB,
+  it is recommended to run with `jenkins.version` 2.163 or above
+  ([JENKINS-55681](https://issues.jenkins-ci.org/browse/JENKINS-55681))
+  
 ### 3.36
 
 Release date: 2019-01-28
