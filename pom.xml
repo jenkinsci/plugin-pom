@@ -50,7 +50,7 @@
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
     <jenkins.version>2.60.1</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
-    <jenkins-core.version>${jenkins.version}</jenkins-core.version>
+    <jenkins-core.version>2.165</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.46</jenkins-test-harness.version>
     <hpi-plugin.version>3.3</hpi-plugin.version>
