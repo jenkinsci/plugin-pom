@@ -7,6 +7,7 @@ update_configs:
   default_reviewers:
     - "jglick"
     - "oleg-nenashev"
+    - "batmat"
 
   ignored_updates:
     - match:
