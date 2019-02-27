@@ -48,7 +48,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
-    <jenkins.version>2.60.1</jenkins.version>
+    <jenkins.version>2.138.4</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
