@@ -1,6 +1,19 @@
 Changelog
 =========
 
+### 3.39
+
+Release date: 2019-02-28
+
+* Bulk update of Maven plugins in the Plugin POM
+  ([Dependabot evaluation](https://groups.google.com/forum/#!topic/jenkinsci-dev/XMllKuWLO_8))
+
+### 3.38
+
+Release date: 2019-02-28
+
+* No changes included
+
 ### 3.37
 
 Release date: 2019-02-04
