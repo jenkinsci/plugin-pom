@@ -477,7 +477,7 @@
         <plugin>
           <groupId>org.jvnet.localizer</groupId>
           <artifactId>maven-localizer-plugin</artifactId>
-          <version>1.24</version>
+          <version>1.26</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke</groupId>
