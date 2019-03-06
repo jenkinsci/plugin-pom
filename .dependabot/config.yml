@@ -12,3 +12,11 @@ update_configs:
   ignored_updates:
     - match:
         dependency_name: "jenkins-core"
+    - match:
+        dependency_name: "slf4j-api"
+    - match:
+        dependency_name: "log4j-over-slf4j"
+    - match:
+        dependency_name: "jcl-over-slf4j"
+    - match:
+        dependency_name: "slf4j-jdk14"
