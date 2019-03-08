@@ -1,6 +1,17 @@
 Changelog
 =========
 
+### 3.40
+
+Release date: 2019-03-08
+
+* [PR-173](https://github.com/jenkinsci/plugin-pom/pull/173): Fix Javadoc related crash when using a JDK 11.0.2
+* [PR-167](https://github.com/jenkinsci/plugin-pom/pull/167): Bump to Jenkins Core 2.138.4 minimum
+* Various dependency and plugin updates (thanks `dependabot`)
+    * flatten-maven-plugin from 1.0.1 to 1.1.0
+    * maven-localizer-plugin from 1.24 to 1.26
+    * spotbugs-annotations from 3.1.11 to 3.1.12
+
 ### 3.39
 
 Release date: 2019-02-28
@@ -24,7 +35,7 @@ Add support of executing `hpi:run` when running with JDK 11
   If your plugin has a transitive dependency on JAXB,
   it is recommended to run with `jenkins.version` 2.163 or above
   ([JENKINS-55681](https://issues.jenkins-ci.org/browse/JENKINS-55681))
-  
+
 ### 3.36
 
 Release date: 2019-01-28
