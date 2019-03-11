@@ -596,6 +596,7 @@
                     <exclude>log4j:log4j:*:jar:runtime</exclude>
                     <exclude>commons-logging:commons-logging:*:jar:compile</exclude>
                     <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
+                    <!-- Jenkins Test Harness is based on JUnit. Adding TestNG dependency would disable some of its functionality. -->
                     <exclude>org.testng:testng</exclude>
                   </excludes>
                 </bannedDependencies>
