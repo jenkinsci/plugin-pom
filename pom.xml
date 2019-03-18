@@ -151,7 +151,7 @@
       <dependency> <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
+        <version>4.0.1</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
