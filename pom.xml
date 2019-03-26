@@ -1024,7 +1024,7 @@
       </properties>
     </profile>
     <profile>
-      <id>stopbugs-exclusion-file</id>
+      <id>spotbugs-exclusion-file</id>
       <activation>
         <file>
           <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
