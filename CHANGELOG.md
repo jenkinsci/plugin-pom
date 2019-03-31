@@ -1,6 +1,16 @@
 Changelog
 =========
 
+### 3.41
+
+Release date: 2019-03-31
+
+* [PR-170](https://github.com/jenkinsci/plugin-pom/pull/170): Bump frontend-maven-plugin from 1.6 to 1.7.5
+* [PR-178](https://github.com/jenkinsci/plugin-pom/pull/178): Bump maven-javadoc-plugin from 3.0.1 to 3.1.0
+* [PR-179](https://github.com/jenkinsci/plugin-pom/pull/179): Bump maven-invoker-plugin from 3.1.0 to 3.2.0
+* [PR-180](https://github.com/jenkinsci/plugin-pom/pull/180): Bump mockito-core from 2.24.5 to 2.25.1
+* [PR-184](https://github.com/jenkinsci/plugin-pom/pull/184): Bump maven-scm.version from 1.11.1 to 1.11.2
+
 ### 3.40
 
 Release date: 2019-03-08
