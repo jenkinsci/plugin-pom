@@ -11,7 +11,7 @@ update_configs:
 
   ignored_updates:
     - match:
-        dependency_name: "jenkins-core"
+        dependency_name: "org.jenkins-ci.main:jenkins-core"
     - match:
         dependency_name: "slf4j-api"
     - match:
