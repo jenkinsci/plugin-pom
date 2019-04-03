@@ -1,6 +1,15 @@
 Changelog
 =========
 
+### 3.42
+
+Release date: 2019-04-02
+
+* [PR-174](https://github.com/jenkinsci/plugin-pom/pull/174): Forbid usage of TestNG (since it does not work anyway)
+* [PR-188](https://github.com/jenkinsci/plugin-pom/pull/188): Pick up `jenkins-test-harness` changes to
+  * add `JenkinsRule.showAgentLogs`
+  * not clash with `jenkins-core` in a `version-number` library dependency
+
 ### 3.41
 
 Release date: 2019-03-31
