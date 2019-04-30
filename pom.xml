@@ -379,6 +379,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.1.0</version>
           <configuration>
+            <source>${java.level}</source>
             <quiet>true</quiet>
             <links>
               <link>http://javadoc.jenkins.io/</link>
@@ -1490,29 +1491,6 @@
             </executions>
           </plugin>
         </plugins>
-      </build>
-    </profile>
-    <profile>
-    <!-- Workaround for https://bugs.openjdk.java.net/browse/JDK-8212233
-    TODO: likely just forbid 11.0.2 when 11.0.3 is out -->
-      <id>javadoc-crash-jdk-11.0.2</id>
-      <activation>
-        <property>
-          <name>java.version</name>
-          <value>11.0.2</value>
-        </property>
-      </activation>
-      <build>
-          <pluginManagement>
-              <plugins>
-                  <plugin>
-                      <artifactId>maven-javadoc-plugin</artifactId>
-                      <configuration>
-                          <source>${java.level}</source>
-                      </configuration>
-                  </plugin>
-              </plugins>
-          </pluginManagement>
       </build>
     </profile>
   </profiles>
