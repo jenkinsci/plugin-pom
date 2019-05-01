@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 3.43
+
+Release date: 2019-04-30
+
+* [PR-196](https://github.com/jenkinsci/plugin-pom/pull/196): Javadoc fix in 3.40 did not work on JDK 11.0.3
+* Miscellaneous dependency & plugin updates frnom `dependabot`
+
 ### 3.42
 
 Release date: 2019-04-02
@@ -25,7 +32,7 @@ Release date: 2019-03-31
 Release date: 2019-03-08
 
 * [PR-173](https://github.com/jenkinsci/plugin-pom/pull/173): Fix Javadoc related crash when using a JDK 11.0.2
-* [PR-167](https://github.com/jenkinsci/plugin-pom/pull/167): Bump to Jenkins Core 2.138.4 minimum
+* [PR-167](https://github.com/jenkinsci/plugin-pom/pull/167): Default value of `jenkins.version` changed to 2.138.4 (but *all* plugins should override this with an explicit value)
 * Various dependency and plugin updates (thanks `dependabot`)
     * flatten-maven-plugin from 1.0.1 to 1.1.0
     * maven-localizer-plugin from 1.24 to 1.26
