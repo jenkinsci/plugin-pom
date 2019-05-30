@@ -17,7 +17,7 @@ To run and build the repository with integration tests, you can execute
 
 ## Building and using snapshots
 
-Snapshots might be needed to 
+Snapshots might be needed to provide reference implementations for Plugin POM patches.
 If you are a plugin maintainer with account on Jenkins artifactory,
 you can deploy a Plugin POM snapshot using this command:
 
