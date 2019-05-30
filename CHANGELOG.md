@@ -1,5 +1,12 @@
-Changelog
+Changelog for old versions
 =========
+
+| WARNING: Changelogs have been moved to [GitHub Releases](https://github.com/jenkinsci/plugin-pom/releases) |
+| --- |
+
+### Newer versions
+
+See [GitHub Releases](https://github.com/jenkinsci/plugin-pom/releases)
 
 ### 3.43
 

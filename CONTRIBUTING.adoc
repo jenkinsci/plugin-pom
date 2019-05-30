@@ -1,0 +1,38 @@
+Contributing
+------------
+
+:toc:
+
+## Howto
+
+This repository operates via pull requests.
+Want to improve standard build flows for Jenkins? Just go forward and propose a patch!
+For major changes we usually expect a reference implementation to be provided in a downstream pull request.
+
+## Building
+
+To run and build the repository with integration tests, you can execute
+
+    mvn -Prun-plugin-pom-its clean verify
+
+## Building and using snapshots
+
+Snapshots might be needed to provide reference implementations for Plugin POM patches.
+If you are a plugin maintainer with account on Jenkins artifactory,
+you can deploy a Plugin POM snapshot using this command:
+
+  mvn clean deploy
+  
+Once the snapshot is deployed, you will see a timestamped snapshot version in Maven console output.
+Then you can just replace the Plugin POM version in your downstream PRs by this version so that you can demonstrate the build on ci.jenkins.io
+
+## Information for maintainers
+
+### Managing release notes
+
+* Changelog drafts are automatically by link:https://github.com/toolmantim/release-drafter[Release Drafter]
+* See the documentation about Jenkins Release Drafter configuration link:https://github.com/jenkinsci/.github/blob/master/docs/release-drafter.adoc[here]
+* When merging pull requests...
+** Make sure to modify pull request titles to make them user-friendly
+** Set proper labels so the changelog is categorized
+* Once Plugin POM is released, make sure to promote the draft changelog to a release associated with the label
