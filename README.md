@@ -167,11 +167,3 @@ By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. I
 
     mvn -Dhudson.Main.development=false hpi:run
 
-
-## For maintainers
-
-You can run
-
-    mvn -Prun-plugin-pom-its clean verify
-
-Remember to update the [changelog](CHANGELOG.md).
