@@ -58,6 +58,18 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 You can configure your plugin to treat every commit as a release candidate.
 See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
 
+## Running Benchmarks
+
+To run JMH benchmarks from JUnit tests, you must run you must activate the `benchmark`
+profile. For example:
+```bash
+mvn -Dbenchmark test
+```
+When the `benchmark` property is set, no tests apart from JMH benchmarks will be run.
+The names of the classes containing the benchmark runners should either begin with or
+end with the the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` will
+be detected when using `-Dbenchmark`, however, `FooBar` will be ignored.
+
 ## Baselines
 
 It is handy to be able to select different Jenkins baselines with a Maven profile.
