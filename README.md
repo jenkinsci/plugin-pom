@@ -10,6 +10,7 @@ The main changes are:
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
   * `jenkins.version`: The Jenkins version required by the plugin. **Mandatory.**
   * `java.level`: The Java version to use to build the plugin. **Mandatory.** Should match the minimum Java version for the selected Jenkins version.
+     See [Java Support](#java-support) for more info.
   * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin.
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
   If the required Jenkins version is 1.580.1 or higher, JTH 2.1+ is recommended.
@@ -35,15 +36,15 @@ In order to use the new POM:
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.29</version> <!-- or whatever the newest version available is -->
+    <version>3.43</version> <!-- or whatever the newest version available is -->
     <relativePath />
   </parent>
 ```
 * Override the needed properties, e.g.:
 ```xml
   <properties>
-    <jenkins.version>1.609.1</jenkins.version>
-    <java.level>7</java.level>
+    <jenkins.version>2.64.1</jenkins.version>
+    <java.level>8</java.level>
   </properties>
 ```
 
@@ -52,6 +53,32 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 ```xml
 <no-test-jar>false</no-test-jar>
 ```
+
+## Java support
+
+The plugin POM is designed for plugin builds with JDK 8 or above,
+but target `java.level` for a plugin may differ from a JDK version used for the build.
+Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated,
+`java.level=8` and `jenkins.version>2.59` are expected to be used for the most of the plugins.
+
+### Using deprecated Java targets
+
+If recent plugin POM versions are required for a plugin with older baselines,
+a developer can use dependency version system properties to downgrade components incompatible  with Java 7.
+
+Example:
+
+```xml
+    <properties>
+        <jenkins.version>2.32.3</jenkins.version>
+        <java.level>7</java.level>
+        <!-- Animal Sniffer Annotations 1.18 is not compatible with Java 7 anymore -->
+        <animal.sniffer.version>1.17</animal.sniffer.version>
+    </properties>
+```
+
+Such mode is no longer tested in the repository,
+and the list of incompatible dependencies will expand without further notice in new releases.
 
 ## Incrementals
 
