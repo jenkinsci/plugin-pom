@@ -747,6 +747,7 @@
           <execution>
             <id>test-in-groovy</id>
             <goals>
+              <goal>addTestSources</goal>
               <goal>generateTestStubs</goal>
               <goal>compileTests</goal>
             </goals>
