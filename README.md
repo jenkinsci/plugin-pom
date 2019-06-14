@@ -70,6 +70,8 @@ The names of the classes containing the benchmark runners should either begin wi
 end with the the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` will
 be detected when using `-Dbenchmark`, however, `FooBar` will be ignored.
 
+See also: [documentation for JMH benchmarks](https://github.com/jenkinsci/jenkins-test-harness/blob/master/docs/jmh-benchmarks.adoc)
+
 ## Baselines
 
 It is handy to be able to select different Jenkins baselines with a Maven profile.

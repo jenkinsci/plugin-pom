@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('main') {
             steps {
-                sh 'mvn -B -Prun-plugin-pom-its -Pconsume-incrementals clean verify'
+                sh 'mvn -B -Prun-plugin-pom-its clean verify'
             }
             post {
                 failure {
