@@ -753,6 +753,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
+          <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
+        </configuration>
+
       </plugin>
       <plugin> <!-- https://stackoverflow.com/a/4086207/12916 -->
           <artifactId>maven-antrun-plugin</artifactId>
