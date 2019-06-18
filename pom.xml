@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.46-SNAPSHOT</version>
+  <version>3.47-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -49,8 +49,8 @@
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
     <jenkins.version>2.138.4</jenkins.version>
-    <jenkins-test-harness.version>2.50</jenkins-test-harness.version>
-    <hpi-plugin.version>3.5</hpi-plugin.version>
+    <jenkins-test-harness.version>2.51</jenkins-test-harness.version>
+    <hpi-plugin.version>3.6</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
     <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>

@@ -25,7 +25,7 @@ public class BenchmarkRunner {
                         .result("jmh-report.json")
                         .timeUnit(TimeUnit.MICROSECONDS)
                         .resultFormat(ResultFormatType.JSON);
-        BenchmarkFinder finder = new BenchmarkFinder(this.getClass().getPackage().getName());
+        BenchmarkFinder finder = new BenchmarkFinder(getClass());
         finder.findBenchmarks(optionsBuilder);
         new Runner(optionsBuilder.build()).run();
     }
