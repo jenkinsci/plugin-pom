@@ -15,7 +15,7 @@ pipeline {
         stage('main') {
             steps {
                 // TODO -s settings-azure.xml
-                sh 'mvn -B -ntp -Prun-plugin-pom-its clean verify'
+                sh 'mvn -B --no-transfer-progress -Prun-plugin-pom-its clean verify'
             }
             post {
                 failure {
