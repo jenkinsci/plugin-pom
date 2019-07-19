@@ -82,7 +82,7 @@
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
 
-    <slf4jVersion>1.7.25</slf4jVersion>
+    <slf4jVersion>1.7.26</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
