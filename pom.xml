@@ -568,6 +568,9 @@
                     <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
                     <exclude>com.google.code.findbugs:annotations</exclude>
                     <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
+                    <!-- Makes no sense to check when Jenkins core version is being used runtime -->
+                    <exclude>org.apache.commons:commons-lang3</exclude>
+                    <exclude>joda-time:joda-time</exclude>
                   </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
