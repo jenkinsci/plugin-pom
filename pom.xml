@@ -286,7 +286,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4jVersion}</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
       <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
       <optional>true</optional>
     </dependency>
