@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.49-SNAPSHOT</version>
+  <version>4.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -48,7 +48,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
-    <jenkins.version>2.138.4</jenkins.version>
+    <jenkins.version>2.190-SNAPSHOT</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
@@ -82,7 +82,6 @@
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
 
-    <slf4jVersion>1.7.25</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
@@ -95,11 +94,7 @@
     <maven-scm.version>1.11.2</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
-    <access-modifier.version>1.16</access-modifier.version>
-    <!-- May be used to select timestamped snapshots: -->
-    <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
-    <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
-    <animal.sniffer.version>1.17</animal.sniffer.version>
+
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
@@ -110,6 +105,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-bom</artifactId>
+        <version>${jenkins.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <!-- static analysis -->
       <dependency>
         <groupId>com.github.spotbugs</groupId>
@@ -148,15 +150,11 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
+      <!-- JTN tidy this up? -->
       <dependency> <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-annotations</artifactId>
-        <version>${animal.sniffer.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo.signature</groupId>
@@ -181,19 +179,6 @@
         <artifactId>java18</artifactId>
         <version>1.0</version>
         <type>signature</type>
-      </dependency>
-      <!-- mark logging dependencies as provided by war -->
-      <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>1.2</version>
-        <scope>provided</scope><!-- by jcl-over-slf4j -->
-      </dependency>
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.17</version>
-        <scope>provided</scope><!-- by log4j-over-slf4j -->
       </dependency>
 
       <!--
@@ -220,8 +205,24 @@
         <artifactId>objenesis</artifactId>
         <version>3.0.1</version>
       </dependency>
+      
+      <!-- version is already managed - just manage the optionality and scope of the logging plugins -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <scope>compile</scope>
+        <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
+        <optional>true</optional>
+      </dependency>
+      <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <scope>provided</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+
   <dependencies>
     <!-- static analysis -->
     <dependency>
@@ -282,37 +283,35 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+<!--
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${slf4jVersion}</version>
       <scope>compile</scope>
-      <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
+      <!-/- mark the API as optional so it is not packaged in the HPI but available during compile -/->
       <optional>true</optional>
     </dependency>
+-->
     <!-- make slf4j bindings to java.util.logging available during tests -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
-      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
-      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
-      <version>${access-modifier-annotation.version}</version>
       <scope>provided</scope>
       <exclusions> <!-- provided by Jenkins core -->
         <exclusion>
@@ -321,12 +320,8 @@
           </exclusion>
       </exclusions>
     </dependency>
-    <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <scope>provided</scope>
-    </dependency>
   </dependencies>
+
   <build>
     <!--
       Since new versions need to overwrite old versions, it's better
@@ -473,7 +468,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>${animal.sniffer.version}</version>
+          <version>1.18</version>
         </plugin>
         <plugin>
           <groupId>org.jvnet.localizer</groupId>
@@ -483,7 +478,7 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>${access-modifier-checker.version}</version>
+          <version>1.14</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
