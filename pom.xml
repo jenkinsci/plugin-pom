@@ -112,6 +112,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
       <!-- static analysis -->
       <dependency>
         <groupId>com.github.spotbugs</groupId>
@@ -205,25 +206,13 @@
         <artifactId>objenesis</artifactId>
         <version>3.0.1</version>
       </dependency>
-      
-      <!-- version is already managed - just manage the optionality and scope of the logging plugins -->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <scope>compile</scope>
-        <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
-        <optional>true</optional>
-      </dependency>
-      <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <scope>provided</scope>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
 
   <dependencies>
+
+
     <!-- static analysis -->
     <dependency>
       <groupId>com.github.spotbugs</groupId>
@@ -242,6 +231,7 @@
       <groupId>org.codehaus.mojo</groupId>
       <artifactId>animal-sniffer-annotations</artifactId>
       <scope>provided</scope>
+      <version>1.18</version>
       <optional>true</optional><!-- no need to have this at runtime -->
     </dependency>
     <!-- dependencies provided by virtue of running in Jenkins -->
@@ -283,15 +273,13 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-<!--
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <scope>compile</scope>
-      <!-/- mark the API as optional so it is not packaged in the HPI but available during compile -/->
+      <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
       <optional>true</optional>
     </dependency>
--->
     <!-- make slf4j bindings to java.util.logging available during tests -->
     <dependency>
       <groupId>org.slf4j</groupId>
