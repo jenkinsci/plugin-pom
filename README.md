@@ -1,5 +1,6 @@
-# plugin-pom
-Parent POM for Jenkins Plugins
+# Parent POM for Jenkins Plugins
+
+[![GitHub release](https://img.shields.io/github/release/jenkinsci/plugin-pom.svg?label=release)](https://github.com/jenkinsci/plugin-pom/releases/latest)
 
 ## Introduction
 
