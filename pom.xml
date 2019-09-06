@@ -930,7 +930,7 @@
        This profile can be activated by plugins that _are_ using the Jenkins BOM, by setting the system property
        'use-jenkins-bom'. A convenient way to do this is by adding the command line parameter '-Duse-jenkins-bom'
        'in ${maven.projectBasedir}/.mvn/maven.config'.
-       This profile imports the jekins BOM at ${jenkins.version} to properly align dependencies.
+       This profile imports the jenkins BOM at ${jenkins.version} to properly align dependencies.
       -->
     <profile>
       <id>use-jenkins-bom</id>
