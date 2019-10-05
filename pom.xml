@@ -70,6 +70,7 @@
     <findbugs.effort>default</findbugs.effort>
     <!-- Whether the build should fail if SpotBugs finds any error. -->
     <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
+    <!-- See also violations.maxViolations -->
     <spotbugs.failOnError>${findbugs.failOnError}</spotbugs.failOnError>
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
@@ -77,6 +78,11 @@
     <spotbugs.threshold>${findbugs.threshold}</spotbugs.threshold>
     <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
     <spotbugs.effort>${findbugs.effort}</spotbugs.effort>
+
+    <!-- Maximum allowed number of violations found with static code analysis, or else fail the build. -->
+    <!-- You can set the spotbugs.failOnError to false and set violations.maxViolations to 0 to get a more verbose error in the build log. -->
+    <violations.maxViolations>999999</violations.maxViolations>
+    <violations.version>1.26</violations.version>
     
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
@@ -643,6 +649,52 @@
               <spotbugsXmlOutput>false</spotbugsXmlOutput>
               <effort>${spotbugs.effort}</effort>
               <threshold>${spotbugs.threshold}</threshold>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>se.bjurr.violations</groupId>
+        <artifactId>violations-maven-plugin</artifactId>
+        <version>${violations.version}</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>violations</goal>
+            </goals>
+            <configuration>
+              <minSeverity>INFO</minSeverity>
+              <detailLevel>VERBOSE</detailLevel>
+              <maxViolations>${violations.maxViolations}</maxViolations>
+              <printViolations>true</printViolations>
+              <diffPrintViolations>false</diffPrintViolations>
+              <violations>
+                <violation>
+                  <parser>FINDBUGS</parser>
+                  <reporter>Spotbugs</reporter>
+                  <folder>.</folder>
+                  <pattern>.*/spotbugsXml\.xml$</pattern>
+                </violation>
+                <violation>
+                  <parser>PMD</parser>
+                  <reporter>Pmd</reporter>
+                  <folder>.</folder>
+                  <pattern>.*/pmd\.xml$</pattern>
+                </violation>
+                <violation>
+                  <parser>CPD</parser>
+                  <reporter>CPD</reporter>
+                  <folder>.</folder>
+                  <pattern>.*/cpd\.xml$</pattern>
+                </violation>
+                <violation>
+                  <parser>CHECKSTYLE</parser>
+                  <reporter>Checkstyle</reporter>
+                  <folder>.</folder>
+                  <pattern>.*/checkstyle-result\.xml$</pattern>
+                </violation>
+              </violations>
             </configuration>
           </execution>
         </executions>

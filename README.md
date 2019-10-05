@@ -55,6 +55,15 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 <no-test-jar>false</no-test-jar>
 ```
 
+### Verbose error from Spotbugs
+
+You can have a more verbose error message from static code analysis, Spotbugs, by setting these properties:
+```xml
+<violations.maxViolations>0</violations.maxViolations>
+<findbugs.failOnError>false</findbugs.failOnError>
+<spotbugs.failOnError>false</spotbugs.failOnError>
+```
+
 ## Java support
 
 The plugin POM is designed for plugin builds with JDK 8 or above,
