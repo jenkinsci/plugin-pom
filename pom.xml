@@ -891,16 +891,16 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <phase>initialize</phase>
                 <id>warn-deprecated-java.level</id>
-                <goals>
-                  <goal>run</goal>
-                </goals>
+                <phase>initialize</phase>
                 <configuration>
                   <target>
                     <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
                   </target>
                 </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
