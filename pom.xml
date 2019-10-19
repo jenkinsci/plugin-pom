@@ -767,9 +767,9 @@
                   <id>createTempDir</id>
                   <phase>generate-test-resources</phase>
                   <configuration>
-                      <tasks>
+                      <target>
                           <mkdir dir="${surefireTempDir}" />
-                      </tasks>
+                      </target>
                   </configuration>
                   <goals>
                       <goal>run</goal>
@@ -897,9 +897,9 @@
                   <goal>run</goal>
                 </goals>
                 <configuration>
-                  <tasks>
+                  <target>
                     <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
-                  </tasks>
+                  </target>
                 </configuration>
               </execution>
             </executions>
