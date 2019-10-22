@@ -337,6 +337,10 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
@@ -763,9 +767,9 @@
                   <id>createTempDir</id>
                   <phase>generate-test-resources</phase>
                   <configuration>
-                      <tasks>
+                      <target>
                           <mkdir dir="${surefireTempDir}" />
-                      </tasks>
+                      </target>
                   </configuration>
                   <goals>
                       <goal>run</goal>
@@ -887,16 +891,16 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <phase>initialize</phase>
                 <id>warn-deprecated-java.level</id>
+                <phase>initialize</phase>
+                <configuration>
+                  <target>
+                    <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
+                  </target>
+                </configuration>
                 <goals>
                   <goal>run</goal>
                 </goals>
-                <configuration>
-                  <tasks>
-                    <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
-                  </tasks>
-                </configuration>
               </execution>
             </executions>
           </plugin>
