@@ -48,12 +48,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <argLine>-Xmx768M -Djava.awt.headless=true</argLine>
+    <argLine>-Xms768M -Xmx768M -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
     <jenkins.version>2.138.4</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
-    <jenkins-test-harness.version>2.55</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2.56</jenkins-test-harness.version>
     <hpi-plugin.version>3.9</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
@@ -86,7 +86,7 @@
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
-    <frontend-version>1.7.6</frontend-version>
+    <frontend-version>1.8.0</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
@@ -181,7 +181,7 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
@@ -196,7 +196,7 @@
       <dependency>
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
-        <version>3.0.1</version>
+        <version>3.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -261,6 +261,13 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
+      <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
+      <optional>true</optional>
+    </dependency>
     <!-- make slf4j bindings to java.util.logging available during tests -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -303,6 +310,10 @@
     <finalName>${project.artifactId}</finalName>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
@@ -421,7 +432,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.4</version>
+          <version>0.8.5</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke.gmaven</groupId>
@@ -461,7 +472,7 @@
         <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.0-beta-7</version>
+          <version>1.1</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
@@ -730,9 +741,9 @@
                   <id>createTempDir</id>
                   <phase>generate-test-resources</phase>
                   <configuration>
-                      <tasks>
+                      <target>
                           <mkdir dir="${surefireTempDir}" />
-                      </tasks>
+                      </target>
                   </configuration>
                   <goals>
                       <goal>run</goal>
@@ -874,6 +885,15 @@
           </dependency>
           <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+            <!-- TODO: should this optional be in dependencyManagement too??? -->
+            <scope>provided</scope>
+            <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
+            <optional>true</optional>
+          </dependency>
+          <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <version>${slf4jVersion}</version>
             <scope>test</scope>
@@ -979,16 +999,16 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <phase>initialize</phase>
                 <id>warn-deprecated-java.level</id>
+                <phase>initialize</phase>
+                <configuration>
+                  <target>
+                    <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
+                  </target>
+                </configuration>
                 <goals>
                   <goal>run</goal>
                 </goals>
-                <configuration>
-                  <tasks>
-                    <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
-                  </tasks>
-                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -1503,7 +1523,7 @@
               <dependency>
                 <groupId>io.jenkins.tools.incrementals</groupId>
                 <artifactId>incrementals-enforcer-rules</artifactId>
-                <version>1.0-beta-7</version>
+                <version>1.1</version>
               </dependency>
             </dependencies>
           </plugin>
