@@ -1,6 +1,7 @@
 # Parent POM for Jenkins Plugins
 
 [![GitHub release](https://img.shields.io/github/release/jenkinsci/plugin-pom.svg?label=release)](https://github.com/jenkinsci/plugin-pom/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/jenkinsci/plugin-pom)](https://github.com/jenkinsci/plugin-pom/blob/master/LICENSE)
 
 ## Introduction
 
@@ -95,7 +96,7 @@ mvn -Dbenchmark test
 ```
 When the `benchmark` property is set, no tests apart from JMH benchmarks will be run.
 The names of the classes containing the benchmark runners should either begin with or
-end with the the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` will
+end with the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` will
 be detected when using `-Dbenchmark`, however, `FooBar` will be ignored.
 
 See also: [documentation for JMH benchmarks](https://github.com/jenkinsci/jenkins-test-harness/blob/master/docs/jmh-benchmarks.adoc)
