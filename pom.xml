@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.52-SNAPSHOT</version>
+  <version>3.52</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -39,7 +39,7 @@
     <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
     <url>https://github.com/jenkinsci/plugin-pom</url>
-    <tag>HEAD</tag>
+    <tag>plugin-3.52</tag>
   </scm>
 
   <properties>
@@ -844,7 +844,7 @@
       <!--
        The 'no-jenkins-bom' profile captures the properties & dependencies when _not_ using the Jenkins BOM:
         https://github.com/jenkinsci/jenkins/blob/master/bom/pom.xml
-       When the BOM is not being used, this profile is adding back the <dependencyManagement/> entries that were
+       When the BOM is not being used, this profile is adding back the <dependencyManagement /> entries that were
        moved to the BOM.
        The profile is enabled by default; if you _are_ using the Jenkins BOM then disable this profile by defining the
        'use-jenkins-bom' system property.
