@@ -83,6 +83,7 @@
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
 
+    <slf4jVersion>1.7.25</slf4jVersion>
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
@@ -95,13 +96,11 @@
     <maven-scm.version>1.11.2</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
-
-    <!-- May be used to select timestamped snapshots: -->
     <access-modifier.version>1.16</access-modifier.version>
+    <!-- May be used to select timestamped snapshots: -->
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
-    <animal.sniffer.version>1.18</animal.sniffer.version>
-
+    <animal.sniffer.version>1.17</animal.sniffer.version>
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
     <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
@@ -112,6 +111,17 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- static analysis -->
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>3.1.12</version>
+      </dependency>
+      <dependency>
+        <groupId>net.jcip</groupId>
+        <artifactId>jcip-annotations</artifactId>
+        <version>1.0</version>
+      </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-core</artifactId>
@@ -139,7 +149,6 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
       </dependency>
-      <!-- JTN tidy this up? -->
       <dependency> <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
@@ -174,6 +183,20 @@
         <version>1.0</version>
         <type>signature</type>
       </dependency>
+      <!-- mark logging dependencies as provided by war -->
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.2</version>
+        <scope>provided</scope><!-- by jcl-over-slf4j -->
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+        <scope>provided</scope><!-- by log4j-over-slf4j -->
+      </dependency>
+
       <!--
       Recommended versions of Mockito and PowerMock for build with Java 11 (JENKINS-55098)
       The versions require Java 8 as a minimum baseline, but they can be downgraded in plugins if needed.
@@ -200,7 +223,6 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <dependencies>
     <!-- static analysis -->
     <dependency>
@@ -264,6 +286,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>provided</scope>
       <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
       <optional>true</optional>
@@ -272,21 +295,25 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
+      <version>${access-modifier-annotation.version}</version>
       <scope>provided</scope>
       <exclusions> <!-- provided by Jenkins core -->
         <exclusion>
@@ -301,7 +328,6 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-
   <build>
     <!--
       Since new versions need to overwrite old versions, it's better
@@ -840,140 +866,6 @@
   </distributionManagement>
 
   <profiles>
-    <profile>
-      <!--
-       The 'no-jenkins-bom' profile captures the properties & dependencies when _not_ using the Jenkins BOM:
-        https://github.com/jenkinsci/jenkins/blob/master/bom/pom.xml
-       When the BOM is not being used, this profile is adding back the <dependencyManagement /> entries that were
-       moved to the BOM.
-       The profile is enabled by default; if you _are_ using the Jenkins BOM then disable this profile by defining the
-       'use-jenkins-bom' system property.
-      -->
-      <id>no-jenkins-bom</id>
-      <activation>
-        <property>
-          <name>!use-jenkins-bom</name>
-        </property>
-      </activation>
-      <properties>
-        <slf4jVersion>1.7.26</slf4jVersion>        
-      </properties>
-      <dependencyManagement>
-        <dependencies>
-          <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>3.1.12</version>
-          </dependency>
-          <dependency>
-            <groupId>net.jcip</groupId>
-            <artifactId>jcip-annotations</artifactId>
-            <version>1.0</version>
-          </dependency>
-          <!-- mark logging dependencies as provided by war -->
-          <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope><!-- by jcl-over-slf4j -->
-          </dependency>
-          <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>provided</scope><!-- by log4j-over-slf4j -->
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4jVersion}</version>
-            <!-- TODO: should this optional be in dependencyManagement too??? -->
-            <scope>provided</scope>
-            <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
-            <optional>true</optional>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-        </dependencies>
-      </dependencyManagement>
-      <dependencies>
-        <!-- make slf4j bindings to java.util.logging available during tests -->
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>log4j-over-slf4j</artifactId>
-          <version>${slf4jVersion}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
-          <version>${slf4jVersion}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-jdk14</artifactId>
-          <version>${slf4jVersion}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.kohsuke</groupId>
-          <artifactId>access-modifier-annotation</artifactId>
-          <version>${access-modifier-annotation.version}</version>
-          <scope>provided</scope>
-          <exclusions> <!-- provided by Jenkins core -->
-            <exclusion>
-              <groupId>org.jenkins-ci</groupId>
-              <artifactId>annotation-indexer</artifactId>
-              </exclusion>
-          </exclusions>
-        </dependency>
-      </dependencies>
-    </profile>
-    <!--
-       This profile can be activated by plugins that _are_ using the Jenkins BOM, by setting the system property
-       'use-jenkins-bom'. A convenient way to do this is by adding the command line parameter '-Duse-jenkins-bom'
-       'in ${maven.projectBasedir}/.mvn/maven.config'.
-       This profile imports the jenkins BOM at ${jenkins.version} to properly align dependencies.
-      -->
-    <profile>
-      <id>use-jenkins-bom</id>
-      <activation>
-        <property>
-          <name>use-jenkins-bom</name>
-        </property>
-      </activation>
-      <properties>
-        <jenkins.version>2.195</jenkins.version>
-      </properties>
-      <dependencyManagement>
-        <dependencies>
-          <dependency>
-            <groupId>org.jenkins-ci.main</groupId>
-            <artifactId>jenkins-bom</artifactId>
-            <version>${jenkins.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-        </dependencies>
-      </dependencyManagement>
-    </profile>
     <profile>
       <id>uninherited-java.level</id>
       <activation>
