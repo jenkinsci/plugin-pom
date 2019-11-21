@@ -669,6 +669,7 @@
               <goal>check</goal>
             </goals>
             <id>check</id>
+            <phase>test</phase>
           </execution>
         </executions>
         <configuration>
