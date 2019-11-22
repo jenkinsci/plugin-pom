@@ -1513,7 +1513,7 @@
                   <goal>run</goal>
                 </goals>
                 <configuration>
-                  <streamLogs>false</streamLogs>
+                  <streamLogs>true</streamLogs>
                   <showErrors>true</showErrors>
                   <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
                   <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
