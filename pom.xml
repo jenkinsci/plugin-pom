@@ -202,26 +202,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- static analysis -->
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <!-- for JRE requirement check annotation -->
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional><!-- no need to have this at runtime -->
-    </dependency>
     <!-- dependencies provided by virtue of running in Jenkins -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -260,45 +240,6 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>provided</scope>
-      <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
-      <optional>true</optional>
-    </dependency>
-    <!-- make slf4j bindings to java.util.logging available during tests -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <scope>provided</scope>
-      <exclusions> <!-- provided by Jenkins core -->
-        <exclusion>
-          <groupId>org.jenkins-ci</groupId>
-          <artifactId>annotation-indexer</artifactId>
-          </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -856,7 +797,7 @@
         </property>
       </activation>
       <properties>
-        <slf4jVersion>1.7.26</slf4jVersion>        
+        <slf4jVersion>1.7.26</slf4jVersion>
       </properties>
       <dependencyManagement>
         <dependencies>
@@ -913,23 +854,40 @@
         </dependencies>
       </dependencyManagement>
       <dependencies>
+          <!-- static analysis -->
+        <dependency>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional>
+        </dependency>
+        <dependency>
+          <groupId>net.jcip</groupId>
+          <artifactId>jcip-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional>
+        </dependency>
+        <!-- for JRE requirement check annotation -->
+        <dependency>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional><!-- no need to have this at runtime -->
+        </dependency>
         <!-- make slf4j bindings to java.util.logging available during tests -->
         <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>log4j-over-slf4j</artifactId>
-          <version>${slf4jVersion}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>jcl-over-slf4j</artifactId>
-          <version>${slf4jVersion}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-jdk14</artifactId>
-          <version>${slf4jVersion}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
@@ -943,6 +901,11 @@
               <artifactId>annotation-indexer</artifactId>
               </exclusion>
           </exclusions>
+        </dependency>
+        <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+          <scope>provided</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -973,6 +936,45 @@
           </dependency>
         </dependencies>
       </dependencyManagement>
+      <dependencies>
+        <!-- static analysis -->
+        <dependency>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional>
+        </dependency>
+        <dependency>
+          <groupId>net.jcip</groupId>
+          <artifactId>jcip-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional>
+        </dependency>
+        <!-- for JRE requirement check annotation -->
+        <dependency>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-annotations</artifactId>
+          <scope>provided</scope>
+          <optional>true</optional><!-- no need to have this at runtime -->
+        </dependency>
+        <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.kohsuke</groupId>
+          <artifactId>access-modifier-annotation</artifactId>
+          <version>${access-modifier-annotation.version}</version>
+          <scope>provided</scope>
+          <exclusions> <!-- provided by Jenkins core -->
+            <exclusion>
+              <groupId>org.jenkins-ci</groupId>
+              <artifactId>annotation-indexer</artifactId>
+              </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
     </profile>
     <profile>
       <id>uninherited-java.level</id>
