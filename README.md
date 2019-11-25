@@ -214,7 +214,7 @@ By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. I
 
 Since version 2.195, Jenkins provides a [Maven Bill Of Materials (BOM)](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies)
 that centrally defines versions of various libraries used by Jenkins Core.
-The default behaviour of `plugin-pom` is to _not_ use the BOM, but when jenkins.version>=2.195 (and plugin-pom>=4.0) you can switch on Jenkins BOM support by setting the Maven property `use-jenkins-bom`.
+The default behaviour of `plugin-pom` is to _not_ use the BOM, but when jenkins.version>=2.195 (and plugin-pom>=3.54) you can switch on Jenkins BOM support by setting the Maven property `use-jenkins-bom`.
 For example:
 
 `mvn -Djenkins.version=2.195 -Duse-jenkins-bom package`
