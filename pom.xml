@@ -77,7 +77,10 @@
     <spotbugs.threshold>${findbugs.threshold}</spotbugs.threshold>
     <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
     <spotbugs.effort>${findbugs.effort}</spotbugs.effort>
-    
+
+    <!-- Version of slf4j. Do not use. It is only for plugins that don't use BOM, declare dependency on an slf4j artifact and produce incrementals. -->
+    <slf4jVersion>1.7.25</slf4jVersion>
+
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
@@ -797,9 +800,6 @@
           <name>!use-jenkins-bom</name>
         </property>
       </activation>
-      <properties>
-        <slf4jVersion>1.7.25</slf4jVersion>
-      </properties>
       <dependencyManagement>
         <dependencies>
           <dependency>
