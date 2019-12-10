@@ -13,6 +13,10 @@ update_configs:
     - match:
         dependency_name: "org.jenkins-ci.main:jenkins-core"
     - match:
+        dependency_name: "org.jenkins-ci.main:jenkins-war"
+    - match:
+        dependency_name: "org.jenkins-ci.main:jenkins-bom"
+    - match:
         dependency_name: "slf4j-api"
     - match:
         dependency_name: "log4j-over-slf4j"
