@@ -64,19 +64,12 @@
     <concurrency>1</concurrency> <!-- DEPRECATED use forkCount -->
     <forkCount>${concurrency}</forkCount> <!-- may use e.g. 2C for 2 × (number of cores) -->
     <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
-    <!-- Deprecated findbugs. -->
-    <findbugs.failOnError>true</findbugs.failOnError>
-    <findbugs.threshold>Medium</findbugs.threshold>
-    <findbugs.effort>default</findbugs.effort>
-    <!-- Whether the build should fail if SpotBugs finds any error. -->
-    <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
-    <spotbugs.failOnError>${findbugs.failOnError}</spotbugs.failOnError>
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
       -->
-    <spotbugs.threshold>${findbugs.threshold}</spotbugs.threshold>
+    <spotbugs.threshold>Medium</spotbugs.threshold>
     <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
-    <spotbugs.effort>${findbugs.effort}</spotbugs.effort>
+    <spotbugs.effort>Default</spotbugs.effort>
     
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
@@ -1134,18 +1127,6 @@
       </activation>
       <properties>
         <surefire.rerunFailingTestsCount>4</surefire.rerunFailingTestsCount>
-      </properties>
-    </profile>
-    <profile>
-      <id>skip-spotbugs-with-tests</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <spotbugs.skip>true</spotbugs.skip>
       </properties>
     </profile>
     <profile>
