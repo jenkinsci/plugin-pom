@@ -61,8 +61,7 @@
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
-    <concurrency>1</concurrency> <!-- DEPRECATED use forkCount -->
-    <forkCount>${concurrency}</forkCount> <!-- may use e.g. 2C for 2 × (number of cores) -->
+
     <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
