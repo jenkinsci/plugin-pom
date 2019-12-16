@@ -55,6 +55,7 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
+
     <jenkins-test-harness.version>2.56</jenkins-test-harness.version>
     <hpi-plugin.version>3.11</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
@@ -82,6 +83,7 @@
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
+
     <!-- For jgit-scm-provider profile -->
     <git.provider>git</git.provider>
     <maven-scm.version>1.11.2</maven-scm.version>
