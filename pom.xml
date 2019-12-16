@@ -63,7 +63,6 @@
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
 
-    <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
       -->
@@ -732,6 +731,26 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <!-- SUREFIRE-1226 workaround -->
+          <trimStackTrace>false</trimStackTrace>
+          <systemProperties>
+            <property>
+              <name>hudson.udp</name>
+              <value>-1</value>
+            </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${surefireTempDir}</value>
+            </property>
+          </systemProperties>
+          <runOrder>alphabetical</runOrder>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <!-- SUREFIRE-1226 workaround -->
+          <trimStackTrace>false</trimStackTrace>
           <systemProperties>
             <property>
               <name>hudson.udp</name>
@@ -1085,7 +1104,6 @@
               </execution>
               <execution>
                 <id>report</id>
-                <phase>prepare-package</phase>
                 <goals>
                   <goal>report</goal>
                 </goals>
