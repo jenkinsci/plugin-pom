@@ -84,9 +84,6 @@
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
 
-    <!-- For jgit-scm-provider profile -->
-    <git.provider>git</git.provider>
-    <maven-scm.version>1.11.2</maven-scm.version>
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
@@ -1291,50 +1288,6 @@
                 </fileset>
               </filesets>
             </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>jgit-scm-provider</id>
-      <activation>
-        <property>
-          <name>git.provider</name>
-          <value>jgit</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <providerImplementations>
-                <git>${git.provider}</git>
-              </providerImplementations>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>${maven-scm.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-          <plugin>
-            <artifactId>maven-scm-plugin</artifactId>
-            <version>${maven-scm.version}</version>
-            <configuration>
-              <providerImplementations>
-                <git>${git.provider}</git>
-              </providerImplementations>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>${maven-scm.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
         </plugins>
       </build>
