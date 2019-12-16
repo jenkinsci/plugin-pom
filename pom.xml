@@ -113,7 +113,7 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins-war.version}</version>
-        <type>executable-war</type>
+        <type>war</type>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -209,7 +209,7 @@
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
+      <type>war</type>
       <scope>test</scope>
     </dependency>
     <dependency>
