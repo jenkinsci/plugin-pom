@@ -1633,5 +1633,18 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <!--  a profile that disables as much testing as possible testing whilst still producing the artifacts -->
+      <id>quick-build</id>
+      <properties>
+        <!-- we can not use maven.test.skip because we may be producing a test jar -->
+        <skipTests>true</skipTests>
+        <spotbugs.skip>true</spotbugs.skip>
+        <enforcer.skip>true</enforcer.skip>
+        <access-modifier-checker.skip>true</access-modifier-checker.skip>
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+    </profile>
   </profiles>
 </project>
