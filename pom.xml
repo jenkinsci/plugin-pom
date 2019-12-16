@@ -49,6 +49,7 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xms768M -Xmx768M -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
+
     <jenkins.version>2.204</jenkins.version>
     <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
@@ -58,7 +59,6 @@
     <hpi-plugin.version>3.11</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
-    <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
@@ -642,7 +642,7 @@
           <webApp>
               <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>${plugin.minimumJavaVersion}</minimumJavaVersion>
+          <minimumJavaVersion>1.${java.level}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
