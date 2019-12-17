@@ -558,6 +558,10 @@
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
+                <requireReleaseDeps>
+                  <message>No Snapshots Allowed For Release Versions</message>
+                  <onlyWhenRelease>true</onlyWhenRelease>
+                </requireReleaseDeps>
               </rules>
             </configuration>
           </execution>
