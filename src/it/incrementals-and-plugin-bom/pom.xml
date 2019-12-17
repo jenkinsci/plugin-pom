@@ -17,6 +17,22 @@
         <jenkins.version>2.204</jenkins.version>
         <java.level>8</java.level>
     </properties>
+
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <executions>
+            <execution>
+              <!-- this pom is a release in the IT - but the parent is a SNAPSHOT - so just disable this for testing purposes -->
+              <id>no-snapshots-in-release</id>
+              <phase>none</phase>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>

@@ -558,8 +558,23 @@
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
                   </excludes>
                 </requireUpperBoundDeps>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>no-snapshots-in-release</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <!-- 
+                  this causes fails the incrementals IT to fail as the parent is a snapshot and the incremental is a release
+                  so this is a separate execution so that it can be skipped in that specific IT
+                  -->
                 <requireReleaseDeps>
-                  <message>No Snapshots Allowed For Release Versions</message>
+                  <message>No SNAPSHOT versions are allowed for releases</message>
                   <onlyWhenRelease>true</onlyWhenRelease>
                 </requireReleaseDeps>
               </rules>
