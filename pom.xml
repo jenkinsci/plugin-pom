@@ -188,13 +188,14 @@
       <artifactId>jenkins-core</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- dependencies needed for testing -->
+    <!-- jenkins war needed for testing -->
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
       <type>war</type>
       <scope>test</scope>
     </dependency>
+
     <!-- dependencies provided by virtue of running in Jenkins -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -225,6 +226,7 @@
     </dependency>
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+      <!-- TODO this would be better as a managed version of [0] -->
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
