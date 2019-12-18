@@ -436,6 +436,11 @@
             <updateNonincremental>false</updateNonincremental>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>3.1.12.2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -576,7 +581,6 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>3.1.12.2</version>
         <configuration>
           <failOnError>${spotbugs.failOnError}</failOnError>
         </configuration>
