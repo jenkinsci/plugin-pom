@@ -1432,6 +1432,7 @@
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <animal.sniffer.skip>true</animal.sniffer.skip>
+        <invoker.skip>true</invoker.skip>
       </properties>
     </profile>
   </profiles>
