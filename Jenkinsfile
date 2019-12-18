@@ -5,7 +5,7 @@ node('maven') {
         // TODO Azure mirror
         ansiColor('xterm') {
             withEnv(['MAVEN_OPTS=-Djansi.force=true']) {
-                sh 'mvn -B -Dstyle.color=always -ntp -Prun-plugin-pom-its clean verify'
+                sh 'mvn -B -Dstyle.color=always -ntp clean verify'
             }
         }
     }
