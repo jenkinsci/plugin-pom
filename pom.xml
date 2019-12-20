@@ -120,7 +120,7 @@
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins-war.version}</version>
-        <type>war</type>
+        <type>executable-war</type>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -193,7 +193,7 @@
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
-      <type>war</type>
+      <type>executable-war</type>
       <scope>test</scope>
     </dependency>
 
