@@ -92,9 +92,9 @@ See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
 To run JMH benchmarks from JUnit tests, you must run you must activate the `benchmark`
 profile. For example:
 ```bash
-mvn -Dbenchmark test
+mvn -P jmh-benchmark test
 ```
-When the `benchmark` property is set, no tests apart from JMH benchmarks will be run.
+When the `jmh-benchmark` profile is enabled, no tests apart from JMH benchmarks will be run.
 The names of the classes containing the benchmark runners should either begin with or
 end with the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` will
 be detected when using `-Dbenchmark`, however, `FooBar` will be ignored.

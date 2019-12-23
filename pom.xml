@@ -1402,11 +1402,6 @@
     <!-- Profile to run benchmarks when the `benchmark` property is set -->
     <profile>
       <id>jmh-benchmark</id>
-      <activation>
-        <property>
-          <name>benchmark</name>
-        </property>
-      </activation>
       <build>
         <plugins>
           <plugin>
