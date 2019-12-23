@@ -7,6 +7,8 @@
 
 This new parent POM is decoupled from the core Jenkins project, both from the Maven and repository perspectives.
 
+Since version 4.0 the plugin pom supports Jenkins 2.200 and higher and a select few older LTS lines (TBD)
+ 
 The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
@@ -15,12 +17,11 @@ thought to be overridden are no longer based on properties. The main remaining o
      See [Java Support](#java-support) for more info.
   * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin.
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
-  If the required Jenkins version is 1.580.1 or higher, JTH 2.1+ is recommended.
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
   (Generally you should not set this to a version _lower_ than that specified in the parent POM.)
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
   * `java.level.test`: The Java version to use to build the plugin tests.
-  * In order to make their versions the same as the used core version, `slf4jVersion`, `node.version` and `npm.version`
+  * In order to make their versions the same as the used core version, `node.version` and `npm.version`
   properties are provided.
 * Tests are skipped during the `perform` phase of a release (can be overridden by setting `release.skipTests` to false).
 * Javadoc has been set to _quiet_ by default in 2.20+, which means it will only log errors and warnings. 
@@ -60,27 +61,9 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 
 The plugin POM is designed for plugin builds with JDK 8 or above,
 but target `java.level` for a plugin may differ from a JDK version used for the build.
-Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated,
-`java.level=8` and `jenkins.version>2.59` are expected to be used for most plugins.
+Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated and has been removed in `4.0`,
+`java.level=8` and `jenkins.version>2.204.1` are expected to be used for most plugins.
 
-### Using deprecated Java targets
-
-If recent plugin POM versions are required for a plugin with older baselines,
-a developer can use dependency version system properties to downgrade components incompatible with Java 7.
-
-Example:
-
-```xml
-    <properties>
-        <jenkins.version>2.32.3</jenkins.version>
-        <java.level>7</java.level>
-        <!-- Animal Sniffer Annotations 1.18 is not compatible with Java 7 anymore -->
-        <animal.sniffer.version>1.17</animal.sniffer.version>
-    </properties>
-```
-
-Such mode is no longer tested in the repository,
-and the list of incompatible dependencies will expand without further notice in new releases.
 
 ## Incrementals
 
@@ -213,13 +196,7 @@ By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. I
 ## Jenkins Core BOM
 
 Since version 2.195, Jenkins provides a [Maven Bill Of Materials (BOM)](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies)
-that centrally defines versions of various libraries used by Jenkins Core.
-The default behaviour of `plugin-pom` is to _not_ use the BOM, but when jenkins.version>=2.195 (and plugin-pom>=3.54) you can switch on Jenkins BOM support by setting the Maven property `use-jenkins-bom`.
-For example:
-
-`mvn -Djenkins.version=2.195 -Duse-jenkins-bom package`
-
-This will import the BOM for Jenkins 2.195
+that centrally defines versions of various libraries used by Jenkins Core and should make it easier to update to newer Jenkins Core versions
 
 For more information, see the [Dependency Management](https://jenkins.io/doc/developer/plugin-development/dependency-management/) section of the
 [plugin development guide](https://jenkins.io/doc/developer/plugin-development/).
