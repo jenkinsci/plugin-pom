@@ -31,7 +31,6 @@ Then you can just replace the Plugin POM version in your downstream PRs by this 
 ### Managing release notes
 
 * Changelog drafts are automatically by link:https://github.com/toolmantim/release-drafter[Release Drafter]
-* See the documentation about Jenkins Release Drafter configuration link:https://github.com/jenkinsci/.github/blob/master/docs/release-drafter.adoc[here]
 * When merging pull requests...
 ** Make sure to modify pull request titles to make them user-friendly
 ** Set proper labels so the changelog is categorized
