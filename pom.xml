@@ -566,6 +566,8 @@
                 <requireReleaseDeps>
                   <message>No SNAPSHOT versions are allowed for releases</message>
                   <onlyWhenRelease>true</onlyWhenRelease>
+                  <!--  whilst we generally want this this allows for easier testing of the plugin-pom in incrementals -->
+                  <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                 </requireReleaseDeps>
               </rules>
             </configuration>
