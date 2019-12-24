@@ -37,7 +37,7 @@ In order to use the new POM:
 * Change the parent POM of your plugin:
 ```xml
   <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
+    <groupId>io.jenkins.pom</groupId>
     <artifactId>plugin</artifactId>
     <version>3.43</version> <!-- or whatever the newest version available is -->
     <relativePath />
@@ -46,7 +46,7 @@ In order to use the new POM:
 * Override the needed properties, e.g.:
 ```xml
   <properties>
-    <jenkins.version>2.60.1</jenkins.version>
+    <jenkins.version>2.204.1</jenkins.version>
     <java.level>8</java.level>
   </properties>
 ```
