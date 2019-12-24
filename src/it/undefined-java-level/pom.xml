@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
-        <jenkins.version>2.32.3</jenkins.version>
+        <jenkins.version>2.204</jenkins.version>
     </properties>
     <repositories>
         <repository>

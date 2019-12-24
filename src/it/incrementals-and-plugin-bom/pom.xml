@@ -14,9 +14,10 @@
     <properties>
         <revision>1.0</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.176.4</jenkins.version>
+        <jenkins.version>2.204</jenkins.version>
         <java.level>8</java.level>
     </properties>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>

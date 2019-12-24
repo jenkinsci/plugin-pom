@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.56-SNAPSHOT</version>
+  <version>4.0-beta-1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -49,34 +49,28 @@
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
     <argLine>-Xms768M -Xmx768M -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
-    <jenkins.version>2.138.4</jenkins.version>
-    <!-- Should only need to override these if using timestamped snapshots (but better to use Incrementals instead): -->
+
+    <jenkins.version>2.204</jenkins.version>
+    <!-- Should only need to override these if using timestamped snapshots https://issues.apache.org/jira/browse/MNG-6274 (but better to use Incrementals instead)  -->
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
+    <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
+
     <jenkins-test-harness.version>2.57</jenkins-test-harness.version>
+
     <hpi-plugin.version>3.11</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
-    <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
     <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
     <java.level.test>${java.level}</java.level.test>
-    <concurrency>1</concurrency> <!-- DEPRECATED use forkCount -->
-    <forkCount>${concurrency}</forkCount> <!-- may use e.g. 2C for 2 × (number of cores) -->
-    <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1226 workaround -->
-    <!-- Deprecated findbugs. -->
-    <findbugs.failOnError>true</findbugs.failOnError>
-    <findbugs.threshold>Medium</findbugs.threshold>
-    <findbugs.effort>default</findbugs.effort>
-    <!-- Whether the build should fail if SpotBugs finds any error. -->
-    <!-- It is strongly encouraged to leave it as true. Use false with care only in transient situations. -->
-    <spotbugs.failOnError>${findbugs.failOnError}</spotbugs.failOnError>
+
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
       -->
-    <spotbugs.threshold>${findbugs.threshold}</spotbugs.threshold>
+    <spotbugs.threshold>Medium</spotbugs.threshold>
     <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
-    <spotbugs.effort>${findbugs.effort}</spotbugs.effort>
+    <spotbugs.effort>Default</spotbugs.effort>
     
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
@@ -90,9 +84,7 @@
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
-    <!-- For jgit-scm-provider profile -->
-    <git.provider>git</git.provider>
-    <maven-scm.version>1.11.2</maven-scm.version>
+
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
@@ -112,6 +104,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-bom</artifactId>
+        <version>${jenkins-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-core</artifactId>
@@ -152,24 +151,6 @@
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo.signature</groupId>
-        <artifactId>java15</artifactId>
-        <version>1.0</version>
-        <type>signature</type>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo.signature</groupId>
-        <artifactId>java16</artifactId>
-        <version>1.1</version>
-        <type>signature</type>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo.signature</groupId>
-        <artifactId>java17</artifactId>
-        <version>1.0</version>
-        <type>signature</type>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo.signature</groupId>
         <artifactId>java18</artifactId>
         <version>1.0</version>
         <type>signature</type>
@@ -202,34 +183,72 @@
   </dependencyManagement>
 
   <dependencies>
-    <!-- dependencies provided by virtue of running in Jenkins -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <!--  Jenkins core dependencies -->
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-core</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- dependencies needed for testing -->
+    <!-- jenkins war needed for testing -->
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-war</artifactId>
       <type>executable-war</type>
       <scope>test</scope>
     </dependency>
+
+    <!-- dependencies provided by virtue of running in Jenkins -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- static analysis -->
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>net.jcip</groupId>
+      <artifactId>jcip-annotations</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- for JRE requirement check annotation -->
+    <dependency>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>animal-sniffer-annotations</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional><!-- no need to have this at runtime -->
+    </dependency>
+    <dependency>
+      <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+      <!-- TODO this would be better as a managed version of [0] -->
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-annotation</artifactId>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <!-- provided by Jenkins core -->
+          <groupId>org.jenkins-ci</groupId>
+          <artifactId>annotation-indexer</artifactId>
+          </exclusion>
+      </exclusions>
+    </dependency>
+
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-test-harness</artifactId>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit-dep</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci</groupId>
@@ -321,11 +340,6 @@
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
           <version>3.2.1</version>
-          <configuration>
-            <excludes>
-              <exclude>InjectedTest.java</exclude>
-            </excludes>
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
@@ -422,6 +436,11 @@
             <generateBackupPoms>false</generateBackupPoms>
             <updateNonincremental>false</updateNonincremental>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>3.1.12.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -532,6 +551,27 @@
               </rules>
             </configuration>
           </execution>
+          <execution>
+            <id>no-snapshots-in-release</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <!-- 
+                  this causes fails the incrementals IT to fail as the parent is a snapshot and the incremental is a release
+                  so this is a separate execution so that it can be skipped in that specific IT
+                  -->
+                <requireReleaseDeps>
+                  <message>No SNAPSHOT versions are allowed for releases</message>
+                  <onlyWhenRelease>true</onlyWhenRelease>
+                  <!--  whilst we generally want this this allows for easier testing of the plugin-pom in incrementals -->
+                  <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+                </requireReleaseDeps>
+              </rules>
+            </configuration>
+          </execution>
         </executions>
         <dependencies>
           <dependency>
@@ -544,7 +584,6 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>3.1.12.2</version>
         <configuration>
           <failOnError>${spotbugs.failOnError}</failOnError>
         </configuration>
@@ -606,7 +645,7 @@
           <webApp>
               <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>${plugin.minimumJavaVersion}</minimumJavaVersion>
+          <minimumJavaVersion>1.${java.level}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
@@ -696,6 +735,26 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <!-- SUREFIRE-1226 workaround -->
+          <trimStackTrace>false</trimStackTrace>
+          <systemProperties>
+            <property>
+              <name>hudson.udp</name>
+              <value>-1</value>
+            </property>
+            <property>
+              <name>java.io.tmpdir</name>
+              <value>${surefireTempDir}</value>
+            </property>
+          </systemProperties>
+          <runOrder>alphabetical</runOrder>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <!-- SUREFIRE-1226 workaround -->
+          <trimStackTrace>false</trimStackTrace>
           <systemProperties>
             <property>
               <name>hudson.udp</name>
@@ -752,6 +811,52 @@
           </execution>
         </executions>
       </plugin>
+
+      <!--  the following 2 plugins are for integration tests of plugin-pom only -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>mrm-maven-plugin</artifactId>
+        <version>1.2.0</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <goals>
+              <goal>start</goal>
+              <goal>stop</goal>
+            </goals>
+            <configuration>
+              <propertyName>repository.proxy.url</propertyName>
+              <repositories>
+                <proxyRepo />
+              </repositories>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-invoker-plugin</artifactId>
+        <version>3.2.1</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>install</goal>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <streamLogs>true</streamLogs>
+              <showErrors>true</showErrors>
+              <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
+              <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
+              <settingsFile>src/it/settings.xml</settingsFile>
+              <filterProperties>
+                <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
+              </filterProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -783,201 +888,6 @@
 
   <profiles>
     <profile>
-      <!--
-       The 'no-jenkins-bom' profile captures the properties & dependencies when _not_ using the Jenkins BOM:
-        https://github.com/jenkinsci/jenkins/blob/master/bom/pom.xml
-       When the BOM is not being used, this profile is adding back the <dependencyManagement /> entries that were
-       moved to the BOM.
-       The profile is enabled by default; if you _are_ using the Jenkins BOM then disable this profile by defining the
-       'use-jenkins-bom' system property.
-      -->
-      <id>no-jenkins-bom</id>
-      <activation>
-        <property>
-          <name>!use-jenkins-bom</name>
-        </property>
-      </activation>
-      <properties>
-        <slf4jVersion>1.7.25</slf4jVersion>
-      </properties>
-      <dependencyManagement>
-        <dependencies>
-          <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>3.1.12</version>
-          </dependency>
-          <dependency>
-            <groupId>net.jcip</groupId>
-            <artifactId>jcip-annotations</artifactId>
-            <version>1.0</version>
-          </dependency>
-          <!-- mark logging dependencies as provided by war -->
-          <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope><!-- by jcl-over-slf4j -->
-          </dependency>
-          <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>provided</scope><!-- by log4j-over-slf4j -->
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4jVersion}</version>
-            <!-- TODO: should this optional be in dependencyManagement too??? -->
-            <scope>provided</scope>
-            <!-- mark the API as optional so it is not packaged in the HPI but available during compile -->
-            <optional>true</optional>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>${slf4jVersion}</version>
-            <scope>test</scope>
-          </dependency>
-        </dependencies>
-      </dependencyManagement>
-      <dependencies>
-          <!-- static analysis -->
-        <dependency>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional>
-        </dependency>
-        <dependency>
-          <groupId>net.jcip</groupId>
-          <artifactId>jcip-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional>
-        </dependency>
-        <!-- for JRE requirement check annotation -->
-        <dependency>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional><!-- no need to have this at runtime -->
-        </dependency>
-        <!-- make slf4j bindings to java.util.logging available during tests -->
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>log4j-over-slf4j</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-jdk14</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.kohsuke</groupId>
-          <artifactId>access-modifier-annotation</artifactId>
-          <version>${access-modifier-annotation.version}</version>
-          <scope>provided</scope>
-          <exclusions> <!-- provided by Jenkins core -->
-            <exclusion>
-              <groupId>org.jenkins-ci</groupId>
-              <artifactId>annotation-indexer</artifactId>
-              </exclusion>
-          </exclusions>
-        </dependency>
-        <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-    <!--
-       This profile can be activated by plugins that _are_ using the Jenkins BOM, by setting the system property
-       'use-jenkins-bom'. A convenient way to do this is by adding the command line parameter '-Duse-jenkins-bom'
-       'in ${maven.projectBasedir}/.mvn/maven.config'.
-       This profile imports the jenkins BOM at ${jenkins.version} to properly align dependencies.
-      -->
-    <profile>
-      <id>use-jenkins-bom</id>
-      <activation>
-        <property>
-          <name>use-jenkins-bom</name>
-        </property>
-      </activation>
-      <properties>
-        <jenkins.version>2.195</jenkins.version>
-      </properties>
-      <dependencyManagement>
-        <dependencies>
-          <dependency>
-            <groupId>org.jenkins-ci.main</groupId>
-            <artifactId>jenkins-bom</artifactId>
-            <version>${jenkins.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-        </dependencies>
-      </dependencyManagement>
-      <dependencies>
-        <!-- static analysis -->
-        <dependency>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional>
-        </dependency>
-        <dependency>
-          <groupId>net.jcip</groupId>
-          <artifactId>jcip-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional>
-        </dependency>
-        <!-- for JRE requirement check annotation -->
-        <dependency>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-annotations</artifactId>
-          <scope>provided</scope>
-          <optional>true</optional><!-- no need to have this at runtime -->
-        </dependency>
-        <dependency> <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.kohsuke</groupId>
-          <artifactId>access-modifier-annotation</artifactId>
-          <version>${access-modifier-annotation.version}</version>
-          <scope>provided</scope>
-          <exclusions> <!-- provided by Jenkins core -->
-            <exclusion>
-              <groupId>org.jenkins-ci</groupId>
-              <artifactId>annotation-indexer</artifactId>
-              </exclusion>
-          </exclusions>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
       <id>uninherited-java.level</id>
       <activation>
         <file>
@@ -989,40 +899,9 @@
       </properties>
     </profile>
     <profile>
-      <id>deprecated-java.level-7</id>
-      <activation>
-        <property>
-          <name>java.level</name>
-          <value>7</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>warn-deprecated-java.level</id>
-                <phase>initialize</phase>
-                <configuration>
-                  <target>
-                    <echo>WARNING: Plugin POM defines java.level=${java.level} which is deprecated in the current Plugin POM version. See https://github.com/jenkinsci/plugin-pom/blob/master/README.md#java-support</echo>
-                  </target>
-                </configuration>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
-        <findbugs.skip>${release.skipTests}</findbugs.skip>
         <spotbugs.skip>${release.skipTests}</spotbugs.skip>
       </properties>
       <build>
@@ -1126,29 +1005,6 @@
       </properties>
     </profile>
     <profile>
-      <id>rerunFailingTests</id>
-      <activation>
-        <property>
-          <name>!test</name>
-        </property>
-      </activation>
-      <properties>
-        <surefire.rerunFailingTestsCount>4</surefire.rerunFailingTestsCount>
-      </properties>
-    </profile>
-    <profile>
-      <id>skip-spotbugs-with-tests</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <spotbugs.skip>true</spotbugs.skip>
-      </properties>
-    </profile>
-    <profile>
       <id>skip-node-tests</id>
       <activation>
         <property>
@@ -1222,7 +1078,6 @@
               </execution>
               <execution>
                 <id>report</id>
-                <phase>prepare-package</phase>
                 <goals>
                   <goal>report</goal>
                 </goals>
@@ -1413,50 +1268,6 @@
       </build>
     </profile>
     <profile>
-      <id>jgit-scm-provider</id>
-      <activation>
-        <property>
-          <name>git.provider</name>
-          <value>jgit</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <providerImplementations>
-                <git>${git.provider}</git>
-              </providerImplementations>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>${maven-scm.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-          <plugin>
-            <artifactId>maven-scm-plugin</artifactId>
-            <version>${maven-scm.version}</version>
-            <configuration>
-              <providerImplementations>
-                <git>${git.provider}</git>
-              </providerImplementations>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-jgit</artifactId>
-                <version>${maven-scm.version}</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <!-- JEP-305 -->
       <id>consume-incrementals</id>
       <repositories>
@@ -1590,63 +1401,9 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>run-plugin-pom-its</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>mrm-maven-plugin</artifactId>
-            <version>1.2.0</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>start</goal>
-                  <goal>stop</goal>
-                </goals>
-                <configuration>
-                  <propertyName>repository.proxy.url</propertyName>
-                  <repositories>
-                    <proxyRepo />
-                  </repositories>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-invoker-plugin</artifactId>
-            <version>3.2.1</version>
-            <executions>
-              <execution>
-                <id>integration-test</id>
-                <goals>
-                  <goal>install</goal>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <streamLogs>true</streamLogs>
-                  <showErrors>true</showErrors>
-                  <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
-                  <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
-                  <settingsFile>src/it/settings.xml</settingsFile>
-                  <filterProperties>
-                    <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
-                  </filterProperties>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <!-- Profile to run benchmarks when the `benchmark` property is set -->
     <profile>
       <id>jmh-benchmark</id>
-      <activation>
-        <property>
-          <name>benchmark</name>
-        </property>
-      </activation>
       <build>
         <plugins>
           <plugin>
@@ -1661,6 +1418,20 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <!--  a profile that disables as much testing as possible testing whilst still producing the artifacts -->
+      <id>quick-build</id>
+      <properties>
+        <!-- we can not use maven.test.skip because we may be producing a test jar -->
+        <skipTests>true</skipTests>
+        <spotbugs.skip>true</spotbugs.skip>
+        <enforcer.skip>true</enforcer.skip>
+        <access-modifier-checker.skip>true</access-modifier-checker.skip>
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+        <invoker.skip>true</invoker.skip>
+      </properties>
     </profile>
   </profiles>
 </project>
