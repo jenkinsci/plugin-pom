@@ -427,11 +427,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.gmaven</groupId>
-          <artifactId>gmaven-plugin</artifactId>
-          <version>1.5-jenkins-3</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.gmavenplus</groupId>
           <artifactId>gmavenplus-plugin</artifactId>
           <version>1.7.1</version>
