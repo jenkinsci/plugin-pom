@@ -390,11 +390,6 @@
           <version>0.8.5</version>
         </plugin>
         <plugin>
-          <groupId>org.kohsuke.gmaven</groupId>
-          <artifactId>gmaven-plugin</artifactId>
-          <version>1.0-rc-5-patch-2</version>
-        </plugin>
-        <plugin>
           <groupId>org.kohsuke.stapler</groupId>
           <artifactId>maven-stapler-plugin</artifactId>
           <version>${stapler-plugin.version}</version>
