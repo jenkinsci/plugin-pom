@@ -138,7 +138,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>4.13</version>
       </dependency>
       <!-- JTN tidy this up? -->
       <dependency> <!-- used in JTH and jenkins core > 2.x -->
