@@ -58,7 +58,7 @@
 
     <jenkins-test-harness.version>2.61</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.11</hpi-plugin.version>
+    <hpi-plugin.version>3.12</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
     <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
