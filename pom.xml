@@ -54,7 +54,8 @@
     <jenkins-core.version>${jenkins.version}</jenkins-core.version>
     <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-test-harness.version>2.61</jenkins-test-harness.version>
-    <hpi-plugin.version>3.11</hpi-plugin.version>
+
+    <hpi-plugin.version>3.12</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
     <plugin.minimumJavaVersion>1.${java.level}</plugin.minimumJavaVersion>
