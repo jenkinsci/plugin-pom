@@ -28,7 +28,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>3.57-SNAPSHOT</version>
+  <version>3.57</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -39,7 +39,7 @@
     <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
     <url>https://github.com/jenkinsci/plugin-pom</url>
-    <tag>HEAD</tag>
+    <tag>plugin-3.57</tag>
   </scm>
 
   <properties>
