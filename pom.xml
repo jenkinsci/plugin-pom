@@ -321,7 +321,7 @@
             <source>${java.level}</source>
             <quiet>true</quiet>
             <links>
-              <link>http://javadoc.jenkins.io/</link>
+              <link>https://javadoc.jenkins.io/</link>
             </links>
           </configuration>
         </plugin>
