@@ -897,6 +897,7 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <spotbugs.skip>${release.skipTests}</spotbugs.skip>
+        <invoker.skip>${release.skipTests}</invoker.skip>
       </properties>
       <build>
         <plugins>
