@@ -93,6 +93,7 @@
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
     <animal.sniffer.version>1.18</animal.sniffer.version>
+    <powermock.version>2.0.7</powermock.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
@@ -155,10 +156,6 @@
         <version>1.0</version>
         <type>signature</type>
       </dependency>
-      <!--
-      Recommended versions of Mockito and PowerMock for build with Java 11 (JENKINS-55098)
-      The versions require Java 8 as a minimum baseline, but they can be downgraded in plugins if needed.
-      -->
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
@@ -167,12 +164,12 @@
       <dependency>
         <groupId>org.powermock</groupId>
         <artifactId>powermock-module-junit4</artifactId>
-        <version>2.0.6</version>
+        <version>${powermock.version}</version>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
         <artifactId>powermock-api-mockito2</artifactId>
-        <version>2.0.6</version>
+        <version>${powermock.version}</version>
       </dependency>
       <dependency>
         <groupId>org.objenesis</groupId>
