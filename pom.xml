@@ -51,9 +51,6 @@
     <argLine>-Xms768M -Xmx768M -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
 
     <jenkins.version>2.204</jenkins.version>
-    <!-- Should only need to override these if using timestamped snapshots https://issues.apache.org/jira/browse/MNG-6274 (but better to use Incrementals instead)  -->
-    <jenkins-core.version>${jenkins.version}</jenkins-core.version>
-    <jenkins-war.version>${jenkins.version}</jenkins-war.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
     <jenkins-test-harness.version>2.64</jenkins-test-harness.version>
@@ -115,12 +112,12 @@
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-core</artifactId>
-        <version>${jenkins-core.version}</version>
+        <version>${jenkins.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
-        <version>${jenkins-war.version}</version>
+        <version>${jenkins.version}</version>
         <type>executable-war</type>
         <scope>test</scope>
       </dependency>
