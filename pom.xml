@@ -89,7 +89,7 @@
     <!-- May be used to select timestamped snapshots: -->
     <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
     <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
-    <animal.sniffer.version>1.18</animal.sniffer.version>
+    <animal.sniffer.version>1.19</animal.sniffer.version>
     <powermock.version>2.0.7</powermock.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
