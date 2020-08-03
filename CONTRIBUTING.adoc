@@ -15,6 +15,13 @@ To run and build the repository with integration tests, you can execute
 
     mvn clean verify
 
+To run one IT:
+
+[source,bash]
+----
+mvn verify -Dinvoker.test=powermock
+----
+
 ## Building and using snapshots
 
 Snapshots might be needed to provide reference implementations for Plugin POM patches.
