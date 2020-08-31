@@ -421,7 +421,7 @@
         <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.1</version>
+          <version>1.2</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
