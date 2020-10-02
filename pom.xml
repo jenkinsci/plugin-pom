@@ -322,6 +322,7 @@
             <links>
               <link>https://javadoc.jenkins.io/</link>
             </links>
+            <doclint>all,-missing</doclint>
           </configuration>
         </plugin>
         <plugin>
