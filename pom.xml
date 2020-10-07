@@ -323,6 +323,7 @@
               <link>https://javadoc.jenkins.io/</link>
             </links>
             <doclint>all,-missing</doclint>
+            <locale>en_US</locale>
           </configuration>
         </plugin>
         <plugin>
