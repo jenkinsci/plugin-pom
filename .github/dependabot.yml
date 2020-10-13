@@ -1,0 +1,33 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 10
+  reviewers:
+  - jglick
+  - oleg-nenashev
+  - batmat
+  ignore:
+  - dependency-name: jcl-over-slf4j
+    versions:
+    - ">= 0"
+  - dependency-name: log4j-over-slf4j
+    versions:
+    - ">= 0"
+  - dependency-name: org.jenkins-ci.main:jenkins-bom
+    versions:
+    - ">= 0"
+  - dependency-name: org.jenkins-ci.main:jenkins-core
+    versions:
+    - ">= 0"
+  - dependency-name: org.jenkins-ci.main:jenkins-war
+    versions:
+    - ">= 0"
+  - dependency-name: slf4j-api
+    versions:
+    - ">= 0"
+  - dependency-name: slf4j-jdk14
+    versions:
+    - ">= 0"
