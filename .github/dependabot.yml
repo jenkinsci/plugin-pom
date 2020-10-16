@@ -5,10 +5,6 @@ updates:
   schedule:
     interval: weekly
   open-pull-requests-limit: 10
-  reviewers:
-  - jglick
-  - oleg-nenashev
-  - batmat
   ignore:
   - dependency-name: jcl-over-slf4j
     versions:
