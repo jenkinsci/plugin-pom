@@ -53,7 +53,7 @@
     <jenkins.version>2.204</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <jenkins-test-harness.version>2.69</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2.70</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.17</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
