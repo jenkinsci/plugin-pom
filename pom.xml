@@ -1397,6 +1397,24 @@
         </plugins>
       </build>
     </profile>
+    <profile> <!-- JEP-229 -->
+      <id>block-MRP</id>
+      <activation>
+        <property>
+          <name>changelist.format</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <preparationGoals>not-set-up-for-MRP</preparationGoals>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <!-- Profile to run benchmarks when the `benchmark` property is set -->
     <profile>
       <id>jmh-benchmark</id>
