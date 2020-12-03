@@ -407,8 +407,8 @@
         </plugin>
         <plugin>
           <groupId>org.jvnet.localizer</groupId>
-          <artifactId>maven-localizer-plugin</artifactId>
-          <version>1.26</version>
+          <artifactId>localizer-maven-plugin</artifactId>
+          <version>1.28</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke</groupId>
@@ -665,7 +665,7 @@
       </plugin>
       <plugin>
         <groupId>org.jvnet.localizer</groupId>
-        <artifactId>maven-localizer-plugin</artifactId>
+        <artifactId>localizer-maven-plugin</artifactId>
         <executions>
           <execution>
             <goals>
