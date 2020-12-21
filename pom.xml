@@ -85,7 +85,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <access-modifier.version>1.21</access-modifier.version>
+    <access-modifier-checker.version>1.21</access-modifier-checker.version>
     <animal.sniffer.version>1.19</animal.sniffer.version>
     <powermock.version>2.0.9</powermock.version>
 
@@ -410,7 +410,7 @@
         <plugin>
           <groupId>org.kohsuke</groupId>
           <artifactId>access-modifier-checker</artifactId>
-          <version>${access-modifier.version}</version>
+          <version>${access-modifier-checker.version}</version>
         </plugin>
         <plugin>
           <groupId>com.cloudbees</groupId>
