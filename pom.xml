@@ -85,10 +85,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <access-modifier.version>1.16</access-modifier.version>
-    <!-- May be used to select timestamped snapshots: -->
-    <access-modifier-annotation.version>${access-modifier.version}</access-modifier-annotation.version>
-    <access-modifier-checker.version>${access-modifier.version}</access-modifier-checker.version>
+    <access-modifier-checker.version>1.21</access-modifier-checker.version>
     <animal.sniffer.version>1.19</animal.sniffer.version>
     <powermock.version>2.0.9</powermock.version>
 
