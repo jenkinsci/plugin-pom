@@ -1058,6 +1058,9 @@
     </profile>
     <profile>
       <id>enable-jacoco</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -1068,9 +1071,11 @@
                 <goals>
                   <goal>prepare-agent</goal>
                 </goals>
+                <phase>process-test-classes</phase>
               </execution>
               <execution>
                 <id>report</id>
+                <phase>verify</phase>
                 <goals>
                   <goal>report</goal>
                 </goals>
