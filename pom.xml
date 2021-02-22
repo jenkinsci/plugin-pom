@@ -77,7 +77,7 @@
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
-    <frontend-version>1.11.0</frontend-version>
+    <frontend-version>1.11.2</frontend-version>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
