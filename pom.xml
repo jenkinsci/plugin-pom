@@ -95,6 +95,9 @@
     <scmTag>HEAD</scmTag>
     <!-- Where to put temporary files during test runs. -->
     <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
+
+    <!-- Generate metadata for reflection on method parameters -->
+    <maven.compiler.parameters>true</maven.compiler.parameters>
   </properties>
 
   <dependencyManagement>
