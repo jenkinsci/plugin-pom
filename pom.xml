@@ -660,7 +660,7 @@
           <preparationGoals>clean install</preparationGoals>
           <goals>deploy</goals>
           <arguments>${arguments}</arguments>
-          <releaseProfiles>jenkins-release,${releaseProfiles}</releaseProfiles>
+          <releaseProfiles>jenkins-release,!consume-incrementals,${releaseProfiles}</releaseProfiles>
         </configuration>
       </plugin>
       <plugin>
