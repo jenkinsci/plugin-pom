@@ -178,6 +178,11 @@
         <artifactId>hamcrest-core</artifactId>
         <version>2.2</version>
       </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci</groupId>
+        <artifactId>annotation-indexer</artifactId>
+        <version>1.14</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -207,6 +212,7 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
+      <version>4.3.0</version>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -234,6 +240,7 @@
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
+      <version>${access-modifier-checker.version}</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
