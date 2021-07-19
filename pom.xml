@@ -85,7 +85,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <access-modifier-checker.version>1.21</access-modifier-checker.version>
+    <access-modifier-checker.version>1.22</access-modifier-checker.version>
     <animal.sniffer.version>1.20</animal.sniffer.version>
     <powermock.version>2.0.9</powermock.version>
 
@@ -178,6 +178,11 @@
         <artifactId>hamcrest-core</artifactId>
         <version>2.2</version>
       </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci</groupId>
+        <artifactId>annotation-indexer</artifactId>
+        <version>1.14</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -207,6 +212,7 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
+      <version>4.3.0</version>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
@@ -234,6 +240,7 @@
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
+      <version>${access-modifier-checker.version}</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
