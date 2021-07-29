@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
-        <jenkins.version>2.289.3</jenkins.version>
+        <jenkins.version>2.277.4</jenkins.version>
         <java.level>8</java.level>
         <maven-hpi-plugin.disabledTestInjection>true</maven-hpi-plugin.disabledTestInjection>
     </properties>
@@ -33,4 +33,13 @@
         <module>upstream</module>
         <module>downstream</module>
     </modules>
+    <dependencyManagement> <!-- TODO -->
+        <dependencies>
+            <dependency>
+                <groupId>org.jenkins-ci</groupId>
+                <artifactId>annotation-indexer</artifactId>
+                <version>1.15-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
