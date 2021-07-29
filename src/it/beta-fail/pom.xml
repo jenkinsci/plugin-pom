@@ -33,13 +33,4 @@
         <module>upstream</module>
         <module>downstream</module>
     </modules>
-    <dependencyManagement> <!-- TODO -->
-        <dependencies>
-            <dependency>
-                <groupId>org.jenkins-ci</groupId>
-                <artifactId>annotation-indexer</artifactId>
-                <version>1.15-SNAPSHOT</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
