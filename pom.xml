@@ -78,6 +78,8 @@
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
     <frontend-version>1.12.0</frontend-version>
+    <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
+    <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
     <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
     <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
     <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
@@ -1115,8 +1117,8 @@
                 <configuration>
                   <nodeVersion>v${node.version}</nodeVersion>
                   <npmVersion>${npm.version}</npmVersion>
-                  <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
-                  <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
+                  <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
+                  <npmDownloadRoot>${npmDownloadRoot}</npmDownloadRoot>
                 </configuration>
               </execution>
 
@@ -1187,7 +1189,7 @@
                 <configuration>
                   <nodeVersion>v${node.version}</nodeVersion>
                   <yarnVersion>v${yarn.version}</yarnVersion>
-                  <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
+                  <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
                   <!-- tried to create a mirror for yarnDownloadRoot but it did not work -->
                 </configuration>
               </execution>
