@@ -90,7 +90,6 @@
     <mockito.version>3.12.4</mockito.version>
     <access-modifier-checker.version>1.24</access-modifier-checker.version>
     <animal.sniffer.version>1.20</animal.sniffer.version>
-    <powermock.version>2.0.9</powermock.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
@@ -165,16 +164,6 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-inline</artifactId>
         <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-module-junit4</artifactId>
-        <version>${powermock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito2</artifactId>
-        <version>${powermock.version}</version>
       </dependency>
       <dependency>
         <groupId>org.objenesis</groupId>
