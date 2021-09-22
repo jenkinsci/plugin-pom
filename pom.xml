@@ -87,6 +87,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
+    <mockito.version>3.12.4</mockito.version>
     <access-modifier-checker.version>1.24</access-modifier-checker.version>
     <animal.sniffer.version>1.20</animal.sniffer.version>
     <powermock.version>2.0.9</powermock.version>
@@ -158,7 +159,12 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>3.12.4</version>
+        <version>${mockito.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-inline</artifactId>
+        <version>${mockito.version}</version>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
