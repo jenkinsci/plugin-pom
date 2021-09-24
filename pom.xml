@@ -742,6 +742,8 @@
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
+          <!-- to avoid losing the focus on MacOS when a new forked jvm is created -->
+          <argLine>-Djava.awt.headless=true</argLine>
         </configuration>
       </plugin>
       <plugin>
@@ -760,6 +762,8 @@
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
+          <!-- to avoid losing the focus on MacOS when a new forked jvm is created -->
+          <argLine>-Djava.awt.headless=true</argLine>
         </configuration>
       </plugin>
       <plugin>
