@@ -643,6 +643,8 @@
           <minimumJavaVersion>1.${java.level}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
+            <!-- to avoid losing the focus on MacOS when a new forked jvm is created -->
+            <java.awt.headless>true</java.awt.headless>
           </systemProperties>
         </configuration>
       </plugin>
@@ -742,6 +744,8 @@
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
+          <!-- to avoid losing the focus on MacOS when a new forked jvm is created -->
+          <argLine>-Djava.awt.headless=true</argLine>
         </configuration>
       </plugin>
       <plugin>
@@ -760,6 +764,8 @@
             </property>
           </systemProperties>
           <runOrder>alphabetical</runOrder>
+          <!-- to avoid losing the focus on MacOS when a new forked jvm is created -->
+          <argLine>-Djava.awt.headless=true</argLine>
         </configuration>
       </plugin>
       <plugin>
