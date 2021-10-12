@@ -893,6 +893,22 @@
       </properties>
     </profile>
     <profile>
+      <id>jdk-above-9</id>
+      <activation>
+        <jdk>[1.9,)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <release>${java.level}</release>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>jenkins-release</id>
       <properties>
         <skipTests>${release.skipTests}</skipTests>
