@@ -48,7 +48,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles> </releaseProfiles>
     <arguments> </arguments>
-    <argLine>-Xms768M -Xmx768M -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
+    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
 
     <jenkins.version>2.204</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
@@ -731,17 +731,13 @@
         <configuration>
           <!-- SUREFIRE-1226 workaround -->
           <trimStackTrace>false</trimStackTrace>
-          <systemProperties>
-            <property>
-              <name>hudson.udp</name>
-              <value>-1</value>
-            </property>
-            <property>
-              <name>java.io.tmpdir</name>
-              <value>${surefireTempDir}</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables>
+              <hudson.udp>-1</hudson.udp>
+              <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
+              <java.awt.headless>true</java.awt.headless>
+          </systemPropertyVariables>
           <runOrder>alphabetical</runOrder>
+          <reuseForks>false</reuseForks>
         </configuration>
       </plugin>
       <plugin>
@@ -749,17 +745,13 @@
         <configuration>
           <!-- SUREFIRE-1226 workaround -->
           <trimStackTrace>false</trimStackTrace>
-          <systemProperties>
-            <property>
-              <name>hudson.udp</name>
-              <value>-1</value>
-            </property>
-            <property>
-              <name>java.io.tmpdir</name>
-              <value>${surefireTempDir}</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables>
+              <hudson.udp>-1</hudson.udp>
+              <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
+              <java.awt.headless>true</java.awt.headless>
+          </systemPropertyVariables>
           <runOrder>alphabetical</runOrder>
+          <reuseForks>false</reuseForks>
         </configuration>
       </plugin>
       <plugin>
