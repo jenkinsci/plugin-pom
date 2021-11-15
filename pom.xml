@@ -111,12 +111,6 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>servlet-api</artifactId>
-        <version>2.5</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-bom</artifactId>
         <version>${jenkins-bom.version}</version>
@@ -550,6 +544,7 @@
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>javax.servlet:javax.servlet-api</exclude>
+                    <exclude>javax.servlet:servlet-api</exclude>
                     <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
                     <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
