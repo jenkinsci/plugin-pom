@@ -549,6 +549,7 @@
                 </bannedDependencies>
                 <requireUpperBoundDeps>
                   <excludes>
+                    <exclude>javax.servlet:javax.servlet-api</exclude>
                     <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
                     <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
