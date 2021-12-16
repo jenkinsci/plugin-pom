@@ -216,7 +216,6 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.5.1</version>
       <scope>provided</scope>
       <optional>true</optional>
       <exclusions>
@@ -250,8 +249,8 @@
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
-      <version>${access-modifier-checker.version}</version>
       <scope>provided</scope>
+      <optional>true</optional>
       <exclusions>
         <exclusion>
           <!-- provided by Jenkins core -->
