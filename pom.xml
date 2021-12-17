@@ -582,8 +582,8 @@
                               +-com.github.spotbugs:spotbugs-annotations:3.1.11 [provided] (managed) ← com.github.spotbugs:spotbugs-annotations:3.1.12 [provided]
 
                       In the long term, this ought to be mitigated by jenkinsci/remoting#495 (which
-                      makes Remoting's dependency on spotbug-annotations optional) and by
-                      jenkinsci/jenkins#6066 (which makes cli's dependency on spotbug-annotations
+                      makes Remoting's dependency on spotbugs-annotations optional) and by
+                      jenkinsci/jenkins#6066 (which makes cli's dependency on spotbugs-annotations
                       optional).
                     -->
                     <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
