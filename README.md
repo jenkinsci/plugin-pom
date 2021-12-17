@@ -39,14 +39,14 @@ In order to use the new POM:
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.43</version> <!-- or whatever the newest version available is -->
+    <version>4.31</version> <!-- or whatever the newest version available is -->
     <relativePath />
   </parent>
 ```
 * Override the needed properties, e.g.:
 ```xml
   <properties>
-    <jenkins.version>2.60.1</jenkins.version>
+    <jenkins.version>2.303.1</jenkins.version>
     <java.level>8</java.level>
   </properties>
 ```
