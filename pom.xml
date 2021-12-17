@@ -216,7 +216,6 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.5.1</version>
       <scope>provided</scope>
       <optional>true</optional>
       <exclusions>
@@ -250,8 +249,8 @@
     <dependency>
       <groupId>org.kohsuke</groupId>
       <artifactId>access-modifier-annotation</artifactId>
-      <version>${access-modifier-checker.version}</version>
       <scope>provided</scope>
+      <optional>true</optional>
       <exclusions>
         <exclusion>
           <!-- provided by Jenkins core -->
@@ -563,6 +562,7 @@
                     <exclude>com.google.code.findbugs:annotations</exclude>
                     <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
                     <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
+                    <exclude>org.kohsuke:access-modifier-annotation</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>
