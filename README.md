@@ -46,7 +46,7 @@ In order to use the new POM:
 * Override the needed properties, e.g.:
 ```xml
   <properties>
-    <jenkins.version>2.204</jenkins.version>
+    <jenkins.version>2.303.1</jenkins.version>
     <java.level>8</java.level>
   </properties>
 ```
