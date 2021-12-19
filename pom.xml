@@ -58,9 +58,6 @@
     <hpi-plugin.version>3.22</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
-    <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
-    <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
-    <java.level.test>${java.level}</java.level.test>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
@@ -89,7 +86,6 @@
 
     <mockito.version>4.2.0</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
-    <animal.sniffer.version>1.20</animal.sniffer.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
@@ -157,17 +153,6 @@
         <version>3.1.0</version>
       </dependency>
       <dependency>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-annotations</artifactId>
-        <version>${animal.sniffer.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo.signature</groupId>
-        <artifactId>java18</artifactId>
-        <version>1.0</version>
-        <type>signature</type>
-      </dependency>
-      <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>${mockito.version}</version>
@@ -233,12 +218,6 @@
     </dependency>
 
     <!-- for JRE requirement check annotation -->
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional><!-- no need to have this at runtime -->
-    </dependency>
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
       <!-- TODO this would be better as a managed version of [0] -->
@@ -417,11 +396,6 @@
           <version>${hpi-plugin.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>${animal.sniffer.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.jvnet.localizer</groupId>
           <artifactId>localizer-maven-plugin</artifactId>
           <version>1.31</version>
@@ -501,7 +475,7 @@
                 </requirePluginVersions>
                 -->
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.${java.level}</maxJdkVersion>
+                  <maxJdkVersion>${java.level}</maxJdkVersion>
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
@@ -689,29 +663,7 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.${java.level}</source>
-          <target>1.${java.level}</target>
-          <testSource>1.${java.level.test}</testSource>
-          <testTarget>1.${java.level.test}</testTarget>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <id>check</id>
-            <phase>test</phase>
-          </execution>
-        </executions>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java1${java.level}</artifactId>
-          </signature>
+          <release>${java.level}</release>
         </configuration>
       </plugin>
       <plugin>
@@ -726,7 +678,7 @@
           <webApp>
             <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>1.${java.level}</minimumJavaVersion>
+          <minimumJavaVersion>${java.level}</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
@@ -967,7 +919,7 @@
         </file>
       </activation>
       <properties>
-        <java.level>8</java.level>
+        <java.level>11</java.level>
       </properties>
     </profile>
     <profile>
@@ -1532,7 +1484,6 @@
         <spotbugs.skip>true</spotbugs.skip>
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
-        <animal.sniffer.skip>true</animal.sniffer.skip>
         <invoker.skip>true</invoker.skip>
       </properties>
     </profile>

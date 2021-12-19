@@ -20,7 +20,6 @@ thought to be overridden are no longer based on properties. The main remaining o
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
   (Generally you should not set this to a version _lower_ than that specified in the parent POM.)
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
-  * `java.level.test`: The Java version to use to build the plugin tests.
   * In order to make their versions the same as the used core version, `node.version` and `npm.version`
   properties are provided.
 * Tests are skipped during the `perform` phase of a release (can be overridden by setting `release.skipTests` to false).
@@ -47,7 +46,7 @@ In order to use the new POM:
 ```xml
   <properties>
     <jenkins.version>2.303.1</jenkins.version>
-    <java.level>8</java.level>
+    <java.level>11</java.level>
   </properties>
 ```
 
@@ -62,7 +61,7 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 The plugin POM is designed for plugin builds with JDK 8 or above,
 but target `java.level` for a plugin may differ from a JDK version used for the build.
 Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated and has been removed in `4.0`,
-`java.level=8` and `jenkins.version>2.204.1` are expected to be used for most plugins.
+`java.level=11` and `jenkins.version>2.204.1` are expected to be used for most plugins.
 
 
 ## Incrementals
