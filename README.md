@@ -62,7 +62,7 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 The plugin POM is designed for plugin builds with JDK 8 or above,
 but target `java.level` for a plugin may differ from a JDK version used for the build.
 Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated and has been removed in `4.0`,
-`java.level=8` and `jenkins.version>2.204.1` are expected to be used for most plugins.
+`java.level=8` and `jenkins.version>2.249.1` are expected to be used for most plugins.
 
 
 ## Incrementals

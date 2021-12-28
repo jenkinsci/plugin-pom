@@ -61,7 +61,7 @@
     <arguments />
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
 
-    <jenkins.version>2.204</jenkins.version>
+    <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
     <jenkins-test-harness.version>1674.v3b8b1441e939</jenkins-test-harness.version>
@@ -232,18 +232,6 @@
 
     <!-- static analysis -->
     <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>jsr305</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>net.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
       <scope>provided</scope>
@@ -264,19 +252,6 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <!-- provided by Jenkins core -->
-          <groupId>org.jenkins-ci</groupId>
-          <artifactId>annotation-indexer</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
