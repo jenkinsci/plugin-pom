@@ -157,22 +157,17 @@
         <artifactId>jenkins-test-harness</artifactId>
         <version>${jenkins-test-harness.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci</groupId>
-        <artifactId>test-annotations</artifactId>
-        <version>1.4</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-      </dependency>
       <!-- JTN tidy this up? -->
       <dependency>
         <!-- used in JTH and jenkins core > 2.x -->
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
@@ -184,6 +179,16 @@
         <artifactId>java18</artifactId>
         <version>1.0</version>
         <type>signature</type>
+      </dependency>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-core</artifactId>
+        <version>2.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci</groupId>
+        <artifactId>test-annotations</artifactId>
+        <version>1.4</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
@@ -199,11 +204,6 @@
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
         <version>3.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
