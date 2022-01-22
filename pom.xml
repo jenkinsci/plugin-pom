@@ -1148,6 +1148,8 @@
             <configuration>
               <excludes>
                 <exclude>**/Messages.class</exclude>
+                <!-- https://github.com/HtmlUnit/htmlunit-cssparser/issues/4 -->
+                <exclude>com/gargoylesoftware/**</exclude>
               </excludes>
             </configuration>
             <executions>
