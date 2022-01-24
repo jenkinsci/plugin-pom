@@ -104,7 +104,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <mockito.version>4.2.0</mockito.version>
+    <mockito.version>4.3.0</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
     <animal.sniffer.version>1.20</animal.sniffer.version>
 
