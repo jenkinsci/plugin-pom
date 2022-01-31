@@ -22,13 +22,12 @@
  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  ~ THE SOFTWARE.
  -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>4.32-SNAPSHOT</version>
+  <version>4.34-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -38,22 +37,34 @@
   <scm>
     <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
-    <url>https://github.com/jenkinsci/plugin-pom</url>
     <tag>HEAD</tag>
+    <url>https://github.com/jenkinsci/plugin-pom</url>
   </scm>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <releaseProfiles> </releaseProfiles>
-    <arguments> </arguments>
+    <releaseProfiles />
+    <arguments />
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
 
-    <jenkins.version>2.204</jenkins.version>
+    <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <jenkins-test-harness.version>1674.v3b8b1441e939</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1698.vc58b_4e102e41</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.22</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
@@ -65,7 +76,7 @@
     <spotbugs.threshold>Medium</spotbugs.threshold>
     <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
     <spotbugs.effort>Default</spotbugs.effort>
-    
+
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
@@ -74,17 +85,23 @@
     <node.version>4.0.0</node.version>
     <npm.version>2.13.1</npm.version>
     <yarn.version>0.23.0</yarn.version>
-    <frontend-version>1.12.0</frontend-version>
+    <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
     <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
-    <skip.node.tests /> <!-- changed by -DskipTests, if specified - see profile -->
-    <skip.node.lint /> <!-- changed by -DskipLint, if specified - see profile -->
-    <npm.loglevel /> <!-- may use e.g. -\-silent (without backslash) -->
+
+    <!-- changed by -DskipTests, if specified - see profile -->
+    <skip.node.tests />
+
+    <!-- changed by -DskipLint, if specified - see profile -->
+    <skip.node.lint />
+
+    <!-- may use e.g. -\-silent (without backslash) -->
+    <npm.loglevel />
 
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <mockito.version>4.2.0</mockito.version>
+    <mockito.version>4.3.1</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
@@ -136,21 +153,27 @@
         <artifactId>jenkins-test-harness</artifactId>
         <version>${jenkins-test-harness.version}</version>
       </dependency>
+      <!-- JTN tidy this up? -->
       <dependency>
-        <groupId>org.jenkins-ci</groupId>
-        <artifactId>test-annotations</artifactId>
-        <version>1.4</version>
+        <!-- used in JTH and jenkins core > 2.x -->
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
       </dependency>
-      <!-- JTN tidy this up? -->
-      <dependency> <!-- used in JTH and jenkins core > 2.x -->
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
+      <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest-core</artifactId>
+        <version>2.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci</groupId>
+        <artifactId>test-annotations</artifactId>
+        <version>1.4</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
@@ -166,11 +189,6 @@
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
         <version>3.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -199,44 +217,18 @@
 
     <!-- static analysis -->
     <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>jsr305</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>net.jcip</groupId>
       <artifactId>jcip-annotations</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
 
-    <!-- for JRE requirement check annotation -->
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
       <!-- TODO this would be better as a managed version of [0] -->
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <!-- provided by Jenkins core -->
-          <groupId>org.jenkins-ci</groupId>
-          <artifactId>annotation-indexer</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -256,6 +248,20 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <build>
     <!--
       Since new versions need to overwrite old versions, it's better
@@ -274,7 +280,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>3.9.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
@@ -282,7 +288,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
@@ -297,8 +303,9 @@
           <version>3.0.0-M4</version>
         </plugin>
         <plugin>
+          <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version> <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
+          <version>2.8.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
@@ -327,7 +334,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.9.1</version>
+          <version>3.10.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -364,14 +371,14 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
           <executions>
             <execution>
               <id>add-source</id>
-              <phase>generate-sources</phase>
               <goals>
                 <goal>add-source</goal>
               </goals>
+              <phase>generate-sources</phase>
               <configuration>
                 <sources>
                   <source>${project.build.directory}/generated-sources/localizer</source>
@@ -410,10 +417,11 @@
           <artifactId>maven-license-plugin</artifactId>
           <version>1.10</version>
         </plugin>
-        <plugin> <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
+        <plugin>
+          <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.2</version>
+          <version>1.3</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
@@ -452,14 +460,21 @@
       </plugin>
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.5.1</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <id>display-info</id>
-            <phase>validate</phase>
             <goals>
               <goal>display-info</goal>
               <goal>enforce</goal>
             </goals>
+            <phase>validate</phase>
             <configuration>
               <rules>
                 <requireMavenVersion>
@@ -517,25 +532,28 @@
                 <bannedDependencies>
                   <excludes>
                     <exclude>javax.servlet:servlet-api</exclude>
-                    <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude> <!-- CVE-2021-44228 -->
                     <exclude>org.sonatype.sisu:sisu-guice</exclude>
                     <exclude>log4j:log4j:*:jar:compile</exclude>
                     <exclude>log4j:log4j:*:jar:runtime</exclude>
                     <exclude>commons-logging:commons-logging:*:jar:compile</exclude>
                     <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
+
+                    <!-- CVE-2021-44228 -->
+                    <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude>
+
                     <!-- Jenkins Test Harness is based on JUnit. Adding TestNG dependency would disable some of its functionality. -->
                     <exclude>org.testng:testng</exclude>
                   </excludes>
                 </bannedDependencies>
                 <requireUpperBoundDeps>
                   <excludes>
+                    <exclude>com.google.code.findbugs:annotations</exclude>
+                    <exclude>com.google.code.findbugs:jsr305</exclude>
+                    <exclude>com.google.guava:guava</exclude>
+                    <exclude>commons-logging:commons-logging</exclude>
                     <exclude>javax.servlet:javax.servlet-api</exclude>
                     <exclude>javax.servlet:servlet-api</exclude>
-                    <exclude>com.google.guava:guava</exclude> <!-- TODO needed for Jenkins 2.71 and earlier -->
-                    <exclude>commons-logging:commons-logging</exclude> <!-- ditto -->
-                    <exclude>com.google.code.findbugs:annotations</exclude>
-                    <exclude>com.google.code.findbugs:jsr305</exclude> <!-- ditto -->
-                    <exclude>net.java.dev.jna:jna</exclude> <!-- needed for Jenkins 1.585 and earlier -->
+                    <exclude>net.java.dev.jna:jna</exclude>
                     <exclude>org.kohsuke:access-modifier-annotation</exclude>
                     <!--
                       Work around the following require upper bound dependencies error on 2.222.x
@@ -608,10 +626,10 @@
           </execution>
           <execution>
             <id>no-snapshots-in-release</id>
-            <phase>validate</phase>
             <goals>
               <goal>enforce</goal>
             </goals>
+            <phase>validate</phase>
             <configuration>
               <rules>
                 <!-- 
@@ -628,13 +646,6 @@
             </configuration>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.5.1</version>
-          </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <groupId>com.github.spotbugs</groupId>
@@ -731,6 +742,10 @@
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
+        <configuration>
+          <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
+          <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
+        </configuration>
         <executions>
           <execution>
             <id>test-in-groovy</id>
@@ -741,26 +756,22 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
-          <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
-        </configuration>
-
       </plugin>
-      <plugin> <!-- https://stackoverflow.com/a/4086207/12916 -->
+      <plugin>
+        <!-- https://stackoverflow.com/a/4086207/12916 -->
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
             <id>createTempDir</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
             <phase>generate-test-resources</phase>
             <configuration>
               <target>
                 <mkdir dir="${surefireTempDir}" />
               </target>
             </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
@@ -804,8 +815,7 @@
             <configuration>
               <!--requireCompleteLicenseInfo>true</requireCompleteLicenseInfo-->
               <generateLicenseXml>target/${project.artifactId}/WEB-INF/licenses.xml</generateLicenseXml>
-              <inlineScript><![CDATA[
-                filter {
+              <inlineScript><![CDATA[filter {
                     def plugins = [] as Set
                     
                     // collect all Jenkins plugins
@@ -829,8 +839,7 @@
                             
                         return false;
                     })
-                }              
-              ]]></inlineScript>
+                }]]></inlineScript>
             </configuration>
           </execution>
         </executions>
@@ -884,38 +893,13 @@
     </plugins>
   </build>
 
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <profiles>
     <profile>
       <id>uninherited-java.level</id>
       <activation>
         <file>
-          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists> <!-- just something that is only here -->
+          <!-- just something that is only here -->
+          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists>
         </file>
       </activation>
       <properties>
@@ -1111,6 +1095,13 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <exclude>**/Messages.class</exclude>
+                <!-- https://github.com/HtmlUnit/htmlunit-cssparser/issues/4 -->
+                <exclude>com/gargoylesoftware/**</exclude>
+              </excludes>
+            </configuration>
             <executions>
               <execution>
                 <goals>
@@ -1124,11 +1115,6 @@
                 </goals>
               </execution>
             </executions>
-            <configuration>
-              <excludes>
-                <exclude>**/Messages.class</exclude>
-              </excludes>
-            </configuration>
           </plugin>
         </plugins>
       </build>
@@ -1150,11 +1136,11 @@
             <executions>
 
               <execution>
-                <phase>initialize</phase>
                 <id>install node and npm</id>
                 <goals>
                   <goal>install-node-and-npm</goal>
                 </goals>
+                <phase>initialize</phase>
                 <configuration>
                   <nodeVersion>v${node.version}</nodeVersion>
                   <npmVersion>${npm.version}</npmVersion>
@@ -1164,11 +1150,11 @@
               </execution>
 
               <execution>
-                <phase>initialize</phase>
                 <id>npm install</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
+                <phase>initialize</phase>
                 <configuration>
                   <!-- Note that this may not be omitted lest maven-release-plugin be confused (frontend-maven-plugin #109): -->
                   <arguments>install ${npm.loglevel}</arguments>
@@ -1176,11 +1162,11 @@
               </execution>
 
               <execution>
-                <phase>generate-sources</phase>
                 <id>npm mvnbuild</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
+                <phase>generate-sources</phase>
                 <configuration>
                   <!-- The package.json must define an "mvnbuild" script -->
                   <arguments>run mvnbuild</arguments>
@@ -1188,11 +1174,11 @@
               </execution>
 
               <execution>
-                <phase>test</phase>
                 <id>npm mvntest</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
+                <phase>test</phase>
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
@@ -1222,11 +1208,11 @@
             <executions>
 
               <execution>
-                <phase>initialize</phase>
                 <id>install node and yarn</id>
                 <goals>
                   <goal>install-node-and-yarn</goal>
                 </goals>
+                <phase>initialize</phase>
                 <configuration>
                   <nodeVersion>v${node.version}</nodeVersion>
                   <yarnVersion>v${yarn.version}</yarnVersion>
@@ -1236,11 +1222,11 @@
               </execution>
 
               <execution>
-                <phase>initialize</phase>
                 <id>yarn install</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
+                <phase>initialize</phase>
                 <configuration>
                   <!-- ensure only one concurrent 'yarn install' -->
                   <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
@@ -1249,11 +1235,11 @@
               </execution>
 
               <execution>
-                <phase>generate-sources</phase>
                 <id>yarn mvnbuild</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
+                <phase>generate-sources</phase>
                 <configuration>
                   <!-- The package.json must define an "mvnbuild" script -->
                   <arguments>run mvnbuild</arguments>
@@ -1261,11 +1247,11 @@
               </execution>
 
               <execution>
-                <phase>test</phase>
                 <id>yarn mvntest</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
+                <phase>test</phase>
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
@@ -1280,12 +1266,12 @@
     <profile>
       <id>clean-node</id>
       <activation>
-        <file>
-          <exists>package.json</exists>
-        </file>
         <property>
           <name>cleanNode</name>
         </property>
+        <file>
+          <exists>package.json</exists>
+        </file>
       </activation>
       <build>
         <plugins>
@@ -1313,20 +1299,20 @@
       <id>consume-incrementals</id>
       <repositories>
         <repository>
-          <id>incrementals</id>
-          <url>${incrementals.url}</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
+          <id>incrementals</id>
+          <url>${incrementals.url}</url>
         </repository>
       </repositories>
       <pluginRepositories>
         <pluginRepository>
-          <id>incrementals</id>
-          <url>${incrementals.url}</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
+          <id>incrementals</id>
+          <url>${incrementals.url}</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>
@@ -1344,10 +1330,10 @@
             <executions>
               <execution>
                 <id>flatten</id>
-                <phase>process-resources</phase>
                 <goals>
                   <goal>flatten</goal>
                 </goals>
+                <phase>process-resources</phase>
                 <configuration>
                   <flattenMode>oss</flattenMode>
                   <outputDirectory>${project.build.directory}</outputDirectory>
@@ -1358,6 +1344,13 @@
           </plugin>
           <plugin>
             <artifactId>maven-enforcer-plugin</artifactId>
+            <dependencies>
+              <dependency>
+                <groupId>io.jenkins.tools.incrementals</groupId>
+                <artifactId>incrementals-enforcer-rules</artifactId>
+                <version>1.3</version>
+              </dependency>
+            </dependencies>
             <executions>
               <execution>
                 <id>display-info</id>
@@ -1370,13 +1363,6 @@
                 </configuration>
               </execution>
             </executions>
-            <dependencies>
-              <dependency>
-                <groupId>io.jenkins.tools.incrementals</groupId>
-                <artifactId>incrementals-enforcer-rules</artifactId>
-                <version>1.2</version>
-              </dependency>
-            </dependencies>
           </plugin>
           <plugin>
             <artifactId>maven-release-plugin</artifactId>
@@ -1438,7 +1424,8 @@
         </plugins>
       </build>
     </profile>
-    <profile> <!-- JEP-229 -->
+    <profile>
+      <!-- JEP-229 -->
       <id>block-MRP</id>
       <activation>
         <property>
