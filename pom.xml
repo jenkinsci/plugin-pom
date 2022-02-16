@@ -69,9 +69,6 @@
     <hpi-plugin.version>3.23</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
-    <!-- Change this property if you need your tests to be compiled with a different Java level than the plugin. -->
-    <!-- Use only if strictly necessary. It may cause problems in your IDE. -->
-    <java.level.test>${java.level}</java.level.test>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
@@ -704,8 +701,8 @@
         <configuration>
           <source>1.${java.level}</source>
           <target>1.${java.level}</target>
-          <testSource>1.${java.level.test}</testSource>
-          <testTarget>1.${java.level.test}</testTarget>
+          <testSource>1.${java.level}</testSource>
+          <testTarget>1.${java.level}</testTarget>
         </configuration>
       </plugin>
       <plugin>
@@ -967,6 +964,7 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
               <release>${java.level}</release>
+              <testRelease>${java.level}</testRelease>
             </configuration>
           </plugin>
         </plugins>
