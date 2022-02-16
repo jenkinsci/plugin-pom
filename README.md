@@ -20,7 +20,6 @@ thought to be overridden are no longer based on properties. The main remaining o
   * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin.
   (Generally you should not set this to a version _lower_ than that specified in the parent POM.)
   * `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
-  * `java.level.test`: The Java version to use to build the plugin tests.
   * In order to make their versions the same as the used core version, `node.version` and `npm.version`
   properties are provided.
 * Tests are skipped during the `perform` phase of a release (can be overridden by setting `release.skipTests` to false).
