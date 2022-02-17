@@ -675,6 +675,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <release>${java.level}</release>
+          <testRelease>${java.level}</testRelease>
         </configuration>
       </plugin>
       <plugin>
@@ -905,22 +906,6 @@
       <properties>
         <java.level>11</java.level>
       </properties>
-    </profile>
-    <profile>
-      <id>jdk-above-9</id>
-      <activation>
-        <jdk>[1.9,)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <release>${java.level}</release>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <id>jenkins-release</id>
