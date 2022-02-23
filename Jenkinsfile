@@ -1,12 +1,7 @@
-properties([buildDiscarder(logRotator(numToKeepStr: '20'))])
-node('maven-11') {
-    checkout scm
-    timeout(time: 1, unit: 'HOURS') {
-        // TODO Azure mirror
-        ansiColor('xterm') {
-            withEnv(['MAVEN_OPTS=-Djansi.force=true']) {
-                sh 'mvn -B -Dstyle.color=always -ntp clean verify'
-            }
-        }
-    }
-}
+// Builds a module using https://github.com/jenkins-infra/pipeline-library
+buildPlugin(useAci: true, configurations: [
+        [ platform: "linux", jdk: "8" ],
+        [ platform: "windows", jdk: "8" ],
+        [ platform: "linux", jdk: "11" ]
+        [ platform: "windows", jdk: "11" ]
+])
