@@ -930,6 +930,8 @@
               <goal>run</goal>
             </goals>
             <configuration>
+              <writeJunitReport>true</writeJunitReport>
+              <junitPackageName>io.jenkins.plugins.pom.its</junitPackageName>
               <streamLogs>true</streamLogs>
               <showErrors>true</showErrors>
               <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
