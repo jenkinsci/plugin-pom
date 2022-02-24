@@ -36,6 +36,9 @@ under the License.
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
+      <properties>
+        <disableXmlReport>true</disableXmlReport>
+      </properties>
       <repositories>
         <repository>
           <id>local.central</id>
