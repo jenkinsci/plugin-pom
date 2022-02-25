@@ -932,7 +932,8 @@
             <configuration>
               <writeJunitReport>true</writeJunitReport>
               <junitPackageName>io.jenkins.plugins.pom.its</junitPackageName>
-              <streamLogs>true</streamLogs>
+<!--              <streamLogs>true</streamLogs>-->
+              <streamLogsOnFailures>true</streamLogsOnFailures>
               <showErrors>true</showErrors>
               <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
               <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
