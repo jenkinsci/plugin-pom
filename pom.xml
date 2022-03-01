@@ -27,7 +27,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>4.35-SNAPSHOT</version>
+  <version>4.38-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -64,9 +64,9 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <jenkins-test-harness.version>1705.va_296493db_feb_</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1706.v5257fc59612a_</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.23</hpi-plugin.version>
+    <hpi-plugin.version>3.25</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
 
@@ -113,6 +113,11 @@
 
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
+
+    <!-- Avoid maven compiler plugin 3.10.0 bug -->
+    <!-- https://issues.apache.org/jira/browse/MCOMPILER-485 -->
+    <!-- TODO remove when MCOMPILER-485 is fixed -->
+    <maven.compiler.createMissingPackageInfoClass>false</maven.compiler.createMissingPackageInfoClass>
   </properties>
 
   <dependencyManagement>
@@ -280,7 +285,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.9.0</version>
+          <version>3.10.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
@@ -334,11 +339,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.10.0</version>
+          <version>3.11.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
