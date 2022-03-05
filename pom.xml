@@ -708,6 +708,11 @@
           <target>1.${java.level}</target>
           <testSource>1.${java.level}</testSource>
           <testTarget>1.${java.level}</testTarget>
+          <!--
+            Work around MCOMPILER-346.
+            TODO When MCOMPILER-346 is resolved, this should be deleted.
+          -->
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
         </configuration>
       </plugin>
       <plugin>
