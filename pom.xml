@@ -64,7 +64,7 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <jenkins-test-harness.version>1706.v5257fc59612a_</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1712.v68cd645cb_f35</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.25</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
@@ -101,7 +101,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <mockito.version>4.3.1</mockito.version>
+    <mockito.version>4.4.0</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
@@ -113,11 +113,6 @@
 
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
-
-    <!-- Avoid maven compiler plugin 3.10.0 bug -->
-    <!-- https://issues.apache.org/jira/browse/MCOMPILER-485 -->
-    <!-- TODO remove when MCOMPILER-485 is fixed -->
-    <maven.compiler.createMissingPackageInfoClass>false</maven.compiler.createMissingPackageInfoClass>
   </properties>
 
   <dependencyManagement>
@@ -285,11 +280,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.0</version>
+          <version>3.10.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
@@ -681,6 +676,11 @@
         <configuration>
           <release>${java.level}</release>
           <testRelease>${java.level}</testRelease>
+          <!--
+            Work around MCOMPILER-346.
+            TODO When MCOMPILER-346 is resolved, this should be deleted.
+          -->
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
         </configuration>
       </plugin>
       <plugin>
