@@ -66,7 +66,7 @@
 
     <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.25</hpi-plugin.version>
+    <hpi-plugin.version>3.26</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>you-must-override-the-java.level-property</java.level>
 
