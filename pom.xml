@@ -35,8 +35,8 @@
   <inceptionYear>2016</inceptionYear>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
+    <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/jenkinsci/plugin-pom</url>
   </scm>
