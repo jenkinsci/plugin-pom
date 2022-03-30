@@ -68,7 +68,6 @@
 
     <hpi-plugin.version>3.26</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
-    <java.level>you-must-override-the-java.level-property</java.level>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
@@ -339,7 +338,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.3.2</version>
           <configuration>
-            <source>${java.level}</source>
+            <source>8</source>
             <quiet>true</quiet>
             <links>
               <link>https://javadoc.jenkins.io/</link>
@@ -515,7 +514,7 @@
                 </requirePluginVersions>
                 -->
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.${java.level}</maxJdkVersion>
+                  <maxJdkVersion>1.8</maxJdkVersion>
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
@@ -552,7 +551,7 @@
                           </execution>
                       </executions>
                   </plugin>
-                  (or just override java.level) -->
+                  -->
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
@@ -699,10 +698,10 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.${java.level}</source>
-          <target>1.${java.level}</target>
-          <testSource>1.${java.level}</testSource>
-          <testTarget>1.${java.level}</testTarget>
+          <source>1.8</source>
+          <target>1.8</target>
+          <testSource>1.8</testSource>
+          <testTarget>1.8</testTarget>
           <!--
             Work around MCOMPILER-346.
             TODO When MCOMPILER-346 is resolved, this should be deleted.
@@ -716,7 +715,7 @@
         <configuration>
           <signature>
             <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java1${java.level}</artifactId>
+            <artifactId>java18</artifactId>
           </signature>
         </configuration>
         <executions>
@@ -741,7 +740,7 @@
           <webApp>
             <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>1.${java.level}</minimumJavaVersion>
+          <minimumJavaVersion>1.8</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
@@ -947,18 +946,6 @@
 
   <profiles>
     <profile>
-      <id>uninherited-java.level</id>
-      <activation>
-        <file>
-          <!-- just something that is only here -->
-          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists>
-        </file>
-      </activation>
-      <properties>
-        <java.level>8</java.level>
-      </properties>
-    </profile>
-    <profile>
       <id>jdk-above-9</id>
       <activation>
         <jdk>[1.9,)</jdk>
@@ -968,8 +955,8 @@
           <plugin>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-              <release>${java.level}</release>
-              <testRelease>${java.level}</testRelease>
+              <release>8</release>
+              <testRelease>8</testRelease>
             </configuration>
           </plugin>
         </plugins>
