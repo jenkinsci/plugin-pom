@@ -13,7 +13,6 @@ The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
 thought to be overridden are no longer based on properties. The main remaining overridable properties are:
   * `jenkins.version`: The Jenkins version required by the plugin. **Mandatory.**
-  * `java.level`: The Java version to use to build the plugin. **Mandatory.** Should match the minimum Java version for the selected Jenkins version.
      See [Java Support](#java-support) for more info.
   * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin.
   Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
@@ -46,7 +45,6 @@ In order to use the new POM:
 ```xml
   <properties>
     <jenkins.version>2.303.1</jenkins.version>
-    <java.level>11</java.level>
   </properties>
 ```
 
@@ -58,10 +56,9 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 
 ## Java support
 
-The plugin POM is designed for plugin builds with JDK 8 or above,
-but target `java.level` for a plugin may differ from a JDK version used for the build.
+The plugin POM is designed for plugin builds with JDK 8 or above.
 Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated and has been removed in `4.0`,
-`java.level=11` and `jenkins.version>2.249.1` are expected to be used for most plugins.
+`jenkins.version>2.249.1` is expected to be used for most plugins.
 
 
 ## Incrementals

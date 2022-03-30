@@ -27,7 +27,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>4.38-SNAPSHOT</version>
+  <version>4.40-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -35,8 +35,8 @@
   <inceptionYear>2016</inceptionYear>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/plugin-pom.git</developerConnection>
+    <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
     <tag>HEAD</tag>
     <url>https://github.com/jenkinsci/plugin-pom</url>
   </scm>
@@ -64,11 +64,10 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <jenkins-test-harness.version>1712.v68cd645cb_f35</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.25</hpi-plugin.version>
+    <hpi-plugin.version>3.26</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
-    <java.level>you-must-override-the-java.level-property</java.level>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
@@ -319,7 +318,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.3.2</version>
           <configuration>
-            <source>${java.level}</source>
+            <source>11</source>
             <quiet>true</quiet>
             <links>
               <link>https://javadoc.jenkins.io/</link>
@@ -490,7 +489,7 @@
                 </requirePluginVersions>
                 -->
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>${java.level}</maxJdkVersion>
+                  <maxJdkVersion>11</maxJdkVersion>
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
@@ -527,7 +526,7 @@
                           </execution>
                       </executions>
                   </plugin>
-                  (or just override java.level) -->
+                  -->
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
@@ -674,8 +673,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <release>${java.level}</release>
-          <testRelease>${java.level}</testRelease>
+          <release>11</release>
+          <testRelease>11</testRelease>
           <!--
             Work around MCOMPILER-346.
             TODO When MCOMPILER-346 is resolved, this should be deleted.
@@ -695,7 +694,7 @@
           <webApp>
             <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>${java.level}</minimumJavaVersion>
+          <minimumJavaVersion>11</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
@@ -901,16 +900,21 @@
 
   <profiles>
     <profile>
-      <id>uninherited-java.level</id>
+      <id>jdk-above-9</id>
       <activation>
-        <file>
-          <!-- just something that is only here -->
-          <exists>${basedir}/src/it/undefined-java-level/pom.xml</exists>
-        </file>
+        <jdk>[1.9,)</jdk>
       </activation>
-      <properties>
-        <java.level>11</java.level>
-      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <release>11</release>
+              <testRelease>11</testRelease>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>jenkins-release</id>
