@@ -952,6 +952,7 @@
       <properties>
         <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.testRelease>8</maven.compiler.testRelease>
+        <animal.sniffer.skip>true</animal.sniffer.skip>
       </properties>
     </profile>
     <profile>
