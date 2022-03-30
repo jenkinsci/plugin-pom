@@ -54,6 +54,10 @@
   </distributionManagement>
 
   <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.testSource>1.8</maven.compiler.testSource>
+    <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -338,7 +342,6 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.3.2</version>
           <configuration>
-            <source>8</source>
             <quiet>true</quiet>
             <links>
               <link>https://javadoc.jenkins.io/</link>
@@ -698,10 +701,6 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <testSource>1.8</testSource>
-          <testTarget>1.8</testTarget>
           <!--
             Work around MCOMPILER-346.
             TODO When MCOMPILER-346 is resolved, this should be deleted.
@@ -950,17 +949,10 @@
       <activation>
         <jdk>[1.9,)</jdk>
       </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <release>8</release>
-              <testRelease>8</testRelease>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <maven.compiler.release>8</maven.compiler.release>
+        <maven.compiler.testRelease>8</maven.compiler.testRelease>
+      </properties>
     </profile>
     <profile>
       <id>jenkins-release</id>
