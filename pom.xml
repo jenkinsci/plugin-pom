@@ -57,13 +57,25 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.compiler.release>11</maven.compiler.source>
+    <maven.compiler.testRelease>11</maven.compiler.target>
+    <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
+    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
+    <!-- Generate metadata for reflection on method parameters -->
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+
     <releaseProfiles />
     <arguments />
-    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
+    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
+    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
+    <jenkins.addOpens />
+    <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
+    <jenkins.insaneHook />
     <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.26</hpi-plugin.version>
@@ -109,9 +121,6 @@
     <scmTag>HEAD</scmTag>
     <!-- Where to put temporary files during test runs. -->
     <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
-
-    <!-- Generate metadata for reflection on method parameters -->
-    <maven.compiler.parameters>true</maven.compiler.parameters>
   </properties>
 
   <dependencyManagement>
@@ -318,7 +327,6 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.3.2</version>
           <configuration>
-            <source>11</source>
             <quiet>true</quiet>
             <links>
               <link>https://javadoc.jenkins.io/</link>
@@ -670,19 +678,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <release>11</release>
-          <testRelease>11</testRelease>
-          <!--
-            Work around MCOMPILER-346.
-            TODO When MCOMPILER-346 is resolved, this should be deleted.
-          -->
-          <forceJavacCompilerUse>true</forceJavacCompilerUse>
-        </configuration>
-      </plugin>
-      <plugin>
         <artifactId>maven-eclipse-plugin</artifactId>
       </plugin>
       <plugin>
