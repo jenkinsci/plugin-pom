@@ -67,13 +67,15 @@
 
     <releaseProfiles />
     <arguments />
-    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens}</argLine>
+    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
     <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
     <jenkins.addOpens />
+    <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
+    <jenkins.insaneHook />
     <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.26</hpi-plugin.version>
