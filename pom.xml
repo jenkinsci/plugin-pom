@@ -58,6 +58,11 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.testSource>1.8</maven.compiler.testSource>
     <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
+    <!--
+      Work around MCOMPILER-346.
+      TODO When MCOMPILER-346 is resolved, this should be deleted.
+    -->
+    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -697,16 +702,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <!--
-            Work around MCOMPILER-346.
-            TODO When MCOMPILER-346 is resolved, this should be deleted.
-          -->
-          <forceJavacCompilerUse>true</forceJavacCompilerUse>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
