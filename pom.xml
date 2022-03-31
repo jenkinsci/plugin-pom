@@ -59,11 +59,13 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <releaseProfiles />
     <arguments />
-    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1</argLine>
+    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens}</argLine>
 
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
+    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
+    <jenkins.addOpens />
     <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.26</hpi-plugin.version>
