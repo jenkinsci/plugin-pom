@@ -62,8 +62,6 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.testSource>1.8</maven.compiler.testSource>
     <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
-    <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
-    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
 
@@ -946,6 +944,8 @@
         <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.testRelease>8</maven.compiler.testRelease>
         <animal.sniffer.skip>true</animal.sniffer.skip>
+        <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
+        <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
       </properties>
     </profile>
     <profile>
