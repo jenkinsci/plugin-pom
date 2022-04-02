@@ -72,8 +72,8 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
-    <jenkins.addOpens />
+    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war", but we provide a default value for the benefit of IDEs. -->
+    <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
     <jenkins-test-harness.version>1731.v383b_5d6c3393</jenkins-test-harness.version>
