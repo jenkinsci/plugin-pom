@@ -72,8 +72,6 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
-    <jenkins.addOpens />
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
     <jenkins-test-harness.version>1731.v383b_5d6c3393</jenkins-test-harness.version>
@@ -940,9 +938,19 @@
 
   <profiles>
     <profile>
-      <id>jdk-above-9</id>
+      <id>jdk-8-and-below</id>
       <activation>
-        <jdk>[1.9,)</jdk>
+        <jdk>(,1.8]</jdk>
+      </activation>
+      <properties>
+        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+        <jenkins.addOpens />
+      </properties>
+    </profile>
+    <profile>
+      <id>jdk-9-and-above</id>
+      <activation>
+        <jdk>[9,)</jdk>
       </activation>
       <properties>
         <maven.compiler.release>8</maven.compiler.release>
@@ -950,6 +958,8 @@
         <animal.sniffer.skip>true</animal.sniffer.skip>
         <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
         <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
+        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+        <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
       </properties>
     </profile>
     <profile>
