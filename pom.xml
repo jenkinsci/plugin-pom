@@ -945,9 +945,16 @@
         <jdk>[1.9,)</jdk>
       </activation>
       <properties>
+        <!-- When compiling with a Java 9+ compiler, we always rely on "release" in favor of "source" and "target", even when compiling to Java 8 bytecode. -->
         <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.testRelease>8</maven.compiler.testRelease>
+        <!-- "release" serves the same purpose as Animal Sniffer. -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
+        <!-- While it does not hurt to have these set to the Java specification version, it is also not needed when "release" is in use. -->
+        <maven.compiler.source combine.self="override" />
+        <maven.compiler.target combine.self="override" />
+        <maven.compiler.testSource combine.self="override" />
+        <maven.compiler.testTarget combine.self="override" />
         <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
         <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
       </properties>
