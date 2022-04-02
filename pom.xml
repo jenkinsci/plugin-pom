@@ -78,7 +78,7 @@
     <jenkins.insaneHook />
     <jenkins-test-harness.version>1731.v383b_5d6c3393</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.26</hpi-plugin.version>
+    <hpi-plugin.version>3.27</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
