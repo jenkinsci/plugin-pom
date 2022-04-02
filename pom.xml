@@ -58,10 +58,6 @@
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.testSource>1.8</maven.compiler.testSource>
-    <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
 
@@ -943,6 +939,10 @@
         <jdk>(,1.8]</jdk>
       </activation>
       <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.testSource>1.8</maven.compiler.testSource>
+        <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
         <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
         <jenkins.addOpens />
       </properties>
@@ -958,11 +958,6 @@
         <maven.compiler.testRelease>8</maven.compiler.testRelease>
         <!-- "release" serves the same purpose as Animal Sniffer. -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
-        <!-- While it does not hurt to have these set to the Java specification version, it is also not needed when "release" is in use. -->
-        <maven.compiler.source combine.self="override" />
-        <maven.compiler.target combine.self="override" />
-        <maven.compiler.testSource combine.self="override" />
-        <maven.compiler.testTarget combine.self="override" />
         <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
         <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
         <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
