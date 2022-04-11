@@ -129,35 +129,6 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-core</artifactId>
-        <version>${jenkins.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-war</artifactId>
-        <version>${jenkins.version}</version>
-        <type>executable-war</type>
-        <scope>test</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-test-harness</artifactId>
-        <version>${jenkins-test-harness.version}</version>
-      </dependency>
       <!-- JTN tidy this up? -->
       <dependency>
         <!-- used in JTH and jenkins core > 2.x -->
@@ -192,6 +163,22 @@
         <version>1.4</version>
       </dependency>
       <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-core</artifactId>
+        <version>${jenkins.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-test-harness</artifactId>
+        <version>${jenkins-test-harness.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>${mockito.version}</version>
@@ -206,22 +193,29 @@
         <artifactId>objenesis</artifactId>
         <version>3.2</version>
       </dependency>
+      <dependency>
+        <groupId>org.jenkins-ci.main</groupId>
+        <artifactId>jenkins-war</artifactId>
+        <version>${jenkins.version}</version>
+        <type>executable-war</type>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
-    <!--  Jenkins core dependencies -->
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
+      <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+      <!-- TODO this would be better as a managed version of [0] -->
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
-    </dependency>
-    <!-- jenkins war needed for testing -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
-      <scope>test</scope>
     </dependency>
 
     <!-- dependencies provided by virtue of running in Jenkins -->
@@ -247,17 +241,15 @@
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-      <!-- TODO this would be better as a managed version of [0] -->
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
+    <!--  Jenkins core dependencies -->
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-test-harness</artifactId>
+      <artifactId>jenkins-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -265,9 +257,17 @@
       <artifactId>test-annotations</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-test-harness</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- jenkins war needed for testing -->
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <type>executable-war</type>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -665,7 +665,7 @@
             <phase>validate</phase>
             <configuration>
               <rules>
-                <!-- 
+                <!--
                   this causes fails the incrementals IT to fail as the parent is a snapshot and the incremental is a release
                   so this is a separate execution so that it can be skipped in that specific IT
                   -->
@@ -859,17 +859,17 @@
               <generateLicenseXml>target/${project.artifactId}/WEB-INF/licenses.xml</generateLicenseXml>
               <inlineScript><![CDATA[filter {
                     def plugins = [] as Set
-                    
+
                     // collect all Jenkins plugins
                     models.entrySet().each { e ->
                         if (e.value.packaging=="hpi")
                             plugins.add(e.key.id)
                     }
-                    
+
                     // filter out dependencies that don't belong to this plugin
                     models.entrySet().removeAll(models.entrySet().findAll { e ->
                         def a = e.key;
-                        
+
                         if (a.dependencyTrail.size()>0 && plugins.contains(a.dependencyTrail[1]))
                             return true; // ignore transitive dependencies through other plugins
 
@@ -878,7 +878,7 @@
                         // dependencies into the artifact list.
                         if (a.dependencyTrail.find { trail -> trail.contains(":hudson-core:") || trail.contains(":jenkins-core:") })
                             return true;
-                            
+
                         return false;
                     })
                 }]]></inlineScript>
