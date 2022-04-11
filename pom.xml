@@ -116,6 +116,8 @@
     <scmTag>HEAD</scmTag>
     <!-- Where to put temporary files during test runs. -->
     <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
+    <spotless.version>2.22.1</spotless.version>
+    <sort.nrOfIndentSpace>2</sort.nrOfIndentSpace>
   </properties>
 
   <dependencyManagement>
@@ -461,6 +463,11 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.2.3</version>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -925,6 +932,42 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <java>
+            <endWithNewline />
+            <importOrder />
+            <indent>
+              <spaces>true</spaces>
+            </indent>
+            <removeUnusedImports />
+            <trimTrailingWhitespace />
+          </java>
+          <pom>
+            <sortPom>
+              <encoding>${project.build.sourceEncoding}</encoding>
+              <lineSeparator>\n</lineSeparator>
+              <expandEmptyElements>false</expandEmptyElements>
+              <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+              <sortDependencies>scope,groupId,artifactId</sortDependencies>
+              <sortDependencyExclusions>groupId,artifactId</sortDependencyExclusions>
+              <nrOfIndentSpace>${sort.nrOfIndentSpace}</nrOfIndentSpace>
+            </sortPom>
+          </pom>
+        </configuration>
+        <executions>
+          <execution>
+            <!-- Runs in verify phase by default -->
+            <goals>
+              <!-- Can be disabled using -Dspotless.check.skip -->
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -965,6 +1008,7 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <spotbugs.skip>${release.skipTests}</spotbugs.skip>
+        <spotless.check.skip>${release.skipTests}</spotless.check.skip>
         <invoker.skip>${release.skipTests}</invoker.skip>
       </properties>
       <build>
@@ -1507,6 +1551,7 @@
         <!-- we can not use maven.test.skip because we may be producing a test jar -->
         <skipTests>true</skipTests>
         <spotbugs.skip>true</spotbugs.skip>
+        <spotless.check.skip>true</spotless.check.skip>
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <animal.sniffer.skip>true</animal.sniffer.skip>

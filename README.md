@@ -54,6 +54,18 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 <no-test-jar>false</no-test-jar>
 ```
 
+To fix spotless validation errors:
+
+```bash
+mvn spotless:apply
+```
+
+To disable spotless validation
+
+```xml
+<spotless.check.skip>true</spotless.check.skip>
+```
+
 ## Java support
 
 The plugin POM is designed for plugin builds with JDK 8 or above.
