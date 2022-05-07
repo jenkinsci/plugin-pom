@@ -1511,6 +1511,8 @@
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <animal.sniffer.skip>true</animal.sniffer.skip>
         <invoker.skip>true</invoker.skip>
+        <spotless.check.skip>true</spotless.check.skip>
+        <checkstyle.skip>true</checkstyle.skip>
       </properties>
     </profile>
   </profiles>
