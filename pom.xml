@@ -72,7 +72,7 @@
     <jenkins.insaneHook />
     <jenkins-test-harness.version>1752.v86627a_c48d91</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.27</hpi-plugin.version>
+    <hpi-plugin.version>3.28</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
@@ -728,7 +728,6 @@
           <webApp>
             <contextPath>/jenkins</contextPath>
           </webApp>
-          <minimumJavaVersion>1.8</minimumJavaVersion>
           <systemProperties>
             <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
           </systemProperties>
