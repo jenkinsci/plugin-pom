@@ -27,7 +27,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>4.40-SNAPSHOT</version>
+  <version>4.41-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -58,10 +58,6 @@
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <maven.compiler.release>11</maven.compiler.source>
-    <maven.compiler.testRelease>11</maven.compiler.target>
-    <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
-    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
 
@@ -72,13 +68,11 @@
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <!-- Filled in by "maven-hpi-plugin" from the "MANIFEST.MF" entry in "jenkins.war". -->
-    <jenkins.addOpens />
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
-    <jenkins-test-harness.version>1723.vcd938b_e66072</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1746.v2b_3c5d1983b_e</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.26</hpi-plugin.version>
+    <hpi-plugin.version>3.27</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
@@ -112,7 +106,7 @@
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
-    <mockito.version>4.4.0</mockito.version>
+    <mockito.version>4.5.1</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
@@ -280,11 +274,11 @@
       <plugins>
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -304,11 +298,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M4</version>
+          <version>3.0.0-M6</version>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M4</version>
+          <version>3.0.0-M6</version>
         </plugin>
         <plugin>
           <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
@@ -325,7 +319,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>3.4.0</version>
           <configuration>
             <quiet>true</quiet>
             <links>
@@ -341,11 +335,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.11.0</version>
+          <version>3.12.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.2.2</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
@@ -397,7 +391,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.7</version>
+          <version>0.8.8</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke.stapler</groupId>
@@ -778,8 +772,6 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <!-- SUREFIRE-1226 workaround -->
-          <trimStackTrace>false</trimStackTrace>
           <systemPropertyVariables>
             <hudson.udp>-1</hudson.udp>
             <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
@@ -792,8 +784,6 @@
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
-          <!-- SUREFIRE-1226 workaround -->
-          <trimStackTrace>false</trimStackTrace>
           <systemPropertyVariables>
             <hudson.udp>-1</hudson.udp>
             <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
@@ -894,6 +884,22 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>jdk-9-and-above</id>
+      <activation>
+        <jdk>[9,)</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>11</maven.compiler.source>
+        <maven.compiler.testRelease>11</maven.compiler.target>
+        <!-- "release" serves the same purpose as Animal Sniffer. -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+        <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
+        <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
+        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+        <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
+      </properties>
+    </profile>
     <profile>
       <id>jenkins-release</id>
       <properties>
@@ -1444,6 +1450,8 @@
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <invoker.skip>true</invoker.skip>
+        <spotless.check.skip>true</spotless.check.skip>
+        <checkstyle.skip>true</checkstyle.skip>
       </properties>
     </profile>
   </profiles>
