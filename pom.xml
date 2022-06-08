@@ -322,7 +322,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M6</version>
+          <version>3.0.0-M7</version>
         </plugin>
         <plugin>
           <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
