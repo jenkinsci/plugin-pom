@@ -70,7 +70,7 @@
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
-    <jenkins-test-harness.version>1753.v45c760e2400f</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1784.v83a_b_3ce99392</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.28</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
