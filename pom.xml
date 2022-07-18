@@ -70,7 +70,7 @@
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
-    <jenkins-test-harness.version>1812.v6d4e97d91fd8</jenkins-test-harness.version>
+    <jenkins-test-harness.version>1813.v14f5db_a_f2b_d3</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.28</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
@@ -164,9 +164,11 @@
         <version>3.1.0</version>
       </dependency>
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.8.2</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
@@ -264,8 +266,13 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
