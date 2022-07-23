@@ -332,7 +332,6 @@
           <version>3.0.0-M7</version>
         </plugin>
         <plugin>
-          <!-- TODO >3.0.0-M1 when MDEPLOY-244 is fixed (likely to cause security release issues without) -->
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
