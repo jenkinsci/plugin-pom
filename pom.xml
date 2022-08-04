@@ -73,7 +73,7 @@
     <jenkins-test-harness.version>1816.v8138d8056949</jenkins-test-harness.version>
 
     <hpi-plugin.version>3.32</hpi-plugin.version>
-    <stapler-plugin.version>1.17</stapler-plugin.version>
+    <stapler-plugin.version>1.18</stapler-plugin.version>
 
     <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
