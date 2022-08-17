@@ -108,7 +108,7 @@
 
     <mockito.version>4.7.0</mockito.version>
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
-    <animal.sniffer.version>1.21</animal.sniffer.version>
+    <animal.sniffer.version>1.22</animal.sniffer.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
