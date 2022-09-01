@@ -747,7 +747,6 @@
       <plugin>
         <groupId>org.kohsuke.stapler</groupId>
         <artifactId>maven-stapler-plugin</artifactId>
-        <extensions>true</extensions>
       </plugin>
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
