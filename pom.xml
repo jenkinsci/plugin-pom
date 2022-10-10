@@ -87,8 +87,8 @@
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
     <no-test-jar>true</no-test-jar>
 
-    <node.version>16.17.1</node.version>
-    <npm.version>8.19.2</npm.version>
+    <node.version>you-must-override-the-node.version-property</node.version>
+    <npm.version>you-must-override-the-npm.version-property</npm.version>
     <yarn.version>0.23.0</yarn.version>
     <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
