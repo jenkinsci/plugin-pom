@@ -449,7 +449,7 @@
         <plugin>
           <groupId>com.cloudbees</groupId>
           <artifactId>maven-license-plugin</artifactId>
-          <version>1.10</version>
+          <version>1.12</version>
         </plugin>
         <plugin>
           <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
