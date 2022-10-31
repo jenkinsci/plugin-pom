@@ -22,528 +22,533 @@
  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  ~ THE SOFTWARE.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.jenkins-ci.plugins</groupId>
-  <artifactId>plugin</artifactId>
-  <version>4.49-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>4.49-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <name>Jenkins Plugin Parent POM</name>
-  <description>The Jenkins Plugins Parent POM Project</description>
-  <inceptionYear>2016</inceptionYear>
+    <name>Jenkins Plugin Parent POM</name>
+    <description>The Jenkins Plugins Parent POM Project</description>
+    <inceptionYear>2016</inceptionYear>
 
-  <scm>
-    <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://github.com/jenkinsci/plugin-pom</url>
-  </scm>
+    <scm>
+        <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
+        <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/jenkinsci/plugin-pom</url>
+    </scm>
 
-  <distributionManagement>
-    <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>maven.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
-  <properties>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- Generate metadata for reflection on method parameters -->
-    <maven.compiler.parameters>true</maven.compiler.parameters>
+        <!-- Generate metadata for reflection on method parameters -->
+        <maven.compiler.parameters>true</maven.compiler.parameters>
 
-    <releaseProfiles />
-    <arguments />
-    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
+        <releaseProfiles />
+        <arguments />
+        <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
-    <jenkins.version>2.249</jenkins.version>
-    <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
+        <jenkins.version>2.249</jenkins.version>
+        <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
 
-    <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
-    <jenkins.insaneHook />
-    <jenkins-test-harness.version>1868.v03b_7c6673e2e</jenkins-test-harness.version>
+        <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
+        <jenkins.insaneHook />
+        <jenkins-test-harness.version>1868.v03b_7c6673e2e</jenkins-test-harness.version>
 
-    <hpi-plugin.version>3.35</hpi-plugin.version>
-    <stapler-plugin.version>1.20</stapler-plugin.version>
+        <hpi-plugin.version>3.35</hpi-plugin.version>
+        <stapler-plugin.version>1.20</stapler-plugin.version>
 
-    <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
+        <!-- Defines a SpotBugs threshold. Use "Low" to discover low-priority bugs.
          Hint: SpotBugs considers some real NPE risks in Jenkins as low-priority issues, it is recommended to enable it in plugins.
       -->
-    <spotbugs.threshold>Medium</spotbugs.threshold>
-    <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
-    <spotbugs.effort>Default</spotbugs.effort>
+        <spotbugs.threshold>Medium</spotbugs.threshold>
+        <!-- Defines a SpotBugs effort. Use "Max" to maximize the scan depth -->
+        <spotbugs.effort>Default</spotbugs.effort>
 
-    <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
-    <release.skipTests>true</release.skipTests>
-    <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
-    <no-test-jar>true</no-test-jar>
+        <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
+        <release.skipTests>true</release.skipTests>
+        <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
+        <no-test-jar>true</no-test-jar>
 
-    <node.version>you-must-override-the-node.version-property</node.version>
-    <npm.version>you-must-override-the-npm.version-property</npm.version>
-    <yarn.version>0.23.0</yarn.version>
-    <frontend-version>1.12.1</frontend-version>
-    <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
-    <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
+        <node.version>you-must-override-the-node.version-property</node.version>
+        <npm.version>you-must-override-the-npm.version-property</npm.version>
+        <yarn.version>0.23.0</yarn.version>
+        <!-- can be set to the empty string or install for yarn2 -->
+        <!-- ensure only one concurrent 'yarn install' -->
+        <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
+        <yarn.args>---mutex network</yarn.args>
+        <frontend-version>1.12.1</frontend-version>
+        <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
+        <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
 
-    <!-- changed by -DskipTests, if specified - see profile -->
-    <skip.node.tests />
+        <!-- changed by -DskipTests, if specified - see profile -->
+        <skip.node.tests />
 
-    <!-- changed by -DskipLint, if specified - see profile -->
-    <skip.node.lint />
+        <!-- changed by -DskipLint, if specified - see profile -->
+        <skip.node.lint />
 
-    <!-- may use e.g. -\-silent (without backslash) -->
-    <npm.loglevel />
+        <!-- may use e.g. -\-silent (without backslash) -->
+        <npm.loglevel />
 
-    <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
-    <hudson.Main.development>true</hudson.Main.development>
+        <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
+        <hudson.Main.development>true</hudson.Main.development>
 
-    <mockito.version>4.8.1</mockito.version>
-    <access-modifier-checker.version>1.27</access-modifier-checker.version>
-    <animal.sniffer.version>1.22</animal.sniffer.version>
+        <mockito.version>4.8.1</mockito.version>
+        <access-modifier-checker.version>1.27</access-modifier-checker.version>
+        <animal.sniffer.version>1.22</animal.sniffer.version>
 
-    <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
-    <useBeta>false</useBeta>
-    <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
-    <scmTag>HEAD</scmTag>
-    <!-- Where to put temporary files during test runs. -->
-    <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
-  </properties>
+        <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
+        <useBeta>false</useBeta>
+        <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
+        <scmTag>HEAD</scmTag>
+        <!-- Where to put temporary files during test runs. -->
+        <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
+    </properties>
 
-  <dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jenkins-ci.main</groupId>
+                <artifactId>jenkins-bom</artifactId>
+                <version>${jenkins-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jenkins-ci.main</groupId>
+                <artifactId>jenkins-core</artifactId>
+                <version>${jenkins.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jenkins-ci.main</groupId>
+                <artifactId>jenkins-war</artifactId>
+                <version>${jenkins.version}</version>
+                <type>executable-war</type>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jenkins-ci.main</groupId>
+                <artifactId>jenkins-test-harness</artifactId>
+                <version>${jenkins-test-harness.version}</version>
+            </dependency>
+            <!-- JTN tidy this up? -->
+            <dependency>
+                <!-- used in JTH and jenkins core > 2.x -->
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.9.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-annotations</artifactId>
+                <version>${animal.sniffer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.mojo.signature</groupId>
+                <artifactId>java18</artifactId>
+                <version>1.0</version>
+                <type>signature</type>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jenkins-ci</groupId>
+                <artifactId>test-annotations</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-bom</artifactId>
+                <version>${mockito.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.objenesis</groupId>
+                <artifactId>objenesis</artifactId>
+                <version>3.3</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-bom</artifactId>
-        <version>${jenkins-bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-core</artifactId>
-        <version>${jenkins.version}</version>
-        <exclusions>
-          <exclusion>
+        <!--  Jenkins core dependencies -->
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- jenkins war needed for testing -->
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-war</artifactId>
+            <type>executable-war</type>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- dependencies provided by virtue of running in Jenkins -->
+        <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-war</artifactId>
-        <version>${jenkins.version}</version>
-        <type>executable-war</type>
-        <scope>test</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci.main</groupId>
-        <artifactId>jenkins-test-harness</artifactId>
-        <version>${jenkins-test-harness.version}</version>
-      </dependency>
-      <!-- JTN tidy this up? -->
-      <dependency>
-        <!-- used in JTH and jenkins core > 2.x -->
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.junit</groupId>
-        <artifactId>junit-bom</artifactId>
-        <version>5.9.1</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-annotations</artifactId>
-        <version>${animal.sniffer.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.mojo.signature</groupId>
-        <artifactId>java18</artifactId>
-        <version>1.0</version>
-        <type>signature</type>
-      </dependency>
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jenkins-ci</groupId>
-        <artifactId>test-annotations</artifactId>
-        <version>1.4</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-bom</artifactId>
-        <version>${mockito.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.objenesis</groupId>
-        <artifactId>objenesis</artifactId>
-        <version>3.3</version>
-      </dependency>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- static analysis -->
+        <dependency>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- for JRE requirement check annotation -->
+        <dependency>
+            <!-- no need to have this at runtime -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>animal-sniffer-annotations</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
+            <!-- TODO this would be better as a managed version of [0] -->
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jenkins-ci.main</groupId>
+            <artifactId>jenkins-test-harness</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jenkins-ci</groupId>
+            <artifactId>test-annotations</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
 
-  <dependencies>
-    <!--  Jenkins core dependencies -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- jenkins war needed for testing -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
-      <scope>test</scope>
-    </dependency>
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </repository>
+    </repositories>
 
-    <!-- dependencies provided by virtue of running in Jenkins -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-    <!-- static analysis -->
-    <dependency>
-      <groupId>net.jcip</groupId>
-      <artifactId>jcip-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-
-    <!-- for JRE requirement check annotation -->
-    <dependency>
-      <!-- no need to have this at runtime -->
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
-      <!-- TODO this would be better as a managed version of [0] -->
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-test-harness</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>test-annotations</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
-  <build>
-    <!--
+    <build>
+        <!--
       Since new versions need to overwrite old versions, it's better
       not to have version number in the .hpi file name.
     -->
-    <finalName>${project.artifactId}</finalName>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-antrun-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M7</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M7</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>3.0.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
-          <configuration>
-            <quiet>true</quiet>
-            <links>
-              <link>https://javadoc.jenkins.io/</link>
-            </links>
-            <doclint>all,-missing</doclint>
-            <locale>en_US</locale>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>3.0.0-M6</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.12.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.4.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>3.2.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-eclipse-plugin</artifactId>
-          <version>2.10</version>
-          <!--
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.10.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0-M7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <configuration>
+                        <quiet>true</quiet>
+                        <links>
+                            <link>https://javadoc.jenkins.io/</link>
+                        </links>
+                        <doclint>all,-missing</doclint>
+                        <locale>en_US</locale>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>3.0.0-M6</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.12.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.4.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <version>2.10</version>
+                    <!--
             Because Eclipse lacks JSR-269 support, put the output
             to a different directory
           -->
-          <configuration>
-            <buildOutputDirectory>target/eclipse-classes</buildOutputDirectory>
-            <additionalProjectnatures>
-              <!-- enable Groovy nature by default for DSLD support  -->
-              <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
-            </additionalProjectnatures>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.gmavenplus</groupId>
-          <artifactId>gmavenplus-plugin</artifactId>
-          <version>2.1.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.3.0</version>
-          <executions>
-            <execution>
-              <id>add-source</id>
-              <goals>
-                <goal>add-source</goal>
-              </goals>
-              <phase>generate-sources</phase>
-              <configuration>
-                <sources>
-                  <source>${project.build.directory}/generated-sources/localizer</source>
-                </sources>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.8</version>
-        </plugin>
-        <plugin>
-          <groupId>org.kohsuke.stapler</groupId>
-          <artifactId>maven-stapler-plugin</artifactId>
-          <version>${stapler-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.jenkins-ci.tools</groupId>
-          <artifactId>maven-hpi-plugin</artifactId>
-          <version>${hpi-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>${animal.sniffer.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.jvnet.localizer</groupId>
-          <artifactId>localizer-maven-plugin</artifactId>
-          <version>1.31</version>
-        </plugin>
-        <plugin>
-          <groupId>org.kohsuke</groupId>
-          <artifactId>access-modifier-checker</artifactId>
-          <version>${access-modifier-checker.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>com.cloudbees</groupId>
-          <artifactId>maven-license-plugin</artifactId>
-          <version>1.15</version>
-        </plugin>
-        <plugin>
-          <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
-          <groupId>io.jenkins.tools.incrementals</groupId>
-          <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.4</version>
-          <configuration>
-            <includes>
-              <include>org.jenkins-ci.*</include>
-              <include>io.jenkins.*</include>
-            </includes>
-            <generateBackupPoms>false</generateBackupPoms>
-            <updateNonincremental>false</updateNonincremental>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.2.3</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>maybe-test-jar</id>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-            <configuration>
-              <excludes>
-                <exclude>the.hpl</exclude>
-                <exclude>InjectedTest.class</exclude>
-                <exclude>test-dependencies/</exclude>
-              </excludes>
-              <skip>${no-test-jar}</skip>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.6.1</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>display-info</id>
-            <goals>
-              <goal>display-info</goal>
-              <goal>enforce</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>[3.8.1,)</version>
-                  <message>3.8.1 required to no longer download dependencies via HTTP (use HTTPS instead).</message>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>[1.8.0,)</version>
-                </requireJavaVersion>
-                <!-- TODO failing during incrementals deploy: MENFORCER-281
+                    <configuration>
+                        <buildOutputDirectory>target/eclipse-classes</buildOutputDirectory>
+                        <additionalProjectnatures>
+                            <!-- enable Groovy nature by default for DSLD support  -->
+                            <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
+                        </additionalProjectnatures>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>2.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <executions>
+                        <execution>
+                            <id>add-source</id>
+                            <goals>
+                                <goal>add-source</goal>
+                            </goals>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <sources>
+                                    <source>${project.build.directory}/generated-sources/localizer</source>
+                                </sources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.kohsuke.stapler</groupId>
+                    <artifactId>maven-stapler-plugin</artifactId>
+                    <version>${stapler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jenkins-ci.tools</groupId>
+                    <artifactId>maven-hpi-plugin</artifactId>
+                    <version>${hpi-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>animal-sniffer-maven-plugin</artifactId>
+                    <version>${animal.sniffer.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jvnet.localizer</groupId>
+                    <artifactId>localizer-maven-plugin</artifactId>
+                    <version>1.31</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.kohsuke</groupId>
+                    <artifactId>access-modifier-checker</artifactId>
+                    <version>${access-modifier-checker.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.cloudbees</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>1.15</version>
+                </plugin>
+                <plugin>
+                    <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
+                    <groupId>io.jenkins.tools.incrementals</groupId>
+                    <artifactId>incrementals-maven-plugin</artifactId>
+                    <version>1.4</version>
+                    <configuration>
+                        <includes>
+                            <include>org.jenkins-ci.*</include>
+                            <include>io.jenkins.*</include>
+                        </includes>
+                        <generateBackupPoms>false</generateBackupPoms>
+                        <updateNonincremental>false</updateNonincremental>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>4.2.3</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>maybe-test-jar</id>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>the.hpl</exclude>
+                                <exclude>InjectedTest.class</exclude>
+                                <exclude>test-dependencies/</exclude>
+                            </excludes>
+                            <skip>${no-test-jar}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>extra-enforcer-rules</artifactId>
+                        <version>1.6.1</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>display-info</id>
+                        <goals>
+                            <goal>display-info</goal>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[3.8.1,)</version>
+                                    <message>3.8.1 required to no longer download dependencies via HTTP (use HTTPS instead).</message>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>[1.8.0,)</version>
+                                </requireJavaVersion>
+                                <!-- TODO failing during incrementals deploy: MENFORCER-281
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
                 -->
-                <enforceBytecodeVersion>
-                  <maxJdkVersion>1.8</maxJdkVersion>
-                  <ignoredScopes>
-                    <ignoredScope>test</ignoredScope>
-                  </ignoredScopes>
-                  <excludes>
-                    <!-- Makes no sense to check core itself: -->
-                    <exclude>org.jenkins-ci.main:jenkins-core</exclude>
-                    <exclude>org.jenkins-ci.main:cli</exclude>
-                    <exclude>org.jenkins-ci.main:jenkins-test-harness</exclude>
-                    <exclude>org.jenkins-ci.main:remoting</exclude>
-                    <exclude>org.kohsuke.stapler:stapler</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
-                    <exclude>org.jenkins-ci:task-reactor</exclude>
-                    <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
-                    <exclude>com.google.code.findbugs:annotations</exclude>
-                    <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
-                  </excludes>
-                  <!-- To add exclusions in a Jenkins plugin, use:
+                                <enforceBytecodeVersion>
+                                    <maxJdkVersion>1.8</maxJdkVersion>
+                                    <ignoredScopes>
+                                        <ignoredScope>test</ignoredScope>
+                                    </ignoredScopes>
+                                    <excludes>
+                                        <!-- Makes no sense to check core itself: -->
+                                        <exclude>org.jenkins-ci.main:jenkins-core</exclude>
+                                        <exclude>org.jenkins-ci.main:cli</exclude>
+                                        <exclude>org.jenkins-ci.main:jenkins-test-harness</exclude>
+                                        <exclude>org.jenkins-ci.main:remoting</exclude>
+                                        <exclude>org.kohsuke.stapler:stapler</exclude>
+                                        <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
+                                        <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
+                                        <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
+                                        <exclude>org.jenkins-ci:task-reactor</exclude>
+                                        <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
+                                        <exclude>com.google.code.findbugs:annotations</exclude>
+                                        <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
+                                    </excludes>
+                                    <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
                       <artifactId>maven-enforcer-plugin</artifactId>
                       <executions>
@@ -562,34 +567,34 @@
                       </executions>
                   </plugin>
                   -->
-                </enforceBytecodeVersion>
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>javax.servlet:servlet-api</exclude>
-                    <exclude>org.sonatype.sisu:sisu-guice</exclude>
-                    <exclude>log4j:log4j:*:jar:compile</exclude>
-                    <exclude>log4j:log4j:*:jar:runtime</exclude>
-                    <exclude>commons-logging:commons-logging:*:jar:compile</exclude>
-                    <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
+                                </enforceBytecodeVersion>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>javax.servlet:servlet-api</exclude>
+                                        <exclude>org.sonatype.sisu:sisu-guice</exclude>
+                                        <exclude>log4j:log4j:*:jar:compile</exclude>
+                                        <exclude>log4j:log4j:*:jar:runtime</exclude>
+                                        <exclude>commons-logging:commons-logging:*:jar:compile</exclude>
+                                        <exclude>commons-logging:commons-logging:*:jar:runtime</exclude>
 
-                    <!-- CVE-2021-44228 -->
-                    <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude>
+                                        <!-- CVE-2021-44228 -->
+                                        <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude>
 
-                    <!-- Jenkins Test Harness is based on JUnit. Adding TestNG dependency would disable some of its functionality. -->
-                    <exclude>org.testng:testng</exclude>
-                  </excludes>
-                </bannedDependencies>
-                <requireUpperBoundDeps>
-                  <excludes>
-                    <exclude>com.google.code.findbugs:annotations</exclude>
-                    <exclude>com.google.code.findbugs:jsr305</exclude>
-                    <exclude>com.google.guava:guava</exclude>
-                    <exclude>commons-logging:commons-logging</exclude>
-                    <exclude>javax.servlet:javax.servlet-api</exclude>
-                    <exclude>javax.servlet:servlet-api</exclude>
-                    <exclude>net.java.dev.jna:jna</exclude>
-                    <exclude>org.kohsuke:access-modifier-annotation</exclude>
-                    <!--
+                                        <!-- Jenkins Test Harness is based on JUnit. Adding TestNG dependency would disable some of its functionality. -->
+                                        <exclude>org.testng:testng</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                                <requireUpperBoundDeps>
+                                    <excludes>
+                                        <exclude>com.google.code.findbugs:annotations</exclude>
+                                        <exclude>com.google.code.findbugs:jsr305</exclude>
+                                        <exclude>com.google.guava:guava</exclude>
+                                        <exclude>commons-logging:commons-logging</exclude>
+                                        <exclude>javax.servlet:javax.servlet-api</exclude>
+                                        <exclude>javax.servlet:servlet-api</exclude>
+                                        <exclude>net.java.dev.jna:jna</exclude>
+                                        <exclude>org.kohsuke:access-modifier-annotation</exclude>
+                                        <!--
                       Work around the following require upper bound dependencies error on 2.222.x
                       and 2.235.x:
 
@@ -612,8 +617,8 @@
                       jenkinsci/jenkins#6066 (which makes cli's dependency on spotbugs-annotations
                       optional).
                     -->
-                    <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
-                    <!--
+                                        <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
+                                        <!--
                       Work around the following require upper bound dependencies error on 2.289.x:
 
                         Require upper bound dependencies error for org.ow2.asm:asm:9.0 [provided] paths to dependency are:
@@ -652,211 +657,211 @@
                       explicitly aligns ASM dependencies) and by jenkinsci/jenkins#5979 (which
                       removes JNR).
                     -->
-                    <exclude>org.ow2.asm:asm</exclude>
-                  </excludes>
-                </requireUpperBoundDeps>
-              </rules>
-            </configuration>
-          </execution>
-          <execution>
-            <id>no-snapshots-in-release</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <rules>
-                <!-- 
+                                        <exclude>org.ow2.asm:asm</exclude>
+                                    </excludes>
+                                </requireUpperBoundDeps>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>no-snapshots-in-release</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <!-- 
                   this causes fails the incrementals IT to fail as the parent is a snapshot and the incremental is a release
                   so this is a separate execution so that it can be skipped in that specific IT
                   -->
-                <requireReleaseDeps>
-                  <message>No SNAPSHOT versions are allowed for releases</message>
-                  <onlyWhenRelease>true</onlyWhenRelease>
-                  <!--  whilst we generally want this this allows for easier testing of the plugin-pom in incrementals -->
-                  <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
-                </requireReleaseDeps>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <configuration>
-          <failOnError>${spotbugs.failOnError}</failOnError>
-        </configuration>
-        <executions>
-          <execution>
-            <id>spotbugs</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>verify</phase>
-            <configuration>
-              <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
-              <!--  Instead we configure this in a profile -->
-              <xmlOutput>true</xmlOutput>
-              <spotbugsXmlOutput>false</spotbugsXmlOutput>
-              <effort>${spotbugs.effort}</effort>
-              <threshold>${spotbugs.threshold}</threshold>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java18</artifactId>
-          </signature>
-        </configuration>
-        <executions>
-          <execution>
-            <id>check</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>test</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-eclipse-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.jenkins-ci.tools</groupId>
-        <artifactId>maven-hpi-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <showDeprecation>true</showDeprecation>
-          <webApp>
-            <contextPath>/jenkins</contextPath>
-          </webApp>
-          <systemProperties>
-            <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
-          </systemProperties>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke.stapler</groupId>
-        <artifactId>maven-stapler-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <mavenExecutorId>forked-path</mavenExecutorId>
-          <useReleaseProfile>false</useReleaseProfile>
-          <preparationGoals>clean install</preparationGoals>
-          <goals>deploy</goals>
-          <arguments>${arguments}</arguments>
-          <releaseProfiles>jenkins-release,!consume-incrementals,${releaseProfiles}</releaseProfiles>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.jvnet.localizer</groupId>
-        <artifactId>localizer-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <fileMask>Messages.properties</fileMask>
-              <outputDirectory>target/generated-sources/localizer</outputDirectory>
-              <accessModifierAnnotations>true</accessModifierAnnotations>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.kohsuke</groupId>
-        <artifactId>access-modifier-checker</artifactId>
-        <configuration>
-          <properties>
-            <property>
-              <name>useBeta</name>
-              <value>${useBeta}</value>
-            </property>
-          </properties>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <configuration>
-          <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
-          <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>test-in-groovy</id>
-            <goals>
-              <goal>addTestSources</goal>
-              <goal>generateTestStubs</goal>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <!-- https://stackoverflow.com/a/4086207/12916 -->
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>createTempDir</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>generate-test-resources</phase>
-            <configuration>
-              <target>
-                <mkdir dir="${surefireTempDir}" />
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <hudson.udp>-1</hudson.udp>
-            <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
-            <java.awt.headless>true</java.awt.headless>
-          </systemPropertyVariables>
-          <runOrder>alphabetical</runOrder>
-          <reuseForks>false</reuseForks>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <hudson.udp>-1</hudson.udp>
-            <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
-            <java.awt.headless>true</java.awt.headless>
-          </systemPropertyVariables>
-          <runOrder>alphabetical</runOrder>
-          <reuseForks>false</reuseForks>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.cloudbees</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>prepare-package</phase>
-            <configuration>
-              <!--requireCompleteLicenseInfo>true</requireCompleteLicenseInfo-->
-              <generateLicenseXml>target/${project.artifactId}/WEB-INF/licenses.xml</generateLicenseXml>
-              <inlineScript><![CDATA[filter {
+                                <requireReleaseDeps>
+                                    <message>No SNAPSHOT versions are allowed for releases</message>
+                                    <onlyWhenRelease>true</onlyWhenRelease>
+                                    <!--  whilst we generally want this this allows for easier testing of the plugin-pom in incrementals -->
+                                    <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+                                </requireReleaseDeps>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <failOnError>${spotbugs.failOnError}</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>spotbugs</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
+                            <!--  Instead we configure this in a profile -->
+                            <xmlOutput>true</xmlOutput>
+                            <spotbugsXmlOutput>false</spotbugsXmlOutput>
+                            <effort>${spotbugs.effort}</effort>
+                            <threshold>${spotbugs.threshold}</threshold>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-maven-plugin</artifactId>
+                <configuration>
+                    <signature>
+                        <groupId>org.codehaus.mojo.signature</groupId>
+                        <artifactId>java18</artifactId>
+                    </signature>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jenkins-ci.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                    <webApp>
+                        <contextPath>/jenkins</contextPath>
+                    </webApp>
+                    <systemProperties>
+                        <hudson.Main.development>${hudson.Main.development}</hudson.Main.development>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.kohsuke.stapler</groupId>
+                <artifactId>maven-stapler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <preparationGoals>clean install</preparationGoals>
+                    <goals>deploy</goals>
+                    <arguments>${arguments}</arguments>
+                    <releaseProfiles>jenkins-release,!consume-incrementals,${releaseProfiles}</releaseProfiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.localizer</groupId>
+                <artifactId>localizer-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <fileMask>Messages.properties</fileMask>
+                            <outputDirectory>target/generated-sources/localizer</outputDirectory>
+                            <accessModifierAnnotations>true</accessModifierAnnotations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.kohsuke</groupId>
+                <artifactId>access-modifier-checker</artifactId>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>useBeta</name>
+                            <value>${useBeta}</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <configuration>
+                    <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
+                    <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-in-groovy</id>
+                        <goals>
+                            <goal>addTestSources</goal>
+                            <goal>generateTestStubs</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- https://stackoverflow.com/a/4086207/12916 -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>createTempDir</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <mkdir dir="${surefireTempDir}" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <hudson.udp>-1</hudson.udp>
+                        <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <runOrder>alphabetical</runOrder>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <hudson.udp>-1</hudson.udp>
+                        <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                    <runOrder>alphabetical</runOrder>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.cloudbees</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <!--requireCompleteLicenseInfo>true</requireCompleteLicenseInfo-->
+                            <generateLicenseXml>target/${project.artifactId}/WEB-INF/licenses.xml</generateLicenseXml>
+                            <inlineScript><![CDATA[filter {
                     def plugins = [] as Set
                     
                     // collect all Jenkins plugins
@@ -881,91 +886,91 @@
                         return false;
                     })
                 }]]></inlineScript>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-      <!--  the following 2 plugins are for integration tests of plugin-pom only -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>mrm-maven-plugin</artifactId>
-        <version>1.4.1</version>
-        <inherited>false</inherited>
-        <executions>
-          <execution>
-            <goals>
-              <goal>start</goal>
-              <goal>stop</goal>
-            </goals>
-            <configuration>
-              <propertyName>repository.proxy.url</propertyName>
-              <repositories>
-                <proxyRepo />
-              </repositories>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-invoker-plugin</artifactId>
-        <version>3.3.0</version>
-        <inherited>false</inherited>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <goals>
-              <goal>install</goal>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <streamLogs>true</streamLogs>
-              <showErrors>true</showErrors>
-              <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
-              <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
-              <settingsFile>src/it/settings.xml</settingsFile>
-              <filterProperties>
-                <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
-              </filterProperties>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+            <!--  the following 2 plugins are for integration tests of plugin-pom only -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>mrm-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                            <goal>stop</goal>
+                        </goals>
+                        <configuration>
+                            <propertyName>repository.proxy.url</propertyName>
+                            <repositories>
+                                <proxyRepo />
+                            </repositories>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>3.3.0</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <streamLogs>true</streamLogs>
+                            <showErrors>true</showErrors>
+                            <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
+                            <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
+                            <settingsFile>src/it/settings.xml</settingsFile>
+                            <filterProperties>
+                                <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
+                            </filterProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-  <profiles>
-    <profile>
-      <id>jdk-8-and-below</id>
-      <activation>
-        <jdk>(,1.8]</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.testSource>1.8</maven.compiler.testSource>
-        <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
-        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
-        <jenkins.addOpens />
-      </properties>
-    </profile>
-    <profile>
-      <id>jdk-9-and-above</id>
-      <activation>
-        <jdk>[9,)</jdk>
-      </activation>
-      <properties>
-        <!-- When compiling with a Java 9+ compiler, we always rely on "release" in favor of "source" and "target", even when compiling to Java 8 bytecode. -->
-        <maven.compiler.release>8</maven.compiler.release>
-        <maven.compiler.testRelease>8</maven.compiler.testRelease>
-        <!-- "release" serves the same purpose as Animal Sniffer. -->
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-        <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
-        <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
-        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
-        <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
-      </properties>
-      <!--
+    <profiles>
+        <profile>
+            <id>jdk-8-and-below</id>
+            <activation>
+                <jdk>(,1.8]</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.testSource>1.8</maven.compiler.testSource>
+                <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
+                <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+                <jenkins.addOpens />
+            </properties>
+        </profile>
+        <profile>
+            <id>jdk-9-and-above</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <properties>
+                <!-- When compiling with a Java 9+ compiler, we always rely on "release" in favor of "source" and "target", even when compiling to Java 8 bytecode. -->
+                <maven.compiler.release>8</maven.compiler.release>
+                <maven.compiler.testRelease>8</maven.compiler.testRelease>
+                <!-- "release" serves the same purpose as Animal Sniffer. -->
+                <animal.sniffer.skip>true</animal.sniffer.skip>
+                <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
+                <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
+                <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+                <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
+            </properties>
+            <!--
         Maven HPI plugin 3.27 or later (which is included in plugin parent POM 4.40 or later) almost
         allows the plugin POM to support cores that require both Java 8 and Java 11 by dynamically
         reconfiguring "maven.compiler.release" and "maven.compiler.testRelease" (which default to 8
@@ -989,658 +994,589 @@
         the minimum Jenkins version for the plugin POM to 2.357 or later and drop support for Java
         8, this workaround can be deleted.
       -->
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>display-info</id>
-                <configuration>
-                  <rules>
-                    <enforceBytecodeVersion>
-                      <maxJdkVersion>11</maxJdkVersion>
-                    </enforceBytecodeVersion>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>jenkins-release</id>
-      <properties>
-        <skipTests>${release.skipTests}</skipTests>
-        <spotbugs.skip>${release.skipTests}</spotbugs.skip>
-        <invoker.skip>${release.skipTests}</invoker.skip>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>attach-test-sources</id>
-                <goals>
-                  <goal>test-jar-no-fork</goal>
-                </goals>
-                <configuration>
-                  <skipSource>${no-test-jar}</skipSource>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>only-eclipse</id>
-      <activation>
-        <property>
-          <name>m2e.version</name>
-        </property>
-      </activation>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <!--
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>display-info</id>
+                                <configuration>
+                                    <rules>
+                                        <enforceBytecodeVersion>
+                                            <maxJdkVersion>11</maxJdkVersion>
+                                        </enforceBytecodeVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>jenkins-release</id>
+            <properties>
+                <skipTests>${release.skipTests}</skipTests>
+                <spotbugs.skip>${release.skipTests}</spotbugs.skip>
+                <invoker.skip>${release.skipTests}</invoker.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-sources</id>
+                                <goals>
+                                    <goal>test-jar-no-fork</goal>
+                                </goals>
+                                <configuration>
+                                    <skipSource>${no-test-jar}</skipSource>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>only-eclipse</id>
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <!--
               This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.
               the plugins mention here are the ones we do not have direct control over, but are used for a jenkins plugin - all other
               will be changed to in there source to support eclipse soon (hpi, license, localizer, access-modifier).
               see also: http://wiki.eclipse.org/M2E_compatible_maven_plugins
             -->
-            <plugin>
-              <groupId>org.eclipse.m2e</groupId>
-              <artifactId>lifecycle-mapping</artifactId>
-              <version>1.0.0</version>
-              <configuration>
-                <lifecycleMappingMetadata>
-                  <pluginExecutions>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
+                        <plugin>
+                            <groupId>org.eclipse.m2e</groupId>
+                            <artifactId>lifecycle-mapping</artifactId>
+                            <version>1.0.0</version>
+                            <configuration>
+                                <lifecycleMappingMetadata>
+                                    <pluginExecutions>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-enforcer-plugin</artifactId>
+                                                <versionRange>[1.0,)</versionRange>
+                                                <goals>
+                                                    <goal>display-info</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.codehaus.gmavenplus</groupId>
+                                                <artifactId>gmavenplus-plugin</artifactId>
+                                                <versionRange>[1.0,)</versionRange>
+                                                <goals>
+                                                    <goal>compileTests</goal>
+                                                    <goal>generateTestStubs</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                    </pluginExecutions>
+                                </lifecycleMappingMetadata>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>always-check-remote-repositories</id>
+            <properties>
+                <maven.repository.update.freqency>always</maven.repository.update.freqency>
+            </properties>
+        </profile>
+        <profile>
+            <id>skip-node-tests</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.node.tests>--skipTests --skipLint</skip.node.tests>
+            </properties>
+        </profile>
+        <profile>
+            <id>skip-node-lint</id>
+            <activation>
+                <property>
+                    <name>skipLint</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <skip.node.lint>--skipLint</skip.node.lint>
+            </properties>
+        </profile>
+        <profile>
+            <id>spotbugs-exclusion-file</id>
+            <activation>
+                <file>
+                    <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>spotbugs</id>
+                                <configuration>
+                                    <excludeFilterFile>${project.basedir}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>all-tests</id>
+            <activation>
+                <property>
+                    <name>!test</name>
+                </property>
+            </activation>
+            <properties>
+                <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+            </properties>
+        </profile>
+        <profile>
+            <id>specific-test</id>
+            <activation>
+                <property>
+                    <name>test</name>
+                </property>
+            </activation>
+            <properties>
+                <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+            </properties>
+        </profile>
+        <profile>
+            <id>enable-jacoco</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/Messages.class</exclude>
+                                <!-- https://github.com/HtmlUnit/htmlunit-cssparser/issues/4 -->
+                                <exclude>com/gargoylesoftware/**</exclude>
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>node-execution</id>
+            <activation>
+                <file>
+                    <exists>.mvn_exec_node</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-version}</version>
+
+                        <executions>
+
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <nodeVersion>v${node.version}</nodeVersion>
+                                    <npmVersion>${npm.version}</npmVersion>
+                                    <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
+                                    <npmDownloadRoot>${npmDownloadRoot}</npmDownloadRoot>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <!-- Note that this may not be omitted lest maven-release-plugin be confused (frontend-maven-plugin #109): -->
+                                    <arguments>install ${npm.loglevel}</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm mvnbuild</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <!-- The package.json must define an "mvnbuild" script -->
+                                    <arguments>run mvnbuild</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm mvntest</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <!-- The package.json must define an "mvntest" script -->
+                                    <arguments>run mvntest</arguments>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>yarn-execution</id>
+            <activation>
+                <file>
+                    <exists>.mvn_exec_yarn</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>${frontend-version}</version>
+
+                        <executions>
+
+                            <execution>
+                                <id>install node and yarn</id>
+                                <goals>
+                                    <goal>install-node-and-yarn</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <nodeVersion>v${node.version}</nodeVersion>
+                                    <yarnVersion>v${yarn.version}</yarnVersion>
+                                    <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
+                                    <!-- tried to create a mirror for yarnDownloadRoot but it did not work -->
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>yarn install</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                                <configuration>
+                                    <arguments>${yarn.args}</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>yarn mvnbuild</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <!-- The package.json must define an "mvnbuild" script -->
+                                    <arguments>run mvnbuild</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>yarn mvntest</id>
+                                <goals>
+                                    <goal>yarn</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <!-- The package.json must define an "mvntest" script -->
+                                    <arguments>run mvntest</arguments>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>clean-node</id>
+            <activation>
+                <property>
+                    <name>cleanNode</name>
+                </property>
+                <file>
+                    <exists>package.json</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>node</directory>
+                                    <followSymlinks>false</followSymlinks>
+                                </fileset>
+                                <fileset>
+                                    <directory>node_modules</directory>
+                                    <followSymlinks>false</followSymlinks>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- JEP-305 -->
+            <id>consume-incrementals</id>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>incrementals</id>
+                    <url>${incrementals.url}</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>incrementals</id>
+                    <url>${incrementals.url}</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <id>might-produce-incrementals</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>flatten-maven-plugin</artifactId>
+                        <version>1.3.0</version>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>flatten</id>
+                                <goals>
+                                    <goal>flatten</goal>
+                                </goals>
+                                <phase>process-resources</phase>
+                                <configuration>
+                                    <flattenMode>oss</flattenMode>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-enforcer-plugin</artifactId>
-                        <versionRange>[1.0,)</versionRange>
-                        <goals>
-                          <goal>display-info</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
-                    </pluginExecution>
-                    <pluginExecution>
-                      <pluginExecutionFilter>
-                        <groupId>org.codehaus.gmavenplus</groupId>
-                        <artifactId>gmavenplus-plugin</artifactId>
-                        <versionRange>[1.0,)</versionRange>
-                        <goals>
-                          <goal>compileTests</goal>
-                          <goal>generateTestStubs</goal>
-                        </goals>
-                      </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
-                    </pluginExecution>
-                  </pluginExecutions>
-                </lifecycleMappingMetadata>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-    <profile>
-      <id>always-check-remote-repositories</id>
-      <properties>
-        <maven.repository.update.freqency>always</maven.repository.update.freqency>
-      </properties>
-    </profile>
-    <profile>
-      <id>skip-node-tests</id>
-      <activation>
-        <property>
-          <name>skipTests</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <skip.node.tests>--skipTests --skipLint</skip.node.tests>
-      </properties>
-    </profile>
-    <profile>
-      <id>skip-node-lint</id>
-      <activation>
-        <property>
-          <name>skipLint</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <skip.node.lint>--skipLint</skip.node.lint>
-      </properties>
-    </profile>
-    <profile>
-      <id>spotbugs-exclusion-file</id>
-      <activation>
-        <file>
-          <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>spotbugs</id>
-                <configuration>
-                  <excludeFilterFile>${project.basedir}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>all-tests</id>
-      <activation>
-        <property>
-          <name>!test</name>
-        </property>
-      </activation>
-      <properties>
-        <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
-      </properties>
-    </profile>
-    <profile>
-      <id>specific-test</id>
-      <activation>
-        <property>
-          <name>test</name>
-        </property>
-      </activation>
-      <properties>
-        <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
-      </properties>
-    </profile>
-    <profile>
-      <id>enable-jacoco</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <configuration>
-              <excludes>
-                <exclude>**/Messages.class</exclude>
-                <!-- https://github.com/HtmlUnit/htmlunit-cssparser/issues/4 -->
-                <exclude>com/gargoylesoftware/**</exclude>
-              </excludes>
-            </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>report</id>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>node-execution</id>
-      <activation>
-        <file>
-          <exists>.mvn_exec_node</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>${frontend-version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>io.jenkins.tools.incrementals</groupId>
+                                <artifactId>incrementals-enforcer-rules</artifactId>
+                                <version>1.4</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>display-info</id>
+                                <configuration>
+                                    <rules>
+                                        <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
+                                            <version>[1.0-beta-4,)</version>
+                                        </rule>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <configuration>
+                            <completionGoals>incrementals:reincrementalify</completionGoals>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>produce-incrementals</id>
+            <activation>
+                <property>
+                    <name>set.changelist</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>incrementals</id>
+                    <url>${incrementals.url}</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- Copied from jenkins-release: -->
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>attach-test-sources</id>
+                                <goals>
+                                    <goal>test-jar-no-fork</goal>
+                                </goals>
+                                <configuration>
+                                    <skipSource>${no-test-jar}</skipSource>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- JEP-229 -->
+            <id>block-MRP</id>
+            <activation>
+                <property>
+                    <name>changelist.format</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <configuration>
+                            <preparationGoals>not-set-up-for-MRP</preparationGoals>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- Profile to run benchmarks when the `benchmark` property is set -->
+        <profile>
+            <id>jmh-benchmark</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/*Benchmark.java</include>
+                                <include>**/Benchmark*.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-            <executions>
-
-              <execution>
-                <id>install node and npm</id>
-                <goals>
-                  <goal>install-node-and-npm</goal>
-                </goals>
-                <phase>initialize</phase>
-                <configuration>
-                  <nodeVersion>v${node.version}</nodeVersion>
-                  <npmVersion>${npm.version}</npmVersion>
-                  <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
-                  <npmDownloadRoot>${npmDownloadRoot}</npmDownloadRoot>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>npm install</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>initialize</phase>
-                <configuration>
-                  <!-- Note that this may not be omitted lest maven-release-plugin be confused (frontend-maven-plugin #109): -->
-                  <arguments>install ${npm.loglevel}</arguments>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>npm mvnbuild</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvnbuild" script -->
-                  <arguments>run mvnbuild</arguments>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>npm mvntest</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>test</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvntest" script -->
-                  <arguments>run mvntest</arguments>
-                </configuration>
-              </execution>
-
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>yarn-execution</id>
-      <activation>
-        <file>
-          <exists>.mvn_exec_yarn</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>${frontend-version}</version>
-
-            <executions>
-
-              <execution>
-                <id>install node and yarn</id>
-                <goals>
-                  <goal>install-node-and-yarn</goal>
-                </goals>
-                <phase>initialize</phase>
-                <configuration>
-                  <nodeVersion>v${node.version}</nodeVersion>
-                  <yarnVersion>v${yarn.version}</yarnVersion>
-                  <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
-                  <!-- tried to create a mirror for yarnDownloadRoot but it did not work -->
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>yarn install</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>initialize</phase>
-                <configuration>
-                  <!-- ensure only one concurrent 'yarn install' -->
-                  <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
-                  <arguments>--mutex network</arguments>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>yarn mvnbuild</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvnbuild" script -->
-                  <arguments>run mvnbuild</arguments>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>yarn mvntest</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>test</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvntest" script -->
-                  <arguments>run mvntest</arguments>
-                </configuration>
-              </execution>
-
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>yarn2-execution</id>
-      <activation>
-        <file>
-          <exists>.mvn_exec_yarn2</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>${frontend-version}</version>
-
-            <executions>
-
-              <execution>
-                <id>install node and yarn</id>
-                <goals>
-                  <goal>install-node-and-yarn</goal>
-                </goals>
-                <phase>initialize</phase>
-                <configuration>
-                  <nodeVersion>v${node.version}</nodeVersion>
-                  <yarnVersion>v${yarn.version}</yarnVersion>
-                  <nodeDownloadRoot>${nodeDownloadRoot}</nodeDownloadRoot>
-                  <!-- tried to create a mirror for yarnDownloadRoot but it did not work -->
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>yarn install</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>initialize</phase>
-              </execution>
-
-              <execution>
-                <id>yarn mvnbuild</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvnbuild" script -->
-                  <arguments>run mvnbuild</arguments>
-                </configuration>
-              </execution>
-
-              <execution>
-                <id>yarn mvntest</id>
-                <goals>
-                  <goal>yarn</goal>
-                </goals>
-                <phase>test</phase>
-                <configuration>
-                  <!-- The package.json must define an "mvntest" script -->
-                  <arguments>run mvntest</arguments>
-                </configuration>
-              </execution>
-
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>clean-node</id>
-      <activation>
-        <property>
-          <name>cleanNode</name>
-        </property>
-        <file>
-          <exists>package.json</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <configuration>
-              <filesets>
-                <fileset>
-                  <directory>node</directory>
-                  <followSymlinks>false</followSymlinks>
-                </fileset>
-                <fileset>
-                  <directory>node_modules</directory>
-                  <followSymlinks>false</followSymlinks>
-                </fileset>
-              </filesets>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <!-- JEP-305 -->
-      <id>consume-incrementals</id>
-      <repositories>
-        <repository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>incrementals</id>
-          <url>${incrementals.url}</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-          <id>incrementals</id>
-          <url>${incrementals.url}</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
-    <profile>
-      <id>might-produce-incrementals</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>flatten-maven-plugin</artifactId>
-            <version>1.3.0</version>
-            <configuration>
-              <updatePomFile>true</updatePomFile>
-            </configuration>
-            <executions>
-              <execution>
-                <id>flatten</id>
-                <goals>
-                  <goal>flatten</goal>
-                </goals>
-                <phase>process-resources</phase>
-                <configuration>
-                  <flattenMode>oss</flattenMode>
-                  <outputDirectory>${project.build.directory}</outputDirectory>
-                  <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-enforcer-plugin</artifactId>
-            <dependencies>
-              <dependency>
-                <groupId>io.jenkins.tools.incrementals</groupId>
-                <artifactId>incrementals-enforcer-rules</artifactId>
-                <version>1.4</version>
-              </dependency>
-            </dependencies>
-            <executions>
-              <execution>
-                <id>display-info</id>
-                <configuration>
-                  <rules>
-                    <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
-                      <version>[1.0-beta-4,)</version>
-                    </rule>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <completionGoals>incrementals:reincrementalify</completionGoals>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>produce-incrementals</id>
-      <activation>
-        <property>
-          <name>set.changelist</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <distributionManagement>
-        <repository>
-          <id>incrementals</id>
-          <url>${incrementals.url}</url>
-        </repository>
-      </distributionManagement>
-      <build>
-        <plugins>
-          <!-- Copied from jenkins-release: -->
-          <plugin>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>attach-test-sources</id>
-                <goals>
-                  <goal>test-jar-no-fork</goal>
-                </goals>
-                <configuration>
-                  <skipSource>${no-test-jar}</skipSource>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <!-- JEP-229 -->
-      <id>block-MRP</id>
-      <activation>
-        <property>
-          <name>changelist.format</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <configuration>
-              <preparationGoals>not-set-up-for-MRP</preparationGoals>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <!-- Profile to run benchmarks when the `benchmark` property is set -->
-    <profile>
-      <id>jmh-benchmark</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <includes>
-                <include>**/*Benchmark.java</include>
-                <include>**/Benchmark*.java</include>
-              </includes>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <!--  a profile that disables as much testing as possible testing whilst still producing the artifacts -->
-      <id>quick-build</id>
-      <properties>
-        <!-- we can not use maven.test.skip because we may be producing a test jar -->
-        <skipTests>true</skipTests>
-        <spotbugs.skip>true</spotbugs.skip>
-        <enforcer.skip>true</enforcer.skip>
-        <access-modifier-checker.skip>true</access-modifier-checker.skip>
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-        <invoker.skip>true</invoker.skip>
-        <spotless.check.skip>true</spotless.check.skip>
-        <checkstyle.skip>true</checkstyle.skip>
-      </properties>
-    </profile>
-  </profiles>
+        <profile>
+            <!--  a profile that disables as much testing as possible testing whilst still producing the artifacts -->
+            <id>quick-build</id>
+            <properties>
+                <!-- we can not use maven.test.skip because we may be producing a test jar -->
+                <skipTests>true</skipTests>
+                <spotbugs.skip>true</spotbugs.skip>
+                <enforcer.skip>true</enforcer.skip>
+                <access-modifier-checker.skip>true</access-modifier-checker.skip>
+                <animal.sniffer.skip>true</animal.sniffer.skip>
+                <invoker.skip>true</invoker.skip>
+                <spotless.check.skip>true</spotless.check.skip>
+                <checkstyle.skip>true</checkstyle.skip>
+            </properties>
+        </profile>
+    </profiles>
 </project>
