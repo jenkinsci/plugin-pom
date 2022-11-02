@@ -75,6 +75,13 @@
     <hpi-plugin.version>3.35</hpi-plugin.version>
     <stapler-plugin.version>1.20</stapler-plugin.version>
 
+    <!--
+      The MS_EXPOSE_REP, EI_EXPOSE_REP, EI_EXPOSE_REP2, EI_EXPOSE_STATIC_REP2, MS_EXPOSE_BUF,
+      EI_EXPOSE_BUF, EI_EXPOSE_STATIC_BUF2, and EI_EXPOSE_BUF2 bug patterns are noisy and create
+      little value; therefore, we suppress them globally.
+    -->
+    <spotbugs.omitVisitors>FindReturnRef</spotbugs.omitVisitors>
+
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
@@ -461,7 +468,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.2.3</version>
+          <version>4.7.2.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
