@@ -1474,6 +1474,13 @@
         </plugins>
       </build>
     </profile>
+    <!--
+      A profile that is identical to "might-produce-incrementals" but without
+      "flatten-maven-plugin". This is only intended to be used with repositories like "pom" and
+      "plugin-pom", which do not need to be flattened in incremental builds. If they were flattened,
+      then the resulting incremental build would be missing critical sections and would not be
+      suitable for consumers.
+    -->
     <profile>
       <id>might-produce-incrementals-without-flattening</id>
       <build>
