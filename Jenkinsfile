@@ -1,12 +1,27 @@
-properties([buildDiscarder(logRotator(numToKeepStr: '20'))])
+properties([
+  buildDiscarder(logRotator(numToKeepStr: '10')),
+  disableConcurrentBuilds(abortPrevious: true)
+])
+
 node('maven-11') {
-    checkout scm
+  stage('Checkout') {
+    infra.checkoutSCM()
+  }
+
+  stage('Build') {
     timeout(time: 1, unit: 'HOURS') {
-        // TODO Azure mirror
-        ansiColor('xterm') {
-            withEnv(['MAVEN_OPTS=-Djansi.force=true']) {
-                sh 'mvn -B -Dstyle.color=always -ntp clean verify'
-            }
-        }
+      ansiColor('xterm') {
+        def mavenOptions = [
+          '-Dset.changelist',
+          '-Dstyle.color=always',
+          'clean',
+          'verify',
+        ]
+        infra.runMaven(mavenOptions, 11)
+        infra.prepareToPublishIncrementals()
+      }
     }
+  }
 }
+
+infra.maybePublishIncrementals()
