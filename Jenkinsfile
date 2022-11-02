@@ -13,7 +13,7 @@ node('maven-11') {
       def mavenOptions = [
         '-Dset.changelist',
         'clean',
-        'verify',
+        'install',
       ]
       infra.runMaven(mavenOptions, 11)
       infra.prepareToPublishIncrementals()
