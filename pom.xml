@@ -1475,16 +1475,68 @@
       </build>
     </profile>
     <!--
-      A profile that is identical to "might-produce-incrementals" but without
-      "flatten-maven-plugin". This is only intended to be used with repositories like "pom" and
-      "plugin-pom", which do not need to be flattened in incremental builds. If they were flattened,
+      A profile that is identical to "might-produce-incrementals" but with "flatten-maven-plugin"
+      configured to interpolate variables in the "scm", "url", and "version" elements and keep all
+      other elements untouched. This is only intended to be used with repositories like "pom" and
+      "plugin-pom". If the POM from these repositories were flattened with the "oss" flatten mode,
       then the resulting incremental build would be missing critical sections and would not be
-      suitable for consumers.
+      suitable for consumers. If the "scm", "url", and "version" elements were not interpolated,
+      then the resulting incremental build would contain e.g. an SCM tag of "${scmTag}" and could
+      not be published to the incrementals repository.
     -->
     <profile>
-      <id>might-produce-incrementals-without-flattening</id>
+      <id>might-produce-incrementals-with-minimal-flattening</id>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>1.3.0</version>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>flatten</id>
+                <goals>
+                  <goal>flatten</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <keepCommentsInPom>true</keepCommentsInPom>
+                  <pomElements>
+                    <build>keep</build>
+                    <ciManagement>keep</ciManagement>
+                    <contributors>keep</contributors>
+                    <dependencies>keep</dependencies>
+                    <dependencyManagement>keep</dependencyManagement>
+                    <description>keep</description>
+                    <developers>keep</developers>
+                    <distributionManagement>keep</distributionManagement>
+                    <inceptionYear>keep</inceptionYear>
+                    <issueManagement>keep</issueManagement>
+                    <mailingLists>keep</mailingLists>
+                    <modules>keep</modules>
+                    <name>keep</name>
+                    <organization>keep</organization>
+                    <parent>keep</parent>
+                    <pluginManagement>keep</pluginManagement>
+                    <pluginRepositories>keep</pluginRepositories>
+                    <prerequisites>keep</prerequisites>
+                    <profiles>keep</profiles>
+                    <properties>keep</properties>
+                    <reporting>keep</reporting>
+                    <repositories>keep</repositories>
+                    <scm>interpolate</scm>
+                    <url>interpolate</url>
+                    <version>interpolate</version>
+                  </pomElements>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
           <plugin>
             <artifactId>maven-enforcer-plugin</artifactId>
             <dependencies>
