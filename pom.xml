@@ -93,7 +93,7 @@
     <!-- can be set to the empty string or install for yarn2 -->
     <!-- ensure only one concurrent 'yarn install' -->
     <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
-    <yarn.args>---mutex network</yarn.args>
+    <yarn.args>--mutex network</yarn.args>
     <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
     <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
