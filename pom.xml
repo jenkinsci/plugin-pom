@@ -202,11 +202,6 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.objenesis</groupId>
-        <artifactId>objenesis</artifactId>
-        <version>3.3</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
