@@ -692,8 +692,11 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-              <!--  Do not define excludeFilterFile here as it will force a plugin to provide a file -->
-              <!--  Instead we configure this in a profile -->
+              <!--
+                Do not define "excludeFilterFile" here, as it will force consumers to provide a file.
+                Instead, we configure this below in a profile conditionally activated based on the
+                presence of this file.
+              -->
               <xmlOutput>true</xmlOutput>
               <spotbugsXmlOutput>false</spotbugsXmlOutput>
             </configuration>
@@ -1139,7 +1142,7 @@
       <id>spotbugs-exclusion-file</id>
       <activation>
         <file>
-          <exists>${basedir}/src/spotbugs/excludesFilter.xml</exists>
+          <exists>${maven.multiModuleProjectDirectory}/src/spotbugs/excludesFilter.xml</exists>
         </file>
       </activation>
       <build>
@@ -1151,7 +1154,7 @@
               <execution>
                 <id>spotbugs</id>
                 <configuration>
-                  <excludeFilterFile>${project.basedir}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
+                  <excludeFilterFile>${maven.multiModuleProjectDirectory}/src/spotbugs/excludesFilter.xml</excludeFilterFile>
                 </configuration>
               </execution>
             </executions>
