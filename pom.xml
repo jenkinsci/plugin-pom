@@ -91,9 +91,7 @@
     <npm.version>you-must-override-the-npm.version-property</npm.version>
     <yarn.version>you-must-override-the-yarn.version-property</yarn.version>
     <!-- can be set to the empty string or install for yarn2 -->
-    <!-- ensure only one concurrent 'yarn install' -->
-    <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
-    <yarn.args>--mutex network</yarn.args>
+    <frontend.yarn.arguments>--mutex network</frontend.yarn.arguments>
     <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
     <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
