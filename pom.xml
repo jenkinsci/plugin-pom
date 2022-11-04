@@ -90,9 +90,6 @@
     <node.version>you-must-override-the-node.version-property</node.version>
     <npm.version>you-must-override-the-npm.version-property</npm.version>
     <yarn.version>you-must-override-the-yarn.version-property</yarn.version>
-    <!-- ensure only one concurrent 'yarn install' by setting yarn.arguments to -\-mutex network The \ is an escaping character and should be omitted in the final usage-->
-    <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
-    <frontend.yarn.arguments></frontend.yarn.arguments>
     <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
     <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
