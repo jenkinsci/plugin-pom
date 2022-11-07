@@ -1325,9 +1325,6 @@
                   <goal>yarn</goal>
                 </goals>
                 <phase>initialize</phase>
-                <configuration>
-                  <arguments>${frontend.yarn.arguments}</arguments>
-                </configuration>
               </execution>
 
               <execution>
