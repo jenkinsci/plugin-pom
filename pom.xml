@@ -1309,11 +1309,6 @@
                   <goal>yarn</goal>
                 </goals>
                 <phase>initialize</phase>
-                <configuration>
-                  <!-- ensure only one concurrent 'yarn install' -->
-                  <!-- when yarn cache is empty, multiple yarns performing network fetches frequently results in opaque errors -->
-                  <arguments>--mutex network</arguments>
-                </configuration>
               </execution>
 
               <execution>
