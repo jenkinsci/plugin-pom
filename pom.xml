@@ -65,15 +65,18 @@
     <arguments />
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
+    <access-modifier-checker.version>1.27</access-modifier-checker.version>
+    <animal.sniffer.version>1.22</animal.sniffer.version>
+    <frontend-version>1.12.1</frontend-version>
+    <hpi-plugin.version>3.35</hpi-plugin.version>
     <jenkins.version>2.249</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
+    <jenkins-test-harness.version>1868.v03b_7c6673e2e</jenkins-test-harness.version>
+    <mockito.version>4.8.1</mockito.version>
+    <stapler-plugin.version>1.20</stapler-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
-    <jenkins-test-harness.version>1868.v03b_7c6673e2e</jenkins-test-harness.version>
-
-    <hpi-plugin.version>3.35</hpi-plugin.version>
-    <stapler-plugin.version>1.20</stapler-plugin.version>
 
     <!--
       The MS_EXPOSE_REP, EI_EXPOSE_REP, EI_EXPOSE_REP2, EI_EXPOSE_STATIC_REP2, MS_EXPOSE_BUF,
@@ -90,7 +93,6 @@
     <node.version>you-must-override-the-node.version-property</node.version>
     <npm.version>you-must-override-the-npm.version-property</npm.version>
     <yarn.version>you-must-override-the-yarn.version-property</yarn.version>
-    <frontend-version>1.12.1</frontend-version>
     <nodeDownloadRoot>https://repo.jenkins-ci.org/nodejs-dist/</nodeDownloadRoot>
     <npmDownloadRoot>https://repo.jenkins-ci.org/npm-dist/</npmDownloadRoot>
 
@@ -105,10 +107,6 @@
 
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
-
-    <mockito.version>4.8.1</mockito.version>
-    <access-modifier-checker.version>1.27</access-modifier-checker.version>
-    <animal.sniffer.version>1.22</animal.sniffer.version>
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
