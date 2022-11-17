@@ -37,14 +37,18 @@ In order to use the new POM:
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.31</version> <!-- or whatever the newest version available is -->
+    <version>VERSION</version> <!-- See https://github.com/jenkinsci/plugin-pom/releases for available versions-->
     <relativePath />
   </parent>
 ```
 * Override the needed properties, e.g.:
 ```xml
   <properties>
-    <jenkins.version>2.303.1</jenkins.version>
+    <!--
+    Take a look the developer documentation for the baseline version to use
+    https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/#currently-recommended-versions
+    -->
+    <jenkins.version>2.332.4</jenkins.version>
   </properties>
 ```
 
@@ -56,10 +60,8 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 
 ## Java support
 
-The plugin POM is designed for plugin builds with JDK 8 or above.
-Starting from Plugin POM `3.44`, support of Java 7 targets in Plugin POM is deprecated and has been removed in `4.0`,
-`jenkins.version>2.249.1` is expected to be used for most plugins.
-
+The plugin POM is designed for plugin builds with JDK 8 or above.  
+Starting from Plugin POM `4.40`, support of Java 17 was added.
 
 ## Incrementals
 
