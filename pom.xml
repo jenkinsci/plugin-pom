@@ -809,6 +809,7 @@
             <hudson.udp>-1</hudson.udp>
             <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
             <java.awt.headless>true</java.awt.headless>
+            <surefire.forkNumber>$${surefire.forkNumber}</surefire.forkNumber>
           </systemPropertyVariables>
           <runOrder>alphabetical</runOrder>
           <reuseForks>false</reuseForks>
