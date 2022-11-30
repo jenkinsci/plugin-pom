@@ -7,7 +7,7 @@
 
 This new parent POM is decoupled from the core Jenkins project, both from the Maven and repository perspectives.
 
-Since version 4.0 the plugin pom supports Jenkins 2.200 and higher and a select few older LTS lines ([full list](https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-bom/))
+Since version 4.52 the plugin parent POM supports Jenkins 2.361 and higher.
  
 The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
@@ -48,7 +48,7 @@ In order to use the new POM:
     Take a look the developer documentation for the baseline version to use
     https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/#currently-recommended-versions
     -->
-    <jenkins.version>2.332.4</jenkins.version>
+    <jenkins.version>2.361.4</jenkins.version>
   </properties>
 ```
 
@@ -60,7 +60,7 @@ If you had a `jar:test-jar` execution, delete it and add to `properties`:
 
 ## Java support
 
-The plugin POM is designed for plugin builds with JDK 8 or above.  
+The plugin POM is designed for plugin builds with JDK 11 or above.
 Starting from Plugin POM `4.40`, support of Java 17 was added.
 
 ## Incrementals

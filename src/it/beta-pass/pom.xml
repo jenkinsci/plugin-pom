@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
-        <jenkins.version>2.277.4</jenkins.version>
+        <jenkins.version>2.361.4</jenkins.version>
         <maven-hpi-plugin.disabledTestInjection>true</maven-hpi-plugin.disabledTestInjection>
     </properties>
     <repositories>

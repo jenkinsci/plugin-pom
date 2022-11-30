@@ -58,18 +58,23 @@
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.testRelease>11</maven.compiler.testRelease>
+    <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
+    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
+    <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
+    <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
 
     <releaseProfiles />
     <arguments />
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <access-modifier-checker.version>1.27</access-modifier-checker.version>
-    <animal.sniffer.version>1.22</animal.sniffer.version>
     <frontend-version>1.12.1</frontend-version>
     <hpi-plugin.version>3.36</hpi-plugin.version>
-    <jenkins.version>2.249</jenkins.version>
+    <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>1900.v9e128c991ef4</jenkins-test-harness.version>
     <mockito.version>4.9.0</mockito.version>
@@ -151,11 +156,6 @@
         <version>4.13.2</version>
       </dependency>
       <dependency>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-annotations</artifactId>
-        <version>${animal.sniffer.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.codehaus.mojo.signature</groupId>
         <artifactId>java18</artifactId>
         <version>1.0</version>
@@ -225,14 +225,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- for JRE requirement check annotation -->
-    <dependency>
-      <!-- no need to have this at runtime -->
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>animal-sniffer-annotations</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
       <!-- TODO this would be better as a managed version of [0] -->
@@ -407,11 +399,6 @@
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>${animal.sniffer.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.3.0</version>
           <executions>
@@ -500,7 +487,7 @@
                   <message>3.8.1 required to no longer download dependencies via HTTP (use HTTPS instead).</message>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>[1.8.0,)</version>
+                  <version>[${maven.compiler.release},)</version>
                 </requireJavaVersion>
                 <!-- TODO failing during incrementals deploy: MENFORCER-281
                 <requirePluginVersions>
@@ -508,7 +495,7 @@
                 </requirePluginVersions>
                 -->
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.8</maxJdkVersion>
+                  <maxJdkVersion>${maven.compiler.release}</maxJdkVersion>
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
@@ -684,25 +671,6 @@
               <xmlOutput>true</xmlOutput>
               <spotbugsXmlOutput>false</spotbugsXmlOutput>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java18</artifactId>
-          </signature>
-        </configuration>
-        <executions>
-          <execution>
-            <id>check</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>test</phase>
           </execution>
         </executions>
       </plugin>
@@ -918,80 +886,6 @@
   </build>
 
   <profiles>
-    <profile>
-      <id>jdk-8-and-below</id>
-      <activation>
-        <jdk>(,1.8]</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.testSource>1.8</maven.compiler.testSource>
-        <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
-        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
-        <jenkins.addOpens />
-      </properties>
-    </profile>
-    <profile>
-      <id>jdk-9-and-above</id>
-      <activation>
-        <jdk>[9,)</jdk>
-      </activation>
-      <properties>
-        <!-- When compiling with a Java 9+ compiler, we always rely on "release" in favor of "source" and "target", even when compiling to Java 8 bytecode. -->
-        <maven.compiler.release>8</maven.compiler.release>
-        <maven.compiler.testRelease>8</maven.compiler.testRelease>
-        <!-- "release" serves the same purpose as Animal Sniffer. -->
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-        <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
-        <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
-        <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
-        <jenkins.addOpens>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</jenkins.addOpens>
-      </properties>
-      <!--
-        Maven HPI plugin 3.27 or later (which is included in plugin parent POM 4.40 or later) almost
-        allows the plugin POM to support cores that require both Java 8 and Java 11 by dynamically
-        reconfiguring "maven.compiler.release" and "maven.compiler.testRelease" (which default to 8
-        in order to support cores prior to 2.357) to the version of Java that
-        "jenkins/model/Jenkins.class" was compiled with (which could be 11 with 2.357 or later):
-        "almost" because Enforcer's bytecode version check still gets in the way if a plugin has a
-        baseline of 2.357 or later and has a library on its classpath with Java 11 bytecode.
-        Unfortunately, there is no easy way for Maven HPI plugin to dynamically reconfigure Enforcer
-        for Java 11 the same way it dynamically reconfigures Maven Compiler Plugin for Java 11. So in
-        order for the plugin POM to support baselines before and after 2.357 and allow plugins to
-        use Java 11 features with a baseline of 2.357 or later if so desired, we work around the
-        problem by increasing the maximum JDK version for Enforcer to 11 below. While technically
-        incorrect (in the sense that it fails to enforce the absence of Java 9, 10, or 11 bytecode
-        when it should) when building, testing, or releasing a plugin with a baseline prior to 2.357
-        using a Java 11 compiler (including CD), any such plugin should have a "Jenkinsfile" build
-        running on Java 8, where the correct enforcement should be present, so this should not cause
-        any practical problems. This workaround is justified because the alternative (raising the
-        minimum Jenkins version for the plugin POM to 2.357 or later and dropping support for Java
-        8) would be overly harsh on users, causing Dependabot updates to fail for the majority of
-        users who do not want to update their baseline so aggressively. When we are ready to raise
-        the minimum Jenkins version for the plugin POM to 2.357 or later and drop support for Java
-        8, this workaround can be deleted.
-      -->
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>display-info</id>
-                <configuration>
-                  <rules>
-                    <enforceBytecodeVersion>
-                      <maxJdkVersion>11</maxJdkVersion>
-                    </enforceBytecodeVersion>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <profile>
       <id>jenkins-release</id>
       <properties>
@@ -1547,7 +1441,6 @@
         <spotbugs.skip>true</spotbugs.skip>
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
-        <animal.sniffer.skip>true</animal.sniffer.skip>
         <invoker.skip>true</invoker.skip>
         <spotless.check.skip>true</spotless.check.skip>
         <checkstyle.skip>true</checkstyle.skip>

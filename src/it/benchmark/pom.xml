@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
-        <jenkins.version>2.249</jenkins.version>
+        <jenkins.version>2.361.4</jenkins.version>
     </properties>
     <repositories>
         <repository>
