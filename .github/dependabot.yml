@@ -30,5 +30,3 @@ updates:
   - dependency-name: javax.servlet:javax.servlet-api
     versions:
     - ">= 0"
-  # TODO https://github.com/spotbugs/spotbugs/issues/1601#issuecomment-885341270
-  - dependency-name: com.github.spotbugs:spotbugs-maven-plugin
