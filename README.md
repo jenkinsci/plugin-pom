@@ -7,7 +7,7 @@
 
 This new parent POM is decoupled from the core Jenkins project, both from the Maven and repository perspectives.
 
-Since version 4.0 the plugin pom supports Jenkins 2.200 and higher and a select few older LTS lines ([full list](https://repo.jenkins-ci.org/releases/org/jenkins-ci/main/jenkins-bom/))
+Since version 4.52 the plugin pom supports Jenkins 2.361 and higher.
  
 The main changes are:
 * Reduced number of overridable properties. All references (e.g. dependencies and plugin versions) not
