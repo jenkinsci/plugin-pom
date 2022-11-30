@@ -14,7 +14,7 @@
     <properties>
         <revision>1.0</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.249</jenkins.version>
+        <jenkins.version>2.361.4</jenkins.version>
     </properties>
 
     <repositories>
