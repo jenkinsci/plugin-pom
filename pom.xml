@@ -71,7 +71,7 @@
     <arguments />
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
-    <access-modifier-checker.version>1.29</access-modifier-checker.version>
+    <access-modifier-checker.version>1.30</access-modifier-checker.version>
     <frontend-version>1.12.1</frontend-version>
     <hpi-plugin.version>3.37</hpi-plugin.version>
     <jenkins.version>2.361</jenkins.version>
