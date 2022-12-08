@@ -73,7 +73,7 @@
 
     <access-modifier-checker.version>1.30</access-modifier-checker.version>
     <frontend-version>1.12.1</frontend-version>
-    <hpi-plugin.version>3.37</hpi-plugin.version>
+    <hpi-plugin.version>3.38</hpi-plugin.version>
     <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>1912.v0cdf15450b_fb</jenkins-test-harness.version>
