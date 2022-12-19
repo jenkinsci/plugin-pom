@@ -860,7 +860,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.0</version>
         <inherited>false</inherited>
         <executions>
           <execution>
