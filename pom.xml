@@ -78,7 +78,7 @@
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>1912.v0cdf15450b_fb</jenkins-test-harness.version>
     <mockito.version>4.11.0</mockito.version>
-    <stapler-plugin.version>1.21</stapler-plugin.version>
+    <stapler-plugin.version>1.22</stapler-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
