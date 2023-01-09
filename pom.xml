@@ -682,7 +682,6 @@
         <artifactId>maven-hpi-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <showDeprecation>true</showDeprecation>
           <webApp>
             <contextPath>/jenkins</contextPath>
           </webApp>
