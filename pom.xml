@@ -60,8 +60,6 @@
 
     <maven.compiler.release>11</maven.compiler.release>
     <maven.compiler.testRelease>11</maven.compiler.testRelease>
-    <!-- Work around openjdk/jdk11u-dev#919. TODO When we upgrade to OpenJDK 11.0.16, this should be deleted. -->
-    <maven.compiler.forceJavacCompilerUse>true</maven.compiler.forceJavacCompilerUse>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <!-- Filled in by maven-hpi-plugin from the MANIFEST.MF entry in jenkins.war, but we provide a default value for the benefit of IDEs. -->
