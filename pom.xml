@@ -113,7 +113,6 @@
 
     <!-- To opt in to @Restricted(Beta.class) APIs, set to true: -->
     <useBeta>false</useBeta>
-    <incrementals.url>https://repo.jenkins-ci.org/incrementals/</incrementals.url>
     <scmTag>HEAD</scmTag>
     <!-- Where to put temporary files during test runs. -->
     <surefireTempDir>${project.build.directory}/tmp</surefireTempDir>
@@ -1270,7 +1269,7 @@
             <enabled>false</enabled>
           </snapshots>
           <id>incrementals</id>
-          <url>${incrementals.url}</url>
+          <url>https://repo.jenkins-ci.org/incrementals/</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -1279,7 +1278,7 @@
             <enabled>false</enabled>
           </snapshots>
           <id>incrementals</id>
-          <url>${incrementals.url}</url>
+          <url>https://repo.jenkins-ci.org/incrementals/</url>
         </pluginRepository>
       </pluginRepositories>
     </profile>
@@ -1351,7 +1350,7 @@
       <distributionManagement>
         <repository>
           <id>incrementals</id>
-          <url>${incrementals.url}</url>
+          <url>https://repo.jenkins-ci.org/incrementals/</url>
         </repository>
       </distributionManagement>
       <build>
