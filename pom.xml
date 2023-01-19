@@ -70,12 +70,38 @@
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <access-modifier-checker.version>1.30</access-modifier-checker.version>
+    <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
     <frontend-version>1.12.1</frontend-version>
+    <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
     <hpi-plugin.version>3.38</hpi-plugin.version>
+    <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
+    <incrementals-plugin.version>1.4</incrementals-plugin.version>
+    <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>1929.vfb_39b_60fcea_f</jenkins-test-harness.version>
+    <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+    <localizer-maven-plugin.version>1.31</localizer-maven-plugin.version>
+    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+    <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+    <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+    <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+    <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
+    <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+    <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
+    <maven-install-plugin.version>3.1.0</maven-install-plugin.version>
+    <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+    <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+    <maven-license-plugin.version>1.15</maven-license-plugin.version>
+    <maven-project-info-reports-plugin.version>3.4.2</maven-project-info-reports-plugin.version>
+    <maven-release-plugin.version>3.0.0-M7</maven-release-plugin.version>
+    <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+    <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
+    <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
     <mockito.version>4.11.0</mockito.version>
+    <spotbugs-maven-plugin.version>4.7.3.0</spotbugs-maven-plugin.version>
     <stapler-plugin.version>1.22</stapler-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
@@ -277,18 +303,18 @@
         <plugin>
           <groupId>com.cloudbees</groupId>
           <artifactId>maven-license-plugin</artifactId>
-          <version>1.15</version>
+          <version>${maven-license-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3.0</version>
+          <version>${spotbugs-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <!-- not gated by Incrementals profiles, since we want the incrementalify goal to be available from the start -->
           <groupId>io.jenkins.tools.incrementals</groupId>
           <artifactId>incrementals-maven-plugin</artifactId>
-          <version>1.4</version>
+          <version>${incrementals-plugin.version}</version>
           <configuration>
             <includes>
               <include>org.jenkins-ci.*</include>
@@ -300,27 +326,27 @@
         </plugin>
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven-antrun-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>${maven-clean-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>${maven-compiler-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>${maven-dependency-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>${maven-deploy-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-eclipse-plugin</artifactId>
-          <version>2.10</version>
+          <version>${maven-eclipse-plugin.version}</version>
           <!--
             Because Eclipse lacks JSR-269 support, put the output
             to a different directory
@@ -335,23 +361,23 @@
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven-enforcer-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M8</version>
+          <version>${maven-surefire-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>${maven-install-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>${maven-jar-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>${maven-javadoc-plugin.version}</version>
           <configuration>
             <quiet>true</quiet>
             <links>
@@ -363,41 +389,41 @@
         </plugin>
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.4.2</version>
+          <version>${maven-project-info-reports-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.0.0-M7</version>
+          <version>${maven-release-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>${maven-resources-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.12.1</version>
+          <version>${maven-site-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>${maven-source-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M8</version>
+          <version>${maven-surefire-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>${maven-war-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.gmavenplus</groupId>
           <artifactId>gmavenplus-plugin</artifactId>
-          <version>2.1.0</version>
+          <version>${gmavenplus-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>${build-helper-maven-plugin.version}</version>
           <executions>
             <execution>
               <id>add-source</id>
@@ -416,7 +442,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.8</version>
+          <version>${jacoco-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.jenkins-ci.tools</groupId>
@@ -426,7 +452,7 @@
         <plugin>
           <groupId>org.jvnet.localizer</groupId>
           <artifactId>localizer-maven-plugin</artifactId>
-          <version>1.31</version>
+          <version>${localizer-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.kohsuke</groupId>
@@ -944,7 +970,7 @@
             <plugin>
               <groupId>org.eclipse.m2e</groupId>
               <artifactId>lifecycle-mapping</artifactId>
-              <version>1.0.0</version>
+              <version>${lifecycle-mapping.version}</version>
               <configuration>
                 <lifecycleMappingMetadata>
                   <pluginExecutions>
@@ -1314,7 +1340,7 @@
               <dependency>
                 <groupId>io.jenkins.tools.incrementals</groupId>
                 <artifactId>incrementals-enforcer-rules</artifactId>
-                <version>1.4</version>
+                <version>${incrementals-plugin.version}</version>
               </dependency>
             </dependencies>
             <executions>
@@ -1323,7 +1349,7 @@
                 <configuration>
                   <rules>
                     <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
-                      <version>[1.0-beta-4,)</version>
+                      <version>[${incrementals-enforce-minimum.version},)</version>
                     </rule>
                   </rules>
                 </configuration>
