@@ -526,21 +526,6 @@
                   <ignoredScopes>
                     <ignoredScope>test</ignoredScope>
                   </ignoredScopes>
-                  <excludes>
-                    <!-- Makes no sense to check core itself: -->
-                    <exclude>org.jenkins-ci.main:jenkins-core</exclude>
-                    <exclude>org.jenkins-ci.main:cli</exclude>
-                    <exclude>org.jenkins-ci.main:jenkins-test-harness</exclude>
-                    <exclude>org.jenkins-ci.main:remoting</exclude>
-                    <exclude>org.kohsuke.stapler:stapler</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-groovy</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-jelly</exclude>
-                    <exclude>org.kohsuke.stapler:stapler-jrebel</exclude>
-                    <exclude>org.jenkins-ci:task-reactor</exclude>
-                    <!--  findbugs dep managed to provided and optional so is not shipped and missing annotations ok -->
-                    <exclude>com.google.code.findbugs:annotations</exclude>
-                    <exclude>com.github.spotbugs:spotbugs-annotations</exclude>
-                  </excludes>
                   <!-- To add exclusions in a Jenkins plugin, use:
                   <plugin>
                       <artifactId>maven-enforcer-plugin</artifactId>
