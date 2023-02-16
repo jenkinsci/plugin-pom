@@ -1335,9 +1335,9 @@
                 <id>display-info</id>
                 <configuration>
                   <rules>
-                    <rule implementation="io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion">
+                    <requireExtensionVersion>
                       <version>[${incrementals-enforce-minimum.version},)</version>
-                    </rule>
+                    </requireExtensionVersion>
                   </rules>
                 </configuration>
               </execution>
