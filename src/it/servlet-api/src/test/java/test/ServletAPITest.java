@@ -19,7 +19,7 @@ public class ServletAPITest {
      * <pre>
      * WARNING	o.e.jetty.server.HttpChannel#handleException: /jenkins/j_security_check
      * java.lang.AbstractMethodError: Receiver class org.eclipse.jetty.security.authentication.SessionAuthentication does not define or inherit an
-     * implementation of the resolved emethod 'abstract void valueBound(javax.servlet.http.HttpSessionBindingEvent)' of interface
+     * implementation of the resolved method 'abstract void valueBound(javax.servlet.http.HttpSessionBindingEvent)' of interface
      * javax.servlet.http.HttpSessionBindingListener. at org.eclipse.jetty.server.session.Session.bindValue(Session.java:357)
      * </pre>
      * 
