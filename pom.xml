@@ -503,7 +503,6 @@
           <execution>
             <id>display-info</id>
             <goals>
-              <goal>display-info</goal>
               <goal>enforce</goal>
             </goals>
             <phase>validate</phase>
