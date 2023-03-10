@@ -708,7 +708,6 @@
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
-          <mavenExecutorId>forked-path</mavenExecutorId>
           <preparationGoals>clean install</preparationGoals>
           <goals>deploy</goals>
           <arguments>${arguments}</arguments>
