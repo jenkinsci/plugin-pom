@@ -782,7 +782,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <systemPropertyVariables>
-            <hudson.udp>-1</hudson.udp>
             <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
             <java.awt.headless>true</java.awt.headless>
             <surefire.forkNumber>$${surefire.forkNumber}</surefire.forkNumber>
@@ -795,7 +794,6 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
           <systemPropertyVariables>
-            <hudson.udp>-1</hudson.udp>
             <java.io.tmpdir>${surefireTempDir}</java.io.tmpdir>
             <java.awt.headless>true</java.awt.headless>
           </systemPropertyVariables>
