@@ -743,24 +743,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <configuration>
-          <!-- gmavenplus generates into generated-sources/test by default. gmaven generated into this directory. -->
-          <testStubsOutputDirectory>${project.build.directory}/generated-test-sources/groovy-stubs</testStubsOutputDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <id>test-in-groovy</id>
-            <goals>
-              <goal>addTestSources</goal>
-              <goal>generateTestStubs</goal>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <!-- https://stackoverflow.com/a/4086207/12916 -->
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
