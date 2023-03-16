@@ -673,14 +673,11 @@
               <goal>check</goal>
             </goals>
             <phase>verify</phase>
-            <configuration>
-              <!--
-                Do not define "excludeFilterFile" here, as it will force consumers to provide a file.
-                Instead, we configure this below in a profile conditionally activated based on the
-                presence of this file.
-              -->
-              <xmlOutput>true</xmlOutput>
-            </configuration>
+            <!--
+              Do not define "excludeFilterFile" here, as it will force consumers to provide a file.
+              Instead, we configure this below in a profile conditionally activated based on the
+              presence of this file.
+            -->
           </execution>
         </executions>
       </plugin>
