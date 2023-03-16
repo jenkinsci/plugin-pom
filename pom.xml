@@ -680,7 +680,6 @@
                 presence of this file.
               -->
               <xmlOutput>true</xmlOutput>
-              <spotbugsXmlOutput>false</spotbugsXmlOutput>
             </configuration>
           </execution>
         </executions>
