@@ -104,6 +104,7 @@
     <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
+    <spotless-maven-plugin.version>2.36.0</spotless-maven-plugin.version>
     <stapler-plugin.version>1.23</stapler-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
@@ -300,6 +301,11 @@
           <groupId>com.cloudbees</groupId>
           <artifactId>maven-license-plugin</artifactId>
           <version>${maven-license-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>${spotless-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>com.github.spotbugs</groupId>
@@ -875,6 +881,7 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <spotbugs.skip>${release.skipTests}</spotbugs.skip>
+        <spotless.check.skip>${release.skipTests}</spotless.check.skip>
         <invoker.skip>${release.skipTests}</invoker.skip>
       </properties>
       <build>
@@ -1409,6 +1416,49 @@
                 <include>**/Benchmark*.java</include>
               </includes>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>spotless-execution</id>
+      <activation>
+        <file>
+          <exists>.mvn_exec_spotless</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <configuration>
+              <java>
+                <endWithNewline />
+                <importOrder />
+                <indent>
+                  <spaces>true</spaces>
+                </indent>
+                <palantirJavaFormat />
+                <removeUnusedImports />
+                <trimTrailingWhitespace />
+              </java>
+              <pom>
+                <sortPom>
+                  <expandEmptyElements>false</expandEmptyElements>
+                  <sortDependencies>scope,groupId,artifactId</sortDependencies>
+                  <sortDependencyExclusions>groupId,artifactId</sortDependencyExclusions>
+                  <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+                </sortPom>
+              </pom>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
