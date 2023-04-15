@@ -1,3 +1,3 @@
 package downstream;
-public class NotCaller {
-}
+
+public class NotCaller {}

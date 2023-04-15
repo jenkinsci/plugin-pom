@@ -71,8 +71,8 @@ See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
 ## Formatting
 
 To opt in to code formatting of your Java sources and Maven POM with Spotless,
-create a `.mvn_exec_spotless` file at the root of your repository and remove
-any existing Spotless configuration from your POM.
+define the `spotless.check.skip` property to `false` and remove any existing
+Spotless configuration from your POM.
 
 To format existing code, run:
 
