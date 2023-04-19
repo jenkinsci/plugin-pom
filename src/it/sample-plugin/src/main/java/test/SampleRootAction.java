@@ -1,7 +1,6 @@
 package test;
 
 import hudson.Extension;
-import hudson.model.InvisibleAction;
 import hudson.model.RootAction;
 import org.kohsuke.stapler.HttpResponse;
 import org.kohsuke.stapler.HttpResponses;
@@ -12,14 +11,17 @@ public class SampleRootAction implements RootAction {
     public String getUrlName() {
         return "sample";
     }
+
     @Override
     public String getIconFileName() {
         return null;
     }
+
     @Override
     public String getDisplayName() {
         return null;
     }
+
     public HttpResponse doIndex() {
         return HttpResponses.plainText("sample served");
     }
