@@ -68,6 +68,22 @@ Starting from Plugin POM `4.40`, support of Java 17 was added.
 You can configure your plugin to treat every commit as a release candidate.
 See [Incrementals](https://github.com/jenkinsci/incrementals-tools) for details.
 
+## Formatting
+
+To opt in to code formatting of your Java sources and Maven POM with Spotless,
+define the `spotless.check.skip` property to `false` and remove any existing
+Spotless configuration from your POM.
+
+To format existing code, run:
+
+```bash
+mvn spotless:apply
+```
+
+After formatting an existing repository, squash merge the PR and create a
+[`.git-blame-ignore-revs`](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view)
+file to hide the formatting commit from blame tools.
+
 ## Running Benchmarks
 
 To run JMH benchmarks from JUnit tests, you must run you must activate the `benchmark`
