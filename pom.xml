@@ -1454,17 +1454,6 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>spotless-execution</id>
-      <activation>
-        <file>
-          <exists>.mvn_exec_spotless</exists>
-        </file>
-      </activation>
-      <properties>
-        <spotless.check.skip>false</spotless.check.skip>
-      </properties>
-    </profile>
 
     <profile>
       <!--  a profile that disables as much testing as possible whilst still producing the artifacts -->
