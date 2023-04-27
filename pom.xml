@@ -556,6 +556,7 @@
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
+                    <exclude>javax.servlet:javax.servlet-api</exclude>
                     <exclude>javax.servlet:servlet-api</exclude>
                     <exclude>org.sonatype.sisu:sisu-guice</exclude>
                     <exclude>log4j:log4j:*:jar:compile</exclude>
