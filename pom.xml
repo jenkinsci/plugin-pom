@@ -175,9 +175,9 @@
       </dependency>
       <dependency>
         <!-- used in JTH and jenkins core > 2.x -->
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>4.0.4</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -243,8 +243,8 @@
 
     <!-- dependencies provided by virtue of running in Jenkins -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
 
@@ -556,6 +556,7 @@
                 </enforceBytecodeVersion>
                 <bannedDependencies>
                   <excludes>
+                    <exclude>javax.servlet:javax.servlet-api</exclude>
                     <exclude>javax.servlet:servlet-api</exclude>
                     <exclude>org.sonatype.sisu:sisu-guice</exclude>
                     <exclude>log4j:log4j:*:jar:compile</exclude>
