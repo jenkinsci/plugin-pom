@@ -177,7 +177,7 @@
         <!-- used in JTH and jenkins core > 2.x -->
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>
-        <version>4.0.4</version>
+        <version>6.0.0</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
