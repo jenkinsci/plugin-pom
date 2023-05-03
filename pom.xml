@@ -916,7 +916,6 @@
       <properties>
         <skipTests>${release.skipTests}</skipTests>
         <spotbugs.skip>${release.skipTests}</spotbugs.skip>
-        <spotless.check.skip>${release.skipTests}</spotless.check.skip>
         <invoker.skip>${release.skipTests}</invoker.skip>
       </properties>
       <build>
@@ -1466,7 +1465,6 @@
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <invoker.skip>true</invoker.skip>
-        <spotless.check.skip>true</spotless.check.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <yarn.lint.skip>true</yarn.lint.skip>
       </properties>
