@@ -73,7 +73,7 @@
     <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
     <frontend-version>1.12.1</frontend-version>
     <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
-    <hpi-plugin.version>3.43</hpi-plugin.version>
+    <hpi-plugin.version>3.44</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.6</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
