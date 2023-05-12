@@ -70,7 +70,7 @@
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <access-modifier-checker.version>1.31</access-modifier-checker.version>
-    <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+    <build-helper-maven-plugin.version>3.4.0</build-helper-maven-plugin.version>
     <frontend-version>1.12.1</frontend-version>
     <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
     <hpi-plugin.version>3.43</hpi-plugin.version>
