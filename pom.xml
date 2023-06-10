@@ -79,7 +79,7 @@
     <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
     <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
-    <jenkins-test-harness.version>2024.vcb_b_ede610d76</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2025.v6f97169a_d6a_f</jenkins-test-harness.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <localizer-maven-plugin.version>1.31</localizer-maven-plugin.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
