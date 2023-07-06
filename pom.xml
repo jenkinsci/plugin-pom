@@ -1338,6 +1338,9 @@
                   <flattenMode>oss</flattenMode>
                   <outputDirectory>${project.build.directory}</outputDirectory>
                   <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
+                  <pomElements>
+                    <repositories>flatten</repositories>
+                  </pomElements>
                 </configuration>
               </execution>
             </executions>
