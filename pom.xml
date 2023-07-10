@@ -95,7 +95,7 @@
     <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
     <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-    <license-maven-plugin.version>98.vd05d703fe349</license-maven-plugin.version>
+    <license-maven-plugin.version>104.v2171757ee6dd</license-maven-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
     <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
