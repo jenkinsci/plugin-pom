@@ -1,5 +1,5 @@
 properties([buildDiscarder(logRotator(numToKeepStr: '20'))])
-node('maven-11') {
+node('maven-17') {
     checkout scm
     timeout(time: 1, unit: 'HOURS') {
         // TODO Azure mirror
