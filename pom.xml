@@ -81,6 +81,7 @@
     <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2044.v03c87927ff5c</jenkins-test-harness.version>
+    <license-maven-plugin.version>104.v2171757ee6dd</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <localizer-maven-plugin.version>1.31</localizer-maven-plugin.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
@@ -95,7 +96,6 @@
     <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
     <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-    <license-maven-plugin.version>104.v2171757ee6dd</license-maven-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
     <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
@@ -106,7 +106,7 @@
     <mockito.version>5.4.0</mockito.version>
     <spotbugs-maven-plugin.version>4.7.3.5</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>2.38.0</spotless-maven-plugin.version>
-    <stapler-plugin.version>175.vff879c6738b_6</stapler-plugin.version>
+    <stapler-maven-plugin.version>175.vff879c6738b_6</stapler-maven-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
@@ -481,7 +481,7 @@
         <plugin>
           <groupId>io.jenkins.tools.maven</groupId>
           <artifactId>stapler-maven-plugin</artifactId>
-          <version>${stapler-plugin.version}</version>
+          <version>${stapler-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

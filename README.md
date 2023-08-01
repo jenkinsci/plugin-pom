@@ -51,7 +51,7 @@ The following properties are overridable:
 * `jenkins.version`: The Jenkins version required by the plugin. **Mandatory.** See [Requirements](#requirements) for more info. Being able to specify the `jenkins.version` simplifies testing the plugin with different core versions, which is important (among other reasons) for Plugin Compatibility Testing (PCT).
 * `jenkins-test-harness.version`: The [JTH version](https://github.com/jenkinsci/jenkins-test-harness/releases) used to test plugin. Uses split test-harness (see [JENKINS-32478](https://issues.jenkins-ci.org/browse/JENKINS-32478)).
 * `hpi-plugin.version`: The HPI Maven Plugin version used by the plugin. (Generally you should not set this to a version _lower_ than that specified in the plugin parent POM.)
-* `stapler-plugin.version`: The Stapler Maven plugin version required by the plugin.
+* `stapler-maven-plugin.version`: The Stapler Maven plugin version required by the plugin.
 * In order to make their versions the same as the used core version, `node.version` and `npm.version` properties are provided.
 
 ## Incrementals
