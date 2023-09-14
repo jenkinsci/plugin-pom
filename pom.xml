@@ -874,6 +874,26 @@
 
       <!--  the following 2 plugins are for integration tests of plugin-pom only -->
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>mrm-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <goals>
+              <goal>start</goal>
+              <goal>stop</goal>
+            </goals>
+            <configuration>
+              <propertyName>repository.proxy.url</propertyName>
+              <repositories>
+                <proxyRepo />
+              </repositories>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <version>3.6.0</version>
         <inherited>false</inherited>
@@ -890,6 +910,9 @@
               <cloneProjectsTo>${project.build.directory}/its</cloneProjectsTo>
               <localRepositoryPath>${basedir}/target/local-repo</localRepositoryPath>
               <settingsFile>src/it/settings.xml</settingsFile>
+              <filterProperties>
+                <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
+              </filterProperties>
             </configuration>
           </execution>
         </executions>
