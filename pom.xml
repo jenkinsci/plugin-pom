@@ -580,7 +580,6 @@
                 </bannedDependencies>
                 <requireUpperBoundDeps>
                   <excludes>
-                    <exclude>com.google.code.findbugs:annotations</exclude>
                     <exclude>com.google.code.findbugs:jsr305</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
