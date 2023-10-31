@@ -574,6 +574,24 @@
                     <!-- CVE-2021-44228 -->
                     <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude>
 
+                    <!-- PowerMock has been abandoned and does not work on newer Java versions. -->
+                    <exclude>org.powermock:powermock-api-easymock</exclude>
+                    <exclude>org.powermock:powermock-api-mockito2</exclude>
+                    <exclude>org.powermock:powermock-api-support</exclude>
+                    <exclude>org.powermock:powermock-classloading-base</exclude>
+                    <exclude>org.powermock:powermock-classloading-objenesis</exclude>
+                    <exclude>org.powermock:powermock-classloading-xstream</exclude>
+                    <exclude>org.powermock:powermock-core</exclude>
+                    <exclude>org.powermock:powermock-module-javaagent</exclude>
+                    <exclude>org.powermock:powermock-module-junit4</exclude>
+                    <exclude>org.powermock:powermock-module-junit4-common</exclude>
+                    <exclude>org.powermock:powermock-module-junit4-legacy</exclude>
+                    <exclude>org.powermock:powermock-module-junit4-rule</exclude>
+                    <exclude>org.powermock:powermock-module-junit4-rule-agent</exclude>
+                    <exclude>org.powermock:powermock-module-testng</exclude>
+                    <exclude>org.powermock:powermock-module-testng-agent</exclude>
+                    <exclude>org.powermock:powermock-module-testng-common</exclude>
+
                     <!-- Jenkins Test Harness is based on JUnit. Adding TestNG dependency would disable some of its functionality. -->
                     <exclude>org.testng:testng</exclude>
                   </excludes>
