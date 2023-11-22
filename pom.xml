@@ -574,6 +574,9 @@
                     <!-- CVE-2021-44228 -->
                     <exclude>org.apache.logging.log4j:*:(,2.15.0-rc1]</exclude>
 
+                    <!-- The Jenkins test harness wreaks havoc in production, so ensure it is in test scope. -->
+                    <exclude>org.jenkins-ci.main:jenkins-test-harness:*:jar:compile</exclude>
+
                     <!-- PowerMock has been abandoned and does not work on newer Java versions. -->
                     <exclude>org.powermock:powermock-api-easymock</exclude>
                     <exclude>org.powermock:powermock-api-mockito2</exclude>
