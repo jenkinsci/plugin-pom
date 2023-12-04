@@ -658,10 +658,7 @@
             <indent>
               <spaces>true</spaces>
             </indent>
-            <palantirJavaFormat>
-              <!-- TODO https://github.com/diffplug/spotless/issues/1774 -->
-              <version>2.35.0</version>
-            </palantirJavaFormat>
+            <palantirJavaFormat />
             <removeUnusedImports />
             <trimTrailingWhitespace />
           </java>
