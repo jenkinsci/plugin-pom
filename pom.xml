@@ -27,7 +27,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>4.76-SNAPSHOT</version>
+  <version>4.77-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -80,7 +80,7 @@
     <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
     <jenkins.version>2.361</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
-    <jenkins-test-harness.version>2116.v25a_e7e33f4b_2</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2140.ve736dc2b_b_d2c</jenkins-test-harness.version>
     <junit.version>5.10.1</junit.version>
     <license-maven-plugin.version>104.v2171757ee6dd</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
@@ -102,7 +102,7 @@
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-    <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <mockito.version>5.8.0</mockito.version>
     <spotbugs-maven-plugin.version>4.8.2.0</spotbugs-maven-plugin.version>
@@ -658,10 +658,7 @@
             <indent>
               <spaces>true</spaces>
             </indent>
-            <palantirJavaFormat>
-              <!-- TODO https://github.com/diffplug/spotless/issues/1774 -->
-              <version>2.35.0</version>
-            </palantirJavaFormat>
+            <palantirJavaFormat />
             <removeUnusedImports />
             <trimTrailingWhitespace />
           </java>
