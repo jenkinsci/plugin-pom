@@ -106,7 +106,7 @@
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <mockito.version>5.9.0</mockito.version>
     <spotbugs-maven-plugin.version>4.7.3.6</spotbugs-maven-plugin.version>
-    <spotless-maven-plugin.version>2.41.1</spotless-maven-plugin.version>
+    <spotless-maven-plugin.version>2.42.0</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>175.vff879c6738b_6</stapler-maven-plugin.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
