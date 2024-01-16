@@ -105,7 +105,7 @@
     <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <mockito.version>5.9.0</mockito.version>
-    <spotbugs-maven-plugin.version>4.7.3.6</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.8.3.0</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>2.42.0</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>175.vff879c6738b_6</stapler-maven-plugin.version>
 
@@ -116,8 +116,12 @@
       The MS_EXPOSE_REP, EI_EXPOSE_REP, EI_EXPOSE_REP2, EI_EXPOSE_STATIC_REP2, MS_EXPOSE_BUF,
       EI_EXPOSE_BUF, EI_EXPOSE_STATIC_BUF2, and EI_EXPOSE_BUF2 bug patterns are noisy and create
       little value; therefore, we suppress them globally.
+
+      The CT_CONSTRUCTOR_THROW bug pattern is related to libraries used with SecurityManager
+      and does not apply to Jenkins; we do not expect untrusted code to be running inside the
+      controller JVM, therefore we suppress it globally.
     -->
-    <spotbugs.omitVisitors>FindReturnRef</spotbugs.omitVisitors>
+    <spotbugs.omitVisitors>FindReturnRef,ConstructorThrow</spotbugs.omitVisitors>
 
     <!-- Set to false to enable Spotless -->
     <spotless.check.skip>true</spotless.check.skip>
