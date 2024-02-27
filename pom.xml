@@ -256,6 +256,12 @@
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-core</artifactId>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-lang</groupId>
+          <artifactId>commons-lang</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
