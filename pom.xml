@@ -1446,6 +1446,7 @@
         <!-- we can not use maven.test.skip because we may be producing a test jar -->
         <skipTests>true</skipTests>
         <spotbugs.skip>true</spotbugs.skip>
+        <spotless.skip>true</spotless.skip>
         <enforcer.skip>true</enforcer.skip>
         <access-modifier-checker.skip>true</access-modifier-checker.skip>
         <invoker.skip>true</invoker.skip>
