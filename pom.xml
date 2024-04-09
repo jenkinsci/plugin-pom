@@ -606,6 +606,57 @@
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.code.findbugs:jsr305</exclude>
+                    <!--
+                      Work around the following require upper bound dependencies error on 2.426.x:
+
+                        Require upper bound dependencies error for org.ow2.asm:asm-tree:9.6 paths to dependency are:
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.7
+                        and
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.7
+                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
+                        and
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-commons:9.6 (managed) ← org.ow2.asm:asm-commons:9.7
+                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
+                        and
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
+                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
+                        ,
+                        Require upper bound dependencies error for org.ow2.asm:asm-analysis:9.6 paths to dependency are:
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.7
+                        and
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
+                              +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.6
+                        ,
+                        Require upper bound dependencies error for org.ow2.asm:asm-commons:9.6 paths to dependency are:
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-commons:9.6 (managed) ← org.ow2.asm:asm-commons:9.7
+                        ,
+                        Require upper bound dependencies error for org.ow2.asm:asm-util:9.6 paths to dependency are:
+                        +-org.jenkins-ci.plugins:jacoco:3.3.6
+                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
+                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
+                        ]
+
+                      In the long term, this ought to be mitigated by removing ASM from Jenkins core.
+                    -->
+                    <exclude>org.ow2.asm:asm</exclude>
+                    <exclude>org.ow2.asm:asm-analysis</exclude>
+                    <exclude>org.ow2.asm:asm-commons</exclude>
+                    <exclude>org.ow2.asm:asm-tree</exclude>
+                    <exclude>org.ow2.asm:asm-util</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>
