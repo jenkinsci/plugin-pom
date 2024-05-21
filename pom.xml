@@ -181,6 +181,7 @@
       </dependency>
       <dependency>
         <!-- used in JTH and jenkins core > 2.x -->
+        <!-- TODO https://github.com/jenkinsci/plugin-pom/issues/936 delete when baseline is 2.459+ -->
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>
         <version>4.0.4</version>
