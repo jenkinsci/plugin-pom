@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>structs</artifactId>
-      <version>1.5</version>
+      <version>338.v848422169819</version>
     </dependency>
   </dependencies>
   <repositories>
