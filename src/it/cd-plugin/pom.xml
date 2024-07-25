@@ -14,6 +14,7 @@
   <name>CD plugin</name>
   <description>CD description</description>
   <properties>
+    <jenkins.version>2.414.3</jenkins.version>
     <changelist>999999-SNAPSHOT</changelist>
     <spotless.check.skip>false</spotless.check.skip>
   </properties>
@@ -22,7 +23,7 @@
       <dependency>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>structs</artifactId>
-        <version>1.5</version>
+        <version>338.v848422169819</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
