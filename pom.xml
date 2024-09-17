@@ -74,7 +74,7 @@
     <frontend-version>1.15.0</frontend-version>
     <gmavenplus-plugin.version>3.0.2</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.57</hpi-plugin.version>
+    <hpi-plugin.version>3.58</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.8</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
