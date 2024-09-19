@@ -1184,6 +1184,7 @@
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
+                  <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
               </execution>
 
@@ -1252,6 +1253,7 @@
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
+                  <testFailureIgnore>false</testFailureIgnore>
                 </configuration>
               </execution>
 
