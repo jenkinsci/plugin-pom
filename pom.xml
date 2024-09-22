@@ -71,7 +71,7 @@
 
     <access-modifier-checker.version>1.33</access-modifier-checker.version>
     <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
-    <frontend-version>1.15.0</frontend-version>
+    <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>3.0.2</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
     <hpi-plugin.version>3.57</hpi-plugin.version>
