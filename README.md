@@ -10,6 +10,7 @@ It provides a common build configuration for all Jenkins plugins.
 
 ## Requirements
 
+Since version 4.89, the plugin parent POM requires Jenkins 2.477 or newer and JDK 17 or newer.
 Since version 4.52, the plugin parent POM requires Jenkins 2.361 or newer and JDK 11 or newer.
 Since version 4.40, the plugin parent POM supports Java 17.
 
@@ -88,56 +89,6 @@ end with the word `Benchmark`. For example, `FooBenchmark` and `BenchmarkFoo` wi
 be detected when using `-Dbenchmark`, however, `FooBar` will be ignored.
 
 See also: [documentation for JMH benchmarks](https://github.com/jenkinsci/jenkins-test-harness/blob/master/docs/jmh-benchmarks.adoc)
-
-## Temporary workarounds
-
-### Running tests with Jetty 12 (EE 8)
-
-To run tests with Jetty 12 (EE 8) with Jenkins 2.471 or older,
-add the following to `pom.xml`:
-
-```xml
-<!-- TODO JENKINS-73339 until in parent POM -->
-<jenkins-test-harness.version>2254.vcff7a_d4969e5</jenkins-test-harness.version>
-<maven.compiler.testRelease>17</maven.compiler.testRelease>
-```
-
-This will not be necessary in a future release of the plugin parent POM that requires Jenkins 2.472 or newer.
-
-### Running the entire build with Jetty 12 (EE 8):
-
-To run the entire build with Jetty 12 (EE 8) and require Jenkins 2.472 or newer,
-add the following to `pom.xml` (adjusting your BOM version as necessary):
-
-```xml
-<jenkins.version>2.472</jenkins.version>
-<!-- TODO JENKINS-73339 until in parent POM -->
-<jenkins-test-harness.version>2254.vcff7a_d4969e5</jenkins-test-harness.version>
-<maven.compiler.release>17</maven.compiler.release>
-```
-
-This will not be necessary in a future release of the plugin parent POM that requires Jenkins 2.472 or newer.
-
-### Running the entire build with Jetty 12 (EE 9):
-
-To run the entire build with Jetty 12 (EE 9),
-first follow the steps in the preceding section,
-then add the following to `pom.xml`:
-
-```xml
-<dependencyManagement>
-  <dependencies>
-    <!-- TODO JENKINS-73339 until in parent POM, work around https://github.com/jenkinsci/plugin-pom/issues/936 -->
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>5.0.0</version>
-    </dependency>
-  </dependencies>
-</dependencyManagement>
-```
-
-This will not be necessary in a future release of the plugin parent POM that requires Jetty 12 EE 9 or newer.
 
 ## Javadoc
 
