@@ -14,15 +14,15 @@
   <properties>
     <revision>1.0</revision>
     <changelist>-SNAPSHOT</changelist>
-    <jenkins.version>2.361.4</jenkins.version>
+    <jenkins.version>2.477</jenkins.version>
     <spotless.check.skip>false</spotless.check.skip>
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.361.x</artifactId>
-        <version>1580.v47b_429a_c853a</version>
+        <artifactId>bom-2.462.x</artifactId>
+        <version>3358.vea_fa_1f41504d</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

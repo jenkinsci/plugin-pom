@@ -58,7 +58,7 @@
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
@@ -74,13 +74,13 @@
     <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>3.0.2</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.57</hpi-plugin.version>
+    <hpi-plugin.version>3.58</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.8</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-    <jenkins.version>2.361</jenkins.version>
+    <jenkins.version>2.477</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
-    <jenkins-test-harness.version>2225.2230.v6210cb_b_827f9</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2289.vfd344a_6d1660</jenkins-test-harness.version>
     <junit.version>5.11.0</junit.version>
     <license-maven-plugin.version>157.vcd037a_d79631</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
@@ -178,13 +178,6 @@
         <version>${mockito.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <dependency>
-        <!-- used in JTH and jenkins core > 2.x -->
-        <!-- TODO https://github.com/jenkinsci/plugin-pom/issues/936 delete when baseline is 2.459+ -->
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>jakarta.servlet-api</artifactId>
-        <version>4.0.4</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -596,57 +589,6 @@
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.code.findbugs:jsr305</exclude>
-                    <!--
-                      Work around the following require upper bound dependencies error on 2.426.x:
-
-                        Require upper bound dependencies error for org.ow2.asm:asm-tree:9.6 paths to dependency are:
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.7
-                        and
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.7
-                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
-                        and
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-commons:9.6 (managed) ← org.ow2.asm:asm-commons:9.7
-                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
-                        and
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
-                              +-org.ow2.asm:asm-tree:9.6 (managed) ← org.ow2.asm:asm-tree:9.6
-                        ,
-                        Require upper bound dependencies error for org.ow2.asm:asm-analysis:9.6 paths to dependency are:
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.7
-                        and
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
-                              +-org.ow2.asm:asm-analysis:9.6 (managed) ← org.ow2.asm:asm-analysis:9.6
-                        ,
-                        Require upper bound dependencies error for org.ow2.asm:asm-commons:9.6 paths to dependency are:
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-commons:9.6 (managed) ← org.ow2.asm:asm-commons:9.7
-                        ,
-                        Require upper bound dependencies error for org.ow2.asm:asm-util:9.6 paths to dependency are:
-                        +-org.jenkins-ci.plugins:jacoco:3.3.6
-                          +-io.jenkins.plugins:asm-api:9.7-33.v4d23ef79fcc8
-                            +-org.ow2.asm:asm-util:9.6 (managed) ← org.ow2.asm:asm-util:9.7
-                        ]
-
-                      In the long term, this ought to be mitigated by removing ASM from Jenkins core.
-                    -->
-                    <exclude>org.ow2.asm:asm</exclude>
-                    <exclude>org.ow2.asm:asm-analysis</exclude>
-                    <exclude>org.ow2.asm:asm-commons</exclude>
-                    <exclude>org.ow2.asm:asm-tree</exclude>
-                    <exclude>org.ow2.asm:asm-util</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>

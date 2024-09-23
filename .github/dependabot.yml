@@ -8,9 +8,6 @@ updates:
       interval: weekly
     open-pull-requests-limit: 10
     ignore:
-      # TODO https://github.com/jenkinsci/plugin-pom/issues/936 delete when baseline is 2.459+ -->
-      - dependency-name: "jakarta.servlet:jakarta.servlet-api"
-        versions: [">=5.0.0"]
       - dependency-name: "org.jenkins-ci.main:jenkins-bom"
       - dependency-name: "org.jenkins-ci.main:jenkins-core"
       - dependency-name: "org.jenkins-ci.main:jenkins-war"
