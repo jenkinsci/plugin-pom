@@ -156,6 +156,118 @@ By default, the setup wizard (Jenkins >= 2.0) is skipped when using `hpi:run`. I
 mvn -Dhudson.Main.development=false hpi:run
 ```
 
+## npm or yarn
+
+If you want to add `npm` or `yarn` to your plugin, you can do so by creating a marker file:
+
+For npm:
+
+```bash
+touch mvn_exec_node
+```
+
+For yarn:
+
+```bash
+touch mvn_exec_yarn
+```
+
+You need to add corresponding properties to your `pom.xml` and set them to valid values:
+
+For npm:
+```xml
+<properties>
+    <node.version>set this to the latest node lts version</node.version>
+    <npm.version>set this to the latest npm version</npm.version>
+</properties>
+```
+
+For yarn:
+
+```xml
+<properties>
+    <node.version>set this to the latest node lts version</node.version>
+    <yarn.version>set this to the latest yarn version</yarn.version>
+</properties>
+```
+
+### Configuring Jest to report results to Jenkins
+
+Our [pipeline-library](https://github.com/jenkins-infra/pipeline-library) configures the Maven build to not fail the build when there is test failures so that Jenkins is able to report on the test failures itself.
+
+This requires the tests to be configured to output a JUnit report in a supported location.
+
+To do this you can install `jest-junit`:
+
+```bash
+npm install --dev jest-junit
+```
+
+```bash
+yarn add --dev jest-junit
+```
+
+Then configure jest-junit by modifying the `package.json`:
+
+```json
+{
+  "scripts": {
+    "mvntest": "npm test",
+    "test": "jest --ci --reporters=default --reporters=jest-junit"
+  },
+  "jest-junit": {
+    "outputDirectory": "target/surefire-reports",
+    "outputName": "jest-junit.xml"
+  }
+}
+
+```
+
+<!-- TODO when enough plugins have adopted this then remove this step -->
+Then set the following properties in your `pom.xml` to configure the Maven build to let Jenkins report the results:
+
+```xml
+<properties>
+  <maven.test.failure.ignore>false</maven.test.failure.ignore>
+  <testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+</properties>
+```
+
+### Configuring eslint to report results to Jenkins
+
+To configure the Maven build to report the eslint results to Jenkins you will need to setup the `eslint-formatter-checkstyle` formatter.
+
+First install it:
+
+```bash
+npm install --dev eslint-formatter-checkstyle
+```
+
+```bash
+yarn add --dev eslint-formatter-checkstyle
+```
+
+Then configure eslint, depending on your configuration it should look something like this:
+
+```json
+{
+  "scripts": {
+    "mvntest": "eslint src/main/js -f checkstyle -o target/eslint-warnings.xml --ext js"
+  }
+}
+```
+
+<!-- TODO when enough plugins have adopted this then remove this step -->
+Then set the following properties in your `pom.xml` to configure the Maven build to let Jenkins report the results:
+
+```xml
+<properties>
+  <maven.test.failure.ignore>false</maven.test.failure.ignore>
+  <testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+</properties>
+```
+
+
 ## Jenkins Core BOM
 
 Since version 2.195, Jenkins provides a [Maven Bill Of Materials (BOM)](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies)
