@@ -76,6 +76,20 @@ After formatting an existing repository, squash merge the PR and create a
 [`.git-blame-ignore-revs`](https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view)
 file to hide the formatting commit from blame tools.
 
+### Format as you build
+
+You can set up `mvn spotless:apply` to run automatically (in `validate` phase) for projects which enabled spotless by adding the following to your `settings.xml`:
+
+```xml
+<settings>
+  [...]
+  <activeProfiles>
+    [...]
+    <activeProfile>may-spotless-apply</activeProfile>
+  </activeProfiles>
+</settings>
+```
+
 ## Running Benchmarks
 
 To run JMH benchmarks from JUnit tests, you must run you must activate the `benchmark`

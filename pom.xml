@@ -1461,5 +1461,28 @@
         <maven.compiler.release>21</maven.compiler.release>
       </properties>
     </profile>
+    <profile>
+      <id>may-spotless-apply</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.diffplug.spotless</groupId>
+            <artifactId>spotless-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>spotless-apply</id>
+                <goals>
+                  <goal>apply</goal>
+                </goals>
+                <phase>validate</phase>
+                <configuration>
+                  <skip>${spotless.check.skip}</skip>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
