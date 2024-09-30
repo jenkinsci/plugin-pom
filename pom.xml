@@ -104,7 +104,7 @@
     <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-    <mockito.version>5.13.0</mockito.version>
+    <mockito.version>5.14.0</mockito.version>
     <spotbugs-maven-plugin.version>4.8.3.1</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>223.v46129f4695e9</stapler-maven-plugin.version>
