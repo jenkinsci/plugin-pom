@@ -14,7 +14,7 @@
   <properties>
     <revision>1.0</revision>
     <changelist>-SNAPSHOT</changelist>
-    <jenkins.version>2.477</jenkins.version>
+    <jenkins.version>2.479</jenkins.version>
     <spotless.check.skip>false</spotless.check.skip>
   </properties>
   <dependencyManagement>
