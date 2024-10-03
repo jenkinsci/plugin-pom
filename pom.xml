@@ -146,6 +146,8 @@
     <!-- may use e.g. -\-silent (without backslash) -->
     <npm.loglevel />
 
+    <frontend.testFailureIgnore>false</frontend.testFailureIgnore>
+
     <!-- To skip the wizard by default in hpi:run. It should not impact other goals. -->
     <hudson.Main.development>true</hudson.Main.development>
 
@@ -1126,7 +1128,7 @@
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
-                  <testFailureIgnore>false</testFailureIgnore>
+                  <testFailureIgnore>${frontend.testFailureIgnore}</testFailureIgnore>
                 </configuration>
               </execution>
 
@@ -1195,7 +1197,7 @@
                 <configuration>
                   <!-- The package.json must define an "mvntest" script -->
                   <arguments>run mvntest</arguments>
-                  <testFailureIgnore>false</testFailureIgnore>
+                  <testFailureIgnore>${frontend.testFailureIgnore}</testFailureIgnore>
                 </configuration>
               </execution>
 
