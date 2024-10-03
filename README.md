@@ -229,7 +229,7 @@ Then set the following properties in your `pom.xml` to configure the Maven build
 ```xml
 <properties>
   <maven.test.failure.ignore>false</maven.test.failure.ignore>
-  <testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+  <frontend.testFailureIgnore>${maven.test.failure.ignore}</frontend.testFailureIgnore>
 </properties>
 ```
 
@@ -263,7 +263,7 @@ Then set the following properties in your `pom.xml` to configure the Maven build
 ```xml
 <properties>
   <maven.test.failure.ignore>false</maven.test.failure.ignore>
-  <testFailureIgnore>${maven.test.failure.ignore}</testFailureIgnore>
+  <frontend.testFailureIgnore>${maven.test.failure.ignore}</frontend.testFailureIgnore>
 </properties>
 ```
 
