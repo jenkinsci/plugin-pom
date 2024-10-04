@@ -591,6 +591,10 @@
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.code.findbugs:jsr305</exclude>
+                    <!--
+                      Work around jenkinsci/plugin-pom#1032
+                    -->
+                    <exclude>org.ow2.asm:asm</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
               </rules>
