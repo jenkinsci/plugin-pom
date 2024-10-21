@@ -128,13 +128,13 @@ If you want to add `npm` or `yarn` to your plugin, you can do so by creating a m
 For npm:
 
 ```bash
-touch mvn_exec_node
+touch .mvn_exec_node
 ```
 
 For yarn:
 
 ```bash
-touch mvn_exec_yarn
+touch .mvn_exec_yarn
 ```
 
 You need to add corresponding properties to your `pom.xml` and set them to valid values:
