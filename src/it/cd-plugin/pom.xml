@@ -14,7 +14,7 @@
   <name>CD plugin</name>
   <description>CD description</description>
   <properties>
-    <jenkins.version>2.479</jenkins.version>
+    <jenkins.version>2.479.1</jenkins.version>
     <changelist>999999-SNAPSHOT</changelist>
     <spotless.check.skip>false</spotless.check.skip>
   </properties>
