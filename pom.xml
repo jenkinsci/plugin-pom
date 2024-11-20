@@ -80,7 +80,7 @@
     <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
-    <jenkins-test-harness.version>2353.ve3f890c6eea_f</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2355.v13b_7b_3db_04c0</jenkins-test-harness.version>
     <junit.version>5.11.3</junit.version>
     <license-maven-plugin.version>165.v7e11f4e4a_325</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
