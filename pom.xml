@@ -588,6 +588,13 @@
                     <exclude>org.testng:testng</exclude>
                   </excludes>
                 </bannedDependencies>
+                <bannedDependencies>
+                  <message>jenkins-test-harness version must be defined using jenkins-test-harness.version property</message>
+                  <excludes>
+                    <!-- Exclude any JTH version that is not the one from the property -->
+                    <exclude>org.jenkins-ci.main:jenkins-test-harness:(,${jenkins-test-harness.version}),(${jenkins-test-harness.version},):jar</exclude>
+                  </excludes>
+                </bannedDependencies>
                 <requireUpperBoundDeps>
                   <excludes>
                     <exclude>com.google.code.findbugs:jsr305</exclude>
