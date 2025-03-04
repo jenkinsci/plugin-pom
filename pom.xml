@@ -105,7 +105,7 @@
     <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <mockito.version>5.16.0</mockito.version>
-    <spotbugs-maven-plugin.version>4.8.3.1</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.9.2.0</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>2.44.3</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>233.v9579d1a_8ea_28</stapler-maven-plugin.version>
 
@@ -113,15 +113,36 @@
     <jenkins.insaneHook />
 
     <!--
-      The MS_EXPOSE_REP, EI_EXPOSE_REP, EI_EXPOSE_REP2, EI_EXPOSE_STATIC_REP2, MS_EXPOSE_BUF,
-      EI_EXPOSE_BUF, EI_EXPOSE_STATIC_BUF2, and EI_EXPOSE_BUF2 bug patterns are noisy and create
-      little value; therefore, we suppress them globally.
+      The following bug patterns are noisy and create little value; therefore, we suppress them
+      globally.
 
-      The CT_CONSTRUCTOR_THROW bug pattern is related to libraries used with SecurityManager
-      and does not apply to Jenkins; we do not expect untrusted code to be running inside the
-      controller JVM, therefore we suppress it globally.
+      ConstructorThrow
+        CT_CONSTRUCTOR_THROW
+      FindReturnRef
+        EI_EXPOSE_BUF2
+        EI_EXPOSE_REP
+        EI_EXPOSE_REP2
+        EI_EXPOSE_STATIC_BUF2
+        EI_EXPOSE_STATIC_REP2
+        MS_EXPOSE_BUF
+        MS_EXPOSE_REP
+      MultipleInstantiationsOfSingletons
+        SING_SINGLETON_GETTER_NOT_SYNCHRONIZED
+        SING_SINGLETON_HAS_NONPRIVATE_CONSTRUCTOR
+        SING_SINGLETON_IMPLEMENTS_CLONEABLE
+        SING_SINGLETON_IMPLEMENTS_CLONE_METHOD
+        SING_SINGLETON_IMPLEMENTS_SERIALIZABLE
+        SING_SINGLETON_INDIRECTLY_IMPLEMENTS_CLONEABLE
+      SharedVariableAtomicityDetector
+        AT_NONATOMIC_64BIT_PRIMITIVE
+        AT_NONATOMIC_OPERATIONS_ON_SHARED_VARIABLE
+        AT_STALE_THREAD_WRITE_OF_PRIMITIVE
+      ThrowingExceptions
+        THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION
+        THROWS_METHOD_THROWS_CLAUSE_THROWABLE
+        THROWS_METHOD_THROWS_RUNTIMEEXCEPTION
     -->
-    <spotbugs.omitVisitors>FindReturnRef,ConstructorThrow</spotbugs.omitVisitors>
+    <spotbugs.omitVisitors>ConstructorThrow,FindReturnRef,MultipleInstantiationsOfSingletons,SharedVariableAtomicityDetector,ThrowingExceptions</spotbugs.omitVisitors>
 
     <!-- Set to false to enable Spotless -->
     <spotless.check.skip>true</spotless.check.skip>
