@@ -77,7 +77,7 @@
     <hpi-plugin.version>3.62</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.8</incrementals-plugin.version>
-    <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2427.v186cd47d9b_e0</jenkins-test-harness.version>
