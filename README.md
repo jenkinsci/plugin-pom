@@ -131,10 +131,16 @@ For npm:
 touch .mvn_exec_node
 ```
 
-For yarn:
+For yarn classic (1.x):
 
 ```bash
 touch .mvn_exec_yarn
+```
+
+For yarn berry (>2.x):
+
+```bash
+touch .mvn_exec_yarn_corepack
 ```
 
 You need to add corresponding properties to your `pom.xml` and set them to valid values:
@@ -147,7 +153,22 @@ For npm:
 </properties>
 ```
 
-For yarn:
+For yarn berry:
+
+```xml
+<properties>
+    <node.version>set this to the latest node lts version</node.version>
+</properties>
+```
+
+In your `package.json` set the `packageManager` field:
+```json
+{
+  "packageManager": "yarn@4.9.1"
+}
+```
+
+For yarn classic:
 
 ```xml
 <properties>
