@@ -681,6 +681,7 @@
             </indent>
             <palantirJavaFormat />
             <removeUnusedImports />
+            <toggleOffOn />
             <trimTrailingWhitespace />
           </java>
           <pom>
