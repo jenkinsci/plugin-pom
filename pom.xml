@@ -70,6 +70,7 @@
     <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}</argLine>
 
     <access-modifier-checker.version>1.34</access-modifier-checker.version>
+    <bridge-method-injector.version>1.30</bridge-method-injector.version>
     <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
     <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>4.1.1</gmavenplus-plugin.version>
@@ -490,6 +491,11 @@
           <version>${access-modifier-checker.version}</version>
         </plugin>
         <plugin>
+          <groupId>com.infradna.tool</groupId>
+          <artifactId>bridge-method-injector</artifactId>
+          <version>${bridge-method-injector.version}</version>
+        </plugin>
+        <plugin>
           <groupId>io.jenkins.tools.maven</groupId>
           <artifactId>stapler-maven-plugin</artifactId>
           <version>${stapler-maven-plugin.version}</version>
@@ -797,6 +803,17 @@
           <runOrder>alphabetical</runOrder>
           <reuseForks>false</reuseForks>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.infradna.tool</groupId>
+        <artifactId>bridge-method-injector</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>process</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>io.jenkins.tools.maven</groupId>
