@@ -780,6 +780,7 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
+            <id>configureJavaAgent</id>
             <goals>
               <goal>run</goal>
             </goals>
