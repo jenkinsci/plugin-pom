@@ -75,7 +75,7 @@
     <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>4.2.0</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.64</hpi-plugin.version>
+    <hpi-plugin.version>3.65</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.8</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
@@ -112,6 +112,9 @@
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
+
+    <!-- Filled in by "maven-hpi-plugin" with "-javaagent:/path/to/mockito-core-<version>.jar" -->
+    <jenkins.javaAgent />
 
     <!--
       The following bug patterns are noisy and create little value; therefore, we suppress them
@@ -504,17 +507,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>properties</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <executions>
           <execution>
@@ -779,21 +771,6 @@
         <!-- https://stackoverflow.com/a/4086207/12916 -->
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
-          <execution>
-            <id>configureJavaAgent</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <phase>initialize</phase>
-            <configuration>
-              <target>
-                <condition else="" property="jenkins.javaAgent" value="-javaagent:${org.mockito:mockito-core:jar}">
-                  <isset property="org.mockito:mockito-core:jar" />
-                </condition>
-              </target>
-              <exportAntProperties>true</exportAntProperties>
-            </configuration>
-          </execution>
           <execution>
             <id>createTempDir</id>
             <goals>
