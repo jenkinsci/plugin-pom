@@ -75,8 +75,7 @@
     <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>4.2.0</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <!-- TODO https://github.com/jenkinsci/maven-hpi-plugin/pull/741 -->
-    <hpi-plugin.version>3.65-rc1711.79d6a_6569750</hpi-plugin.version>
+    <hpi-plugin.version>3.65</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.8</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
