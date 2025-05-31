@@ -92,7 +92,7 @@ You can set up `mvn spotless:apply` to run automatically (in `validate` phase) f
 
 ## Running Benchmarks
 
-To run JMH benchmarks from JUnit tests, you must run you must activate the `benchmark`
+To run JMH benchmarks from JUnit tests, activate the `benchmark`
 profile. For example:
 ```bash
 mvn -P jmh-benchmark test
