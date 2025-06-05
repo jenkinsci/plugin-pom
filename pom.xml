@@ -71,7 +71,7 @@
 
     <access-modifier-checker.version>1.35</access-modifier-checker.version>
     <bridge-method-injector.version>1.31</bridge-method-injector.version>
-    <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
+    <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
     <frontend-version>1.15.1</frontend-version>
     <gmavenplus-plugin.version>4.2.0</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
