@@ -688,7 +688,11 @@
             <indent>
               <spaces>true</spaces>
             </indent>
-            <palantirJavaFormat />
+            <palantirJavaFormat>
+              <!-- Declare version so that spotless does not choose a version based on JDK version -->
+              <!-- https://github.com/diffplug/spotless/issues/2503#issuecomment-2953146277 -->
+              <version>2.67.0</version>
+            </palantirJavaFormat>
             <removeUnusedImports />
             <toggleOffOn />
             <trimTrailingWhitespace />
