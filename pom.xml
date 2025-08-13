@@ -151,6 +151,9 @@
     <!-- Set to false to enable Spotless -->
     <spotless.check.skip>true</spotless.check.skip>
 
+    <!-- Set to false to enable enforcer banning org.junit.* imports -->
+    <ban-junit4-imports.skip>true</ban-junit4-imports.skip>
+
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
@@ -533,6 +536,11 @@
             <artifactId>extra-enforcer-rules</artifactId>
             <version>1.9.0</version>
           </dependency>
+          <dependency>
+            <groupId>de.skuzzle.enforcer</groupId>
+            <artifactId>restrict-imports-enforcer-rule</artifactId>
+            <version>2.6.1</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>
@@ -656,6 +664,23 @@
                   <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                 </requireReleaseDeps>
               </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>check-junit-imports</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <rules>
+                <RestrictImports>
+                  <reason>Use JUnit 5 (org.junit.jupiter.*)</reason>
+                  <bannedImport>org.junit.**</bannedImport>
+                  <allowedImport>org.junit.jupiter.**</allowedImport>
+                </RestrictImports>
+              </rules>
+              <skip>${ban-junit4-imports.skip}</skip>
             </configuration>
           </execution>
         </executions>
