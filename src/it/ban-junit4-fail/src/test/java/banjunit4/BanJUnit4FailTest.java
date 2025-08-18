@@ -8,5 +8,6 @@ public class BanJUnit4FailTest {
     @Test
     public void thisFails() {
         assertTrue(true);
+        junit.framework.Assert.assertFalse(fale);
     }
 }
