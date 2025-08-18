@@ -677,8 +677,8 @@
                 <RestrictImports>
                   <reason>Use JUnit 5 (org.junit.jupiter.*)</reason>
                   <bannedImports>
-                      <bannedImport>junit.**</bannedImport>
-                      <bannedImport>org.junit.**</bannedImport>
+                    <bannedImport>junit.**</bannedImport>
+                    <bannedImport>org.junit.**</bannedImport>
                   </bannedImports>
                   <allowedImports>
                     <allowedImport>org.junit.jupiter.**</allowedImport>
