@@ -12,4 +12,5 @@ updates:
       - dependency-name: "org.jenkins-ci.main:jenkins-core"
       - dependency-name: "org.jenkins-ci.main:jenkins-war"
       # see https://github.com/apache/maven-surefire/issues/2601
+      - dependency-name: "org.apache.maven.plugins:maven-failsafe-plugin"
       - dependency-name: "org.apache.maven.plugins:maven-surefire-plugin"
