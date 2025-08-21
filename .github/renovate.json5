@@ -6,6 +6,9 @@
     "schedule:daily"
   ],
   "automerge": true,
+  "ignorePaths": [
+    "src/it/**"
+  ],
   "ignoreDeps": [
     "org.jenkins-ci.main:jenkins-bom",
     "org.jenkins-ci.main:jenkins-core",
