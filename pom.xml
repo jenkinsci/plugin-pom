@@ -719,9 +719,9 @@
             <indent>
               <spaces>true</spaces>
             </indent>
+            <!-- Declare version so that spotless does not choose a version based on JDK version -->
+            <!-- https://github.com/diffplug/spotless/issues/2503#issuecomment-2953146277 -->
             <palantirJavaFormat>
-              <!-- Declare version so that spotless does not choose a version based on JDK version -->
-              <!-- https://github.com/diffplug/spotless/issues/2503#issuecomment-2953146277 -->
               <version>2.73.0</version>
             </palantirJavaFormat>
             <removeUnusedImports />
