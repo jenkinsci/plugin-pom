@@ -79,7 +79,7 @@
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.10</incrementals-plugin.version>
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-    <jenkins.version>2.492.3</jenkins.version>
+    <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2488.v0c38b_4e6b_cfa_</jenkins-test-harness.version>
     <junit.version>5.13.4</junit.version>
