@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommitsDisabled",
+    "schedule:daily"
+  ],
+  "automerge": true,
+  "ignoreDeps": [
+    "org.jenkins-ci.main:jenkins-bom",
+    "org.jenkins-ci.main:jenkins-core",
+    "org.jenkins-ci.main:jenkins-war",
+    // see https://github.com/apache/maven-surefire/issues/2601
+    "org.apache.maven.plugins:maven-failsafe-plugin",
+    "org.apache.maven.plugins:maven-surefire-plugin"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/pom.xml/"
+      ],
+      "matchStrings": [
+        "<palantirJavaFormat>\\n\\s+<version>(?<currentValue>.*)<\\/version>\\n\\s+<\\/palantirJavaFormat>"
+      ],
+      "depNameTemplate": "com.palantir.javaformat:palantir-java-format",
+      "datasourceTemplate": "maven"
+    }
+  ],
+  "rebaseWhen": "conflicted"
+}
