@@ -558,11 +558,9 @@
                 <requireJavaVersion>
                   <version>[${maven.compiler.release},)</version>
                 </requireJavaVersion>
-                <!-- TODO failing during incrementals deploy: MENFORCER-281
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
                 </requirePluginVersions>
-                -->
                 <enforceBytecodeVersion>
                   <maxJdkVersion>${maven.compiler.release}</maxJdkVersion>
                   <ignoredScopes>
