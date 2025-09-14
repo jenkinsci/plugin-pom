@@ -722,7 +722,7 @@
             <!-- Declare version so that spotless does not choose a version based on JDK version -->
             <!-- https://github.com/diffplug/spotless/issues/2503#issuecomment-2953146277 -->
             <palantirJavaFormat>
-              <version>2.73.0</version>
+              <version>2.74.0</version>
             </palantirJavaFormat>
             <removeUnusedImports />
             <toggleOffOn />
