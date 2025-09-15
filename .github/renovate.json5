@@ -13,9 +13,6 @@
     "org.jenkins-ci.main:jenkins-bom",
     "org.jenkins-ci.main:jenkins-core",
     "org.jenkins-ci.main:jenkins-war",
-    // see https://github.com/apache/maven-surefire/issues/2601
-    "org.apache.maven.plugins:maven-failsafe-plugin",
-    "org.apache.maven.plugins:maven-surefire-plugin"
   ],
   "labels": [
     "dependencies"
