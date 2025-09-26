@@ -72,7 +72,7 @@
     <access-modifier-checker.version>1.35</access-modifier-checker.version>
     <bridge-method-injector.version>1.32</bridge-method-injector.version>
     <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
-    <frontend-version>1.15.1</frontend-version>
+    <frontend-version>1.15.4</frontend-version>
     <gmavenplus-plugin.version>4.2.1</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
     <hpi-plugin.version>3.1762.vd3ff902a_5b_c4</hpi-plugin.version>
