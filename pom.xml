@@ -1191,7 +1191,7 @@
                 <phase>initialize</phase>
                 <configuration>
                   <!-- Note that this may not be omitted lest maven-release-plugin be confused (frontend-maven-plugin #109): -->
-                  <arguments>install ${npm.loglevel}</arguments>
+                  <arguments>ci ${npm.loglevel}</arguments>
                 </configuration>
               </execution>
 
