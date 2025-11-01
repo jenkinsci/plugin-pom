@@ -27,7 +27,7 @@
 
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>plugin</artifactId>
-  <version>5.29-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
   <packaging>pom</packaging>
 
   <name>Jenkins Plugin Parent POM</name>
@@ -35,9 +35,9 @@
   <inceptionYear>2016</inceptionYear>
 
   <scm>
-    <connection>scm:git:https://github.com/jenkinsci/plugin-pom.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/plugin-pom.git</developerConnection>
-    <tag>HEAD</tag>
+    <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
+    <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
+    <tag>${scmTag}</tag>
     <url>https://github.com/jenkinsci/plugin-pom</url>
   </scm>
 
@@ -54,6 +54,9 @@
   </distributionManagement>
 
   <properties>
+    <revision>5.29</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <gitHubRepo>jenkinsci/plugin-pom</gitHubRepo>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,6 +81,7 @@
     <hpi-plugin.version>3.1762.vd3ff902a_5b_c4</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
+    <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
@@ -1411,7 +1415,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>flatten-maven-plugin</artifactId>
-            <version>1.7.3</version>
+            <version>${flatten-maven-plugin.version}</version>
             <configuration>
               <updatePomFile>true</updatePomFile>
             </configuration>
@@ -1430,6 +1434,100 @@
                   <pomElements>
                     <repositories>flatten</repositories>
                   </pomElements>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <dependencies>
+              <dependency>
+                <groupId>io.jenkins.tools.incrementals</groupId>
+                <artifactId>incrementals-enforcer-rules</artifactId>
+                <version>${incrementals-plugin.version}</version>
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <id>display-info</id>
+                <configuration>
+                  <rules>
+                    <requireExtensionVersion>
+                      <version>[${incrementals-enforce-minimum.version},)</version>
+                    </requireExtensionVersion>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <completionGoals>incrementals:reincrementalify</completionGoals>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!--
+      A profile that is identical to "might-produce-incrementals" but with "flatten-maven-plugin"
+      configured to interpolate variables in the "scm", "url", and "version" elements and keep all
+      other elements untouched. This is only intended to be used with repositories like "pom" and
+      "plugin-pom". If the POM from these repositories were flattened with the "oss" flatten mode,
+      then the resulting incremental build would be missing critical sections and would not be
+      suitable for consumers. If the "scm", "url", and "version" elements were not interpolated,
+      then the resulting incremental build would contain e.g. an SCM tag of "${scmTag}" and could
+      not be published to the incrementals repository.
+    -->
+    <profile>
+      <id>might-produce-incrementals-with-minimal-flattening</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>flatten-maven-plugin</artifactId>
+            <version>${flatten-maven-plugin.version}</version>
+            <configuration>
+              <updatePomFile>true</updatePomFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>flatten</id>
+                <goals>
+                  <goal>flatten</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <keepCommentsInPom>true</keepCommentsInPom>
+                  <pomElements>
+                    <build>keep</build>
+                    <ciManagement>keep</ciManagement>
+                    <contributors>keep</contributors>
+                    <dependencies>keep</dependencies>
+                    <dependencyManagement>keep</dependencyManagement>
+                    <description>keep</description>
+                    <developers>keep</developers>
+                    <distributionManagement>keep</distributionManagement>
+                    <inceptionYear>keep</inceptionYear>
+                    <issueManagement>keep</issueManagement>
+                    <mailingLists>keep</mailingLists>
+                    <modules>keep</modules>
+                    <name>keep</name>
+                    <organization>keep</organization>
+                    <parent>keep</parent>
+                    <pluginManagement>keep</pluginManagement>
+                    <pluginRepositories>keep</pluginRepositories>
+                    <prerequisites>keep</prerequisites>
+                    <profiles>keep</profiles>
+                    <properties>keep</properties>
+                    <reporting>keep</reporting>
+                    <repositories>keep</repositories>
+                    <scm>interpolate</scm>
+                    <url>interpolate</url>
+                    <version>interpolate</version>
+                  </pomElements>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                  <flattenedPomFilename>${project.artifactId}-${project.version}.pom</flattenedPomFilename>
                 </configuration>
               </execution>
             </executions>
