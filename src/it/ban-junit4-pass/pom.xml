@@ -15,12 +15,6 @@
         <jenkins.version>2.479.3</jenkins.version>
         <ban-junit4-imports.skip>false</ban-junit4-imports.skip>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-api</artifactId>
-        </dependency>
-    </dependencies>
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
