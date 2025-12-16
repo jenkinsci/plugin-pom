@@ -37,7 +37,7 @@
   <scm>
     <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
-    <tag>plugin-5.30</tag>
+    <tag>${scmTag}</tag>
     <url>https://github.com/jenkinsci/plugin-pom</url>
   </scm>
 
@@ -54,8 +54,8 @@
   </distributionManagement>
 
   <properties>
-    <revision>5.30</revision>
-    <changelist></changelist>
+    <revision>5.31</revision>
+    <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/plugin-pom</gitHubRepo>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
