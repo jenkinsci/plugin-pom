@@ -54,14 +54,14 @@
   </distributionManagement>
 
   <properties>
-    <revision>5</revision>
+    <revision>6</revision>
     <changelist>999999-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/plugin-pom</gitHubRepo>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release>
     <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
     <!-- Generate metadata for reflection on method parameters -->
     <maven.compiler.parameters>true</maven.compiler.parameters>
@@ -83,7 +83,7 @@
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-    <jenkins.version>2.479</jenkins.version>
+    <jenkins.version>2.516</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2543.va_0f3a_a_fd575d</jenkins-test-harness.version>
     <junit.version>6.0.1</junit.version>
@@ -1661,17 +1661,6 @@
         <invoker.skip>true</invoker.skip>
         <checkstyle.skip>true</checkstyle.skip>
         <yarn.lint.skip>true</yarn.lint.skip>
-      </properties>
-    </profile>
-    <profile>
-      <id>java-level-17</id>
-      <activation>
-        <file>
-          <exists>target/java-level/17</exists>
-        </file>
-      </activation>
-      <properties>
-        <maven.compiler.release>17</maven.compiler.release>
       </properties>
     </profile>
     <profile>

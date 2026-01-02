@@ -16,7 +16,7 @@
     <module>downstream</module>
   </modules>
   <properties>
-    <jenkins.version>2.479.1</jenkins.version>
+    <jenkins.version>2.516.3</jenkins.version>
     <spotless.check.skip>false</spotless.check.skip>
     <maven-hpi-plugin.disabledTestInjection>true</maven-hpi-plugin.disabledTestInjection>
   </properties>
