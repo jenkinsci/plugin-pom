@@ -10,6 +10,7 @@ It provides a common build configuration for all Jenkins plugins.
 
 ## Requirements
 
+Since version 6.2105.v0879858b_48d2, the plugin parent POM requires Jenkins 2.516 or newer and JDK 21 or newer.
 Since version 5.0, the plugin parent POM requires Jenkins 2.479 or newer and JDK 17 or newer.
 Since version 4.52, the plugin parent POM requires Jenkins 2.361 or newer and JDK 11 or newer.
 Since version 4.40, the plugin parent POM supports Java 17.
@@ -35,7 +36,7 @@ Then override the needed properties, e.g.:
     Take a look the developer documentation for the baseline version to use
     https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/#currently-recommended-versions
     -->
-    <jenkins.version>2.361.4</jenkins.version>
+    <jenkins.version>2.516.3</jenkins.version>
   </properties>
 ```
 

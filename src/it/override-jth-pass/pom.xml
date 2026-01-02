@@ -12,7 +12,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <properties>
-    <jenkins.version>2.479.1</jenkins.version>
+    <jenkins.version>2.516.3</jenkins.version>
     <!-- Must differ from the current jth version defined via property -->
     <jenkins-test-harness.version>2384.va_d3a_58a_4b_df5</jenkins-test-harness.version>
   </properties>
