@@ -54,7 +54,7 @@
   </distributionManagement>
 
   <properties>
-    <revision>5</revision>
+    <revision>6</revision>
     <changelist>999999-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/plugin-pom</gitHubRepo>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
