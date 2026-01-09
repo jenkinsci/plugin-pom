@@ -560,7 +560,8 @@
                   <message>3.9.6 to use Maven plugins using JDK17 bytecode.</message>
                 </requireMavenVersion>
                 <requireJavaVersion>
-                  <version>[${maven.compiler.release},)</version>
+                  <version>[17,18),[21,22),[25,26)</version>
+                  <message>Java LTS 17, 21, or 25 is required to build this plugin.</message>
                 </requireJavaVersion>
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
