@@ -158,6 +158,9 @@
     <!-- Set to false to enable enforcer banning org.junit.* imports -->
     <ban-junit4-imports.skip>true</ban-junit4-imports.skip>
 
+    <!-- Set to false to enable enforcer banning org.apache.commons.lang.* imports -->
+    <ban-commons-lang-2.skip>true</ban-commons-lang-2.skip>
+
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
     <!-- By default we do not create *-tests.jar. Set to false to allow other plugins to depend on test utilities in yours, using <classifier>tests</classifier>. -->
@@ -689,6 +692,24 @@
                 </RestrictImports>
               </rules>
               <skip>${ban-junit4-imports.skip}</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <id>check-commons-lang-imports</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>process-sources</phase>
+            <configuration>
+              <rules>
+                <RestrictImports>
+                  <reason>Use Commons Lang 2 (org.apache.commons.lang.*)</reason>
+                  <bannedImports>
+                    <bannedImport>org.apache.commons.lang.**</bannedImport>
+                  </bannedImports>
+                </RestrictImports>
+              </rules>
+              <skip>${ban-commons-lang-2.skip}</skip>
             </configuration>
           </execution>
         </executions>
