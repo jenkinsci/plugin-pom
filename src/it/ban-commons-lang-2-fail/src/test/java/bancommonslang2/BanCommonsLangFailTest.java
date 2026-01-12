@@ -1,4 +1,4 @@
-package banjunit4;
+package bancommonslang2;
 
 import org.junit.jupiter.api.Test;
 import org.apache.commons.lang.time.FastDateFormat;

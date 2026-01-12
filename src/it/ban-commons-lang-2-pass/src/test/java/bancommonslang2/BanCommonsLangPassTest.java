@@ -1,4 +1,4 @@
-package banjunit4;
+package bancommonslang2;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.suite.api.Suite;
