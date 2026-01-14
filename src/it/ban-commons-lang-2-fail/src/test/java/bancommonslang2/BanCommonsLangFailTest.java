@@ -1,0 +1,12 @@
+package bancommonslang2;
+
+import org.junit.jupiter.api.Test;
+import org.apache.commons.lang.time.FastDateFormat;
+
+public class BanCommonsLangFailTest {
+    @Test
+    void thisFails() {
+        assertTrue(true);
+        assertFalse(false);
+    }
+}
