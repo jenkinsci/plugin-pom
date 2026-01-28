@@ -78,7 +78,7 @@
     <frontend-version>2.0.0</frontend-version>
     <gmavenplus-plugin.version>4.3.0</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.1801.v26037216c7d3</hpi-plugin.version>
+    <hpi-plugin.version>3.1802.v14f4709445a_b_</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
