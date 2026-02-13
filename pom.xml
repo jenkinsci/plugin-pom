@@ -562,8 +562,15 @@
                   <version>[3.9.6,)</version>
                   <message>3.9.6 to use Maven plugins using JDK17 bytecode.</message>
                 </requireMavenVersion>
+                <!-- Minimum Java version required -->
                 <requireJavaVersion>
                   <version>[${maven.compiler.release},)</version>
+                </requireJavaVersion>
+                <!-- Suggested Java LTS versions -->
+                <requireJavaVersion>
+                  <version>[17,18),[21,22),[25,26)</version>
+                  <message> A Java LTS release is recommended to build this plugin (JDK 17, 21, or 25).</message>
+                  <level>WARN</level>
                 </requireJavaVersion>
                 <requirePluginVersions>
                   <banSnapshots>false</banSnapshots>
@@ -658,7 +665,7 @@
             <phase>validate</phase>
             <configuration>
               <rules>
-                <!-- 
+                <!--
                   this causes fails the incrementals IT to fail as the parent is a snapshot and the incremental is a release
                   so this is a separate execution so that it can be skipped in that specific IT
                   -->
@@ -891,17 +898,17 @@
               <generateLicenseXml>target/${project.artifactId}/WEB-INF/licenses.xml</generateLicenseXml>
               <inlineScript><![CDATA[filter {
                     def plugins = [] as Set
-                    
+
                     // collect all Jenkins plugins
                     models.entrySet().each { e ->
                         if (e.value.packaging=="hpi")
                             plugins.add(e.key.id)
                     }
-                    
+
                     // filter out dependencies that don't belong to this plugin
                     models.entrySet().removeAll(models.entrySet().findAll { e ->
                         def a = e.key;
-                        
+
                         if (a.dependencyTrail.size()>0 && plugins.contains(a.dependencyTrail[1]))
                             return true; // ignore transitive dependencies through other plugins
 
@@ -910,7 +917,7 @@
                         // dependencies into the artifact list.
                         if (a.dependencyTrail.find { trail -> trail.contains(":hudson-core:") || trail.contains(":jenkins-core:") })
                             return true;
-                            
+
                         return false;
                     })
                 }]]></inlineScript>
