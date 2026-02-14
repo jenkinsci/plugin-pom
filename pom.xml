@@ -257,27 +257,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!--  Jenkins core dependencies -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- jenkins war needed for testing -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- dependencies provided by virtue of running in Jenkins -->
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
       <!-- TODO this would be better as a managed version of [0] -->
@@ -285,15 +264,40 @@
       <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- dependencies provided by virtue of running in Jenkins -->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!--  Jenkins core dependencies -->
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-core</artifactId>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-lang</groupId>
+          <artifactId>commons-lang</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>test-annotations</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-test-harness</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- jenkins war needed for testing -->
     <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>test-annotations</artifactId>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <type>executable-war</type>
       <scope>test</scope>
     </dependency>
     <dependency>
