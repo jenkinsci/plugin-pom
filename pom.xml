@@ -551,6 +551,11 @@
             <artifactId>restrict-imports-enforcer-rule</artifactId>
             <version>3.0.0</version>
           </dependency>
+          <dependency>
+            <groupId>org.jenkins-ci.tools</groupId>
+            <artifactId>maven-hpi-plugin</artifactId>
+            <version>${hpi-plugin.version}</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>
@@ -657,6 +662,7 @@
                     <exclude>org.ow2.asm:asm</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
+                <requireNonObsoleteDependencyManagement />
               </rules>
             </configuration>
           </execution>
