@@ -78,7 +78,7 @@
     <frontend-version>2.0.0</frontend-version>
     <gmavenplus-plugin.version>4.3.1</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.1814.v77d15159f9b_d</hpi-plugin.version>
+    <hpi-plugin.version>3.1820.vd1b_1b_09038b_e</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
@@ -662,7 +662,21 @@
                     <exclude>org.ow2.asm:asm</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
-                <requireNonObsoleteDependencyManagement />
+                <requireNonObsoleteDependencyManagement>
+                  <ignorePatterns>
+                    <!--
+                      junit:junit is managed by plugin-pom to control test library versions,
+                      but appears in guice-bom's effective dependencyManagement (inherited from
+                      guice-parent, for guice-testlib). This conflicts with plugin-pom's
+                      intentional management of test dependencies.
+
+                      Note: jenkins-bom imports guice-bom (added in jenkinsci/jenkins#6014),
+                      which transitively brings junit into jenkins-bom's effective dependencyManagement.
+                      This decision may need to be revisited - see jenkinsci/jenkins#6014.
+                    -->
+                    <ignorePattern>junit:junit</ignorePattern>
+                  </ignorePatterns>
+                </requireNonObsoleteDependencyManagement>
               </rules>
             </configuration>
           </execution>
