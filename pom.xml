@@ -990,6 +990,8 @@
               <filterProperties>
                 <repository.proxy.url>${repository.proxy.url}</repository.proxy.url>
               </filterProperties>
+              <writeJunitReport>true</writeJunitReport>
+              <junitPackageName>io.jenkins.tools.plugin_pom.its</junitPackageName>
             </configuration>
           </execution>
         </executions>
