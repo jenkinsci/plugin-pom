@@ -12,13 +12,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <properties>
-        <jenkins.version>2.479.3</jenkins.version>
+        <jenkins.baseline>2.479</jenkins.baseline>
+        <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.479.x</artifactId>
+                <artifactId>bom-${jenkins.baseline}.x</artifactId>
                 <version>5054.v620b_5d2b_d5e6</version>
                 <type>pom</type>
                 <scope>import</scope>
