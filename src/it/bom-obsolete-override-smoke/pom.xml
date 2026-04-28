@@ -14,6 +14,7 @@
     <properties>
         <jenkins.baseline>2.479</jenkins.baseline>
         <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+        <requireNonObsoleteDependencyManagement.skip>false</requireNonObsoleteDependencyManagement.skip>
     </properties>
     <dependencyManagement>
         <dependencies>

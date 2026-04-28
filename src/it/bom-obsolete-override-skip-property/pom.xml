@@ -13,8 +13,7 @@
     <packaging>hpi</packaging>
     <properties>
         <jenkins.version>2.479.3</jenkins.version>
-        <!-- Skip via property - should pass even with obsolete override -->
-        <requireNonObsoleteDependencyManagement.skip>true</requireNonObsoleteDependencyManagement.skip>
+        <!-- do not override skip -->
     </properties>
     <dependencyManagement>
         <dependencies>

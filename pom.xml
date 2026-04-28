@@ -164,7 +164,8 @@
     <!-- Set to false to enable enforcer banning StaplerRequest, StaplerResponse and javax.servlet.* imports -->
     <ban-deprecated-stapler.skip>true</ban-deprecated-stapler.skip>
 
-    <requireNonObsoleteDependencyManagement.skip>false</requireNonObsoleteDependencyManagement.skip>
+    <!-- Set to false to verify that dependencyManagement overrides still make sense -->
+    <requireNonObsoleteDependencyManagement.skip>true</requireNonObsoleteDependencyManagement.skip>
 
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
