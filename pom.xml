@@ -1525,7 +1525,7 @@
             </dependencies>
             <executions>
               <execution>
-                <id>display-info</id>
+                <id>incrementals-enforce-minimum</id>
                 <configuration>
                   <rules>
                     <requireExtensionVersion>
