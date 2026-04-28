@@ -78,7 +78,7 @@
     <frontend-version>2.0.0</frontend-version>
     <gmavenplus-plugin.version>4.3.1</gmavenplus-plugin.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hpi-plugin.version>3.1823.v4a_15fb_ce9864</hpi-plugin.version>
+    <hpi-plugin.version>3.1829.v1595655f4b_49</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
@@ -678,7 +678,7 @@
                       which transitively brings junit into jenkins-bom's effective dependencyManagement.
                       This decision may need to be revisited - see jenkinsci/jenkins#6014.
                     -->
-                    <ignorePattern>junit:junit</ignorePattern>
+                    <ignorePattern>junit:junit:jar</ignorePattern>
                   </ignorePatterns>
                 </requireNonObsoleteDependencyManagement>
               </rules>
