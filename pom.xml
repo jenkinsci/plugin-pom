@@ -85,7 +85,7 @@
     <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
-    <jenkins-test-harness.version>2557.v6317fc67b_811</jenkins-test-harness.version>
+    <jenkins-test-harness.version>2565.vd1eb_7c961d1b_</jenkins-test-harness.version>
     <junit.version>6.0.3</junit.version>
     <license-maven-plugin.version>203.vffb_768f15d51</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
@@ -995,7 +995,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>3.9.1</version>
+        <version>3.10.0</version>
         <inherited>false</inherited>
         <executions>
           <execution>
