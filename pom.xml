@@ -83,7 +83,7 @@
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
-    <jenkins.version>2.479</jenkins.version>
+    <jenkins.version>2.555</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2565.vd1eb_7c961d1b_</jenkins-test-harness.version>
     <junit.version>6.0.3</junit.version>
