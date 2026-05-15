@@ -48,7 +48,7 @@ Now run ITs here like this:
 [source,bash]
 ----
 mvnd -f ../maven-hpi-plugin -Pquick-build install -Dchangelist=xxx
-mvnd clean verify -Dinvoker.test=bom-obsolete-override-*
+mvn clean verify -Dinvoker.test=bom-obsolete-override-*
 ----
 
 Clean up before commit by switching to an Incremental version of `maven-hpi-plugin`:
