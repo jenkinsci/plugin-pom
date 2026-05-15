@@ -22,44 +22,6 @@ To run one IT:
 mvn verify -Dinvoker.test=powermock
 ----
 
-Running locally built versions of `../maven-hpi-plugin/src/main/java/org/jenkinsci/maven/plugins/hpi/enforcer/BanObsoleteDependencyOverrides.java` is more challenging.
-Using `3.999999-SNAPSHOT` versions of `maven-hpi-plugin` does not work apparently because of some problem with `mrm-maven-plugin` and `maven-enforcer-plugin` and Plexus.
-Prepare this repo temporarily with:
-
-[source,diff]
-----
-diff --git pom.xml pom.xml
-index 63bb53e..08c13d1 100644
---- pom.xml
-+++ pom.xml
-@@ -78,7 +78,7 @@
-     <frontend-version>2.0.0</frontend-version>
-     <gmavenplus-plugin.version>4.3.1</gmavenplus-plugin.version>
-     <hamcrest.version>3.0</hamcrest.version>
--    <hpi-plugin.version>3.nnnn.vcurrent</hpi-plugin.version>
-+    <hpi-plugin.version>3.xxx</hpi-plugin.version> <!-- TODO revert before commit -->
-     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
-     <incrementals-plugin.version>1.13</incrementals-plugin.version>
-     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
-----
-
-Now run ITs here like this:
-
-[source,bash]
-----
-mvnd -f ../maven-hpi-plugin -Pquick-build install -Dchangelist=xxx
-mvn clean verify -Dinvoker.test=bom-obsolete-override-*
-----
-
-Clean up before commit by switching to an Incremental version of `maven-hpi-plugin`:
-it _does_ work to specify Incremental versions of `maven-hpi-plugin` pull request commits while the `consume-incrementals` placeholder is active, just not snapshot versions;
-and to be safe also
-
-[source,bash]
-----
-rm -rfv ~/.m2/repository/org/jenkins-ci/tools/maven-hpi-plugin/3.xxx
-----
-
 ## Building and using snapshots
 
 Snapshots might be needed to provide reference implementations for Plugin POM patches.
