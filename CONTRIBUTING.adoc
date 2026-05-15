@@ -22,7 +22,7 @@ To run one IT:
 mvn verify -Dinvoker.test=powermock
 ----
 
-Running locally built versions of `../maven-hpi-plugin/src/main/java/org/jenkinsci/maven/plugins/hpi/enforcer/RequireNonObsoleteDependencyManagement.java` is more challenging.
+Running locally built versions of `../maven-hpi-plugin/src/main/java/org/jenkinsci/maven/plugins/hpi/enforcer/BanObsoleteDependencyOverrides.java` is more challenging.
 Using `3.999999-SNAPSHOT` versions of `maven-hpi-plugin` does not work apparently because of some problem with `mrm-maven-plugin` and `maven-enforcer-plugin` and Plexus.
 Prepare this repo temporarily with:
 
