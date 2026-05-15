@@ -668,7 +668,7 @@
                 </requireUpperBoundDeps>
                 <banObsoleteDependencyOverrides>
                   <skip>${banObsoleteDependencyOverrides.skip}</skip>
-                  <ignorePatterns>
+                  <ignores>
                     <!--
                       junit:junit is managed by plugin-pom to control test library versions,
                       but appears in guice-bom's effective dependencyManagement (inherited from
@@ -679,8 +679,8 @@
                       which transitively brings junit into jenkins-bom's effective dependencyManagement.
                       This decision may need to be revisited - see jenkinsci/jenkins#6014.
                     -->
-                    <ignorePattern>junit:junit:jar</ignorePattern>
-                  </ignorePatterns>
+                    <ignore>junit:junit:jar</ignore>
+                  </ignores>
                 </banObsoleteDependencyOverrides>
               </rules>
             </configuration>
