@@ -13,7 +13,8 @@
     <packaging>hpi</packaging>
     <properties>
         <jenkins.version>2.479.3</jenkins.version>
-        <!-- do not override skip -->
+        <maven-hpi-plugin.disabledTestInjection>true</maven-hpi-plugin.disabledTestInjection>
+        <!-- do not override banObsoleteDependencyOverrides.skip -->
     </properties>
     <dependencyManagement>
         <dependencies>

@@ -14,6 +14,7 @@
     <properties>
         <jenkins.baseline>2.479</jenkins.baseline>
         <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+        <maven-hpi-plugin.disabledTestInjection>true</maven-hpi-plugin.disabledTestInjection>
         <!-- Opt in to the rule (it's skipped by default since a91c5cc84ee5bef91a04b386442e14b130ea1177) -->
         <banObsoleteDependencyOverrides.skip>false</banObsoleteDependencyOverrides.skip>
     </properties>
