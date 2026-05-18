@@ -113,7 +113,7 @@
     <spotbugs-maven-plugin.version>4.9.8.3</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>3.5.1</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>278.vc90e156a_c20e</stapler-maven-plugin.version>
-    <jenkins-enforcer-rules.version>xxx</jenkins-enforcer-rules.version> <!-- TODO -->
+    <jenkins-enforcer-rules.version>41.v8deb_ef4c6b_2a_</jenkins-enforcer-rules.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
