@@ -113,6 +113,7 @@
     <spotbugs-maven-plugin.version>4.9.8.3</spotbugs-maven-plugin.version>
     <spotless-maven-plugin.version>3.5.1</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>278.vc90e156a_c20e</stapler-maven-plugin.version>
+    <jenkins-enforcer-rules.version>41.v8deb_ef4c6b_2a_</jenkins-enforcer-rules.version>
 
     <!-- Filled in by "maven-hpi-plugin" with the path to "org-netbeans-insane-hook.jar" extracted from "jenkins-test-harness" -->
     <jenkins.insaneHook />
@@ -163,6 +164,9 @@
 
     <!-- Set to false to enable enforcer banning StaplerRequest, StaplerResponse and javax.servlet.* imports -->
     <ban-deprecated-stapler.skip>true</ban-deprecated-stapler.skip>
+
+    <!-- Set to false to verify that dependencyManagement and property overrides still make sense -->
+    <banObsoleteDependencyOverrides.skip>true</banObsoleteDependencyOverrides.skip>
 
     <!-- Whether to skip tests during release phase (they are executed in the prepare phase). -->
     <release.skipTests>true</release.skipTests>
@@ -551,6 +555,11 @@
             <artifactId>restrict-imports-enforcer-rule</artifactId>
             <version>3.0.0</version>
           </dependency>
+          <dependency>
+            <groupId>io.jenkins.tools.maven</groupId>
+            <artifactId>jenkins-enforcer-rules</artifactId>
+            <version>${jenkins-enforcer-rules.version}</version>
+          </dependency>
         </dependencies>
         <executions>
           <execution>
@@ -657,6 +666,22 @@
                     <exclude>org.ow2.asm:asm</exclude>
                   </excludes>
                 </requireUpperBoundDeps>
+                <banObsoleteDependencyOverrides>
+                  <skip>${banObsoleteDependencyOverrides.skip}</skip>
+                  <ignores>
+                    <!--
+                      junit:junit is managed by plugin-pom to control test library versions,
+                      but appears in guice-bom's effective dependencyManagement (inherited from
+                      guice-parent, for guice-testlib). This conflicts with plugin-pom's
+                      intentional management of test dependencies.
+
+                      Note: jenkins-bom imports guice-bom (added in jenkinsci/jenkins#6014),
+                      which transitively brings junit into jenkins-bom's effective dependencyManagement.
+                      This decision may need to be revisited - see jenkinsci/jenkins#6014.
+                    -->
+                    <ignore>junit:junit:jar</ignore>
+                  </ignores>
+                </banObsoleteDependencyOverrides>
               </rules>
             </configuration>
           </execution>
@@ -1502,7 +1527,7 @@
             </dependencies>
             <executions>
               <execution>
-                <id>display-info</id>
+                <id>incrementals-enforce-minimum</id>
                 <configuration>
                   <rules>
                     <requireExtensionVersion>
