@@ -92,7 +92,7 @@ You can set up `mvn spotless:apply` to run automatically (in `validate` phase) f
 
 ## Additional Checks
 
-You can set the `ban-junit4-imports.skip` property to `false` if your tests are written with JUnit 5 (Jupiter) and you want to ensure that no JUnit 4 imports are used in your plugin.
+You can set the `ban-junit4-imports.skip` property to `false` if your tests are written with JUnit Jupiter and you want to ensure that no JUnit 4 imports are used in your plugin.
 This will prevent imports of JUnit 4 classes in your code to ensure newly added or improved tests do not reintroduce JUnit 4 (e.g., out of habit or from IDE import autocompletion).
 Note that this will only address _imports_ of JUnit 4 in your code, and not uses from dependencies, or even use of fully qualified class names.
 
