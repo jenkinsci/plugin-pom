@@ -111,7 +111,7 @@
     <maven-war-plugin.version>3.5.1</maven-war-plugin.version>
     <mockito.version>5.23.0</mockito.version>
     <spotbugs-maven-plugin.version>4.10.2.0</spotbugs-maven-plugin.version>
-    <spotless-maven-plugin.version>3.7.0</spotless-maven-plugin.version>
+    <spotless-maven-plugin.version>3.8.0</spotless-maven-plugin.version>
     <stapler-maven-plugin.version>278.vc90e156a_c20e</stapler-maven-plugin.version>
     <jenkins-enforcer-rules.version>43.vdc91a_c85f434</jenkins-enforcer-rules.version>
 
