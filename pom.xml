@@ -70,7 +70,8 @@
 
     <releaseProfiles />
     <arguments />
-    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}</argLine>
+    <jenkins.java23Plus />
+    <argLine>-Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent} @{jenkins.java23Plus}</argLine>
 
     <access-modifier-checker.version>1.35</access-modifier-checker.version>
     <bridge-method-injector.version>1.32</bridge-method-injector.version>
@@ -1785,6 +1786,15 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <profile>
+      <id>java-23-plus-jvm-flags</id>
+      <activation>
+        <jdk>[23,)</jdk>
+      </activation>
+      <properties>
+        <jenkins.java23Plus>--sun-misc-unsafe-memory-access=allow --enable-native-access=ALL-UNNAMED</jenkins.java23Plus>
+      </properties>
     </profile>
   </profiles>
 </project>
