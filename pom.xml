@@ -86,7 +86,7 @@
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
     <jenkins-test-harness.version>2573.vd91b_8a_43e019</jenkins-test-harness.version>
-    <junit.version>6.1.1</junit.version>
+    <junit.version>6.1.2</junit.version>
     <license-maven-plugin.version>210.v568d0b_a_2b_e44</license-maven-plugin.version>
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <localizer-maven-plugin.version>1.31</localizer-maven-plugin.version>
