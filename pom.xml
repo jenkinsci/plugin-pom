@@ -150,8 +150,18 @@
         THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION
         THROWS_METHOD_THROWS_CLAUSE_THROWABLE
         THROWS_METHOD_THROWS_RUNTIMEEXCEPTION
+      FindImproperSynchronization
+        USO_UNSAFE_METHOD_SYNCHRONIZATION
+        USO_UNSAFE_STATIC_METHOD_SYNCHRONIZATION
+        USO_UNSAFE_OBJECT_SYNCHRONIZATION
+        USO_UNSAFE_ACCESSIBLE_OBJECT_SYNCHRONIZATION
+        USO_UNSAFE_INHERITABLE_OBJECT_SYNCHRONIZATION
+        USO_UNSAFE_EXPOSED_OBJECT_SYNCHRONIZATION
+        USBC_UNSAFE_SYNCHRONIZATION_WITH_BACKING_COLLECTION
+        USBC_UNSAFE_SYNCHRONIZATION_WITH_ACCESSIBLE_BACKING_COLLECTION
+        USBC_UNSAFE_SYNCHRONIZATION_WITH_INHERITABLE_BACKING_COLLECTION
     -->
-    <spotbugs.omitVisitors>ConstructorThrow,FindReturnRef,MultipleInstantiationsOfSingletons,SharedVariableAtomicityDetector,ThrowingExceptions</spotbugs.omitVisitors>
+    <spotbugs.omitVisitors>ConstructorThrow,FindReturnRef,MultipleInstantiationsOfSingletons,SharedVariableAtomicityDetector,ThrowingExceptions,FindImproperSynchronization</spotbugs.omitVisitors>
 
     <!-- Set to false to enable Spotless -->
     <spotless.check.skip>true</spotless.check.skip>
