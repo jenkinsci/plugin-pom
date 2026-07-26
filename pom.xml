@@ -81,7 +81,7 @@
     <hpi-plugin.version>3.1814.v77d15159f9b_d</hpi-plugin.version>
     <incrementals-enforce-minimum.version>1.0-beta-4</incrementals-enforce-minimum.version>
     <incrementals-plugin.version>1.13</incrementals-plugin.version>
-    <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
+    <flatten-maven-plugin.version>1.8.0</flatten-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
     <jenkins.version>2.479</jenkins.version>
     <jenkins-bom.version>${jenkins.version}</jenkins-bom.version>
