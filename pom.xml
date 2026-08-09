@@ -858,7 +858,16 @@
         <configuration>
           <preparationGoals>clean install</preparationGoals>
           <goals>deploy</goals>
-          <arguments>${arguments}</arguments>
+          <!--
+            maven-release-plugin rewrites pom.xml with its own XML serializer while bumping the
+            version, which expands empty elements (e.g. `<changelist/>` -> `<changelist></changelist>`)
+            and no longer matches the pom formatting Spotless enforces. This breaks release:prepare
+            and release:perform for any plugin with spotless.check.skip=false. Skip the check only for
+            these release-plugin-internal builds, not for regular verify/CI builds.
+            https://github.com/jenkinsci/plugin-pom/issues/1417
+            https://issues.apache.org/jira/browse/MRELEASE-1142
+          -->
+          <arguments>-Dspotless.check.skip=true ${arguments}</arguments>
           <releaseProfiles>jenkins-release,!consume-incrementals,${releaseProfiles}</releaseProfiles>
         </configuration>
       </plugin>
