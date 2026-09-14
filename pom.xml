@@ -1751,6 +1751,7 @@
       <properties>
         <!-- we can not use maven.test.skip because we may be producing a test jar -->
         <skipTests>true</skipTests>
+        <skipITs>true</skipITs>
         <spotbugs.skip>true</spotbugs.skip>
         <spotless.skip>true</spotless.skip>
         <enforcer.skip>true</enforcer.skip>
