@@ -264,6 +264,11 @@
         <version>${jenkins-test-harness.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.kohsuke</groupId>
+        <artifactId>access-modifier-suppressions</artifactId>
+        <version>${access-modifier-checker.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.jenkins-ci.main</groupId>
         <artifactId>jenkins-war</artifactId>
         <version>${jenkins.version}</version>
@@ -274,26 +279,6 @@
   </dependencyManagement>
 
   <dependencies>
-    <!--  Jenkins core dependencies -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- jenkins war needed for testing -->
-    <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-war</artifactId>
-      <type>executable-war</type>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- dependencies provided by virtue of running in Jenkins -->
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
 
     <dependency>
       <!-- to avoid https://www.slf4j.org/codes.html#release warning -->
@@ -303,14 +288,39 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- dependencies provided by virtue of running in Jenkins -->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!--  Jenkins core dependencies -->
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-suppressions</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>test-annotations</artifactId>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-test-harness</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- jenkins war needed for testing -->
     <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>test-annotations</artifactId>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <type>executable-war</type>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -556,11 +566,6 @@
         <artifactId>maven-enforcer-plugin</artifactId>
         <dependencies>
           <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.12.1</version>
-          </dependency>
-          <dependency>
             <groupId>de.skuzzle.enforcer</groupId>
             <artifactId>restrict-imports-enforcer-rule</artifactId>
             <version>3.0.2-develop</version>
@@ -569,6 +574,11 @@
             <groupId>io.jenkins.tools.maven</groupId>
             <artifactId>jenkins-enforcer-rules</artifactId>
             <version>${jenkins-enforcer-rules.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.12.1</version>
           </dependency>
         </dependencies>
         <executions>
@@ -591,7 +601,7 @@
                 <!-- Suggested Java LTS versions -->
                 <requireJavaVersion>
                   <version>[17,18),[21,22),[25,26)</version>
-                  <message> A Java LTS release is recommended to build this plugin (JDK 17, 21, or 25).</message>
+                  <message>A Java LTS release is recommended to build this plugin (JDK 17, 21, or 25).</message>
                   <level>WARN</level>
                 </requireJavaVersion>
                 <requirePluginVersions>
