@@ -270,6 +270,11 @@
         <type>executable-war</type>
         <scope>test</scope>
       </dependency>
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>access-modifier-suppressions</artifactId>
+            <version>${access-modifier-checker.version}</version>
+        </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -301,7 +306,14 @@
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
       <scope>provided</scope>
+
     </dependency>
+
+      <dependency>
+          <groupId>org.kohsuke</groupId>
+          <artifactId>access-modifier-suppressions</artifactId>
+          <scope>provided</scope>
+      </dependency>
 
     <dependency>
       <groupId>org.jenkins-ci.main</groupId>
